@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Polish</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -166,6 +167,18 @@
 		<message>
 			<source>Users</source>
 			<translation>Użytkownicy</translation>
+		</message>
+		<message>
+			<source>Additional RDP Settings</source>
+			<translation>Dodatkowe ustawienia RDP</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Ustawienia RDP</translation>
+		</message>
+		<message>
+			<source>Include Default RDP Settings</source>
+			<translation>Uwzględnij domyślne ustawienia RDP</translation>
 		</message>
 	</context>
 	<context>

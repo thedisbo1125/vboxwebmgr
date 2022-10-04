@@ -1,0 +1,77 @@
+<!-- 
+
+	Global RDP Settings
+	Copyright (C) 2022 Rich Fabian (imoore76 at yahoo dot com)
+	
+	$Id: settingsGlobalRDPSettings.html 595 2015-04-17 09:50:36Z imoore76 $
+
+ -->
+
+<style>
+td.addspace {
+  border-top: 2px solid transparent;  
+}
+</style>
+
+<div>
+	<table style='width: 100%; margin-left:auto; margin-right:auto;'>
+		<tr>
+			<td colspan='1' style='width: 25%'><span class='translate'>Include Default RDP Settings</span>:</td>
+			<td><input type='checkbox' class='vboxCheckbox' id='vboxGlobalRDPIncludeDefault'></td>
+		</tr>
+		<tr>
+                	<td colspan='1'><span class='translate'>Additional RDP Settings</span>:</td>
+<!--		</tr>  -->
+<!--		<tr style='vertical-align:top;'> -->
+			<td style='width: 400%' class='addspace'>
+				<textarea spellcheck="false" class='vboxRunningEnabled' rows='16' cols='50' name='vboxGlobalRDPSettings' id='vboxGlobalRDPSettings'></textarea>
+			</td>
+		</tr>
+	</table>
+
+
+<!-- Main Div -->
+</div>
+
+
+<script type='text/javascript'>
+
+
+var RDPExtraLines = $('#vboxSettingsDialog').data('vboxRDPSettings');
+
+RDPtextarea  = document.getElementById('vboxGlobalRDPSettings');
+
+if (RDPExtraLines.extralines.length > 0)
+{
+      for (let i = 0; i < RDPExtraLines.extralines.length; i++) {
+            RDPtextarea.value += RDPExtraLines.extralines[i] + '\r\n';
+      }
+}
+
+document.getElementById('vboxGlobalRDPIncludeDefault').checked = ($('#vboxSettingsDialog').data('vboxRDPSettings').includedeflines == 1);
+
+
+/*
+ *
+ * Update Data onSave()
+ *
+ */
+$('#vboxSettingsDialog').on('save',function(){
+
+	RDPtextarea  = document.getElementById('vboxGlobalRDPSettings');
+	RDPextralines = RDPtextarea.value.replace(/\r\n/g,"\n").split("\n");
+	$('#vboxSettingsDialog').data('vboxRDPSettings').extralines = RDPextralines;
+
+	$('#vboxSettingsDialog').data('vboxRDPSettings').includedeflines = 0;
+
+	if (document.getElementById('vboxGlobalRDPIncludeDefault').checked)
+	{
+		$('#vboxSettingsDialog').data('vboxRDPSettings').includedeflines = 1;
+	}
+
+/*	$('#vboxSettingsDialog').data('vboxRDPSettings').includedeflines = document.getElementById('vboxGlobalRDPIncludeDefault').checked;*/
+
+});
+
+
+</script>

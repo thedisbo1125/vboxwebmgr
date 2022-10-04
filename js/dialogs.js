@@ -1074,14 +1074,16 @@ function vboxGlobalPrefsDialog() {
 		{'name':'GlobalGeneral','label':'General','icon':'machine','context':'UIGlobalSettingsGeneral'},
 		{'name':'GlobalLanguage','label':'Language','icon':'site','context':'UIGlobalSettingsLanguage'},
 		{'name':'GlobalNetwork','label':'Network','icon':'nw','context':'UIGlobalSettingsNetwork','tabbed':true},
-		{'name':'GlobalUsers','label':'Users','icon':'register','context':'UIUsers'}
+		{'name':'GlobalUsers','label':'Users','icon':'register','context':'UIUsers'},
+		{'name':'GlobalRDPSettings','label':'RDP Settings','icon':'machine-rdp','context':'UISettingsDialogGlobal'}
 	);
 
 	var data = new Array(
 		{'fn':'hostOnlyInterfacesGet','callback':function(d){$('#vboxSettingsDialog').data('vboxHostOnlyInterfaces',d.responseData);}},
 		{'fn':'vboxSystemPropertiesGet','callback':function(d){$('#vboxSettingsDialog').data('vboxSystemProperties',d.responseData);}},
 		{'fn':'vboxNATNetworksGet','callback':function(d){$('#vboxSettingsDialog').data('vboxNATNetworks',d.responseData);}},
-		{'fn':'getUsers','callback':function(d){$('#vboxSettingsDialog').data('vboxUsers',d.responseData);}}
+		{'fn':'getUsers','callback':function(d){$('#vboxSettingsDialog').data('vboxUsers',d.responseData);}},
+		{'fn':'vboxGlobalRDPSettingsGet','callback':function(d){$('#vboxSettingsDialog').data('vboxRDPSettings',d.responseData);}}
 	);
 
 	// Check for noAuth setting
@@ -1103,9 +1105,17 @@ function vboxGlobalPrefsDialog() {
 
 			}
 
+
+			// Add functions to change settings on save
+			// parameters: function name:  format is remote_<name>, in vboxconnector.php
+			// is a function, nothing to return,
+			// name to access in $args, i.e. $args['RDPSettings'];
+			// data to send to the function
+
 			l.add('vboxNATNetworksSave',function(){return;},{'networks':$('#vboxSettingsDialog').data('vboxNATNetworks')});
 			l.add('hostOnlyInterfacesSave',function(){return;},{'networkInterfaces':$('#vboxSettingsDialog').data('vboxHostOnlyInterfaces').networkInterfaces});
 			l.add('vboxSystemPropertiesSave',function(){return;},{'SystemProperties':$('#vboxSettingsDialog').data('vboxSystemProperties')});
+			l.add('vboxGlobalRDPSettingsSave',function(){return;},{'RDPSettings':$('#vboxSettingsDialog').data('vboxRDPSettings')});
 			l.run();
 
 			// Update system properties

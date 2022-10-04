@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Romanian</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -166,6 +167,18 @@
 		<message>
 			<source>Users</source>
 			<translation>Utilizatori</translation>
+		</message>
+		<message>
+			<source>Additional RDP Settings</source>
+			<translation>Setări RDP suplimentare</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Setări RDP</translation>
+		</message>
+		<message>
+			<source>Include Default RDP Settings</source>
+			<translation>Includeți setările RDP implicite</translation>
 		</message>
 	</context>
 	<context>

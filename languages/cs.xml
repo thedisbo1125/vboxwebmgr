@@ -167,6 +167,18 @@
 			<source>Users</source>
 			<translation>Uživatelé</translation>
 		</message>
+		<message>
+			<source>Additional RDP Settings</source>
+			<translation>Další nastavení RDP</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Nastavení RDP</translation>
+		</message>
+		<message>
+			<source>Include Default RDP Settings</source>
+			<translation>Zahrnout výchozí nastavení RDP</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIUsers</name>

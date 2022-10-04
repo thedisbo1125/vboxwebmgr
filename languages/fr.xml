@@ -167,6 +167,18 @@
 			<source>Users</source>
 			<translation>Utilisateurs</translation>
 		</message>
+		<message>
+			<source>Additional RDP Settings</source>
+			<translation>Paramètres RDP supplémentaires</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Paramètres RDP</translation>
+		</message>
+		<message>
+			<source>Include Default RDP Settings</source>
+			<translation>Inclure les paramètres RDP par défaut</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIUsers</name>
