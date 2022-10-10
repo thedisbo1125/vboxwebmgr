@@ -69,14 +69,16 @@ class __vbox_language {
 			return;
 		}
 
-
 		self::$langdata = unserialize(@file_get_contents(VBOX_BASE_LANG_DIR.'/source/'.$lang.'.dat'));
 
 		$xmlObj = simplexml_load_string(@file_get_contents(VBOX_BASE_LANG_DIR.'/'.$lang.'.xml'));
 		$arrXml = $this->objectsIntoArray($xmlObj);
 
 		$lang = array();
-		if(!@$arrXml['context'][0]) $arrXml['context'] = array($arrXml['context']);
+		if(!@$arrXml['context'][0]) {
+			$arrXml['context'] = array($arrXml['context']);
+		}
+
 		foreach($arrXml['context'] as $c) {
 
 			if(!is_array($c) || !@$c['name']) continue;
