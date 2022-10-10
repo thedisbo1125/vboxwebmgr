@@ -132,11 +132,7 @@ vboxNetworking.networkInterfaces = $('#vboxSettingsDialog').data('vboxHostDetail
 
 for(var i = 0; i < vboxNetworking.networkInterfaces.length; i++) {
 	if(vboxNetworking.networkInterfaces[i].interfaceType == 'Bridged') {
-                if(vboxNetworking.networkInterfaces[i].name.match(/vl-trunk/g) == 'vl-trunk'){
-                        if(vboxNetworking.networkInterfaces[i].name.match(/\./g) == '.'){
-                                vboxSettingsNetAdaptersBridged[vboxSettingsNetAdaptersBridged.length] = vboxNetworking.networkInterfaces[i].name;
-                        }
-                }
+		vboxSettingsNetAdaptersBridged[vboxSettingsNetAdaptersBridged.length] = vboxNetworking.networkInterfaces[i].name;
 	} else if(vboxNetworking.networkInterfaces[i].interfaceType == 'HostOnly') {
 		vboxSettingsNetAdaptersHostOnly[vboxSettingsNetAdaptersHostOnly.length] = vboxNetworking.networkInterfaces[i].name;
 	} else {
