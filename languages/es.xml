@@ -168,16 +168,20 @@
 			<translation>Usuario</translation>
 		</message>
 		<message>
-			<source>Additional RDP Settings</source>
-			<translation>Configuraciones Adicionales de RDP</translation>
+			<source>Include Default RDP File Settings</source>
+			<translation>Incluir configuración de archivo RDP predeterminada</translation>
 		</message>
 		<message>
 			<source>RDP Settings</source>
 			<translation>Configuración de RDP</translation>
 		</message>
 		<message>
-			<source>Include Default RDP Settings</source>
-			<translation>Incluir configuración predeterminada de RDP</translation>
+			<source>Additional RDP File Settings</source>
+			<translation>Configuración de archivo RDP adicional</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>Biblioteca de autenticación VRDP</translation>
 		</message>
 	</context>
 	<context>

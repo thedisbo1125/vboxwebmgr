@@ -169,16 +169,20 @@
 			<translation>Brugere</translation>
 		</message>
 		<message>
-			<source>Additional RDP Settings</source>
-			<translation>Yderligere RDP-indstillinger</translation>
+			<source>Include Default RDP File Settings</source>
+			<translation>Medtag standard RDP-filindstillinger</translation>
 		</message>
 		<message>
 			<source>RDP Settings</source>
 			<translation>RDP-indstillinger</translation>
 		</message>
 		<message>
-			<source>Include Default RDP Settings</source>
-			<translation>Inkluder standard RDP-indstillinger</translation>
+			<source>Additional RDP File Settings</source>
+			<translation>Yderligere RDP-filindstillinger</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>VRDP Authentication Library</translation>
 		</message>
 	</context>
 	<context>

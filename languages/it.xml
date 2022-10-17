@@ -167,17 +167,21 @@
 			<source>Users</source>
 			<translation>Utenti</translation>
 		</message>
-                <message>
-                        <source>Additional RDP Settings</source>
-                        <translation>Impostazioni RDP Aggiuntive</translation>
-                </message>
 		<message>
-			<source>RDP Settings</source>
-			<translation>Impostazioni RDP</translation>
+			<source>Include Default RDP File Settings</source>
+			<translation>Includi impostazioni file RDP predefinite</translation>
 		</message>
 		<message>
-			<source>Include Default RDP Settings</source>
-			<translation>Includi impostazioni RDP predefinite</translation>
+			<source>RDP Settings</source>
+			<translation>Impostazioni PSR</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Impostazioni aggiuntive del file RDP</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>Libreria di autenticazione VRDP</translation>
 		</message>
 	</context>
 	<context>

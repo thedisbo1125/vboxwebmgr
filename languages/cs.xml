@@ -168,16 +168,20 @@
 			<translation>Uživatelé</translation>
 		</message>
 		<message>
-			<source>Additional RDP Settings</source>
-			<translation>Další nastavení RDP</translation>
+			<source>Include Default RDP File Settings</source>
+			<translation>Zahrnout výchozí nastavení souboru RDP</translation>
 		</message>
 		<message>
 			<source>RDP Settings</source>
 			<translation>Nastavení RDP</translation>
 		</message>
 		<message>
-			<source>Include Default RDP Settings</source>
-			<translation>Zahrnout výchozí nastavení RDP</translation>
+			<source>Additional RDP File Settings</source>
+			<translation>Další nastavení souboru RDP</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>Knihovna ověřování VRDP</translation>
 		</message>
 	</context>
 	<context>

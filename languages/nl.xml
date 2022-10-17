@@ -169,16 +169,20 @@
 			<translation>Gebruikers</translation>
 		</message>
 		<message>
-			<source>Additional RDP Settings</source>
-			<translation>Aanvullende RDP-instellingen</translation>
+			<source>Include Default RDP File Settings</source>
+			<translation>Inclusief standaard RDP-bestandsinstellingen</translation>
 		</message>
 		<message>
 			<source>RDP Settings</source>
 			<translation>RDP-instellingen</translation>
 		</message>
 		<message>
-			<source>Include Default RDP Settings</source>
-			<translation>Standaard RDP-instellingen opnemen</translation>
+			<source>Additional RDP File Settings</source>
+			<translation>Aanvullende RDP-bestandsinstellingen</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>VRDP-authenticatiebibliotheek</translation>
 		</message>
 	</context>
 	<context>

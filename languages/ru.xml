@@ -169,16 +169,20 @@
 			<translation>Пользователи</translation>
 		</message>
 		<message>
-			<source>Additional RDP Settings</source>
-			<translation>Дополнительные настройки RDP</translation>
+			<source>Include Default RDP File Settings</source>
+			<translation>Включить настройки файла RDP по умолчанию</translation>
 		</message>
 		<message>
 			<source>RDP Settings</source>
-			<translation>настройки RDP</translation>
+			<translation>Настройки удаленного рабочего стола</translation>
 		</message>
 		<message>
-			<source>Include Default RDP Settings</source>
-			<translation>Включить настройки RDP по умолчанию</translation>
+			<source>Additional RDP File Settings</source>
+			<translation>Дополнительные настройки файла RDP</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>Библиотека аутентификации VRDP</translation>
 		</message>
 	</context>
 	<context>

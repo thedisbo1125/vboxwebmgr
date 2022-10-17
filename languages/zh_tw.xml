@@ -168,16 +168,20 @@
 			<translation>使用者</translation>
 		</message>
 		<message>
-			<source>Additional RDP Settings</source>
-			<translation>其他 RDP 設置</translation>
+			<source>Include Default RDP File Settings</source>
+			<translation>包括默认 RDP 文件设置</translation>
 		</message>
 		<message>
 			<source>RDP Settings</source>
-			<translation>RDP 設置</translation>
+			<translation>RDP 设置</translation>
 		</message>
 		<message>
-			<source>Include Default RDP Settings</source>
-			<translation>包括默認 RDP 設置</translation>
+			<source>Additional RDP File Settings</source>
+			<translation>其他 RDP 文件设置</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>VRDP 认证库</translation>
 		</message>
 	</context>
 	<context>
