@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Dutch</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -166,6 +167,22 @@
 		<message>
 			<source>Users</source>
 			<translation>Gebruikers</translation>
+		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Inclusief standaard RDP-bestandsinstellingen</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>RDP-instellingen</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Aanvullende RDP-bestandsinstellingen</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>VRDP-authenticatiebibliotheek</translation>
 		</message>
 	</context>
 	<context>

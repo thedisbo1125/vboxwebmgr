@@ -4222,7 +4222,7 @@ class vboxconnector {
 			'autostartEnabled' => ($this->settings->vboxAutostartConfig && $m->autostartEnabled),
 			'autostartDelay' => ($this->settings->vboxAutostartConfig ? intval($m->autostartDelay) : '0'),
 			'settingsFilePath' => $m->settingsFilePath,
-		    'paravirtProvider' => (string)$m->paravirtProvider,
+			'paravirtProvider' => (string)$m->paravirtProvider,
 			'OSTypeId' => $m->OSTypeId,
 			'OSTypeDesc' => $this->vbox->getGuestOSType($m->OSTypeId)->description,
 			'CPUCount' => $m->CPUCount,
@@ -4260,7 +4260,7 @@ class vboxconnector {
 				'audioDriver' => (string)$m->audioAdapter->audioDriver,
 				),
 			'RTCUseUTC' => $m->RTCUseUTC,
-		    'EffectiveParavirtProvider' => (string)$m->getEffectiveParavirtProvider(),
+			'EffectiveParavirtProvider' => (string)$m->getEffectiveParavirtProvider(),
 			'HWVirtExProperties' => array(
 				'Enabled' => $m->getHWVirtExProperty('Enabled'),
 				'NestedPaging' => $m->getHWVirtExProperty('NestedPaging'),
@@ -5498,29 +5498,29 @@ class vboxconnector {
 
 		}
 		return array(
-				'id' => $m->id,
-				'description' => $m->description,
-				'state' => (string)$m->refreshState(),
-				'location' => $m->location,
-				'name' => $m->name,
-				'deviceType' => (string)$m->deviceType,
-				'hostDrive' => $m->hostDrive,
-				'size' => (string)$m->size, /* (string) to support large disks. Bypass integer limit */
-				'format' => $m->format,
-				'type' => (string)$m->type,
-				'parent' => (((string)$m->deviceType == 'HardDisk' && $m->parent->handle) ? $m->parent->id : null),
-				'children' => $children,
-				'base' => (((string)$m->deviceType == 'HardDisk' && $m->base->handle) ? $m->base->id : null),
-				'readOnly' => $m->readOnly,
-				'logicalSize' => ($m->logicalSize/1024)/1024,
-				'autoReset' => $m->autoReset,
-				'hasSnapshots' => $hasSnapshots,
-				'lastAccessError' => $m->lastAccessError,
-				'variant' => $variant,
-				'machineIds' => array(),
-				'attachedTo' => $attachedTo,
-		        'encryptionSettings' => $encryptionSettings
-			);
+			'id' => $m->id,
+			'description' => $m->description,
+			'state' => (string)$m->refreshState(),
+			'location' => $m->location,
+			'name' => $m->name,
+			'deviceType' => (string)$m->deviceType,
+			'hostDrive' => $m->hostDrive,
+			'size' => (string)$m->size, /* (string) to support large disks. Bypass integer limit */
+			'format' => $m->format,
+			'type' => (string)$m->type,
+			'parent' => (((string)$m->deviceType == 'HardDisk' && $m->parent->handle) ? $m->parent->id : null),
+			'children' => $children,
+			'base' => (((string)$m->deviceType == 'HardDisk' && $m->base->handle) ? $m->base->id : null),
+			'readOnly' => $m->readOnly,
+			'logicalSize' => ($m->logicalSize/1024)/1024,
+			'autoReset' => $m->autoReset,
+			'hasSnapshots' => $hasSnapshots,
+			'lastAccessError' => $m->lastAccessError,
+			'variant' => $variant,
+			'machineIds' => array(),
+			'attachedTo' => $attachedTo,
+			'encryptionSettings' => $encryptionSettings
+		);
 
 	}
 
@@ -5544,6 +5544,93 @@ class vboxconnector {
 
 		return $progress->handle;
 	}
+
+
+	/**
+	 * Get VirtualBox Global RDP Settings
+	 * @return array of RDP Settings
+	*/
+	public function remote_vboxGlobalRDPSettingsGet($args) {
+
+		// Connect to vboxwebsrv
+		$this->connect();
+
+		// initialize empty array
+		$extralines = array();
+
+		// set include default lines to true as value won't exist in global settings
+		$incdeflines = 1;
+
+		$extradata = $this->vbox->getExtraDataKeys();
+
+		foreach ($extradata as $value) {
+			if (strpos($value, 'RDP/extraline') !== false) {
+
+				$line = $this->vbox->getExtraData($value);
+				array_push($extralines, $line);
+			}
+			elseif (strpos($value, 'RDP/includedeflines') !== false) {
+				$incdeflines = $this->vbox->getExtraData($value);
+			}
+
+		}
+
+		unset($extradata);
+
+		return array(
+			'extralines' => $extralines,
+			'includedeflines' => $incdeflines
+		);
+
+	}
+
+
+	/**
+	 * Set VirtualBox Global RDP Settings
+	 * @param array $args array of strings.
+	*/
+	public function remote_vboxGlobalRDPSettingsSave($args) {
+
+		// Connect to vboxwebsrv
+		$this->connect();
+
+		// get all lines of extra data
+		$extradata = $this->vbox->getExtraDataKeys();
+
+		// loop through all lines and delete "RDP/extraline"
+		foreach ($extradata as $value) {
+			if (strpos($value, 'RDP/extraline') !== false) {
+				$this->vbox->setExtraData($value,'');
+			}
+		}
+
+		unset($extradata);
+
+		$int = 1;
+		// loop through and add "RDP/extraline" lines
+
+		$RDPValues = $args['RDPSettings']['extralines'];
+
+		foreach ($RDPValues as $value) {
+
+			$intstr = strval($int);
+
+			if (strlen($intstr) < 2) {
+				$intstr = '0' . strval($int);
+			}
+
+			$extraline = 'RDP/extraline' . $intstr;
+			$this->vbox->setExtraData($extraline,$value);
+
+			$int += 1;
+
+		}
+
+		$value = $args['RDPSettings']['includedeflines'];
+		$this->vbox->setExtraData('RDP/includedeflines',$value);
+
+	}
+
 
 	/**
 	 * Get VirtualBox system properties
@@ -5577,14 +5664,15 @@ class vboxconnector {
 
 		$scs = array();
 
-		$scts = array('LsiLogic',
-                    'BusLogic',
-                    'IntelAhci',
-                    'PIIX4',
-                    'ICH6',
-                    'I82078',
-					'USB',
-					'NVMe');
+		$scts = array(
+			'LsiLogic',
+			'BusLogic',
+			'IntelAhci',
+			'PIIX4',
+			'ICH6',
+			'I82078',
+			'USB',
+			'NVMe');
 
 		foreach($scts as $t) {
 		    $scs[$t] = $sp->getStorageControllerHotplugCapable($t);

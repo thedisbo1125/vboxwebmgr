@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Danish</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -166,6 +167,22 @@
 		<message>
 			<source>Users</source>
 			<translation>Brugere</translation>
+		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Medtag standard RDP-filindstillinger</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>RDP-indstillinger</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Yderligere RDP-filindstillinger</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>VRDP Authentication Library</translation>
 		</message>
 	</context>
 	<context>
