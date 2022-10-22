@@ -1377,6 +1377,7 @@ function vboxVMsettingsDialog(vm,pane) {
                         });
 
                     }
+
                     // No encrypted media changes
                     if(!runs.length) {
                         encMediaSettings.resolve();
@@ -1411,22 +1412,44 @@ function vboxVMsettingsDialog(vm,pane) {
                             password: formPassword
                         };
 
-                        $.when(vboxAjaxRequest('mediumChangeEncryption',rdata)).done(function(d){
+                        if(!formEncEnabled) {
 
-                            if(d.responseData.progress) {
-                                var icon = 'progress_media_create_90px.png';
-                                var title = trans('Encryption');
-                                vboxProgress({'progress':d.responseData.progress,'persist':d.persist},function(){
-                                    // Loop
-                                    doruns(encMediaRuns);
-                                },icon,title,vboxMedia.getMediumById(run.medium).name, true);
-                            } else {
-                                l.removeLoading();
-                                encMediaSettings.reject();
-                                return;
-                            }
+                             $.when(vboxAjaxRequest('mediumRemoveEncryption',rdata)).done(function(d){
 
-                        });
+                                 if(d.responseData.progress) {
+                                     var icon = 'progress_media_create_90px.png';
+                                     var title = trans('Encryption');
+                                     vboxProgress({'progress':d.responseData.progress,'persist':d.persist},function(){
+                                         // Loop
+                                         doruns(encMediaRuns);
+                                     },icon,title,vboxMedia.getMediumById(run.medium).name, true);
+                                 } else {
+                                     l.removeLoading();
+                                     encMediaSettings.reject();
+                                     return;
+                                 }
+
+                             });
+
+                        } else {
+
+                            $.when(vboxAjaxRequest('mediumChangeEncryption',rdata)).done(function(d){
+
+                                if(d.responseData.progress) {
+                                    var icon = 'progress_media_create_90px.png';
+                                    var title = trans('Encryption');
+                                    vboxProgress({'progress':d.responseData.progress,'persist':d.persist},function(){
+                                        // Loop
+                                        doruns(encMediaRuns);
+                                    },icon,title,vboxMedia.getMediumById(run.medium).name, true);
+                                } else {
+                                    l.removeLoading();
+                                    encMediaSettings.reject();
+                                    return;
+                                }
+
+                            });
+                        }
 
                     })(runs);
 
