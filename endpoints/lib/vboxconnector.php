@@ -4933,6 +4933,47 @@ class vboxconnector {
 
 	}
 
+         /**
+          * Remove medium encryption
+          *
+          * @param array $args array of arguments. See function body for details.
+          * @return array response data containing progress id or true
+          */
+         public function remote_mediumRemoveEncryption($args) {
+
+             // Connect to vboxwebsrv
+             $this->connect();
+
+             $m = $this->vbox->openMedium($args['medium'], 'HardDisk', 'ReadWrite', false);
+
+             /* @var $progress IProgress */
+             $progress = $m->changeEncryption($args['old_password'],
+                     $args['cipher'], '','');
+
+             // Does an exception exist?
+             try {
+                 if($progress->errorInfo->handle) {
+                     $this->errors[] = new Exception($progress->errorInfo->text);
+                     $progress->releaseRemote();
+                     $m->releaseRemote();
+                     return false;
+                 }
+             } catch (Exception $null) {
+             }
+
+             if($args['waitForCompletion']) {
+                 $progress->waitForCompletion(-1);
+                 $progress->releaseRemote();
+                 $m->releaseRemote();
+                 return true;
+             }
+
+             $this->_util_progressStore($progress);
+
+             return array('progress' => $progress->handle);
+
+         }
+
 	/**
 	 * Resize a medium. Currently unimplemented in GUI.
 	 *
