@@ -4402,13 +4402,13 @@ class vboxconnector {
 
 	    foreach($args['passwords'] as $creds) {
 	        try {
-	            $this->session->console->removeDiskEncryptionPassword($creds['id']);
+	            $this->session->console->removeEncryptionPassword($creds['id']);
 	        } catch(Exception $e) {
 	            // It may not exist yet
 	        }
 
     	    try {
-    	        $this->session->console->addDiskEncryptionPassword($creds['id'], $creds['password'], (bool)@$args['clearOnSuspend']);
+    	        $this->session->console->addEncryptionPassword($creds['id'], $creds['password'], (bool)@$args['clearOnSuspend']);
     	        $response['accepted'][] = $creds['id'];
     		} catch (Exception $e) {
     		    $response['failed'][] = $creds['id'];
