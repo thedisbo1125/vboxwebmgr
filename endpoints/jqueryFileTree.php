@@ -344,7 +344,6 @@ function getDirEntries($dir, $foldersOnly=false) {
 
 		try {
 
-
 		    $appl = $vbox->vbox->createAppliance();
 		    $vfs = $appl->createVFSExplorer('file://'.str_replace(DSEP.DSEP,DSEP,$dir));
 		    $progress = $vfs->update();
