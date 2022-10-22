@@ -37,7 +37,7 @@ td.addspace {
 
 var RDPExtraLines = $('#vboxSettingsDialog').data('vboxRDPSettings');
 
-RDPtextarea  = document.getElementById('vboxGlobalRDPSettings');
+RDPtextarea  = document.getElementById('vboxGlobalRDPFileSettings');
 
 if (RDPExtraLines.extralines.length > 0)
 {
@@ -46,7 +46,7 @@ if (RDPExtraLines.extralines.length > 0)
       }
 }
 
-document.getElementById('vboxGlobalRDPIncludeDefault').checked = ($('#vboxSettingsDialog').data('vboxRDPSettings').includedeflines == 1);
+document.getElementById('vboxGlobalRDPIncludeDefaultFileSettings').checked = ($('#vboxSettingsDialog').data('vboxRDPSettings').includedeflines == 1);
 
 
 /*
