@@ -71,7 +71,10 @@
 	</tr>
 	<tr id='vboxSettingsDisplayVRDEAddrRow'>
 		<th><span class='translate'>Net Address:</span></th>
-		<td><input type='text' class='vboxText' style='width: 100%' name='vboxSettingsDisplayVRDEAddr' /></td>
+		<td>
+			<select name='vboxSettingsDisplayVRDEAddr' id='vboxSettingsDisplayVRDEAddrID' style='width: 100%'>
+			</select>
+		</td>
 	</tr>
 	<tr class='vboxRunningEnabled vboxSettingsDisplayRDP'>
 		<th><span class='translate'>Authentication Method:</span></th>
@@ -162,12 +165,61 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 			$('#vboxSettingsTabDisplayRemote').find('tr.vboxSettingsDisplayRDP').css({'display':''});
 			$('#vboxSettingsTabDisplayRemote').find('tr.vboxSettingsDisplayVNC').css({'display':'none'});
 		}
+
 		document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEPort.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.ports;
 		document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAuth.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.authType;
 		document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAuthTimeout.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.authTimeout;
-		document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAddr.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress;
 		document.forms['frmVboxSettings'].vboxSettingsDisplayVNCPassword.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.VNCPassword;
-				
+
+		// Create IP Address array and get configured IP Addresses
+		var ipaddrarray = new Array();
+
+		var vboxNetworking = $('#vboxSettingsDialog').data('vboxNetworking');
+		vboxNetworking.networkInterfaces = $('#vboxSettingsDialog').data('vboxHostDetails').networkInterfaces;
+
+		for(var i = 0; i < vboxNetworking.networkInterfaces.length; i++) {
+			if(vboxNetworking.networkInterfaces[i].interfaceType == 'Bridged') {
+				if(vboxNetworking.networkInterfaces[i].IPAddress != '0.0.0.0') {
+					ipaddrarray[ipaddrarray.length] = vboxNetworking.networkInterfaces[i].IPAddress;
+				}
+			}
+		}
+
+		// Get the select box
+                const ipaddressselect = document.getElementById("vboxSettingsDisplayVRDEAddrID");
+
+		// Clear all options, needed in case reload settings happens
+		ipaddressselect.innerHTML = "";
+
+		// Sort IP addresses
+		ipaddrarray.sort();
+
+                // add loopback address
+		ipaddrarray.unshift("127.0.0.1");
+
+		// Add IP Addresses on system to VRDE Address Select
+		for(var i = 0; i < ipaddrarray.length; i++) {
+			ipaddressselect.add(new Option(ipaddrarray[i],ipaddrarray[i]));
+		}
+
+		// Check if currently set IP address in array, add if not
+		if ((ipaddrarray.includes($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress) == false) && ($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress != "")) {
+			ipaddressselect.add(new Option(($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress),($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress)));
+		}
+
+
+		// Add option to unset address
+		ipaddressselect.add(new Option("<address not set>"));
+
+		// Set IP Address on VRDE Address Select
+		if (($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress) == "") {
+			ipaddressselect.value = "<address not set>";
+		}
+		else {
+	 		ipaddressselect.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress;
+		}
+
+
 		$(document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEEnabled).attr('checked',(!$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.enabled)).trigger('click');
 		
 		if($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.allowMultiConnection) {
@@ -176,8 +228,16 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 			document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEMulti.checked = false;
 		}
 
-	if(!$('#vboxPane').data('vboxConfig').enableAdvancedConfig)
-		$('#vboxSettingsDisplayVRDEAddrRow').css('display','none');
+		// If VM is currently running, disable IP address select box
+		var vm = vboxChooser.getSingleSelected();
+
+		if (vboxVMStates.isRunning(vm) == true) {
+			ipaddressselect.disabled = true;
+		}
+		else {
+			ipaddressselect.disabled = false;
+		}
+
 	}
 
 
@@ -195,7 +255,14 @@ $('#vboxSettingsDialog').on('save',function(){
 
 	if($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer && $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.VRDEExtPack) {
 		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.ports = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEPort.value;
-		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAddr.value;
+
+		if (document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAddr.value == "<address not set>") {
+	                $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress = "";
+		}
+		else {
+			$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAddr.value;
+		}
+
 		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.authType = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAuth.value;
 		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.authTimeout = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAuthTimeout.value;
 		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.enabled = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEEnabled.checked;
