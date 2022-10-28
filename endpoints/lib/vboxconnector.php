@@ -1930,8 +1930,7 @@ class vboxconnector {
 			if($m->VRDEServer && $this->vbox->systemProperties->defaultVRDEExtPack) {
 				$m->VRDEServer->enabled = $args['VRDEServer']['enabled'];
 				$m->VRDEServer->setVRDEProperty('TCP/Ports',$args['VRDEServer']['ports']);
-				if(@$this->settings->enableAdvancedConfig)
-					$m->VRDEServer->setVRDEProperty('TCP/Address',$args['VRDEServer']['netAddress']);
+				$m->VRDEServer->setVRDEProperty('TCP/Address',$args['VRDEServer']['netAddress']);
 				$m->VRDEServer->setVRDEProperty('VNCPassword',$args['VRDEServer']['VNCPassword'] ? $args['VRDEServer']['VNCPassword'] : null);
 				$m->VRDEServer->authType = ($args['VRDEServer']['authType'] ? $args['VRDEServer']['authType'] : 'Null');
 				$m->VRDEServer->authTimeout = $args['VRDEServer']['authTimeout'];
