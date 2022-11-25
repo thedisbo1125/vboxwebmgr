@@ -268,5 +268,11 @@
 			<translation>Nicht eingeloggt.</translation>
 		</message>		
 	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>BIOS-Logo-Anzeigezeit</translation>
+		</message>
+	</context>
 </language>
-

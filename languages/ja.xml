@@ -268,5 +268,11 @@
 			<translation>ログインしていません。</translation>
 		</message>		
 	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>BIOS ロゴ表示時間</translation>
+		</message>
+	</context>
 </language>
-

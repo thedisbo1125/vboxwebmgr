@@ -268,5 +268,11 @@
 			<translation>Niet ingelogd.</translation>
 		</message>		
 	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>Weergavetijd BIOS-logo</translation>
+		</message>
+	</context>
 </language>
-

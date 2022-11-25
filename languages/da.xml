@@ -268,4 +268,11 @@
 			<translation>Ikke logget ind.</translation>
 		</message>		
 	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>Visningstid for BIOS-logo</translation>
+		</message>
+	</context>
 </language>

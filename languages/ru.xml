@@ -268,4 +268,11 @@
 			<translation>Вы не вошли в систему.</translation>
 		</message>		
 	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>Время отображения логотипа BIOS</translation>
+		</message>
+	</context>
 </language>

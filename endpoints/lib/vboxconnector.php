@@ -1863,6 +1863,7 @@ class vboxconnector {
 
 		// IOAPIC
 		$m->BIOSSettings->IOAPICEnabled = ($args['BIOSSettings']['IOAPICEnabled'] ? 1 : 0);
+		$m->BIOSSettings->logoDisplayTime = ($args['BIOSSettings']['LogoDisplayTime']);
 		$m->CPUExecutionCap = $args['CPUExecutionCap'];
 		$m->description = $args['description'];
 		$m->ClipboardMode = $args['ClipboardMode'];
@@ -4238,7 +4239,8 @@ class vboxconnector {
 			'BIOSSettings' => array(
 				'ACPIEnabled' => $m->BIOSSettings->ACPIEnabled,
 				'IOAPICEnabled' => $m->BIOSSettings->IOAPICEnabled,
-				'timeOffset' => $m->BIOSSettings->timeOffset
+				'timeOffset' => $m->BIOSSettings->timeOffset,
+				'LogoDisplayTime' => $m->BIOSSettings->LogoDisplayTime
 				),
 			'firmwareType' => (string)$m->firmwareType,
 			'snapshotFolder' => $m->snapshotFolder,

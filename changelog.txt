@@ -1,4 +1,20 @@
 -------------------------------------
+    6.1-002  2022-11-25
+-------------------------------------
+
+- add ability to change the BIOS Logo display time
+
+-------------------------------------
+    6.1-001  2022-10-23
+-------------------------------------
+
+- fixed issue where encryption failed to turn off
+- add Windows 11 icon
+- fix a number of OS icons not displaying
+- fix some issues with PHP 8.1
+- add ability to include additional lines in RDP file
+
+-------------------------------------
     6.1-000  2022-10-01
 -------------------------------------
 
