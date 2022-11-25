@@ -99,10 +99,10 @@
 		<th></th>
 		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemRTCUseUTC' /> <span class='translate'>Hardware Clock in UTC Time</span></label></td>
 	</tr>
-	<tr class='vboxSettingsSystemAdvancedOnly'>
+	<tr>
 		<th></th>
-		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemDisableHostTimeSync' /> <span class='translate'>Disable host time sync</span></label></td>
-	</tr>	
+		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemDisableHostTimeSync' /> <span class='translate'>Disable host time sync</span></label></td>
+	</tr>
 	<tr class='vboxSettingsSystemAdvancedOnly'>
 		<th></th>
 		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemHPET' /> <span class='translate'>HPET (high precision event timer)</span></label></td>
@@ -365,7 +365,9 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 	document.forms['frmVboxSettings'].vboxSettingsSystemNestedVT.checked = ($('#vboxSettingsDialog').data('vboxMachineData').CpuProperties.HWVirt);
 	document.forms['frmVboxSettings'].settingsSystemVT.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled);
 	document.forms['frmVboxSettings'].settingsSystemPaging.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.NestedPaging);
+	document.forms['frmVboxSettings'].vboxSettingsSystemDisableHostTimeSync.checked = ($('#vboxSettingsDialog').data('vboxMachineData').disableHostTimeSync);
 	document.forms['frmVboxSettings'].vboxSettingsSystemLogoDisplayTime.value = String($('#vboxSettingsDialog').data('vboxMachineData').BIOSSettings.LogoDisplayTime);	
+
 	$(document.forms['frmVboxSettings'].vboxSettingsParavirtInterface).val($('#vboxSettingsDialog').data('vboxMachineData').paravirtProvider);
 	
 	$(document.forms['frmVboxSettings'].settingsSystemVT).triggerHandler('click');
@@ -375,7 +377,6 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 	if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
 		
 		document.forms['frmVboxSettings'].vboxSettingsSystemHPET.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HPETEnabled);
-		document.forms['frmVboxSettings'].vboxSettingsSystemDisableHostTimeSync.checked = ($('#vboxSettingsDialog').data('vboxMachineData').disableHostTimeSync);
 		document.forms['frmVboxSettings'].settingsSystemLargePages.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.LargePages);
 		document.forms['frmVboxSettings'].settingsSystemUnrestrictedExecution.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.UnrestrictedExecution);
 		document.forms['frmVboxSettings'].settingsSystemVPID.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.VPID);
@@ -498,6 +499,7 @@ $('#vboxSettingsDialog').on('save',function(){
 	$('#vboxSettingsDialog').data('vboxMachineData').CpuProperties.PAE = document.forms['frmVboxSettings'].vboxSettingsSystemPAE.checked;
 	$('#vboxSettingsDialog').data('vboxMachineData').CpuProperties.HWVirt = document.forms['frmVboxSettings'].vboxSettingsSystemNestedVT.checked;
 	$('#vboxSettingsDialog').data('vboxMachineData').RTCUseUTC = document.forms['frmVboxSettings'].vboxSettingsSystemRTCUseUTC.checked;
+	$('#vboxSettingsDialog').data('vboxMachineData').disableHostTimeSync = document.forms['frmVboxSettings'].vboxSettingsSystemDisableHostTimeSync.checked;
 
 	/* check if Display time is blank and set to 0 if it is */
 	if (document.forms['frmVboxSettings'].vboxSettingsSystemLogoDisplayTime.value == "") {
@@ -520,7 +522,6 @@ $('#vboxSettingsDialog').on('save',function(){
 	if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
 		$('#vboxSettingsDialog').data('vboxMachineData').pageFusionEnabled = document.forms['frmVboxSettings'].vboxSettingsSystemPageFusion.checked;
 		$('#vboxSettingsDialog').data('vboxMachineData').HPETEnabled = document.forms['frmVboxSettings'].vboxSettingsSystemHPET.checked;
-		$('#vboxSettingsDialog').data('vboxMachineData').disableHostTimeSync = document.forms['frmVboxSettings'].vboxSettingsSystemDisableHostTimeSync.checked;
 		$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.LargePages = document.forms['frmVboxSettings'].settingsSystemLargePages.checked;
 		$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.UnrestrictedExecution = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled && document.forms['frmVboxSettings'].settingsSystemUnrestrictedExecution.checked ? true : false);
 		$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.VPID = $('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled && document.forms['frmVboxSettings'].settingsSystemVPID.checked;

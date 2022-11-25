@@ -274,5 +274,9 @@
 			<source>BIOS Logo Display Time</source>
 			<translation>Temps d'affichage du logo du BIOS</translation>
 		</message>
+		<message>
+			<source>Disable host time sync</source>
+			<translation>Désactiver la synchronisation de l'heure de l'hôte</translation>
+		</message>
 	</context>
 </language>

@@ -1889,6 +1889,7 @@ class vboxconnector {
 		$m->paravirtProvider = $args['paravirtProvider'];
 		$m->setHWVirtExProperty('Enabled', $args['HWVirtExProperties']['Enabled']);
 		$m->setHWVirtExProperty('NestedPaging', ($args['HWVirtExProperties']['Enabled'] && $hwAccelAvail && $args['HWVirtExProperties']['NestedPaging']));
+		$m->setExtraData("VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled", $args['disableHostTimeSync']);
 
 		// Set Keyboard and Mouse
 		$m->keyboardHIDType = $args['keyboardHIDType'];
@@ -1908,7 +1909,6 @@ class vboxconnector {
 			}
 
 			$m->HPETEnabled = $args['HPETEnabled'];
-			$m->setExtraData("VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled", $args['disableHostTimeSync']);
 			$m->setHWVirtExProperty('LargePages', $args['HWVirtExProperties']['LargePages']);
 			$m->setHWVirtExProperty('UnrestrictedExecution', $args['HWVirtExProperties']['UnrestrictedExecution']);
 			$m->setHWVirtExProperty('VPID', $args['HWVirtExProperties']['VPID']);

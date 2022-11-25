@@ -274,5 +274,9 @@
 			<source>BIOS Logo Display Time</source>
 			<translation>Visningstid for BIOS-logo</translation>
 		</message>
+		<message>
+			<source>Disable host time sync</source>
+			<translation>Deaktiver synkronisering af værtstid</translation>
+		</message>
 	</context>
 </language>

@@ -274,5 +274,9 @@
 			<source>BIOS Logo Display Time</source>
 			<translation>BIOS-Logo-Anzeigezeit</translation>
 		</message>
+		<message>
+			<source>Disable host time sync</source>
+			<translation>Deaktivieren Sie die Synchronisierung der Hostzeit</translation>
+		</message>
 	</context>
 </language>
