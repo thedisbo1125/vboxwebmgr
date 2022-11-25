@@ -273,5 +273,9 @@
 			<source>BIOS Logo Display Time</source>
 			<translation>BIOS 标志显示时间</translation>
 		</message>
+		<message>
+			<source>Disable host time sync</source>
+			<translation>禁用主机时间同步</translation>
+		</message>
 	</context>
 </language>
