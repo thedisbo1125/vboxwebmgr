@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Czech</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -266,5 +267,12 @@
 			<source>Not logged in.</source>
 			<translation>Nejste přihlášení.</translation>
 		</message>		
+	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>Doba zobrazení loga BIOS</translation>
+		</message>
 	</context>
 </language>

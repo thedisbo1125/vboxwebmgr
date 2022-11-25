@@ -268,5 +268,11 @@
 			<translation>Neconectat.</translation>
 		</message>		
 	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>Timp de afișare a siglei BIOS</translation>
+		</message>
+	</context>
 </language>
-

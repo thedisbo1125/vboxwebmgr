@@ -267,4 +267,11 @@
 			<translation>还没有登入。</translation>
 		</message>		
 	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>BIOS 标志显示时间</translation>
+		</message>
+	</context>
 </language>
