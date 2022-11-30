@@ -269,6 +269,21 @@
 		</message>		
 	</context>
 	<context>
+		<name>UIGlobalSettingsNetwork</name>
+		<message>
+			<source>Network Interface Limits</source>
+			<translation>Netwerkinterfacelimieten</translation>
+		</message>
+		<message>
+			<source>Interface Name</source>
+			<translation>Interfacenaam</translation>
+		</message>
+		<message>
+			<source>Allow to be bridged</source>
+			<translation>Laten overbruggen</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>

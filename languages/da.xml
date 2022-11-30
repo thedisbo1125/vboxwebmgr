@@ -269,6 +269,21 @@
 		</message>		
 	</context>
 	<context>
+		<name>UIGlobalSettingsNetwork</name>
+		<message>
+			<source>Network Interface Limits</source>
+			<translation>Netværksgrænseflade Grænser</translation>
+		</message>
+		<message>
+			<source>Interface Name</source>
+			<translation>Interface navn</translation>
+		</message>
+		<message>
+			<source>Allow to be bridged</source>
+			<translation>Tillad at blive bro</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>
