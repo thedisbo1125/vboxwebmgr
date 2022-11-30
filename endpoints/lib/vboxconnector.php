@@ -2958,6 +2958,7 @@ class vboxconnector {
 
 		/* Get internal Networks */
 		$networks = $this->vbox->internalNetworks;
+
 		/* Generic Drivers */
 		$genericDrivers = $this->vbox->genericNetworkDrivers;
 
@@ -2975,6 +2976,87 @@ class vboxconnector {
 		);
 
 	}
+
+	/**
+	 * Get netowrk interface limits
+	 *
+	 * @param unused $args
+	 * @return array of network interfaces with extra data limits
+	 *
+	 */
+	public function remote_vboxNetworkInterfaceLimitsGet($args) {
+
+		// Connect to vboxwebsrv
+		$this->connect();
+
+		// initialize empty array
+		$netintlimits = array();
+
+		// get extra data keys
+		$extradata = $this->vbox->getExtraDataKeys();
+
+		foreach ($extradata as $value) {
+
+			if (strpos($value, 'NetworkAdapters/Limits/') !== false) {
+
+				$tempname = substr($value, 23);
+				$netname = substr($tempname,0,strpos($tempname,"/"));
+
+				$allowbridge = $this->vbox->getExtraData($value);
+
+				$netintrec = new stdClass();
+
+				$netintrec->name = $netname;
+				$netintrec->allowbridge = $allowbridge;
+
+				array_push($netintlimits, $netintrec);
+
+			}
+
+		}
+
+		unset($extradata);
+
+		return $netintlimits;
+	}
+
+
+	/**
+	 * Set network interface limits
+	 *
+	 * @param $args array of network interfaces with extra data limits
+	 * @return not used
+	 *
+	 */
+	public function remote_vboxNetworkInterfaceLimitsSave($args) {
+
+		// Connect to vboxwebsrv
+		$this->connect();
+
+		// get extra data keys
+		$extradata = $this->vbox->getExtraDataKeys();
+
+		// loop through all lines and delete "NetworkAdapters/Limits/"
+		foreach ($extradata as $value) {
+			if (strpos($value, 'NetworkAdapters/Limits/') !== false) {
+				$this->vbox->setExtraData($value,'');
+			}
+		}
+
+		unset($extradata);
+
+		$netintlimits = $args['NetIntLimits'];
+
+		foreach ($netintlimits as $value) {
+
+			if ($value['allowbridge'] === '0') {
+
+				$extradatavalue = 'NetworkAdapters/Limits/'.($value['name']).'/AllowBridging';
+				$this->vbox->setExtraData($extradatavalue,'0');
+			}
+		}
+	}
+
 
 	/**
 	 * Get host-only interface information
@@ -3380,6 +3462,46 @@ class vboxconnector {
 
 	}
 
+	/*
+	 * Get VirtualBox host network interfaces
+	 *
+	 * @param unused $args
+	 * @return array response network interfaces
+	 */
+
+	public function remote_hostGetNetworkInterfaces($args) {
+
+		// Connect to vboxwebsrv
+		$this->connect();
+
+		/* @var $host IHost */
+		$host = $this->vbox->host;
+
+		$response = array();
+
+                /*
+		 * NICs
+		 */
+		foreach($host->networkInterfaces as $d) { /* @var $d IHostNetworkInterface */
+			$response[] = array(
+				'name' => $d->name,
+				'IPAddress' => $d->IPAddress,
+				'networkMask' => $d->networkMask,
+				'IPV6Supported' => $d->IPV6Supported,
+				'IPV6Address' => $d->IPV6Address,
+				'IPV6NetworkMaskPrefixLength' => $d->IPV6NetworkMaskPrefixLength,
+				'status' => (string)$d->status,
+				'mediumType' => (string)$d->mediumType,
+				'interfaceType' => (string)$d->interfaceType,
+				'hardwareAddress' => $d->hardwareAddress,
+				'networkName' => $d->networkName,
+			);
+			$d->releaseRemote();
+		}
+
+		return $response;
+	}
+
 	/**
 	 * Get VirtualBox host details
 	 *
@@ -3392,7 +3514,8 @@ class vboxconnector {
 		$this->connect();
 
 		/* @var $host IHost */
-		$host = &$this->vbox->host;
+		$host = $this->vbox->host;
+
 		$response = array(
 			'id' => 'host',
 			'operatingSystem' => $host->operatingSystem,
@@ -3426,22 +3549,7 @@ class vboxconnector {
 		/*
 		 * NICs
 		 */
-		foreach($host->networkInterfaces as $d) { /* @var $d IHostNetworkInterface */
-			$response['networkInterfaces'][] = array(
-				'name' => $d->name,
-				'IPAddress' => $d->IPAddress,
-				'networkMask' => $d->networkMask,
-				'IPV6Supported' => $d->IPV6Supported,
-				'IPV6Address' => $d->IPV6Address,
-				'IPV6NetworkMaskPrefixLength' => $d->IPV6NetworkMaskPrefixLength,
-				'status' => (string)$d->status,
-				'mediumType' => (string)$d->mediumType,
-				'interfaceType' => (string)$d->interfaceType,
-				'hardwareAddress' => $d->hardwareAddress,
-				'networkName' => $d->networkName,
-			);
-			$d->releaseRemote();
-		}
+		$response['networkInterfaces'] = $this->remote_hostGetNetworkInterfaces($args);
 
 		/*
 		 * Medium types (DVD and Floppy)
@@ -3471,7 +3579,6 @@ class vboxconnector {
 			);
 			$d->releaseRemote();
 		}
-		$host->releaseRemote();
 
 		return $response;
 	}

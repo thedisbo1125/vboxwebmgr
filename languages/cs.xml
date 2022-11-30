@@ -269,6 +269,21 @@
 		</message>		
 	</context>
 	<context>
+		<name>UIGlobalSettingsNetwork</name>
+		<message>
+			<source>Network Interface Limits</source>
+			<translation>Limity síťového rozhraní</translation>
+		</message>
+		<message>
+			<source>Interface Name</source>
+			<translation>Název rozhraní</translation>
+		</message>
+		<message>
+			<source>Allow to be bridged</source>
+			<translation>Nechte se přemostit</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>

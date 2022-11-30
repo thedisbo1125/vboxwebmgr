@@ -1,9 +1,10 @@
 -------------------------------------
-    6.1-002  2022-11-25
+    6.1-002  2022-11-29
 -------------------------------------
 
 - add ability to change the BIOS Logo display time
 - move "Disable host time sync" option from Advanced only to all and add translations
+- add ability to limit which network interfaces can be used when bridging VMs
 
 -------------------------------------
     6.1-001  2022-10-23

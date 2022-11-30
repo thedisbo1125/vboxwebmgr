@@ -1082,6 +1082,8 @@ function vboxGlobalPrefsDialog() {
 		{'fn':'hostOnlyInterfacesGet','callback':function(d){$('#vboxSettingsDialog').data('vboxHostOnlyInterfaces',d.responseData);}},
 		{'fn':'vboxSystemPropertiesGet','callback':function(d){$('#vboxSettingsDialog').data('vboxSystemProperties',d.responseData);}},
 		{'fn':'vboxNATNetworksGet','callback':function(d){$('#vboxSettingsDialog').data('vboxNATNetworks',d.responseData);}},
+		{'fn':'vboxNetworkInterfaceLimitsGet','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkLimits',d.responseData);}},
+		{'fn':'hostGetNetworkInterfaces','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkInterfaces',d.responseData);}},
 		{'fn':'vboxGlobalRDPSettingsGet','callback':function(d){$('#vboxSettingsDialog').data('vboxRDPSettings',d.responseData);}},
 		{'fn':'getUsers','callback':function(d){$('#vboxSettingsDialog').data('vboxUsers',d.responseData);}}
 	);
@@ -1115,6 +1117,7 @@ function vboxGlobalPrefsDialog() {
 			l.add('vboxNATNetworksSave',function(){return;},{'networks':$('#vboxSettingsDialog').data('vboxNATNetworks')});
 			l.add('hostOnlyInterfacesSave',function(){return;},{'networkInterfaces':$('#vboxSettingsDialog').data('vboxHostOnlyInterfaces').networkInterfaces});
 			l.add('vboxSystemPropertiesSave',function(){return;},{'SystemProperties':$('#vboxSettingsDialog').data('vboxSystemProperties')});
+			l.add('vboxNetworkInterfaceLimitsSave',function(){return;},{'NetIntLimits':$('#vboxSettingsDialog').data('vboxNetworkLimits')});
 			l.add('vboxGlobalRDPSettingsSave',function(){return;},{'RDPSettings':$('#vboxSettingsDialog').data('vboxRDPSettings')});
 			l.run();
 
@@ -1282,6 +1285,7 @@ function vboxVMsettingsDialog(vm,pane) {
 			}},
 			{'fn':'getNetworking','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworking',d.responseData);}},
 			{'fn':'hostGetDetails','callback':function(d){$('#vboxSettingsDialog').data('vboxHostDetails',d.responseData);}},
+			{'fn':'vboxNetworkInterfaceLimitsGet','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkLimits',d.responseData);}},
 			{'fn':'vboxGetEnumerationMap','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkAdapterTypes',d.responseData);},'args':{'class':'NetworkAdapterType'}},
 			{'fn':'vboxGetEnumerationMap','callback':function(d){$('#vboxSettingsDialog').data('vboxAudioControllerTypes',d.responseData);},'args':{'class':'AudioControllerType'}},
 			{'fn':'vboxRecentMediaGet','callback':function(d){$('#vboxPane').data('vboxRecentMedia',d.responseData);}},
