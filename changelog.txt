@@ -4,6 +4,7 @@
 
 - remove unneeded phpvirtualbox.js backup file
 - update jquery.scrollTo to version 1.4.4
+- add ability to set Trusted Platform Module on VMs
 
 -------------------------------------
     7.0-002  2022-11-29

@@ -1868,6 +1868,9 @@ class vboxconnector {
 		$m->description = $args['description'];
 		$m->ClipboardMode = $args['ClipboardMode'];
 
+		// TPM
+		$m->trustedPlatformModule->Type = $args['TPM'];
+
 		// Start / stop config
 		if(@$this->settings->startStopConfig) {
 			$m->setExtraData('pvbx/startupMode', $args['startupMode']);
@@ -4349,6 +4352,7 @@ class vboxconnector {
 				'timeOffset' => $m->BIOSSettings->timeOffset,
 				'LogoDisplayTime' => $m->BIOSSettings->LogoDisplayTime
 				),
+			'TPM' => (string)$m->trustedPlatformModule->type,
 			'firmwareType' => (string)$m->firmwareType,
 			'snapshotFolder' => $m->snapshotFolder,
 			'ClipboardMode' => (string)$m->ClipboardMode,
