@@ -382,10 +382,10 @@ $('#vboxSettingsGlobalNATNetList').on('select',function(e,i){
 
 /*
  *
- * Function to fill network adapters
+ * Function to fill host only network adapters
  * 
  */
-function vboxSettingsGlobalNetworkAddAdpater(n) {
+function vboxSettingsGlobalNetworkAddHostOnlyAdpater(n) {
 
 	// If the adapter exists, don't add it
 	var exists = false;
@@ -408,18 +408,18 @@ function vboxSettingsGlobalNetworkAddAdpater(n) {
 
 /*
  * 
- * Fill network adapters
+ * Fill host only network adapters
  *
  */
-function vboxSettingsGlobalNetworkAddAdpaters() {
+function vboxSettingsGlobalNetworkAddHostOnlyAdpaters() {
 	$('#vboxSettingsGlobalNetList').children().remove();
 	var nics = $('#vboxSettingsDialog').data('vboxHostOnlyInterfaces').networkInterfaces;
 	for(var i = 0; i < nics.length; i++) {
-		vboxSettingsGlobalNetworkAddAdpater(nics[i]);
+		vboxSettingsGlobalNetworkAddHostOnlyAdpater(nics[i]);
 	}
 	$('#vboxSettingsGlobalNetList').trigger('select',null);
 }
-vboxSettingsGlobalNetworkAddAdpaters();
+vboxSettingsGlobalNetworkAddHostOnlyAdpaters();
 
 /*
  * 
