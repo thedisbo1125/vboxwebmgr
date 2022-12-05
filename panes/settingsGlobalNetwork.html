@@ -414,6 +414,22 @@ function vboxSettingsGlobalNetworkAddHostOnlyAdpater(n) {
 function vboxSettingsGlobalNetworkAddHostOnlyAdpaters() {
 	$('#vboxSettingsGlobalNetList').children().remove();
 	var nics = $('#vboxSettingsDialog').data('vboxHostOnlyInterfaces').networkInterfaces;
+
+	// Sort the Host Only Interfaces by number
+	nics.sort((a, b) => {
+		let fa = Number((a.name.toLowerCase()).replace("vboxnet",""));
+		let fb = Number((b.name.toLowerCase()).replace("vboxnet",""));
+
+		if (fa < fb) {
+			return -1;
+		}
+		if (fa > fb) {
+			return 1;
+		}
+		return 0;
+	});
+
+
 	for(var i = 0; i < nics.length; i++) {
 		vboxSettingsGlobalNetworkAddHostOnlyAdpater(nics[i]);
 	}
