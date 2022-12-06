@@ -166,8 +166,22 @@ var vboxSettingsNetContainer = $(vboxSettingsNetTemplate).parent();
  * Sort the bridged network adapters
  */
 vboxSettingsNetAdaptersBridged.sort();
-/*vboxSettingsNetAdaptersBridged.splice(0,1);*/
- 
+
+/*
+ * Sort the host only adapters
+ */
+vboxSettingsNetAdaptersHostOnly.sort((a, b) => {
+	let fa = Number((a.toLowerCase()).replace("vboxnet",""));
+	let fb = Number((b.toLowerCase()).replace("vboxnet",""));
+
+	if (fa < fb) {
+		return -1;
+	}
+	if (fa > fb) {
+		return 1;
+	}
+	return 0;
+});
 
 /* Network advanced show / hide */
 $('#vboxSettingsTabNetAdapter').find('input.netImgAdvanced').click(function(){
