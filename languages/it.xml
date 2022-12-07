@@ -28,6 +28,10 @@
 			<source>Server List</source>
 			<translation>Elenco server</translation>
 		</message>		
+		<message>
+			<source>About</source>
+			<translation>A proposito</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIVMDesktop</name>
