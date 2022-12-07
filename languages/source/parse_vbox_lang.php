@@ -32,6 +32,9 @@ foreach($arrXml['TS']['context'] as $c) {
 
        if(!is_array($m)) continue;
 
+       if(!array_key_exists("source",$m)) continue;
+
+
        $s = clean($m['source'],true);
        unset($m['source']);
 
