@@ -1,4 +1,17 @@
 -------------------------------------
+    7.0-004  2022-12-14
+-------------------------------------
+
+- update function names with HostOnly to reflect what they actually doing
+- sort Host Only networks by number at the end, name cannot be changed through GUI or vboxmanage CLI
+- add missing network adapter names
+- add check for array key in php language conversion script
+- update all .dat language files to information from VirtualBox 7
+- remove old WSDL files
+- add translation of "About" menu item
+- update few image files
+
+-------------------------------------
     7.0-003  2022-12-04
 -------------------------------------
 
