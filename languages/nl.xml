@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Dutch</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -26,6 +27,10 @@
 		<message>
 			<source>Server List</source>
 			<translation>Serverlijst</translation>
+		</message>
+		<message>
+			<source>About</source>
+			<translation>Over</translation>
 		</message>
 	</context>
 	<context>
@@ -167,6 +172,22 @@
 			<source>Users</source>
 			<translation>Gebruikers</translation>
 		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Inclusief standaard RDP-bestandsinstellingen</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>RDP-instellingen</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Aanvullende RDP-bestandsinstellingen</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>VRDP-authenticatiebibliotheek</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIUsers</name>
@@ -251,5 +272,30 @@
 			<translation>Niet ingelogd.</translation>
 		</message>		
 	</context>
+	<context>
+		<name>UIGlobalSettingsNetwork</name>
+		<message>
+			<source>Network Interface Limits</source>
+			<translation>Netwerkinterfacelimieten</translation>
+		</message>
+		<message>
+			<source>Interface Name</source>
+			<translation>Interfacenaam</translation>
+		</message>
+		<message>
+			<source>Allow to be bridged</source>
+			<translation>Laten overbruggen</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>Weergavetijd BIOS-logo</translation>
+		</message>
+		<message>
+			<source>Disable host time sync</source>
+			<translation>Schakel hosttijdsynchronisatie uit</translation>
+		</message>
+	</context>
 </language>
-

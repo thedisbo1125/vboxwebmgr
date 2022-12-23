@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Czech</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -26,6 +27,10 @@
 		<message>
 			<source>Server List</source>
 			<translation>Seznam serveru</translation>
+		</message>
+		<message>
+			<source>About</source>
+			<translation>O</translation>
 		</message>
 	</context>
 	<context>
@@ -167,6 +172,22 @@
 			<source>Users</source>
 			<translation>Uživatelé</translation>
 		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Zahrnout výchozí nastavení souboru RDP</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Nastavení RDP</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Další nastavení souboru RDP</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>Knihovna ověřování VRDP</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIUsers</name>
@@ -250,5 +271,31 @@
 			<source>Not logged in.</source>
 			<translation>Nejste přihlášení.</translation>
 		</message>		
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetwork</name>
+		<message>
+			<source>Network Interface Limits</source>
+			<translation>Limity síťového rozhraní</translation>
+		</message>
+		<message>
+			<source>Interface Name</source>
+			<translation>Název rozhraní</translation>
+		</message>
+		<message>
+			<source>Allow to be bridged</source>
+			<translation>Nechte se přemostit</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>Doba zobrazení loga BIOS</translation>
+		</message>
+		<message>
+			<source>Disable host time sync</source>
+			<translation>Zakázat synchronizaci času hostitele</translation>
+		</message>
 	</context>
 </language>

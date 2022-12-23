@@ -24,7 +24,7 @@
 # Turn off PHP notices
 error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_WARNING);
 
-global $vbox, $localbrowser, $allowed;
+global $vbox;
 
 require_once(dirname(__FILE__).'/lib/config.php');
 require_once(dirname(__FILE__).'/lib/utils.php');
@@ -223,20 +223,21 @@ echo(json_encode($returnData));
  */
 function getdir($dir, $dirsOnly=false, $recurse=array()) {
 
-	if(!$dir) $dir = DSEP;
+    global $allowed_exts;
 
-	$entries = getDirEntries($dir, $dirsOnly);
+    if(!$dir) $dir = DSEP;
+
+    $entries = getDirEntries($dir, $dirsOnly);
 
     if(!count($entries))
-    	return array();
+        return array();
 
     $dirents = array();
     foreach($entries as $path => $type) {
 
         if($type == 'folder' && count($recurse) && (strcasecmp($recurse[0],vbox_basename($path)) == 0)) {
 
-        	$entry = folder_entry($path, false, true);
-
+            $entry = folder_entry($path, false, true);
             $entry['children'] = getdir($dir.DSEP.array_shift($recurse), $dirsOnly, $recurse);
 
             array_push($dirents, $entry);
@@ -250,12 +251,11 @@ function getdir($dir, $dirsOnly=false, $recurse=array()) {
 
         	// Push file on to stack
         	} else {
+                    $file = basename($path);
+                    $ext = strtolower(preg_replace('/^.*\./', '', $file));
 
-        		$ext = strtolower(preg_replace('/^.*\./', '', $file));
-
-                if(count($allowed) && !$allowed['.'.$ext]) continue;
-
-                array_push($dirents, file_entry($path));
+                    if(count($allowed_exts) && !$allowed_exts['.'.$ext]) continue;
+                    array_push($dirents, file_entry($path));
         	}
         }
 
@@ -266,8 +266,9 @@ function getdir($dir, $dirsOnly=false, $recurse=array()) {
 }
 
 function vbox_basename($b) { return substr($b,strrpos($b,DSEP)+1); }
+
 function file_entry($f) {
-	$f = str_replace(DSEP.DSEP,DSEP,$f);
+    $f = str_replace(DSEP.DSEP,DSEP,$f);
     $ext = strtolower(preg_replace('/^.*\./', '', $f));
     return array(
         'ext' => $ext,
@@ -276,8 +277,9 @@ function file_entry($f) {
         'type' => 'file'
     );
 }
+
 function folder_entry($f,$full=false,$expanded=false) {
-	$f = str_replace(DSEP.DSEP,DSEP,$f);
+    $f = str_replace(DSEP.DSEP,DSEP,$f);
     $selected = (strnatcasecmp(rtrim($f,DSEP),rtrim($GLOBALS['request']['dir'],DSEP)) == 0) && $expanded;
     return array(
         'expanded' => (bool)$expanded,
@@ -285,7 +287,7 @@ function folder_entry($f,$full=false,$expanded=false) {
         'path' => htmlentities($f,ENT_QUOTES),
         'name' => htmlentities(($full ? $f : vbox_basename($f)),ENT_QUOTES),
         'type' => 'folder',
-		'children' => array()
+        'children' => array()
     );
 }
 
@@ -307,9 +309,9 @@ function getDirEntries($dir, $foldersOnly=false) {
 	    $dir .= DSEP;
 
 
-    /*
-     * Use local file / folder browser (PHP)
-     */
+	/*
+	 * Use local file / folder browser (PHP)
+	 */
 	if($localbrowser) {
 
 		// If the dir doesn't exist or we can't scan it, just return
@@ -342,7 +344,6 @@ function getDirEntries($dir, $foldersOnly=false) {
 
 		try {
 
-
 		    $appl = $vbox->vbox->createAppliance();
 		    $vfs = $appl->createVFSExplorer('file://'.str_replace(DSEP.DSEP,DSEP,$dir));
 		    $progress = $vfs->update();
@@ -369,13 +370,18 @@ function getDirEntries($dir, $foldersOnly=false) {
 			if($ents[$i] == '.' || $ents[$i] == '..')
 			    continue;
 
+			// type 4 is folder
 			$isdir = $types[$i] == 4;
 
 			if(!$isdir && $foldersOnly)
 				continue;
 
-			array_push($newtypes, $isdir ? 'folder' : 'file');
-			array_push($newents, $dir.$ents[$i]);
+			// do not include symbolic links
+			if(is_link($dir.$ents[$i]) == false)
+			{
+				array_push($newtypes, $isdir ? 'folder' : 'file');
+				array_push($newents, $dir.$ents[$i]);
+			}
 		}
 		return array_combine($newents,$newtypes);
 

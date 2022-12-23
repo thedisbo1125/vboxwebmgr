@@ -116,6 +116,9 @@ var vboxSettingsNetAdaptersBridged = new Array();
 var vboxSettingsNetAdaptersHostOnly = new Array();
 var vboxSettingsNetNetworks = new Array();
 
+var vboxSettingsNetIntLimits = $('#vboxSettingsDialog').data('vboxNetworkLimits');
+var result = false;
+
 /*
  * Fill Adapter Types
  */
@@ -132,11 +135,13 @@ vboxNetworking.networkInterfaces = $('#vboxSettingsDialog').data('vboxHostDetail
 
 for(var i = 0; i < vboxNetworking.networkInterfaces.length; i++) {
 	if(vboxNetworking.networkInterfaces[i].interfaceType == 'Bridged') {
-                if(vboxNetworking.networkInterfaces[i].name.match(/vl-trunk/g) == 'vl-trunk'){
-                        if(vboxNetworking.networkInterfaces[i].name.match(/\./g) == '.'){
-                                vboxSettingsNetAdaptersBridged[vboxSettingsNetAdaptersBridged.length] = vboxNetworking.networkInterfaces[i].name;
-                        }
-                }
+
+		result = vboxSettingsNetIntLimits.find(x => x.name === vboxNetworking.networkInterfaces[i].name);
+
+		if (typeof result == 'undefined') {
+			vboxSettingsNetAdaptersBridged[vboxSettingsNetAdaptersBridged.length] = vboxNetworking.networkInterfaces[i].name;
+		}
+
 	} else if(vboxNetworking.networkInterfaces[i].interfaceType == 'HostOnly') {
 		vboxSettingsNetAdaptersHostOnly[vboxSettingsNetAdaptersHostOnly.length] = vboxNetworking.networkInterfaces[i].name;
 	} else {
@@ -161,8 +166,22 @@ var vboxSettingsNetContainer = $(vboxSettingsNetTemplate).parent();
  * Sort the bridged network adapters
  */
 vboxSettingsNetAdaptersBridged.sort();
-/*vboxSettingsNetAdaptersBridged.splice(0,1);*/
- 
+
+/*
+ * Sort the host only adapters
+ */
+vboxSettingsNetAdaptersHostOnly.sort((a, b) => {
+	let fa = Number((a.toLowerCase()).replace("vboxnet",""));
+	let fb = Number((b.toLowerCase()).replace("vboxnet",""));
+
+	if (fa < fb) {
+		return -1;
+	}
+	if (fa > fb) {
+		return 1;
+	}
+	return 0;
+});
 
 /* Network advanced show / hide */
 $('#vboxSettingsTabNetAdapter').find('input.netImgAdvanced').click(function(){

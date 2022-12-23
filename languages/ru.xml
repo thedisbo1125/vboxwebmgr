@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Russian</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -26,6 +27,10 @@
 		<message>
 			<source>Server List</source>
 			<translation>Список серверов</translation>
+		</message>
+		<message>
+			<source>About</source>
+			<translation>O</translation>
 		</message>
 	</context>
 	<context>
@@ -167,6 +172,22 @@
 			<source>Users</source>
 			<translation>Пользователи</translation>
 		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Включить настройки файла RDP по умолчанию</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Настройки удаленного рабочего стола</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Дополнительные настройки файла RDP</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>Библиотека аутентификации VRDP</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIUsers</name>
@@ -250,5 +271,31 @@
 			<source>Not logged in.</source>
 			<translation>Вы не вошли в систему.</translation>
 		</message>		
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetwork</name>
+		<message>
+			<source>Network Interface Limits</source>
+			<translation>Ограничения сетевого интерфейса</translation>
+		</message>
+		<message>
+			<source>Interface Name</source>
+			<translation>Имя интерфейса</translation>
+		</message>
+		<message>
+			<source>Allow to be bridged</source>
+			<translation>Разрешить соединение</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>Время отображения логотипа BIOS</translation>
+		</message>
+		<message>
+			<source>Disable host time sync</source>
+			<translation>Отключить синхронизацию времени хоста</translation>
+		</message>
 	</context>
 </language>

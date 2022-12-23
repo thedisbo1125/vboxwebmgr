@@ -1074,6 +1074,7 @@ function vboxGlobalPrefsDialog() {
 		{'name':'GlobalGeneral','label':'General','icon':'machine','context':'UIGlobalSettingsGeneral'},
 		{'name':'GlobalLanguage','label':'Language','icon':'site','context':'UIGlobalSettingsLanguage'},
 		{'name':'GlobalNetwork','label':'Network','icon':'nw','context':'UIGlobalSettingsNetwork','tabbed':true},
+		{'name':'GlobalRDPSettings','label':'RDP Settings','icon':'machine-rdp','context':'UISettingsDialogGlobal'},
 		{'name':'GlobalUsers','label':'Users','icon':'register','context':'UIUsers'}
 	);
 
@@ -1081,6 +1082,9 @@ function vboxGlobalPrefsDialog() {
 		{'fn':'hostOnlyInterfacesGet','callback':function(d){$('#vboxSettingsDialog').data('vboxHostOnlyInterfaces',d.responseData);}},
 		{'fn':'vboxSystemPropertiesGet','callback':function(d){$('#vboxSettingsDialog').data('vboxSystemProperties',d.responseData);}},
 		{'fn':'vboxNATNetworksGet','callback':function(d){$('#vboxSettingsDialog').data('vboxNATNetworks',d.responseData);}},
+		{'fn':'vboxNetworkInterfaceLimitsGet','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkLimits',d.responseData);}},
+		{'fn':'hostGetNetworkInterfaces','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkInterfaces',d.responseData);}},
+		{'fn':'vboxGlobalRDPSettingsGet','callback':function(d){$('#vboxSettingsDialog').data('vboxRDPSettings',d.responseData);}},
 		{'fn':'getUsers','callback':function(d){$('#vboxSettingsDialog').data('vboxUsers',d.responseData);}}
 	);
 
@@ -1103,9 +1107,18 @@ function vboxGlobalPrefsDialog() {
 
 			}
 
+
+			// Add functions to change settings on save
+			// parameters: function name:  format is remote_<name>, in vboxconnector.php
+			// is a function, nothing to return,
+			// name to access in $args, i.e. $args['RDPSettings'];
+			// data to send to the function
+
 			l.add('vboxNATNetworksSave',function(){return;},{'networks':$('#vboxSettingsDialog').data('vboxNATNetworks')});
 			l.add('hostOnlyInterfacesSave',function(){return;},{'networkInterfaces':$('#vboxSettingsDialog').data('vboxHostOnlyInterfaces').networkInterfaces});
 			l.add('vboxSystemPropertiesSave',function(){return;},{'SystemProperties':$('#vboxSettingsDialog').data('vboxSystemProperties')});
+			l.add('vboxNetworkInterfaceLimitsSave',function(){return;},{'NetIntLimits':$('#vboxSettingsDialog').data('vboxNetworkLimits')});
+			l.add('vboxGlobalRDPSettingsSave',function(){return;},{'RDPSettings':$('#vboxSettingsDialog').data('vboxRDPSettings')});
 			l.run();
 
 			// Update system properties
@@ -1272,6 +1285,7 @@ function vboxVMsettingsDialog(vm,pane) {
 			}},
 			{'fn':'getNetworking','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworking',d.responseData);}},
 			{'fn':'hostGetDetails','callback':function(d){$('#vboxSettingsDialog').data('vboxHostDetails',d.responseData);}},
+			{'fn':'vboxNetworkInterfaceLimitsGet','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkLimits',d.responseData);}},
 			{'fn':'vboxGetEnumerationMap','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkAdapterTypes',d.responseData);},'args':{'class':'NetworkAdapterType'}},
 			{'fn':'vboxGetEnumerationMap','callback':function(d){$('#vboxSettingsDialog').data('vboxAudioControllerTypes',d.responseData);},'args':{'class':'AudioControllerType'}},
 			{'fn':'vboxRecentMediaGet','callback':function(d){$('#vboxPane').data('vboxRecentMedia',d.responseData);}},
@@ -1367,6 +1381,7 @@ function vboxVMsettingsDialog(vm,pane) {
                         });
 
                     }
+
                     // No encrypted media changes
                     if(!runs.length) {
                         encMediaSettings.resolve();
@@ -1401,22 +1416,44 @@ function vboxVMsettingsDialog(vm,pane) {
                             password: formPassword
                         };
 
-                        $.when(vboxAjaxRequest('mediumChangeEncryption',rdata)).done(function(d){
+                        if(!formEncEnabled) {
 
-                            if(d.responseData.progress) {
-                                var icon = 'progress_media_create_90px.png';
-                                var title = trans('Encryption');
-                                vboxProgress({'progress':d.responseData.progress,'persist':d.persist},function(){
-                                    // Loop
-                                    doruns(encMediaRuns);
-                                },icon,title,vboxMedia.getMediumById(run.medium).name, true);
-                            } else {
-                                l.removeLoading();
-                                encMediaSettings.reject();
-                                return;
-                            }
+                             $.when(vboxAjaxRequest('mediumRemoveEncryption',rdata)).done(function(d){
 
-                        });
+                                 if(d.responseData.progress) {
+                                     var icon = 'progress_media_create_90px.png';
+                                     var title = trans('Encryption');
+                                     vboxProgress({'progress':d.responseData.progress,'persist':d.persist},function(){
+                                         // Loop
+                                         doruns(encMediaRuns);
+                                     },icon,title,vboxMedia.getMediumById(run.medium).name, true);
+                                 } else {
+                                     l.removeLoading();
+                                     encMediaSettings.reject();
+                                     return;
+                                 }
+
+                             });
+
+                        } else {
+
+                            $.when(vboxAjaxRequest('mediumChangeEncryption',rdata)).done(function(d){
+
+                                if(d.responseData.progress) {
+                                    var icon = 'progress_media_create_90px.png';
+                                    var title = trans('Encryption');
+                                    vboxProgress({'progress':d.responseData.progress,'persist':d.persist},function(){
+                                        // Loop
+                                        doruns(encMediaRuns);
+                                    },icon,title,vboxMedia.getMediumById(run.medium).name, true);
+                                } else {
+                                    l.removeLoading();
+                                    encMediaSettings.reject();
+                                    return;
+                                }
+
+                            });
+                        }
 
                     })(runs);
 

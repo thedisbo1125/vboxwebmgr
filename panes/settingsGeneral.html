@@ -405,21 +405,21 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 	$('#vboxSettingsDialog').data('vboxMachineData').pointingHIDType = $(document.forms['frmVboxSettings'].vboxSettingsTabGeneralInputMouse).val();
 
 	if($('#vboxPane').data('vboxConfig').enableCustomIcons)
-		$('#vboxSettingsDialog').data('vboxMachineData').customIcon = $(document.forms['frmVboxSettings'].vboxSettingsGeneralIcon).val();
+            $('#vboxSettingsDialog').data('vboxMachineData').customIcon = $(document.forms['frmVboxSettings'].vboxSettingsGeneralIcon).val();
 	
 	var encSettings = $('#vboxSettingsDialog').data('vboxEncSettings');
 	if(encSettings) {
-    	var encSettingsChanged = (encSettings.enabled != $(document.forms['frmVboxSettings'].vboxSettingsGeneralEncryptionEnable).prop('checked')) ||
-    	   (encSettings.uniqueCiphers != $(document.forms['frmVboxSettings'].vboxSettingsTabGeneralEncryptionCipher).val()) ||
-    	   $(document.forms['frmVboxSettings'].vboxGeneralEncryptionPassword).val().length > 0;
+            var encSettingsChanged = (encSettings.enabled != $(document.forms['frmVboxSettings'].vboxSettingsGeneralEncryptionEnable).prop('checked')) ||
+                (encSettings.uniqueCiphers != $(document.forms['frmVboxSettings'].vboxSettingsTabGeneralEncryptionCipher).val()) ||
+                $(document.forms['frmVboxSettings'].vboxGeneralEncryptionPassword).val().length > 0;
     
-    	if(!encSettings.enabled && !$(document.forms['frmVboxSettings'].vboxSettingsGeneralEncryptionEnable).prop('checked'))
-    	    encSettingsChanged = false;
+            if(!encSettings.enabled && !$(document.forms['frmVboxSettings'].vboxSettingsGeneralEncryptionEnable).prop('checked'))
+                encSettingsChanged = false;
 
-        $('#vboxSettingsDialog').data('vboxEncSettingsChanged', encSettingsChanged);
-        $('#vboxSettingsDialog').data('vboxEncEnabled', $(document.forms['frmVboxSettings'].vboxSettingsGeneralEncryptionEnable).prop('checked'));
-        $('#vboxSettingsDialog').data('vboxEncCipher', $(document.forms['frmVboxSettings'].vboxSettingsTabGeneralEncryptionCipher).val());
-        $('#vboxSettingsDialog').data('vboxEncPw', $(document.forms['frmVboxSettings'].vboxGeneralEncryptionPassword).val());	    
+            $('#vboxSettingsDialog').data('vboxEncSettingsChanged', encSettingsChanged);
+            $('#vboxSettingsDialog').data('vboxEncEnabled', $(document.forms['frmVboxSettings'].vboxSettingsGeneralEncryptionEnable).prop('checked'));
+            $('#vboxSettingsDialog').data('vboxEncCipher', $(document.forms['frmVboxSettings'].vboxSettingsTabGeneralEncryptionCipher).val());
+            $('#vboxSettingsDialog').data('vboxEncPw', $(document.forms['frmVboxSettings'].vboxGeneralEncryptionPassword).val());
 	} else {
 	    $('#vboxSettingsDialog').data('vboxEncSettingsChanged', false);
 	}

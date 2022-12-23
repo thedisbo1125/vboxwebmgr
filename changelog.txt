@@ -1,4 +1,39 @@
 -------------------------------------
+    6.1-004  2022-12-14
+-------------------------------------
+
+- update function names with HostOnly to reflect what they actually doing
+- sort Host Only networks by number at the end, name cannot be changed through GUI or vboxmanage CLI
+- add missing network adapter names
+- add check for array key in php language conversion script
+- add translation for "About" menu item
+
+-------------------------------------
+    6.1-003  2022-12-04
+-------------------------------------
+
+- remove unneeded phpvirtualbox.js backup file
+- update jquery.scrollTo to version 1.4.4
+
+-------------------------------------
+    6.1-002  2022-11-29
+-------------------------------------
+
+- add ability to change the BIOS Logo display time
+- move "Disable host time sync" option from Advanced only to all and add translations
+- add ability to limit which network interfaces can be used when bridging VMs
+
+-------------------------------------
+    6.1-001  2022-10-23
+-------------------------------------
+
+- fixed issue where encryption failed to turn off
+- add Windows 11 icon
+- fix a number of OS icons not displaying
+- fix some issues with PHP 8.1
+- add ability to include additional lines in RDP file
+
+-------------------------------------
     6.1-000  2022-10-01
 -------------------------------------
 

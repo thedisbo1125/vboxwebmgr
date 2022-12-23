@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Italian</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -27,6 +28,10 @@
 			<source>Server List</source>
 			<translation>Elenco server</translation>
 		</message>		
+		<message>
+			<source>About</source>
+			<translation>A proposito</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIVMDesktop</name>
@@ -167,6 +172,22 @@
 			<source>Users</source>
 			<translation>Utenti</translation>
 		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Includi impostazioni file RDP predefinite</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Impostazioni PSR</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Impostazioni aggiuntive del file RDP</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>Libreria di autenticazione VRDP</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIUsers</name>
@@ -251,5 +272,30 @@
 			<translation>Non autenticato.</translation>
 		</message>		
 	</context>
+	<context>
+		<name>UIGlobalSettingsNetwork</name>
+		<message>
+			<source>Network Interface Limits</source>
+			<translation>Limiti dell'interfaccia di rete</translation>
+		</message>
+		<message>
+			<source>Interface Name</source>
+			<translation>Nome interfaccia</translation>
+		</message>
+		<message>
+			<source>Allow to be bridged</source>
+			<translation>Consentire di essere colmato</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>Tempo di visualizzazione del logo del BIOS</translation>
+		</message>
+		<message>
+			<source>Disable host time sync</source>
+			<translation>Disabilita la sincronizzazione dell'ora dell'host</translation>
+		</message>
+	</context>
 </language>
-

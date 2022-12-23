@@ -6,31 +6,51 @@
 	$Id: settingsGlobalNetwork.html 597 2015-04-20 11:41:28Z imoore76 $
 
  -->
+<style>
+    th.tableheader {
+        position: sticky;
+        top: 0; /* Don't forget this, required for the stickiness */
+        background: #D7D7D7;
+    }
+
+    td.center {
+        margin-left: auto;
+        margin-right: auto;
+        text-align:center;
+    }
+
+    tr.tablerowcolor:nth-child(even) {background-color: #e5e5e5;}
+
+    tr.tablerowcolor:nth-child(odd) {background-color: white;}
+</style>
+
+
 <ul>
-	<li><a href="#vboxGlobalNATNetworks"><span class='translate'>NAT Networks</span></a>
-	<li><a href="#vboxGlobalHostNetworking"><span class='translate'>Host-only Networks</span></a>
+    <li><a href="#vboxGlobalNATNetworks"><span class='translate'>NAT Networks</span></a>
+    <li><a href="#vboxGlobalHostNetworking"><span class='translate'>Host-only Networks</span></a>
+    <li><a href="#vboxGlobalNetworkInterfaceLimits"><span class='translate'>Network Interface Limits</span></a>
 </ul>
 <div id='vboxGlobalNATNetworks'>
-		<table style='width: 100%; margin-left:auto; margin-right:auto;' class='vboxInvisible'>
-			<tr style='vertical-align:top'>
-				<td>
-					<div class='vboxBordered' style='height: 280px'>
-						<table style='width:100%; border-spacing: 0px;' class='vboxList vboxHover'>
-							<thead>
-								<tr>
-                                    <th style='width: 140px; padding-left: 4px;text-align:left' class='translate'>Active</th>
-                                    <th style='text-align:left' class='translate'>Name</th>
-                                </tr>
-							</thead>
-							<tbody id='vboxSettingsGlobalNATNetList'>
-								<tr><td>asdf</td><td>asdf</td></tr>
-							</tbody>
-						</table>
-					</div>
-				</td>
-				<td style='width: 1%; padding: 4px;' id='vboxSettingsGlobalNATNetToolbar'></td>
-			</tr>
-		</table>
+    <table style='width: 100%; margin-left:auto; margin-right:auto;' class='vboxInvisible'>
+        <tr style='vertical-align:top'>
+            <td>
+                <div class='vboxBordered' style='height: 280px'>
+                    <table style='width:100%; border-spacing: 0px;' class='vboxList vboxHover'>
+                        <thead>
+                            <tr>
+                                <th style='width: 140px; padding-left: 4px;text-align:left' class='translate'>Active</th>
+                                <th style='text-align:left' class='translate'>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody id='vboxSettingsGlobalNATNetList'>
+                            <tr><td>asdf</td><td>asdf</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td style='width: 1%; padding: 4px;' id='vboxSettingsGlobalNATNetToolbar'></td>
+        </tr>
+    </table>
 </div>
 <div id='vboxGlobalHostNetworking'>
 	<table style='width: 100%; margin-left:auto; margin-right:auto;' class='vboxInvisible'>
@@ -43,6 +63,28 @@
 			<td style='width: 1%; padding: 4px;' id='vboxSettingsGlobalNetToolbar'></td>
 		</tr>
 	</table>
+</div>
+<div id='vboxGlobalNetworkInterfaceLimits'>
+    <table style='width: 100%; margin-left:auto; margin-right:auto;' class='vboxInvisible'>
+        <tr style='vertical-align:top'>
+            <td>
+                <div class='vboxBordered' style="height:300px; overflow:auto">
+                    <table style='width:100%; border-spacing: 0px;' class='vboxList vboxHover' id="vboxSettingsGlobalNetworkInterfaceLimitsTableId">
+                        <thead>
+                            <tr>
+                                <th style='width: 140px; padding-left: 4px;text-align:left' class='tableheader'><span class='translate'>Interface Name</span></th>
+                                <th style='text-align:left; width:100px' class='tableheader'><span class='translate'>Allow to be bridged</span></th>
+                                <th style='text-align:left' class='tableheader'></th>
+                            </tr>
+                        </thead>
+			<tbody id='vboxSettingsGlobalNetworkInterfaceLimitsId'>
+				<tr><td>asdf</td><td>asdf</td></tr>
+			</tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>
 
 <!--  Edit Host Networking Properties Dialog -->
@@ -340,10 +382,10 @@ $('#vboxSettingsGlobalNATNetList').on('select',function(e,i){
 
 /*
  *
- * Function to fill network adapters
+ * Function to fill host only network adapters
  * 
  */
-function vboxSettingsGlobalNetworkAddAdpater(n) {
+function vboxSettingsGlobalNetworkAddHostOnlyAdpater(n) {
 
 	// If the adapter exists, don't add it
 	var exists = false;
@@ -366,22 +408,39 @@ function vboxSettingsGlobalNetworkAddAdpater(n) {
 
 /*
  * 
- * Fill network adapters
+ * Fill host only network adapters
  *
  */
-function vboxSettingsGlobalNetworkAddAdpaters() {
+function vboxSettingsGlobalNetworkAddHostOnlyAdpaters() {
 	$('#vboxSettingsGlobalNetList').children().remove();
 	var nics = $('#vboxSettingsDialog').data('vboxHostOnlyInterfaces').networkInterfaces;
+
+	// Sort the Host Only Interfaces by number
+	nics.sort((a, b) => {
+		let fa = Number((a.name.toLowerCase()).replace("vboxnet",""));
+		let fb = Number((b.name.toLowerCase()).replace("vboxnet",""));
+
+		if (fa < fb) {
+			return -1;
+		}
+		if (fa > fb) {
+			return 1;
+		}
+		return 0;
+	});
+
+
 	for(var i = 0; i < nics.length; i++) {
-		vboxSettingsGlobalNetworkAddAdpater(nics[i]);
+		vboxSettingsGlobalNetworkAddHostOnlyAdpater(nics[i]);
 	}
 	$('#vboxSettingsGlobalNetList').trigger('select',null);
 }
-vboxSettingsGlobalNetworkAddAdpaters();
+vboxSettingsGlobalNetworkAddHostOnlyAdpaters();
 
 /*
  * 
  * FIll nat networks
+ *
  */
 function vboxSettingsGlobalNATNetworksAdd() {
 	var nets = $('#vboxSettingsDialog').data('vboxNATNetworks');
@@ -418,6 +477,90 @@ function vboxSettingsGlobalNATNetworksAddNet(net) {
 }
 
 vboxSettingsGlobalNATNetworksAdd();
+
+
+/*
+ *
+ * Fill network interface limits
+ *
+ */
+
+function createtablerow(netintname, ischecked) {
+    var row = document.createElement('tr');
+    var intname = document.createElement('td');
+    var allowbridge = document.createElement('td');
+    var tablefiller = document.createElement('td');
+
+    intname.innerHTML = netintname;
+    intname.style.paddingLeft = "4px";
+    row.appendChild(intname);
+    row.classList.add("tablerowcolor");
+
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = netintname + "id";
+    checkbox.name = netintname + "name";
+    checkbox.checked = ischecked;
+    checkbox.classList.add("vboxListItem");
+
+    allowbridge.classList.add("center");
+    allowbridge.append(checkbox);
+
+    row.appendChild(allowbridge);
+
+    row.appendChild(tablefiller);
+  
+    return row;
+}
+
+function vboxSettingsGlobalNetIntLimits() {
+
+	var vboxSettingsNetAdaptersBridged = [];
+	var vboxSettingsNetIntLimits = $('#vboxSettingsDialog').data('vboxNetworkLimits');
+
+	var SettingsNetIntLimits = document.getElementById('vboxSettingsGlobalNetworkInterfaceLimitsId');
+	SettingsNetIntLimits.innerHTML = "";
+
+	var result = false;
+	var setchecked = true;
+
+	var vboxNetworkInterfaces = $('#vboxSettingsDialog').data('vboxNetworkInterfaces');
+
+	//
+	// Find all adapters that can be bridged
+	//
+	for(var i = 0; i < vboxNetworkInterfaces.length; i++) {
+		if(vboxNetworkInterfaces[i].interfaceType == 'Bridged') {
+			vboxSettingsNetAdaptersBridged[vboxSettingsNetAdaptersBridged.length] = vboxNetworkInterfaces[i].name;
+		}
+	}
+
+	//
+	// Sort the bridged network adapters
+	//
+	vboxSettingsNetAdaptersBridged.sort();
+
+
+	//
+	// check all bridged adapters
+	//
+	for(var i = 0; i < vboxSettingsNetAdaptersBridged.length; i++) {
+
+		setchecked = true;
+
+		result = vboxSettingsNetIntLimits.find(x => x.name === vboxSettingsNetAdaptersBridged[i]);
+		if (typeof result !== 'undefined') {
+			setchecked = (result.allowbridged === "1");
+		}
+
+		SettingsNetIntLimits.appendChild(createtablerow(vboxSettingsNetAdaptersBridged[i], setchecked));
+	}
+
+}
+
+
+vboxSettingsGlobalNetIntLimits();
+
 
 /*
  *
@@ -630,6 +773,19 @@ function vboxSettingsGlobalNetworkNatPortForwardingDialog(net, row) {
  * Update Data onSave() 
  * 
  */
+function GetNetIntRecord(name, checked) {
+
+    var netintobj = {};
+
+    netintobj["name"] = name;
+    netintobj["allowbridge"] = "0";
+
+    if (checked) { netintobj["allowbridge"] = "1"; }
+
+    return netintobj;
+
+}
+
 $('#vboxSettingsDialog').on('save',function(){
 
 	$('#vboxSettingsDialog').data('vboxHostOnlyInterfaces').networkInterfaces = new Array();
@@ -644,6 +800,21 @@ $('#vboxSettingsDialog').on('save',function(){
 		nets.push($(this).data('NATNetwork'));
 	});
 	$('#vboxSettingsDialog').data('vboxNATNetworks',nets);
+
+
+	//
+	// Save Network Interface Limits
+	//
+	var netintlimits = [];
+	var netintobj = {};
+
+	var table = document.getElementById("vboxSettingsGlobalNetworkInterfaceLimitsTableId");
+	for (var i = 1, row; row = table.rows[i]; i++) {
+		netintlimits.push(GetNetIntRecord(table.rows[i].cells[0].innerHTML,document.getElementById(table.rows[i].cells[0].innerHTML + "id").checked));
+
+	}
+
+	$('#vboxSettingsDialog').data('vboxNetworkLimits',netintlimits);
 	
 });
 

@@ -7,6 +7,13 @@
 
 -->
 
+
+<style id="compiled-css" type="text/css">
+    .input-error{
+        outline: 1px solid red;
+    }
+</style>
+
 <ul>
 	<li><a href="#vboxSettingsTabSystemMotherboard"><span class='translate'>Motherboard</span></a></li>
 	<li><a href="#vboxSettingsTabSystemProcessor"><span class='translate'>Processor</span></a></li>
@@ -43,13 +50,13 @@
 	<tr class='vboxSettingsSystemAdvancedOnly'>
 		<th></th>
 		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemPageFusion' /> <span class='translate'>Enable Page Fusion</span></label></td>
-	</tr>	
+	</tr>
 	<tr style='vertical-align: top'>
 		<th style='text-align:right'><span class='translate'>Boot Order:</span></th>
 		<td>
 			<table id='vboxVMBootOrder'>
 				<tr style='vertical-align: top'>
-					<td style='width: auto'>
+					<td style='width: auto; padding-left: 2.5px'>
 						<ul class='vboxList vboxHover vboxBordered' id='vboxVMBootOrderList' style='margin: 0px; padding: 2px; white-space: nowrap; width: 200px'>
 							<li id='HardDisk'><input type='checkbox' class='vboxCheckbox' name='vboxSettingsBootHardDisk' /> <img src="images/vbox/hd_16px.png" /> <span class='vboxBootOrderDevice'>HardDisk</span></li>
 							<li id='DVD'><input type='checkbox' class='vboxCheckbox' name='vboxSettingsBootDVD' /> <img src="images/vbox/cd_16px.png" /> <span class='vboxBootOrderDevice'>DVD</span></li>
@@ -66,30 +73,36 @@
 			</table>
 		</td>
 	</tr>
+	<tr>
+		<th style='text-align:right; padding-top: 3px'><span class='translate'>BIOS Logo Display Time</span>:</th>
+		<td style='padding-left: 6px'><input type='text' class='vboxText' size='8' maxlength='6' name='vboxSettingsSystemLogoDisplayTime' id='vboxSettingsSystemLogoDisplayTimeID' /><span> msecs</span></td>
+	</tr>
+	<th></th>
 	<tr id='vboxSettingsSystemChipsetRow'>
-		<th style='text-align:right'><span class='translate'>Chipset:</span></th>
-		<td><select name='vboxSettingsSystemChipset'>
+		<th style='text-align:right; padding-top: 2px'><span class='translate'>Chipset:</span></th>
+		<td style='padding-left: 6px'><select name='vboxSettingsSystemChipset'>
 				<option value='PIIX3'>PIIX3</option>
 				<option value='ICH9'>ICH9</option>
 			</select>
 		</td>
 	</tr>	
+	<th></th>
 	<tr>
 		<th style='text-align:right'><span class='translate'>Extended Features:</span></th>
-		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemIOAPIC' /> <span class='translate'>Enable I/O APIC</span></label></td>
+		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemIOAPIC' /> <span class='translate'>Enable I/O APIC</span></label></td>
 	</tr>
 	<tr>
 		<th></th>
-		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemEFI' /> <span class='translate'>Enable EFI (special OSes only)</span></label></td>
+		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemEFI' /> <span class='translate'>Enable EFI (special OSes only)</span></label></td>
 	</tr>
 	<tr>
 		<th></th>
-		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemRTCUseUTC' /> <span class='translate'>Hardware Clock in UTC Time</span></label></td>
+		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemRTCUseUTC' /> <span class='translate'>Hardware Clock in UTC Time</span></label></td>
 	</tr>
-	<tr class='vboxSettingsSystemAdvancedOnly'>
+	<tr>
 		<th></th>
-		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemDisableHostTimeSync' /> <span class='translate'>Disable host time sync</span></label></td>
-	</tr>	
+		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemDisableHostTimeSync' /> <span class='translate'>Disable host time sync</span></label></td>
+	</tr>
 	<tr class='vboxSettingsSystemAdvancedOnly'>
 		<th></th>
 		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemHPET' /> <span class='translate'>HPET (high precision event timer)</span></label></td>
@@ -203,6 +216,48 @@
 
 <script type='text/javascript'>
 
+/*
+//
+// Restricts input for the given textbox to the given inputFilter.
+//   code copied from: https://stackoverflow.com/questions/469357/html-text-input-allow-only-numeric-input
+//
+*/
+function setInputFilter(textbox, inputFilter, errMsg) {
+    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
+        textbox.addEventListener(event, function(e) {
+            if (inputFilter(this.value)) {
+
+                // Accepted value
+                if (["keydown","mousedown","focusout"].indexOf(e.type) >= 0){
+                    this.classList.remove("input-error");
+                    this.setCustomValidity("");
+                }
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+
+                // Rejected value - restore the previous one
+                this.classList.add("input-error");
+                this.setCustomValidity(errMsg);
+                this.reportValidity();
+                this.value = this.oldValue;
+                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            } else {
+                // Rejected value - nothing to restore
+                this.value = "";
+            }
+        });
+    });
+}
+
+setInputFilter(document.getElementById("vboxSettingsSystemLogoDisplayTimeID"), function(value) {
+  return /^-?\d*$/.test(value); }, "Must be an integer");
+
+/*
+  end code copy
+*/
+
 /* Boot order devices */
 $('#vboxVMBootOrder').find("span.vboxBootOrderDevice").html(function(i,h){return trans(vboxDevice(h),'VBoxGlobal');});
 
@@ -310,7 +365,9 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 	document.forms['frmVboxSettings'].vboxSettingsSystemNestedVT.checked = ($('#vboxSettingsDialog').data('vboxMachineData').CpuProperties.HWVirt);
 	document.forms['frmVboxSettings'].settingsSystemVT.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled);
 	document.forms['frmVboxSettings'].settingsSystemPaging.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.NestedPaging);
-	
+	document.forms['frmVboxSettings'].vboxSettingsSystemDisableHostTimeSync.checked = ($('#vboxSettingsDialog').data('vboxMachineData').disableHostTimeSync);
+	document.forms['frmVboxSettings'].vboxSettingsSystemLogoDisplayTime.value = String($('#vboxSettingsDialog').data('vboxMachineData').BIOSSettings.LogoDisplayTime);	
+
 	$(document.forms['frmVboxSettings'].vboxSettingsParavirtInterface).val($('#vboxSettingsDialog').data('vboxMachineData').paravirtProvider);
 	
 	$(document.forms['frmVboxSettings'].settingsSystemVT).triggerHandler('click');
@@ -320,7 +377,6 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 	if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
 		
 		document.forms['frmVboxSettings'].vboxSettingsSystemHPET.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HPETEnabled);
-		document.forms['frmVboxSettings'].vboxSettingsSystemDisableHostTimeSync.checked = ($('#vboxSettingsDialog').data('vboxMachineData').disableHostTimeSync);
 		document.forms['frmVboxSettings'].settingsSystemLargePages.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.LargePages);
 		document.forms['frmVboxSettings'].settingsSystemUnrestrictedExecution.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.UnrestrictedExecution);
 		document.forms['frmVboxSettings'].settingsSystemVPID.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.VPID);
@@ -443,6 +499,13 @@ $('#vboxSettingsDialog').on('save',function(){
 	$('#vboxSettingsDialog').data('vboxMachineData').CpuProperties.PAE = document.forms['frmVboxSettings'].vboxSettingsSystemPAE.checked;
 	$('#vboxSettingsDialog').data('vboxMachineData').CpuProperties.HWVirt = document.forms['frmVboxSettings'].vboxSettingsSystemNestedVT.checked;
 	$('#vboxSettingsDialog').data('vboxMachineData').RTCUseUTC = document.forms['frmVboxSettings'].vboxSettingsSystemRTCUseUTC.checked;
+	$('#vboxSettingsDialog').data('vboxMachineData').disableHostTimeSync = document.forms['frmVboxSettings'].vboxSettingsSystemDisableHostTimeSync.checked;
+
+	/* check if Display time is blank and set to 0 if it is */
+	if (document.forms['frmVboxSettings'].vboxSettingsSystemLogoDisplayTime.value == "") {
+        	document.forms['frmVboxSettings'].vboxSettingsSystemLogoDisplayTime.value = '0';
+	}
+	$('#vboxSettingsDialog').data('vboxMachineData').BIOSSettings.LogoDisplayTime = parseInt(document.forms['frmVboxSettings'].vboxSettingsSystemLogoDisplayTime.value);
 
 	/* Only if we had a chipset */
 	if($('#vboxSettingsDialog').data('vboxMachineData').chipsetType)
@@ -459,7 +522,6 @@ $('#vboxSettingsDialog').on('save',function(){
 	if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
 		$('#vboxSettingsDialog').data('vboxMachineData').pageFusionEnabled = document.forms['frmVboxSettings'].vboxSettingsSystemPageFusion.checked;
 		$('#vboxSettingsDialog').data('vboxMachineData').HPETEnabled = document.forms['frmVboxSettings'].vboxSettingsSystemHPET.checked;
-		$('#vboxSettingsDialog').data('vboxMachineData').disableHostTimeSync = document.forms['frmVboxSettings'].vboxSettingsSystemDisableHostTimeSync.checked;
 		$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.LargePages = document.forms['frmVboxSettings'].settingsSystemLargePages.checked;
 		$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.UnrestrictedExecution = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled && document.forms['frmVboxSettings'].settingsSystemUnrestrictedExecution.checked ? true : false);
 		$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.VPID = $('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled && document.forms['frmVboxSettings'].settingsSystemVPID.checked;

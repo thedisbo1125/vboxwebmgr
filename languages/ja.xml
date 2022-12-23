@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Japanese</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -27,6 +28,10 @@
 			<source>Server List</source>
 			<translation>サーバリスト</translation>
 		</message>		
+		<message>
+			<source>About</source>
+			<translation>約</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIVMDesktop</name>
@@ -167,6 +172,22 @@
 			<source>Users</source>
 			<translation>ユーザ</translation>
 		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>デフォルトの RDP ファイル設定を含める</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>RDP 設定</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>追加の RDP ファイル設定</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>VRDP 認証ライブラリ</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIUsers</name>
@@ -251,5 +272,30 @@
 			<translation>ログインしていません。</translation>
 		</message>		
 	</context>
+	<context>
+		<name>UIGlobalSettingsNetwork</name>
+		<message>
+			<source>Network Interface Limits</source>
+			<translation>ネットワーク インターフェイスの制限</translation>
+		</message>
+		<message>
+			<source>Interface Name</source>
+			<translation>インターフェイス名</translation>
+		</message>
+		<message>
+			<source>Allow to be bridged</source>
+			<translation>ブリッジを許可する</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>BIOS ロゴ表示時間</translation>
+		</message>
+		<message>
+			<source>Disable host time sync</source>
+			<translation>ホスト時刻同期を無効にする</translation>
+		</message>
+	</context>
 </language>
-

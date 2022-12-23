@@ -1863,6 +1863,7 @@ class vboxconnector {
 
 		// IOAPIC
 		$m->BIOSSettings->IOAPICEnabled = ($args['BIOSSettings']['IOAPICEnabled'] ? 1 : 0);
+		$m->BIOSSettings->logoDisplayTime = ($args['BIOSSettings']['LogoDisplayTime']);
 		$m->CPUExecutionCap = $args['CPUExecutionCap'];
 		$m->description = $args['description'];
 		$m->ClipboardMode = $args['ClipboardMode'];
@@ -1888,6 +1889,11 @@ class vboxconnector {
 		$m->paravirtProvider = $args['paravirtProvider'];
 		$m->setHWVirtExProperty('Enabled', $args['HWVirtExProperties']['Enabled']);
 		$m->setHWVirtExProperty('NestedPaging', ($args['HWVirtExProperties']['Enabled'] && $hwAccelAvail && $args['HWVirtExProperties']['NestedPaging']));
+		$m->setExtraData("VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled", $args['disableHostTimeSync']);
+
+		// Set Keyboard and Mouse
+		$m->keyboardHIDType = $args['keyboardHIDType'];
+		$m->pointingHIDType = $args['pointingHIDType'];
 
 		/* Only if advanced configuration is enabled */
 		if(@$this->settings->enableAdvancedConfig) {
@@ -1903,9 +1909,6 @@ class vboxconnector {
 			}
 
 			$m->HPETEnabled = $args['HPETEnabled'];
-			$m->setExtraData("VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled", $args['disableHostTimeSync']);
-			$m->keyboardHIDType = $args['keyboardHIDType'];
-			$m->pointingHIDType = $args['pointingHIDType'];
 			$m->setHWVirtExProperty('LargePages', $args['HWVirtExProperties']['LargePages']);
 			$m->setHWVirtExProperty('UnrestrictedExecution', $args['HWVirtExProperties']['UnrestrictedExecution']);
 			$m->setHWVirtExProperty('VPID', $args['HWVirtExProperties']['VPID']);
@@ -1928,8 +1931,7 @@ class vboxconnector {
 			if($m->VRDEServer && $this->vbox->systemProperties->defaultVRDEExtPack) {
 				$m->VRDEServer->enabled = $args['VRDEServer']['enabled'];
 				$m->VRDEServer->setVRDEProperty('TCP/Ports',$args['VRDEServer']['ports']);
-				if(@$this->settings->enableAdvancedConfig)
-					$m->VRDEServer->setVRDEProperty('TCP/Address',$args['VRDEServer']['netAddress']);
+				$m->VRDEServer->setVRDEProperty('TCP/Address',$args['VRDEServer']['netAddress']);
 				$m->VRDEServer->setVRDEProperty('VNCPassword',$args['VRDEServer']['VNCPassword'] ? $args['VRDEServer']['VNCPassword'] : null);
 				$m->VRDEServer->authType = ($args['VRDEServer']['authType'] ? $args['VRDEServer']['authType'] : 'Null');
 				$m->VRDEServer->authTimeout = $args['VRDEServer']['authTimeout'];
@@ -2956,6 +2958,7 @@ class vboxconnector {
 
 		/* Get internal Networks */
 		$networks = $this->vbox->internalNetworks;
+
 		/* Generic Drivers */
 		$genericDrivers = $this->vbox->genericNetworkDrivers;
 
@@ -2973,6 +2976,87 @@ class vboxconnector {
 		);
 
 	}
+
+	/**
+	 * Get netowrk interface limits
+	 *
+	 * @param unused $args
+	 * @return array of network interfaces with extra data limits
+	 *
+	 */
+	public function remote_vboxNetworkInterfaceLimitsGet($args) {
+
+		// Connect to vboxwebsrv
+		$this->connect();
+
+		// initialize empty array
+		$netintlimits = array();
+
+		// get extra data keys
+		$extradata = $this->vbox->getExtraDataKeys();
+
+		foreach ($extradata as $value) {
+
+			if (strpos($value, 'NetworkAdapters/Limits/') !== false) {
+
+				$tempname = substr($value, 23);
+				$netname = substr($tempname,0,strpos($tempname,"/"));
+
+				$allowbridge = $this->vbox->getExtraData($value);
+
+				$netintrec = new stdClass();
+
+				$netintrec->name = $netname;
+				$netintrec->allowbridge = $allowbridge;
+
+				array_push($netintlimits, $netintrec);
+
+			}
+
+		}
+
+		unset($extradata);
+
+		return $netintlimits;
+	}
+
+
+	/**
+	 * Set network interface limits
+	 *
+	 * @param $args array of network interfaces with extra data limits
+	 * @return not used
+	 *
+	 */
+	public function remote_vboxNetworkInterfaceLimitsSave($args) {
+
+		// Connect to vboxwebsrv
+		$this->connect();
+
+		// get extra data keys
+		$extradata = $this->vbox->getExtraDataKeys();
+
+		// loop through all lines and delete "NetworkAdapters/Limits/"
+		foreach ($extradata as $value) {
+			if (strpos($value, 'NetworkAdapters/Limits/') !== false) {
+				$this->vbox->setExtraData($value,'');
+			}
+		}
+
+		unset($extradata);
+
+		$netintlimits = $args['NetIntLimits'];
+
+		foreach ($netintlimits as $value) {
+
+			if ($value['allowbridge'] === '0') {
+
+				$extradatavalue = 'NetworkAdapters/Limits/'.($value['name']).'/AllowBridging';
+				$this->vbox->setExtraData($extradatavalue,'0');
+			}
+		}
+	}
+
 
 	/**
 	 * Get host-only interface information
@@ -3378,6 +3462,46 @@ class vboxconnector {
 
 	}
 
+	/*
+	 * Get VirtualBox host network interfaces
+	 *
+	 * @param unused $args
+	 * @return array response network interfaces
+	 */
+
+	public function remote_hostGetNetworkInterfaces($args) {
+
+		// Connect to vboxwebsrv
+		$this->connect();
+
+		/* @var $host IHost */
+		$host = $this->vbox->host;
+
+		$response = array();
+
+                /*
+		 * NICs
+		 */
+		foreach($host->networkInterfaces as $d) { /* @var $d IHostNetworkInterface */
+			$response[] = array(
+				'name' => $d->name,
+				'IPAddress' => $d->IPAddress,
+				'networkMask' => $d->networkMask,
+				'IPV6Supported' => $d->IPV6Supported,
+				'IPV6Address' => $d->IPV6Address,
+				'IPV6NetworkMaskPrefixLength' => $d->IPV6NetworkMaskPrefixLength,
+				'status' => (string)$d->status,
+				'mediumType' => (string)$d->mediumType,
+				'interfaceType' => (string)$d->interfaceType,
+				'hardwareAddress' => $d->hardwareAddress,
+				'networkName' => $d->networkName,
+			);
+			$d->releaseRemote();
+		}
+
+		return $response;
+	}
+
 	/**
 	 * Get VirtualBox host details
 	 *
@@ -3390,7 +3514,8 @@ class vboxconnector {
 		$this->connect();
 
 		/* @var $host IHost */
-		$host = &$this->vbox->host;
+		$host = $this->vbox->host;
+
 		$response = array(
 			'id' => 'host',
 			'operatingSystem' => $host->operatingSystem,
@@ -3424,22 +3549,7 @@ class vboxconnector {
 		/*
 		 * NICs
 		 */
-		foreach($host->networkInterfaces as $d) { /* @var $d IHostNetworkInterface */
-			$response['networkInterfaces'][] = array(
-				'name' => $d->name,
-				'IPAddress' => $d->IPAddress,
-				'networkMask' => $d->networkMask,
-				'IPV6Supported' => $d->IPV6Supported,
-				'IPV6Address' => $d->IPV6Address,
-				'IPV6NetworkMaskPrefixLength' => $d->IPV6NetworkMaskPrefixLength,
-				'status' => (string)$d->status,
-				'mediumType' => (string)$d->mediumType,
-				'interfaceType' => (string)$d->interfaceType,
-				'hardwareAddress' => $d->hardwareAddress,
-				'networkName' => $d->networkName,
-			);
-			$d->releaseRemote();
-		}
+		$response['networkInterfaces'] = $this->remote_hostGetNetworkInterfaces($args);
 
 		/*
 		 * Medium types (DVD and Floppy)
@@ -3469,7 +3579,6 @@ class vboxconnector {
 			);
 			$d->releaseRemote();
 		}
-		$host->releaseRemote();
 
 		return $response;
 	}
@@ -4222,7 +4331,7 @@ class vboxconnector {
 			'autostartEnabled' => ($this->settings->vboxAutostartConfig && $m->autostartEnabled),
 			'autostartDelay' => ($this->settings->vboxAutostartConfig ? intval($m->autostartDelay) : '0'),
 			'settingsFilePath' => $m->settingsFilePath,
-		    'paravirtProvider' => (string)$m->paravirtProvider,
+			'paravirtProvider' => (string)$m->paravirtProvider,
 			'OSTypeId' => $m->OSTypeId,
 			'OSTypeDesc' => $this->vbox->getGuestOSType($m->OSTypeId)->description,
 			'CPUCount' => $m->CPUCount,
@@ -4237,7 +4346,8 @@ class vboxconnector {
 			'BIOSSettings' => array(
 				'ACPIEnabled' => $m->BIOSSettings->ACPIEnabled,
 				'IOAPICEnabled' => $m->BIOSSettings->IOAPICEnabled,
-				'timeOffset' => $m->BIOSSettings->timeOffset
+				'timeOffset' => $m->BIOSSettings->timeOffset,
+				'LogoDisplayTime' => $m->BIOSSettings->LogoDisplayTime
 				),
 			'firmwareType' => (string)$m->firmwareType,
 			'snapshotFolder' => $m->snapshotFolder,
@@ -4260,7 +4370,7 @@ class vboxconnector {
 				'audioDriver' => (string)$m->audioAdapter->audioDriver,
 				),
 			'RTCUseUTC' => $m->RTCUseUTC,
-		    'EffectiveParavirtProvider' => (string)$m->getEffectiveParavirtProvider(),
+			'EffectiveParavirtProvider' => (string)$m->getEffectiveParavirtProvider(),
 			'HWVirtExProperties' => array(
 				'Enabled' => $m->getHWVirtExProperty('Enabled'),
 				'NestedPaging' => $m->getHWVirtExProperty('NestedPaging'),
@@ -4933,6 +5043,47 @@ class vboxconnector {
 
 	}
 
+         /**
+          * Remove medium encryption
+          *
+          * @param array $args array of arguments. See function body for details.
+          * @return array response data containing progress id or true
+          */
+         public function remote_mediumRemoveEncryption($args) {
+
+             // Connect to vboxwebsrv
+             $this->connect();
+
+             $m = $this->vbox->openMedium($args['medium'], 'HardDisk', 'ReadWrite', false);
+
+             /* @var $progress IProgress */
+             $progress = $m->changeEncryption($args['old_password'],
+                     $args['cipher'], '','');
+
+             // Does an exception exist?
+             try {
+                 if($progress->errorInfo->handle) {
+                     $this->errors[] = new Exception($progress->errorInfo->text);
+                     $progress->releaseRemote();
+                     $m->releaseRemote();
+                     return false;
+                 }
+             } catch (Exception $null) {
+             }
+
+             if($args['waitForCompletion']) {
+                 $progress->waitForCompletion(-1);
+                 $progress->releaseRemote();
+                 $m->releaseRemote();
+                 return true;
+             }
+
+             $this->_util_progressStore($progress);
+
+             return array('progress' => $progress->handle);
+
+         }
+
 	/**
 	 * Resize a medium. Currently unimplemented in GUI.
 	 *
@@ -5498,29 +5649,29 @@ class vboxconnector {
 
 		}
 		return array(
-				'id' => $m->id,
-				'description' => $m->description,
-				'state' => (string)$m->refreshState(),
-				'location' => $m->location,
-				'name' => $m->name,
-				'deviceType' => (string)$m->deviceType,
-				'hostDrive' => $m->hostDrive,
-				'size' => (string)$m->size, /* (string) to support large disks. Bypass integer limit */
-				'format' => $m->format,
-				'type' => (string)$m->type,
-				'parent' => (((string)$m->deviceType == 'HardDisk' && $m->parent->handle) ? $m->parent->id : null),
-				'children' => $children,
-				'base' => (((string)$m->deviceType == 'HardDisk' && $m->base->handle) ? $m->base->id : null),
-				'readOnly' => $m->readOnly,
-				'logicalSize' => ($m->logicalSize/1024)/1024,
-				'autoReset' => $m->autoReset,
-				'hasSnapshots' => $hasSnapshots,
-				'lastAccessError' => $m->lastAccessError,
-				'variant' => $variant,
-				'machineIds' => array(),
-				'attachedTo' => $attachedTo,
-		        'encryptionSettings' => $encryptionSettings
-			);
+			'id' => $m->id,
+			'description' => $m->description,
+			'state' => (string)$m->refreshState(),
+			'location' => $m->location,
+			'name' => $m->name,
+			'deviceType' => (string)$m->deviceType,
+			'hostDrive' => $m->hostDrive,
+			'size' => (string)$m->size, /* (string) to support large disks. Bypass integer limit */
+			'format' => $m->format,
+			'type' => (string)$m->type,
+			'parent' => (((string)$m->deviceType == 'HardDisk' && $m->parent->handle) ? $m->parent->id : null),
+			'children' => $children,
+			'base' => (((string)$m->deviceType == 'HardDisk' && $m->base->handle) ? $m->base->id : null),
+			'readOnly' => $m->readOnly,
+			'logicalSize' => ($m->logicalSize/1024)/1024,
+			'autoReset' => $m->autoReset,
+			'hasSnapshots' => $hasSnapshots,
+			'lastAccessError' => $m->lastAccessError,
+			'variant' => $variant,
+			'machineIds' => array(),
+			'attachedTo' => $attachedTo,
+			'encryptionSettings' => $encryptionSettings
+		);
 
 	}
 
@@ -5544,6 +5695,93 @@ class vboxconnector {
 
 		return $progress->handle;
 	}
+
+
+	/**
+	 * Get VirtualBox Global RDP Settings
+	 * @return array of RDP Settings
+	*/
+	public function remote_vboxGlobalRDPSettingsGet($args) {
+
+		// Connect to vboxwebsrv
+		$this->connect();
+
+		// initialize empty array
+		$extralines = array();
+
+		// set include default lines to true as value won't exist in global settings
+		$incdeflines = 1;
+
+		$extradata = $this->vbox->getExtraDataKeys();
+
+		foreach ($extradata as $value) {
+			if (strpos($value, 'RDP/extraline') !== false) {
+
+				$line = $this->vbox->getExtraData($value);
+				array_push($extralines, $line);
+			}
+			elseif (strpos($value, 'RDP/includedeflines') !== false) {
+				$incdeflines = $this->vbox->getExtraData($value);
+			}
+
+		}
+
+		unset($extradata);
+
+		return array(
+			'extralines' => $extralines,
+			'includedeflines' => $incdeflines
+		);
+
+	}
+
+
+	/**
+	 * Set VirtualBox Global RDP Settings
+	 * @param array $args array of strings.
+	*/
+	public function remote_vboxGlobalRDPSettingsSave($args) {
+
+		// Connect to vboxwebsrv
+		$this->connect();
+
+		// get all lines of extra data
+		$extradata = $this->vbox->getExtraDataKeys();
+
+		// loop through all lines and delete "RDP/extraline"
+		foreach ($extradata as $value) {
+			if (strpos($value, 'RDP/extraline') !== false) {
+				$this->vbox->setExtraData($value,'');
+			}
+		}
+
+		unset($extradata);
+
+		$int = 1;
+		// loop through and add "RDP/extraline" lines
+
+		$RDPValues = $args['RDPSettings']['extralines'];
+
+		foreach ($RDPValues as $value) {
+
+			$intstr = strval($int);
+
+			if (strlen($intstr) < 2) {
+				$intstr = '0' . strval($int);
+			}
+
+			$extraline = 'RDP/extraline' . $intstr;
+			$this->vbox->setExtraData($extraline,$value);
+
+			$int += 1;
+
+		}
+
+		$value = $args['RDPSettings']['includedeflines'];
+		$this->vbox->setExtraData('RDP/includedeflines',$value);
+
+	}
+
 
 	/**
 	 * Get VirtualBox system properties
@@ -5577,14 +5815,15 @@ class vboxconnector {
 
 		$scs = array();
 
-		$scts = array('LsiLogic',
-                    'BusLogic',
-                    'IntelAhci',
-                    'PIIX4',
-                    'ICH6',
-                    'I82078',
-					'USB',
-					'NVMe');
+		$scts = array(
+			'LsiLogic',
+			'BusLogic',
+			'IntelAhci',
+			'PIIX4',
+			'ICH6',
+			'I82078',
+			'USB',
+			'NVMe');
 
 		foreach($scts as $t) {
 		    $scs[$t] = $sp->getStorageControllerHotplugCapable($t);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Spanish</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -27,6 +28,10 @@
 			<source>Server List</source>
 			<translation>Lista de servidores</translation>
 		</message>		
+		<message>
+			<source>About</source>
+			<translation>Sobre</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIVMDesktop</name>
@@ -167,6 +172,22 @@
 			<source>Users</source>
 			<translation>Usuario</translation>
 		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Incluir configuración de archivo RDP predeterminada</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Configuración de RDP</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Configuración de archivo RDP adicional</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>Biblioteca de autenticación VRDP</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIUsers</name>
@@ -251,5 +272,30 @@
 			<translation>No a ingresado.</translation>
 		</message>		
 	</context>
+	<context>
+		<name>UIGlobalSettingsNetwork</name>
+		<message>
+			<source>Network Interface Limits</source>
+			<translation>Límites de interfaz de red</translation>
+		</message>
+		<message>
+			<source>Interface Name</source>
+			<translation>Nombre de la interfaz</translation>
+		</message>
+		<message>
+			<source>Allow to be bridged</source>
+			<translation>Permitir ser puenteado</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>Tiempo de visualización del logotipo del BIOS</translation>
+		</message>
+		<message>
+			<source>Disable host time sync</source>
+			<translation>Deshabilitar la sincronización del tiempo del host</translation>
+		</message>
+	</context>
 </language>
-

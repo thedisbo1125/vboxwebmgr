@@ -18,6 +18,8 @@ function getrdpextralines()
 
     $results = array();
 
+    $includedeflines = true;
+
     $vbox = new vboxconnector(true);
     $vbox->skipSessionCheck = true;
     $vbox->connect();
@@ -28,6 +30,19 @@ function getrdpextralines()
             $line = $vbox->vbox->getExtraData($value);
             array_push($results, $line);
         }
+        elseif (strpos($value, 'RDP/includedeflines') !== false) {
+            if ($vbox->vbox->getExtraData($value) == 0)
+            {
+                $includedeflines = false;
+            }
+	}
+    }
+
+    if ($includedeflines == true)
+    {
+        array_push($results,'compression:i:1');
+        array_push($results,'displayconnectionbar:i:1');
+        array_push($results,'protocol:i:4');
     }
 
     return $results;
@@ -51,9 +66,6 @@ header("Content-disposition: attachment; filename=\"". str_replace(array('"','.'
 
 $rdpfile = '
 full address:s:'.@$_GET['host'].(@$_GET['port'] ? ':'.@$_GET['port'] : '').'
-compression:i:1
-displayconnectionbar:i:1
-protocol:i:4
 ';
 
 $results = getrdpextralines();

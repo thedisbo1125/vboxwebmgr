@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Polish</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -26,6 +27,10 @@
 		<message>
 			<source>Server List</source>
 			<translation>Lista serwerów</translation>
+		</message>
+		<message>
+			<source>About</source>
+			<translation>O</translation>
 		</message>
 	</context>
 	<context>
@@ -167,6 +172,22 @@
 			<source>Users</source>
 			<translation>Użytkownicy</translation>
 		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Uwzględnij domyślne ustawienia pliku RDP</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Ustawienia RDP</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Dodatkowe ustawienia pliku RDP</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>Biblioteka uwierzytelniania VRDP</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIUsers</name>
@@ -251,5 +272,30 @@
 			<translation>Nie zalogowano.</translation>
 		</message>		
 	</context>
+	<context>
+		<name>UIGlobalSettingsNetwork</name>
+		<message>
+			<source>Network Interface Limits</source>
+			<translation>Ograniczenia interfejsu sieciowego</translation>
+		</message>
+		<message>
+			<source>Interface Name</source>
+			<translation>Nazwa interfejsu</translation>
+		</message>
+		<message>
+			<source>Allow to be bridged</source>
+			<translation>Pozwól się zmostkować</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>Czas wyświetlania logo BIOS</translation>
+		</message>
+		<message>
+			<source>Disable host time sync</source>
+			<translation>Wyłącz synchronizację czasu hosta</translation>
+		</message>
+	</context>
 </language>
-

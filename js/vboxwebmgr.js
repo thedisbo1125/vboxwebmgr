@@ -5008,6 +5008,7 @@ function vboxNetworkAdapterType(t) {
 		case 'I82543GC': return 'Intel PRO/1000 T Server (82543GC)';
 		case 'I82545EM': return 'Intel PRO/1000 MT Server (82545EM)';
 		case 'Virtio': return 'Paravirtualized Network (virtio-net)';
+		case 'Am79C960': return 'PCnet-ISA (Am79C960)';
 	}
 }
 
