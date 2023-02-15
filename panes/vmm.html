@@ -438,23 +438,27 @@ var vmmButtons = new Array(
 					}
 				}
 
-				$.when(vboxAjaxRequest('mediumSetType',{'medium':med.location,'type':mtype})).done(function(ret){
-					
-					if(ret && ret.success) {
-						var l = new vboxLoader();
-						l.add('vboxGetMedia',function(data){$('#vboxPane').data('vboxMedia',data.responseData);});
-						l.onLoad = function() {
-							if($('#vboxVirtualMediaManager').data('hideDiff')) {
-								var d = vboxMedia.getMediumById(med.id);
-								if(d.readOnly) $('#vboxVMMMediaTitle-'+d.id).addClass('vboxMediumReadOnly');
-								else $('#vboxVMMMediaTitle-'+d.id).removeClass('vboxMediumReadOnly');
-							}
-							$('#vmmMediumType').val(trans(mtype,'VBoxGlobal'));
-						};
-						l.run();
-						$('#vboxVMMModifyDialog').empty().remove();
-					}
-				});			
+				if(med.type != mtype) {
+					$.when(vboxAjaxRequest('mediumSetType',{'medium':med.location,'type':mtype})).done(function(ret){
+				
+						if(ret && ret.success) {
+							var l = new vboxLoader();
+							l.add('vboxGetMedia',function(data){$('#vboxPane').data('vboxMedia',data.responseData);});
+							l.onLoad = function() {
+								if($('#vboxVirtualMediaManager').data('hideDiff')) {
+									var d = vboxMedia.getMediumById(med.id);
+									if(d.readOnly) $('#vboxVMMMediaTitle-'+d.id).addClass('vboxMediumReadOnly');
+									else $('#vboxVMMMediaTitle-'+d.id).removeClass('vboxMediumReadOnly');
+								}
+								$('#vmmMediumType').val(trans(mtype,'VBoxGlobal'));
+							};
+							l.run();
+							$('#vboxVMMModifyDialog').empty().remove();
+						}
+					});
+				} else {
+					$('#vboxVMMModifyDialog').empty().remove();
+				}		
 				
 			};
 			buttons[trans('Cancel','QIMessageBox')] = function() { $(this).empty().remove(); };
