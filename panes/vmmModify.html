@@ -15,20 +15,22 @@
 		<form name='vboxVMMModifyForm' style='width:100%;'>
 			<table class='vboxOptions' style='margin-top: 6px;'>
 				<tr>
-					<td><label><input type='radio' class='vboxRadio' name='vmmMType' value='Normal' id='vbRadioNormal'/> <span>Normal</span></label></td>
+					<td><label><input type='radio' class='vboxRadio disrun' name='vmmMType' value='Normal' id='vbRadioNormal'/> <span id='spanidnormal' class='disrun'>Normal</span></label></td>
 				</tr>
 				<tr>
-					<td><label><input type='radio' class='vboxRadio' name='vmmMType' value='Immutable' id='vbRadioImmutable'/> <span>Immutable</span></label></td>
+					<td><label><input type='radio' class='vboxRadio disrun disattached' name='vmmMType' value='Immutable' id='vbRadioImmutable'/> <span id='spanidimmutable' class='disrun disattached'>Immutable</span></label></td>
 				</tr>
 				<tr>
-					<td><label><input type='radio' class='vboxRadio' name='vmmMType' value='Writethrough' id='vbRadioWritethrough'/> <span>Writethrough</span></label></td>
+					<td><label><input type='radio' class='vboxRadio disrun dischild' name='vmmMType' value='Writethrough' id='vbRadioWritethrough'/> <span id='spanidwritethrough' class='disrun dischild'>Writethrough</span></label></td>
 				</tr>
 				<tr>
-					<td><label><input type='radio' class='vboxRadio' name='vmmMType' value='Shareable' id='vbRadioShareable'/> <span>Shareable</span></label></td>
+					<td><label><input type='radio' class='vboxRadio disrun dischild disdyn' name='vmmMType' value='Shareable' id='vbRadioShareable'/> <span id='spanidshareable' class='disrun dischild disdyn'>Shareable</span></label></td>
 				</tr>
 				<tr>
-					<td><label><input type='radio' class='vboxRadio' name='vmmMType' value='MultiAttach' id='vbRadioMultiAttach'/> <span>Multi-attach</span></label></td>
+					<td><label><input type='radio' class='vboxRadio disrun disattached' name='vmmMType' value='MultiAttach' id='vbRadioMultiAttach'/> <span id='spanidmulti' class='disrun disattached'>Multi-attach</span></label></td>
 				</tr>
+			</table>
+			<table class='vboxOptions' id='tableradiowarnings' style="width:100%">
 			</table>
 		</form>
 	</div>
