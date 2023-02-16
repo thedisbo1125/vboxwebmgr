@@ -220,6 +220,7 @@ $('#vboxVMMTabList').find(".translate").html(function(i,h){return trans(h,'UIMed
 
 $("#vboxVMMTabs").find(".translate").html(function(i,h){return trans(h,'VBoxMediaManagerDlg');}).removeClass('translate');
 
+
 /*
  * Keypress events
  */
@@ -260,6 +261,7 @@ $('div.vmmTableBody table').click(function(){$(this).focus();}).keydown(function
 	
 }).css('outline','none');
 
+
 /*
  * Setup Tabs
  */
@@ -273,6 +275,7 @@ $("#vboxVMMTabs").tabs().on("tabsactivate",function(ev,ui){
 		$('#vboxVirtualMediaManager').trigger('mediumselect',[null]);
 	}	
 });
+
 
 /*
  * Toolbar Buttons
@@ -747,6 +750,7 @@ $('#vboxVirtualMediaManager').on('mediumselect',function(e,m){
 	vmmCMenu.update(m);
 });
 
+
 /*
  * Add medium to a table
  */
@@ -880,6 +884,7 @@ function vboxVMMAddMedium(d,depth,hideDiff,topLevelParent) {
 	}
 }
 
+
 /* Fill medium tables and info with Medium info */
 function vboxVMMFillMedia(sel) {
 	
@@ -936,6 +941,7 @@ function vboxVMMFillMedia(sel) {
 
 	
 }
+
 
 /*
  * 
@@ -1007,12 +1013,13 @@ function vboxVMMTableSort(t) {
 	});
 	
 }
+
+
 /*
  * 
  * Resizing and setup
  *
  */
-
 function vboxVMMSizeTable(elm) {
 
 	// Hide table body
@@ -1030,6 +1037,8 @@ function vboxVMMSizeTable(elm) {
 	vboxVMMTableHeaderSetup(elm);
 	
 }
+
+
 /* Setup tables */
 function vboxVMMTableHeaderSetup(elm) {
 	
