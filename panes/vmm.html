@@ -465,29 +465,131 @@ var vmmButtons = new Array(
 				
 			};
 			buttons[trans('Cancel','QIMessageBox')] = function() { $(this).empty().remove(); };
+
+			var attachedmachinenames = new Array();
+			for(i=0;i<med.attachedTo.length;i++) {
+				attachedmachinenames.push(med.attachedTo[i].machine);
+			}
 			
 			var l = new vboxLoader();
 			l.addFileToDOM("panes/vmmModify.html",$(d));
+			l.add('vboxIsAttachedVmRunning',function(d){$('#vboxVirtualMediaManager').data('machinerunning',d.responseData);},attachedmachinenames);
 			l.onLoad = function() {
-				
+
+				function getdialogwidth(currwidth,strlen) {
+					result = currwidth;
+					if(currwidth < 480 + ((strlen - 60) * 5.5)){
+						result = 480 + ((strlen - 60) * 5.5);
+					}
+					return result;
+				}
+
 				var msg = trans('<p>You are about to change the settings of the disk image file <b>%1</b>.</p><p>Please choose one of the following modes and press <b>%2</b> to proceed or <b>%3</b> otherwise.</p>','UIMediumTypeChangeDialog');
 				var title = trans('Modify medium attributes','UIMediumTypeChangeDialog');
-				
+
 				msg = msg.replace('%1',med.location).replace('%2',trans('OK','QIMessageBox')).replace('%3',trans('Cancel','QIMessageBox'));
 				
-				$(d).dialog({'width':400,'height':370,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/diskimage_16px.png" /> '+title});
-				
+				dialogheight = 330;
+				dialogminheight = dialogheight - 7;
+				dialogwidth =  500;
+				dialogminwidth = dialogwidth - 17;
+
+				$(d).dialog({'width':dialogwidth,'minWidth':dialogminwidth,'height':dialogheight,'minHeight':dialogminheight,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/diskimage_16px.png" /> '+title});
+
 				// Translations
 				$('#vboxVMMModifyInstructions').html(msg);
 				
 				$('#vboxVMMModify').find(".translate").html(function(i,h){return trans(h,'UIMediumTypeChangeDialog');}).removeClass('translate');
 
 				$('#vboxVMMModify').find('table.vboxOptions').find('span').html(function(i,h){return trans(h,'VBoxGlobal', 'MediumType');});
-				
+
 				// Set correct option
 				$('#vboxVMMModify').find('input').prop('checked',false);
 				$('#vboxVMMModify').find('input[value='+med.type+']').prop('checked',true);
 				
+				var isvmrunning = $('#vboxVirtualMediaManager').data('machinerunning');
+
+				var radiowarningsarray = new Array();
+
+				var radiowarnings = "";
+				var radiowarningsspan = "";
+
+				var tablehtmlradio = "";
+				var tablehtmlsize ="";
+
+				if (med.attachedTo.length > 0) {
+
+					// Disable radio inputs when drive attached to VM
+					$('#vboxVMMModify').find('span.disattached').addClass('disabled');
+					$('#vboxVMMModify').find('input.disattached').prop('disabled',true);
+
+					radiowarningsarray.push(trans('Drive attached to VM, "Immutable" and "Multi-attach" not available','UIVirtualMediaManager'));
+				}
+
+				if (med.children.length > 0) {
+
+					// Disable radio inputs when drive has children
+					$('#vboxVMMModify').find('span.dischild').addClass('disabled');
+					$('#vboxVMMModify').find('input.dischild').prop('disabled',true);
+
+					radiowarningsarray.push(trans('Drive has children, "Writethrough" and "Shareable" not available','UIVirtualMediaManager'));
+				}
+
+				if (med.variant < 65535) {
+
+					// Disable radio inputs when drive is dynamic
+					$('#vboxVMMModify').find('span.disdyn').addClass('disabled');
+					$('#vboxVMMModify').find('input.disdyn').prop('disabled',true);
+
+					radiowarningsarray.push(trans('Drive is dynamic, "Shareable" not available','UIVirtualMediaManager'));
+				}
+
+				if(radiowarningsarray.length > 0) {
+					if(radiowarningsarray.length == 1) {
+						radiowarningsspan = trans('WARNING','UIVirtualMediaManager') + ':';
+					} else {
+						radiowarningsspan = trans('WARNINGS','UIVirtualMediaManager') + ':';
+					}
+
+					radiowarningsarray.forEach((element, index, array) => {
+						tablehtmlradio += '<tr><td style="text-align:left; width:17%">';
+						tablehtmlradio += '<span style="margin-left: 6px;">' + radiowarningsspan;
+						tablehtmlradio += '</span></td><td style="text-align:left;"><span>';
+						tablehtmlradio += array[index] + '</span></td></tr>';
+						radiowarningsspan = "";
+						dialogwidth = getdialogwidth(dialogwidth, array[index].length);
+						dialogminwidth = dialogwidth - 13;
+						dialogheight += 22;
+						dialogminheight = dialogheight - 7;
+
+					})
+					tablehtmlradio += "<tr></tr><tr></tr>";
+				}
+
+				if(med.hasSnapshots == true || isvmrunning == true) {
+					$warning = trans('WARNING','UIVirtualMediaManager');
+					if(isvmrunning) {
+
+						disktypemsg = trans("VM drive is attached to is running, cannot modify disk type","UIVirtualMediaManager");
+						tablehtmlradio = '<tr><td><span style="margin-left: 6px;">' + $warning + ':';
+						tablehtmlradio += '</span></td><td><span>' + disktypemsg + '.';
+						tablehtmlradio += '</span></td></tr>';
+						tablehtmlradio += "<tr><td></td><td></td></tr>";
+
+						// Disable all radio inputs when server is running
+						$('#vboxVMMModify').find('span.disrun').addClass('disabled');
+						$('#vboxVMMModify').find('input.disrun').prop('disabled',true);
+
+					}
+
+				}
+
+				$('#vboxVMMModify').find('table[id=tableradiowarnings]').html(tablehtmlradio);
+
+				$(d).dialog( "option", "minHeight", dialogminheight);
+				$(d).dialog( "option", "height", dialogheight);
+				$(d).dialog( "option", "minWidth", dialogwidth);
+				$(d).dialog( "option", "width", dialogwidth);
 
 			};
 			l.run();
