@@ -2527,6 +2527,43 @@ class vboxconnector {
 		return true;
 	}
 
+
+	/**
+	 * Check if any VM drive is attached to is currently running
+	 *
+	 * @param array $args
+	 * @return boolean $response return true or false
+	 */
+	public function remote_vboxIsAttachedVmRunning($args) {
+
+		$result = false;
+
+		// Connect to vboxwebsrv
+		$this->connect();
+
+		foreach ($args as $value) {
+
+			// find VM
+			$machine = $this->vbox->findMachine($value);
+
+			// get state of VM
+			$vmState = (string)$machine->state;
+
+			// release machine
+			$machine->releaseRemote();
+
+			// check if machine running
+			$response = ($vmState == 'Running' || $vmState == 'Paused' || $vmState == 'Saved');
+
+			if($response) {
+				$result = true;
+			}
+		}
+
+		return $result;
+	}
+
+
 	/**
 	 * Returns a key => value mapping of an enumeration class contained
 	 * in vboxServiceWrappers.php (classes that extend VBox_Enum).
