@@ -366,7 +366,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 	document.forms['frmVboxSettings'].settingsSystemVT.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled);
 	document.forms['frmVboxSettings'].settingsSystemPaging.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.NestedPaging);
 	document.forms['frmVboxSettings'].vboxSettingsSystemDisableHostTimeSync.checked = ($('#vboxSettingsDialog').data('vboxMachineData').disableHostTimeSync);
-	document.forms['frmVboxSettings'].vboxSettingsSystemLogoDisplayTime.value = String($('#vboxSettingsDialog').data('vboxMachineData').BIOSSettings.LogoDisplayTime);	
+	document.forms['frmVboxSettings'].vboxSettingsSystemLogoDisplayTime.value = String($('#vboxSettingsDialog').data('vboxMachineData').BIOSSettings.LogoDisplayTime);
 
 	$(document.forms['frmVboxSettings'].vboxSettingsParavirtInterface).val($('#vboxSettingsDialog').data('vboxMachineData').paravirtProvider);
 	
@@ -510,7 +510,7 @@ $('#vboxSettingsDialog').on('save',function(){
 	/* Only if we had a chipset */
 	if($('#vboxSettingsDialog').data('vboxMachineData').chipsetType)
 		$('#vboxSettingsDialog').data('vboxMachineData').chipsetType = $(document.forms['frmVboxSettings'].vboxSettingsSystemChipset).val();
-		
+
 	if($('#vboxSettingsDialog').data('vboxHostDetails').cpuFeatures.HWVirtEx || $('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled || $('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
 		$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled = document.forms['frmVboxSettings'].settingsSystemVT.checked;
 		$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.NestedPaging = $('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled && document.forms['frmVboxSettings'].settingsSystemPaging.checked;
