@@ -489,10 +489,12 @@ var vmmButtons = new Array(
 
 				msg = msg.replace('%1',med.location).replace('%2',trans('OK','QIMessageBox')).replace('%3',trans('Cancel','QIMessageBox'));
 				
-				dialogheight = 330;
+				dialogheight = 320;
 				dialogminheight = dialogheight - 7;
 				dialogwidth =  500;
 				dialogminwidth = dialogwidth - 17;
+
+				var adddialogheight = 0;
 
 				$(d).dialog({'width':dialogwidth,'minWidth':dialogminwidth,'height':dialogheight,'minHeight':dialogminheight,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/diskimage_16px.png" /> '+title});
 
@@ -545,6 +547,8 @@ var vmmButtons = new Array(
 				}
 
 				if(radiowarningsarray.length > 0) {
+
+					adddialogheight = 6;
 					if(radiowarningsarray.length == 1) {
 						radiowarningsspan = trans('WARNING','UIVirtualMediaManager') + ':';
 					} else {
@@ -559,8 +563,7 @@ var vmmButtons = new Array(
 						radiowarningsspan = "";
 						dialogwidth = getdialogwidth(dialogwidth, array[index].length);
 						dialogminwidth = dialogwidth - 13;
-						dialogheight += 22;
-						dialogminheight = dialogheight - 7;
+						adddialogheight += 18;
 
 					})
 					tablehtmlradio += "<tr></tr><tr></tr>";
@@ -569,7 +572,6 @@ var vmmButtons = new Array(
 				if(med.hasSnapshots == true || isvmrunning == true) {
 					$warning = trans('WARNING','UIVirtualMediaManager');
 					if(isvmrunning) {
-
 						disktypemsg = trans("VM drive is attached to is running, cannot modify disk type","UIVirtualMediaManager");
 						tablehtmlradio = '<tr><td><span style="margin-left: 6px;">' + $warning + ':';
 						tablehtmlradio += '</span></td><td><span>' + disktypemsg + '.';
@@ -579,12 +581,16 @@ var vmmButtons = new Array(
 						// Disable all radio inputs when server is running
 						$('#vboxVMMModify').find('span.disrun').addClass('disabled');
 						$('#vboxVMMModify').find('input.disrun').prop('disabled',true);
+						adddialogheight = 24;
 
 					}
 
 				}
 
 				$('#vboxVMMModify').find('table[id=tableradiowarnings]').html(tablehtmlradio);
+
+				dialogheight += adddialogheight;
+				dialogminheight = dialogheight - 7;
 
 				$(d).dialog( "option", "minHeight", dialogminheight);
 				$(d).dialog( "option", "height", dialogheight);
