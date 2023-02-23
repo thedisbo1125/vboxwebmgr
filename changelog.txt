@@ -1,4 +1,11 @@
 -------------------------------------
+    7.0-005  2023-02-23
+-------------------------------------
+
+- disable different media type options for hard drives if properties of drive prevents setting
+    for example, shareable cannot be set if drive size is dynamically allocated
+
+-------------------------------------
     7.0-004  2022-12-14
 -------------------------------------
 
