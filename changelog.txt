@@ -1,4 +1,11 @@
 -------------------------------------
+    6.1-006  2023-03-28
+-------------------------------------
+
+- update warnings and width calculation for "Modify medium attributes" dialog
+- add language translations for new messages in "Modify medium attributes" dialog
+
+-------------------------------------
     6.1-005  2023-02-23
 -------------------------------------
 
