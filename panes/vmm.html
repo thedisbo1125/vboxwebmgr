@@ -476,12 +476,26 @@ var vmmButtons = new Array(
 			l.add('vboxIsAttachedVmRunning',function(d){$('#vboxVirtualMediaManager').data('machinerunning',d.responseData);},attachedmachinenames);
 			l.onLoad = function() {
 
-				function getdialogwidth(currwidth,strlen) {
-					result = currwidth;
-					if(currwidth < 480 + ((strlen - 60) * 5.5)){
-						result = 480 + ((strlen - 60) * 5.5);
+				function gettextwidth(textvalue) {
+
+					var spansize = document.getElementById('calctextwidth');
+					spansize.innerText = textvalue;
+					var temptextwidth = $(spansize).width();
+
+					spansize.textContent = '';
+					return temptextwidth;
+				}
+
+				function getdialogwidth(currwidth,warnwidth,value) {
+
+					var tempdiagwidth = currwidth;
+					var msgwidth = gettextwidth(value) + warnwidth + 85;
+
+					if(currwidth < msgwidth){
+						tempdiagwidth = msgwidth;
 					}
-					return result;
+
+					return tempdiagwidth;
 				}
 
 				var msg = trans('<p>You are about to change the settings of the disk image file <b>%1</b>.</p><p>Please choose one of the following modes and press <b>%2</b> to proceed or <b>%3</b> otherwise.</p>','UIMediumTypeChangeDialog');
@@ -491,7 +505,7 @@ var vmmButtons = new Array(
 				
 				dialogheight = 320;
 				dialogminheight = dialogheight - 7;
-				dialogwidth =  500;
+				dialogwidth =  480;
 				dialogminwidth = dialogwidth - 17;
 
 				var adddialogheight = 0;
@@ -518,6 +532,7 @@ var vmmButtons = new Array(
 
 				var tablehtmlradio = "";
 				var tablehtmlsize ="";
+				var warnwidth = 0;
 
 				if (med.attachedTo.length > 0) {
 
@@ -525,7 +540,7 @@ var vmmButtons = new Array(
 					$('#vboxVMMModify').find('span.disattached').addClass('disabled');
 					$('#vboxVMMModify').find('input.disattached').prop('disabled',true);
 
-					radiowarningsarray.push(trans('Drive attached to VM, "Immutable" and "Multi-attach" not available','UIVirtualMediaManager'));
+					radiowarningsarray.push(trans('Hard drive is attached to a VM, "Immutable" and "Multi-attach" not available','UIVirtualMediaManager'));
 				}
 
 				if (med.children.length > 0) {
@@ -534,7 +549,7 @@ var vmmButtons = new Array(
 					$('#vboxVMMModify').find('span.dischild').addClass('disabled');
 					$('#vboxVMMModify').find('input.dischild').prop('disabled',true);
 
-					radiowarningsarray.push(trans('Drive has children, "Writethrough" and "Shareable" not available','UIVirtualMediaManager'));
+					radiowarningsarray.push(trans('Hard drive has children, "Writethrough" and "Shareable" not available','UIVirtualMediaManager'));
 				}
 
 				if (med.variant < 65535) {
@@ -543,7 +558,7 @@ var vmmButtons = new Array(
 					$('#vboxVMMModify').find('span.disdyn').addClass('disabled');
 					$('#vboxVMMModify').find('input.disdyn').prop('disabled',true);
 
-					radiowarningsarray.push(trans('Drive is dynamic, "Shareable" not available','UIVirtualMediaManager'));
+					radiowarningsarray.push(trans('Hard drive is dynamic, "Shareable" not available','UIVirtualMediaManager'));
 				}
 
 				if(radiowarningsarray.length > 0) {
@@ -554,14 +569,15 @@ var vmmButtons = new Array(
 					} else {
 						radiowarningsspan = trans('WARNINGS','UIVirtualMediaManager') + ':';
 					}
+					warnwidth = gettextwidth(radiowarningsspan);
 
 					radiowarningsarray.forEach((element, index, array) => {
-						tablehtmlradio += '<tr><td style="text-align:left; width:17%">';
+						tablehtmlradio += '<tr><td nowrap style="text-align:left; vertical-align:top; width:12%">';
 						tablehtmlradio += '<span style="margin-left: 6px;">' + radiowarningsspan;
 						tablehtmlradio += '</span></td><td style="text-align:left;"><span>';
 						tablehtmlradio += array[index] + '</span></td></tr>';
 						radiowarningsspan = "";
-						dialogwidth = getdialogwidth(dialogwidth, array[index].length);
+						dialogwidth = getdialogwidth(dialogwidth,warnwidth,array[index]);
 						dialogminwidth = dialogwidth - 13;
 						adddialogheight += 18;
 
@@ -572,7 +588,7 @@ var vmmButtons = new Array(
 				if(med.hasSnapshots == true || isvmrunning == true) {
 					$warning = trans('WARNING','UIVirtualMediaManager');
 					if(isvmrunning) {
-						disktypemsg = trans("VM drive is attached to is running, cannot modify disk type","UIVirtualMediaManager");
+						disktypemsg = trans("VM hard drive is attached to is running, cannot modify disk type","UIVirtualMediaManager");
 						tablehtmlradio = '<tr><td><span style="margin-left: 6px;">' + $warning + ':';
 						tablehtmlradio += '</span></td><td><span>' + disktypemsg + '.';
 						tablehtmlradio += '</span></td></tr>';
