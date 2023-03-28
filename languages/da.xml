@@ -298,4 +298,31 @@
 			<translation>Deaktiver synkronisering af værtstid</translation>
 		</message>
 	</context>
+	<context>
+		<name>UIVirtualMediaManager</name>
+		<message>
+			<source>WARNING</source>
+			<translation>ADVARSEL</translation>
+		</message>
+		<message>
+			<source>WARNINGS</source>
+			<translation>ADVARSLER</translation>
+		</message>
+		<message>
+			<source>VM hard drive is attached to is running, cannot modify disk type</source>
+			<translation>VM-harddisk er knyttet til kører, kan ikke ændre disk type</translation>
+		</message>
+		<message>
+			<source>Hard drive is attached to a VM, "Immutable" and "Multi-attach" not available</source>
+			<translation>Harddisken er knyttet til en VM, "Onveranderbaar" og "Multi-aansluitbaar" er ikke tilgængelige</translation>
+		</message>
+		<message>
+			<source>Hard drive has children, "Writethrough" and "Shareable" not available</source>
+			<translation>Harddisken har børn, "Writethrough" og "Te delen" er ikke tilgængelige</translation>
+		</message>
+		<message>
+			<source>Hard drive is dynamic, "Shareable" not available</source>
+			<translation>Harddisken er dynamisk, "Te delen" er ikke tilgængelig</translation>
+		</message>
+	</context>
 </language>

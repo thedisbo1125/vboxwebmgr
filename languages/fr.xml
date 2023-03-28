@@ -298,4 +298,31 @@
 			<translation>Désactiver la synchronisation de l'heure de l'hôte</translation>
 		</message>
 	</context>
+	<context>
+		<name>UIVirtualMediaManager</name>
+		<message>
+			<source>WARNING</source>
+			<translation>AVERTISSEMENT</translation>
+		</message>
+		<message>
+			<source>WARNINGS</source>
+			<translation>AVERTISSEMENTS</translation>
+		</message>
+		<message>
+			<source>VM hard drive is attached to is running, cannot modify disk type</source>
+			<translation>Le disque dur de la VM auquel il est attaché est en cours d'exécution, il n'est pas possible de modifier le type de disque.</translation>
+		</message>
+		<message>
+			<source>Hard drive is attached to a VM, "Immutable" and "Multi-attach" not available</source>
+			<translation>Le disque dur est attaché à une VM, les options "Immuable" et "Attachements multiples" ne sont pas disponibles</translation>
+		</message>
+		<message>
+			<source>Hard drive has children, "Writethrough" and "Shareable" not available</source>
+			<translation>Le disque dur a des enfants, les options "Hors instantanés" et "Partageable" ne sont pas disponibles.</translation>
+		</message>
+		<message>
+			<source>Hard drive is dynamic, "Shareable" not available</source>
+			<translation>Le disque dur est dynamique, l'option "Partageable" n'est pas disponible.</translation>
+		</message>
+	</context>
 </language>
