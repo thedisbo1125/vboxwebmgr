@@ -305,6 +305,12 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>Endereço líquido:</translation>
+		</message>
+	</context>
 		<name>UIVirtualMediaManager</name>
 		<message>
 			<source>WARNING</source>

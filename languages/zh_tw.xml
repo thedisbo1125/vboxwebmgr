@@ -305,6 +305,13 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>網絡地址</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIVirtualMediaManager</name>
 		<message>
 			<source>WARNING</source>
