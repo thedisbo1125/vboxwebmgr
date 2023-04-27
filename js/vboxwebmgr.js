@@ -333,7 +333,7 @@ var vboxVMDetailsSections = {
 			   }
 		   },{
 			   title: "Acceleration",
-			   language_context: 'UIGDetails',
+			   language_context: 'UICommon',
 			   callback: function(d) {
 				   var acList = [];
 				   if(d['HWVirtExProperties'].Enabled) acList[acList.length] = trans('VT-x/AMD-V');
@@ -903,11 +903,13 @@ var vboxVMDetailsSections = {
 		rows: [
 		   {
 			   title: "Video Memory",
+			   language_context: 'UIDetails',
 			   callback: function(d) {
 				   return trans('<nobr>%1 MB</nobr>').replace('%1',d['VRAMSize']);
 			   }
 		   },{
 			   title: 'Remote Desktop Server Port',
+			   language_context: 'UIDetails',
 			   callback: function(d) {
 
 				   var chost = vboxGetVRDEHost(d);
@@ -960,6 +962,7 @@ var vboxVMDetailsSections = {
 			   }
 			},{
 				title: "Graphics Controller",
+				language_context: 'UIDetails',
 				callback: function(d) {
 					return d['graphicsControllerType'];
 				}
@@ -1038,7 +1041,7 @@ var vboxVMDetailsSections = {
 					rows[rows.length] = {
 						title: portName,
 						indented: true,
-						data: (d['storageControllers'][a]['mediumAttachments'][b].type == 'DVD' ? trans('[Optical Drive]','UIGDetails') + ' ': '') + portDesc,
+						data: (d['storageControllers'][a]['mediumAttachments'][b].type == 'DVD' ? trans('[Optical Drive]','UIDetails') + ' ': '') + portDesc,
 						html: true
 					};
 
@@ -1357,7 +1360,7 @@ var vboxVMDetailsSections = {
 	description: {
 		icon: 'description_16px.png',
 		title: 'Description',
-		language_context: 'UIGDetails',
+		language_context: 'UICommon',
 		settingsLink: 'General:2',
 		rows: function(d) {
 			return [{

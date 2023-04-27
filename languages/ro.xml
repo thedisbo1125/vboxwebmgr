@@ -313,6 +313,52 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMediumItem</name>
+		<message>
+			<source>Type:</source>
+			<translation>Tip:</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Locație:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumManager</name>
+		<message>
+			<source>Actions</source>
+			<translation>Acțiuni</translation>
+		</message>
+		<message>
+			<source>New</source>
+			<translation>Nou</translation>
+		</message>
+		<message>
+			<source>Add iSCSI</source>
+			<translation>Adaugă iSCSI</translation>
+		</message>
+		<message>
+			<source>Copy...</source>
+			<translation>Copie</translation>
+		</message>
+		<message>
+			<source>Modify...</source>
+			<translation>Modifica</translation>
+		</message>
+		<message>
+			<source>Remove</source>
+			<translation>Elimina</translation>
+		</message>
+		<message>
+			<source>Release</source>
+			<translation>Eliberare</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Locație:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIVirtualMediaManager</name>
 		<message>
 			<source>WARNING</source>

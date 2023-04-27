@@ -312,6 +312,64 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMediumItem</name>
+		<message>
+			<source>Type:</source>
+			<translation>類型:</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>地點:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumManager</name>
+		<message>
+			<source>Actions</source>
+			<translation>動作</translation>
+		</message>
+		<message>
+			<source>New</source>
+			<translation>新的</translation>
+		</message>
+		<message>
+			<source>Add</source>
+			<translation>添加</translation>
+		</message>
+		<message>
+			<source>Add iSCSI</source>
+			<translation>添加 iSCSI</translation>
+		</message>
+		<message>
+			<source>Copy...</source>
+			<translation>複製</translation>
+		</message>
+		<message>
+			<source>Modify...</source>
+			<translation>調整</translation>
+		</message>
+		<message>
+			<source>Remove</source>
+			<translation>消除</translation>
+		</message>
+		<message>
+			<source>Release</source>
+			<translation>發布</translation>
+		</message>
+		<message>
+			<source>Refresh</source>
+			<translation>刷新</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>地點:</translation>
+		</message>
+		<message>
+			<source>Attached to:</source>
+			<translation>附於:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIVirtualMediaManager</name>
 		<message>
 			<source>WARNING</source>

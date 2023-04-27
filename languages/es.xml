@@ -313,6 +313,71 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMediumItem</name>
+		<message>
+			<source>Type:</source>
+			<translation>Tipo:</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Ubicación:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumManager</name>
+		<message>
+			<source>Actions</source>
+			<translation>Comportamiento</translation>
+		</message>
+		<message>
+			<source>New</source>
+			<translation>Nuevo</translation>
+		</message>
+		<message>
+			<source>Add</source>
+			<translation>Agregar</translation>
+		</message>
+		<message>
+			<source>Add iSCSI</source>
+			<translation>Agregar iSCSI</translation>
+		</message>
+		<message>
+			<source>Modify...</source>
+			<translation>Modificar</translation>
+		</message>
+		<message>
+			<source>Remove</source>
+			<translation>Eliminar</translation>
+		</message>
+		<message>
+			<source>Release</source>
+			<translation>Liberar</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Ubicación:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumDetailsWidget</name>
+		<message>
+			<source>Rename File:</source>
+			<translation>Renombrar archivo:</translation>
+		</message>
+		<message>
+			<source>Change settings of</source>
+			<translation>Cambiar la configuración de</translation>
+		</message>
+		<message>
+			<source>iSCSI disk</source>
+			<translation>disco iSCSI</translation>
+		</message>
+		<message>
+			<source>the disk image file</source>
+			<translation>el archivo de imagen de disco</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIVirtualMediaManager</name>
 		<message>
 			<source>WARNING</source>

@@ -313,6 +313,52 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMediumItem</name>
+		<message>
+			<source>Type:</source>
+			<translation>Typ:</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Lokalizacja:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumManager</name>
+		<message>
+			<source>Actions</source>
+			<translation>Działania</translation>
+		</message>
+		<message>
+			<source>New</source>
+			<translation>Nowy</translation>
+		</message>
+		<message>
+			<source>Add</source>
+			<translation>Dodać</translation>
+		</message>
+		<message>
+			<source>Add iSCSI</source>
+			<translation>Dodaj iSCSI</translation>
+		</message>
+		<message>
+			<source>Modify...</source>
+			<translation>Modyfikować</translation>
+		</message>
+		<message>
+			<source>Remove</source>
+			<translation>Usunąć</translation>
+		</message>
+		<message>
+			<source>Release</source>
+			<translation>Uwolnienie</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Lokalizacja:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIVirtualMediaManager</name>
 		<message>
 			<source>WARNING</source>
