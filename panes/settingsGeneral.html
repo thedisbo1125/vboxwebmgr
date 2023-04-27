@@ -86,8 +86,8 @@
 		<th style='text-align:right'><span class='translate'>Shared Clipboard:</span></th>
 			<td><select name='vboxSettingsClipboardMode' style="width: 150px">
 					<option value='Disabled'>Disabled</option>
-					<option value='HostToGuest'>Host to Guest</option>
-					<option value='GuestToHost'>Guest to Host</option>
+					<option value='HostToGuest'>Host To Guest</option>
+					<option value='GuestToHost'>Guest To Host</option>
 					<option value='Bidirectional'>Bidirectional</option>
 				</select>
 			</td>
@@ -160,6 +160,10 @@
 $('#vboxSettingsTabGeneralInput').find(".translateinput").html(function(i,h){return trans(h,'UIActionPool');});
 $('#vboxSettingsTabGeneralInputTab').find(".translateinputtab").html(function(i,h){return trans(h,'UISettingsDialogGlobal');});
 $('#vboxSettingsTabGeneralBasic').find(".translateos").html(function(i,h){return trans(h,'UINameAndSystemEditor');});
+
+/* clipboard translations */
+$('#vboxSettingsClipboardMode').find('option').html(function(i,h){return trans(h,'UICommon');});
+
 if($('#vboxPane').data('vboxConfig').vboxAutostartConfig) {
 	
 	// Shutdown options select buttons
