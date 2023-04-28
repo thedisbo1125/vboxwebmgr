@@ -1,4 +1,16 @@
 -------------------------------------
+    6.1-007  2023-04-27
+-------------------------------------
+
+- fix Clipboard wording and add translation javascript
+- update language files to VirtualBox version 6.1.42
+- add Danish source file and to language list
+- update VMM to use new translation items UIMediumItem, UIMediumManager, and UICommon
+- add missing translations to several langauge source files
+- add removed translations from source files to XML files
+- Remove requirement for advanced mode enabled for buttons New, Add, and Add SCSI to appear on Virtual Media Manager dialog
+
+-------------------------------------
     6.1-006  2023-03-28
 -------------------------------------
 
