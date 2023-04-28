@@ -28,9 +28,16 @@
 			<source>Server List</source>
 			<translation>Serverlijst</translation>
 		</message>
+	</context>
+	<context>
+		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
 			<translation>Over</translation>
+		</message>
+		<message>
+			<source>VirtualBox User Manual</source>
+			<translation>VirtualBox-gebruikershandleiding</translation>
 		</message>
 	</context>
 	<context>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Chinese (Simplified)</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -27,9 +28,16 @@
 			<source>Server List</source>
 			<translation>服务器列表</translation>
 		</message>		
+	</context>
+	<context>
+		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
 			<translation>关于</translation>
+		</message>
+		<message>
+			<source>VirtualBox User Manual</source>
+			<translation>虚拟盒子用户手册</translation>
 		</message>
 	</context>
 	<context>

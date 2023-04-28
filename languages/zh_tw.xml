@@ -27,9 +27,16 @@
 			<source>Server List</source>
 			<translation>虛擬機器清單</translation>
 		</message>
+	</context>
+	<context>
+		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
 			<translation>關於</translation>
+		</message>
+		<message>
+			<source>VirtualBox User Manual</source>
+			<translation>虛擬盒子用戶手冊</translation>
 		</message>
 	</context>
 	<context>
