@@ -293,6 +293,29 @@
 			<source>Allow to be bridged</source>
 			<translation>Lăsați să fie conectat</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>Rețele numai pentru gazdă</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>Adăugați o rețea numai pentru gazdă</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>Eliminați rețeaua numai pentru gazdă</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>Editați rețeaua numai pentru gazdă</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIActionPool</name>
+		<message>
+			<source>Refresh</source>
+			<translation>Reîmprospăta</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>

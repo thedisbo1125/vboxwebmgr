@@ -293,6 +293,29 @@
 			<source>Allow to be bridged</source>
 			<translation>Tillad at blive bro</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>Netværk, der kun er vært</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>Tilføj værtsnetværk</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>Fjern værtsnetværk</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>Rediger værtsnetværk</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetails</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>Netværksoplysninger, der kun er værter</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>

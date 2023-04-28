@@ -110,7 +110,7 @@
 					<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetIPv6' /></td>
 				</tr>
 				<tr>
-					<th><span class='translate'>IPv6 Network Mask Length:</span></th>
+					<th><span class='translate'>IPv6 Prefix Length:</span></th>
 					<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetIPv6Mask' /></td>
 				</tr>
 			</table>
@@ -190,7 +190,7 @@ var sButtons = new Array(
 
 	{
 		'name' : 'addNet',
-		'label' : 'Add host-only network',
+		'label' : 'Add Host-only Network',
 		'icon' : 'add_host_iface',
 		'enabled' : function () { return true; },
 		'click' : function () {
@@ -224,7 +224,7 @@ var sButtons = new Array(
 
 	{
 		'name' : 'delNet',
-		'label' : 'Remove host-only network',
+		'label' : 'Remove Host-only Network',
 		'icon' : 'remove_host_iface',
 		'enabled' : function (item) { return ($(item).data('interface')); },
 		'click' : function () {
@@ -269,7 +269,7 @@ var sButtons = new Array(
 	},
 	{
 		'name' : 'editNet',
-		'label' : 'Edit host-only network',
+		'label' : 'Edit Host-only Network',
 		'icon' : 'guesttools',
 		'enabled' : function (item) { return ($(item).data('interface')); },
 		'click' : function () {
@@ -278,7 +278,7 @@ var sButtons = new Array(
 	},{
 		name : 'refreshNet',
 		'label' : 'Refresh',
-		'language_context': 'UIVMLogViewer',
+		'language_context': 'UIActionPool',
 		'icon' : 'refresh',
 		click: function() {
 			var l = new vboxLoader();
@@ -305,7 +305,7 @@ var sButtons = new Array(
 
 	{
 		'name' : 'addNet',
-		'label' : 'Add NAT network',
+		'label' : 'Add NAT Network',
 		'icon' : 'add_host_iface',
 		'click' : function () {
 
@@ -325,7 +325,7 @@ var sButtons = new Array(
 
 	{
 		'name' : 'delNet',
-		'label' : 'Remove NAT network',
+		'label' : 'Remove NAT Network',
 		'icon' : 'remove_host_iface',
 		'enabled' : function (item) { return (item); },
 		'click' : function () {
@@ -351,7 +351,7 @@ var sButtons = new Array(
 	},
 	{
 		'name' : 'editNet',
-		'label' : 'Edit NAT network',
+		'label' : 'Edit NAT Network',
 		'icon' : 'guesttools',
 		'enabled' : function (item) { return (item); },
 		'click' : function () {
@@ -360,7 +360,7 @@ var sButtons = new Array(
 	},{
 		name : 'refreshNet',
 		'label' : 'Refresh',
-		'language_context': 'UIVMLogViewer',
+		'language_context': 'UIActionPool',
 		'icon' : 'refresh',
 		click: function() {
 			var l = new vboxLoader();

@@ -2757,10 +2757,10 @@ function vboxWizard() {
 	this.bg = null;
 
 	/* Text on Back button */
-	this.backText = trans('Back','QIArrowSplitter');
+	this.backText = trans('Back','QIArrowButtonPress');
 
 	/* Text on Next button */
-	this.nextText = trans('Next','QIArrowSplitter');
+	this.nextText = trans('Next','QIArrowButtonPress');
 
 	/* Text on cancel button */
 	this.cancelText = trans('Cancel','QIMessageBox');

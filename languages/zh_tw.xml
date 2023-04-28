@@ -292,6 +292,22 @@
 			<source>Allow to be bridged</source>
 			<translation>允許橋接</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>僅主機網絡</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>添加僅主機網絡</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>刪除僅主機網絡</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>編輯僅主機網絡</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
