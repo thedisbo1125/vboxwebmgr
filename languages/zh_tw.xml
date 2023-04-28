@@ -395,5 +395,9 @@
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>硬盘是动态的，"可共享 "不可用</translation>
 		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>選擇介質類型:</translation>
+		</message>
 	</context>
 </language>

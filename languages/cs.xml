@@ -384,5 +384,9 @@
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Pevný disk je dynamický, "Sdílený" není k dispozi</translation>
 		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Vyberte Střední typ:</translation>
+		</message>
 	</context>
 </language>

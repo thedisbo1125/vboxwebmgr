@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Chinese (Simplified)</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -382,6 +383,10 @@
 		<message>
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>硬盘是动态的，"可共享 "不可用</translation>
+		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>选择介质类型:</translation>
 		</message>
 	</context>
 </language>

@@ -384,5 +384,9 @@
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>ハードディスクは動的で、「共有可能」は利用できない</translation>
 		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>ミディアムタイプを選ぶ:</translation>
+		</message>
 	</context>
 </language>

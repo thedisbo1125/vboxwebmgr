@@ -380,6 +380,10 @@
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Festplatte ist dynamisch, "gemeinsam benutzbar" nicht verfügbar</translation>
 		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Wählen Sie Mittlerer Typ:</translation>
+		</message>
 	</context>
 </language>
 

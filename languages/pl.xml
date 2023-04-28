@@ -384,5 +384,9 @@
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Dysk twardy jest dynamiczny, "Dostępne współdzielenie" nie jest dostępny</translation>
 		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Wybierz typ średni:</translation>
+		</message>
 	</context>
 </language>

@@ -380,5 +380,9 @@
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Harddisken er dynamisk, "Te delen" er ikke tilgængelig</translation>
 		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Vælg mellemtype:</translation>
+		</message>
 	</context>
 </language>

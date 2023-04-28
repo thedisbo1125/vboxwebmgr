@@ -145,7 +145,7 @@
 		<name>VBoxGlobal</name>
 		<message>
 			<source>Hosting</source>
-			<translation>Hosting</translation>
+			<translation>Ospitando</translation>
 		</message>
 		<message>
 			<source>Guest Network Adapters</source>
@@ -379,6 +379,10 @@
 		<message>
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Il disco rigido è dinamico, "Condivisibile" non disponibile</translation>
+		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Scegli il tipo medio:</translation>
 		</message>
 	</context>
 </language>

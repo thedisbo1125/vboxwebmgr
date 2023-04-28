@@ -384,5 +384,9 @@
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Le disque dur est dynamique, l'option "Partageable" n'est pas disponible.</translation>
 		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Choisissez le type de support:</translation>
+		</message>
 	</context>
 </language>

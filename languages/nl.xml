@@ -384,5 +384,9 @@
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Harde schijf is dynamisch, "Te delen" niet beschikbaar</translation>
 		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Kies Mediumtype:</translation>
+		</message>
 	</context>
 </language>

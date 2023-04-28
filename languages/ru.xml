@@ -380,5 +380,9 @@
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Жесткий диск динамический, «С общим доступом» недоступен</translation>
 		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Выберите средний тип:</translation>
+		</message>
 	</context>
 </language>
