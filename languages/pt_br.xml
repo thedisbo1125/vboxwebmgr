@@ -312,6 +312,52 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMediumItem</name>
+		<message>
+			<source>Type:</source>
+			<translation>Tipo:</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Localização:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumManager</name>
+		<message>
+			<source>Actions</source>
+			<translation>Ações</translation>
+		</message>
+		<message>
+			<source>New</source>
+			<translation>Novo</translation>
+		</message>
+		<message>
+			<source>Add</source>
+			<translation>Adicionar</translation>
+		</message>
+		<message>
+			<source>Add iSCSI</source>
+			<translation>Adicionar iSCSI</translation>
+		</message>
+		<message>
+			<source>Modify...</source>
+			<translation>Modificar</translation>
+		</message>
+		<message>
+			<source>Remove</source>
+			<translation>Remover</translation>
+		</message>
+		<message>
+			<source>Release</source>
+			<translation>Liberar</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Localização:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIVirtualMediaManager</name>
 		<message>
 			<source>WARNING</source>
@@ -336,6 +382,10 @@
 		<message>
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>O disco rígido é dinâmico, "Compartilhável" não está disponível</translation>
+		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Escolha o tipo médio:</translation>
 		</message>
 	</context>
 </language>

@@ -313,6 +313,52 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMediumItem</name>
+		<message>
+			<source>Type:</source>
+			<translation>Type:</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Plaats:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumManager</name>
+		<message>
+			<source>Actions</source>
+			<translation>Acties</translation>
+		</message>
+		<message>
+			<source>New</source>
+			<translation>Nieuw</translation>
+		</message>
+		<message>
+			<source>Add</source>
+			<translation>Toevoegen</translation>
+		</message>
+		<message>
+			<source>Add iSCSI</source>
+			<translation>iSCSI toevoegen</translation>
+		</message>
+		<message>
+			<source>Modify...</source>
+			<translation>Bewerken</translation>
+		</message>
+		<message>
+			<source>Remove</source>
+			<translation>Verwijderen</translation>
+		</message>
+		<message>
+			<source>Release</source>
+			<translation>Uitgave</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Plaats:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIVirtualMediaManager</name>
 		<message>
 			<source>WARNING</source>
@@ -337,6 +383,10 @@
 		<message>
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Harde schijf is dynamisch, "Te delen" niet beschikbaar</translation>
+		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Kies Mediumtype:</translation>
 		</message>
 	</context>
 </language>

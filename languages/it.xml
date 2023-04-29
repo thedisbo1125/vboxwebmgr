@@ -145,7 +145,7 @@
 		<name>VBoxGlobal</name>
 		<message>
 			<source>Hosting</source>
-			<translation>Hosting</translation>
+			<translation>Ospitando</translation>
 		</message>
 		<message>
 			<source>Guest Network Adapters</source>
@@ -313,6 +313,48 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMediumItem</name>
+		<message>
+			<source>Type:</source>
+			<translation>Tipo:</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Posizione:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumManager</name>
+		<message>
+			<source>Actions</source>
+			<translation>Azioni</translation>
+		</message>
+		<message>
+			<source>New</source>
+			<translation>Nuovo</translation>
+		</message>
+		<message>
+			<source>Add iSCSI</source>
+			<translation>Aggiungi iSCSI</translation>
+		</message>
+		<message>
+			<source>Modify...</source>
+			<translation>Modificare</translation>
+		</message>
+		<message>
+			<source>Remove</source>
+			<translation>Rimuovere</translation>
+		</message>
+		<message>
+			<source>Release</source>
+			<translation>Pubblicazione</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Posizione:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIVirtualMediaManager</name>
 		<message>
 			<source>WARNING</source>
@@ -337,6 +379,10 @@
 		<message>
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Il disco rigido è dinamico, "Condivisibile" non disponibile</translation>
+		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Scegli il tipo medio:</translation>
 		</message>
 	</context>
 </language>

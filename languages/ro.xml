@@ -145,7 +145,7 @@
 		<name>VBoxGlobal</name>
 		<message>
 			<source>Hosting</source>
-			<translation>Hosting</translation>
+			<translation>Gazduire</translation>
 		</message>
 		<message>
 			<source>Guest Network Adapters</source>
@@ -293,6 +293,29 @@
 			<source>Allow to be bridged</source>
 			<translation>Lăsați să fie conectat</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>Rețele numai pentru gazdă</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>Adăugați o rețea numai pentru gazdă</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>Eliminați rețeaua numai pentru gazdă</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>Editați rețeaua numai pentru gazdă</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIActionPool</name>
+		<message>
+			<source>Refresh</source>
+			<translation>Reîmprospăta</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -310,6 +333,52 @@
 		<message>
 			<source>Net Address:</source>
 			<translation>Adresa de net:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumItem</name>
+		<message>
+			<source>Type:</source>
+			<translation>Tip:</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Locație:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumManager</name>
+		<message>
+			<source>Actions</source>
+			<translation>Acțiuni</translation>
+		</message>
+		<message>
+			<source>New</source>
+			<translation>Nou</translation>
+		</message>
+		<message>
+			<source>Add iSCSI</source>
+			<translation>Adaugă iSCSI</translation>
+		</message>
+		<message>
+			<source>Copy...</source>
+			<translation>Copie</translation>
+		</message>
+		<message>
+			<source>Modify...</source>
+			<translation>Modifica</translation>
+		</message>
+		<message>
+			<source>Remove</source>
+			<translation>Elimina</translation>
+		</message>
+		<message>
+			<source>Release</source>
+			<translation>Eliberare</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Locație:</translation>
 		</message>
 	</context>
 	<context>
@@ -337,6 +406,21 @@
 		<message>
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Hard disk-ul este dinamic, „Partajabil” nu este disponibil</translation>
+		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Alegeți tipul mediu:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumTypeChangeDialog</name>
+		<message>
+			<source>Modify medium attributes</source>
+			<translation>Modificați atributele medii</translation>
+		</message>
+		<message>
+			<source>&lt;p&gt;You are about to change the settings of the disk image file &lt;b&gt;%1&lt;/b&gt;.&lt;/p&gt;&lt;p&gt;Please choose one of the following modes and press &lt;b&gt;%2&lt;/b&gt; to proceed or &lt;b&gt;%3&lt;/b&gt; otherwise.&lt;/p&gt;</source>
+			<translation>&lt;p&gt;Sunteți pe cale să modificați setările fișierului imagine disc &lt;b&gt;%1&lt;/b&gt;.&lt;/p&gt;&lt;p&gt;Vă rugăm să alegeți unul dintre următoarele moduri și să apăsați &lt;b&gt;%2&lt;/b&gt; a continua sau &lt;b&gt;%3&lt;/b&gt; in caz contrar.&lt;/p&gt;</translation>
 		</message>
 	</context>
 </language>

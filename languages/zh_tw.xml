@@ -292,6 +292,22 @@
 			<source>Allow to be bridged</source>
 			<translation>允許橋接</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>僅主機網絡</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>添加僅主機網絡</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>刪除僅主機網絡</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>編輯僅主機網絡</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -309,6 +325,64 @@
 		<message>
 			<source>Net Address:</source>
 			<translation>網絡地址</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumItem</name>
+		<message>
+			<source>Type:</source>
+			<translation>類型:</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>地點:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumManager</name>
+		<message>
+			<source>Actions</source>
+			<translation>動作</translation>
+		</message>
+		<message>
+			<source>New</source>
+			<translation>新的</translation>
+		</message>
+		<message>
+			<source>Add</source>
+			<translation>添加</translation>
+		</message>
+		<message>
+			<source>Add iSCSI</source>
+			<translation>添加 iSCSI</translation>
+		</message>
+		<message>
+			<source>Copy...</source>
+			<translation>複製</translation>
+		</message>
+		<message>
+			<source>Modify...</source>
+			<translation>調整</translation>
+		</message>
+		<message>
+			<source>Remove</source>
+			<translation>消除</translation>
+		</message>
+		<message>
+			<source>Release</source>
+			<translation>發布</translation>
+		</message>
+		<message>
+			<source>Refresh</source>
+			<translation>刷新</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>地點:</translation>
+		</message>
+		<message>
+			<source>Attached to:</source>
+			<translation>附於:</translation>
 		</message>
 	</context>
 	<context>
@@ -336,6 +410,21 @@
 		<message>
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>硬盘是动态的，"可共享 "不可用</translation>
+		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>選擇介質類型:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumTypeChangeDialog</name>
+		<message>
+			<source>Modify medium attributes</source>
+			<translation>修改媒體屬性</translation>
+		</message>
+		<message>
+			<source>&lt;p&gt;You are about to change the settings of the disk image file &lt;b&gt;%1&lt;/b&gt;.&lt;/p&gt;&lt;p&gt;Please choose one of the following modes and press &lt;b&gt;%2&lt;/b&gt; to proceed or &lt;b&gt;%3&lt;/b&gt; otherwise.&lt;/p&gt;</source>
+			<translation>&lt;p&gt;您將要更改磁盤映像文件的設置 &lt;b&gt;%1&lt;/b&gt;.&lt;/p&gt;&lt;p&gt;請選擇以下模式之一，然後按 &lt;b&gt;%2&lt;/b&gt; 繼續或 &lt;b&gt;%3&lt;/b&gt;否則.&lt;/p&gt;</translation>
 		</message>
 	</context>
 </language>

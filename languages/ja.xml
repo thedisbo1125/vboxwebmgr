@@ -313,6 +313,52 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMediumItem</name>
+		<message>
+			<source>Type:</source>
+			<translation>タイプ:</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>位置:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumManager</name>
+		<message>
+			<source>Actions</source>
+			<translation>行動</translation>
+		</message>
+		<message>
+			<source>New</source>
+			<translation>新しい</translation>
+		</message>
+		<message>
+			<source>Add</source>
+			<translation>追加</translation>
+		</message>
+		<message>
+			<source>Add iSCSI</source>
+			<translation>iSCSI を追加</translation>
+		</message>
+		<message>
+			<source>Modify...</source>
+			<translation>変更</translation>
+		</message>
+		<message>
+			<source>Remove</source>
+			<translation>削除</translation>
+		</message>
+		<message>
+			<source>Release</source>
+			<translation>リリース</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>位置:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIVirtualMediaManager</name>
 		<message>
 			<source>WARNING</source>
@@ -337,6 +383,10 @@
 		<message>
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>ハードディスクは動的で、「共有可能」は利用できない</translation>
+		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>ミディアムタイプを選ぶ:</translation>
 		</message>
 	</context>
 </language>

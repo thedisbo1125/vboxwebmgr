@@ -293,6 +293,29 @@
 			<source>Allow to be bridged</source>
 			<translation>Tillad at blive bro</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>Netværk, der kun er vært</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>Tilføj værtsnetværk</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>Fjern værtsnetværk</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>Rediger værtsnetværk</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetails</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>Netværksoplysninger, der kun er værter</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -310,6 +333,48 @@
 		<message>
 			<source>Net Address:</source>
 			<translation>Netadresse:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumItem</name>
+		<message>
+			<source>Location:</source>
+			<translation>Beliggenhed:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumManager</name>
+		<message>
+			<source>Actions</source>
+			<translation>Handlinger</translation>
+		</message>
+		<message>
+			<source>New</source>
+			<translation>Ny</translation>
+		</message>
+		<message>
+			<source>Add</source>
+			<translation>Tilføje</translation>
+		</message>
+		<message>
+			<source>Add iSCSI</source>
+			<translation>Tilføj iSCSI</translation>
+		</message>
+		<message>
+			<source>Modify...</source>
+			<translation>Modificere</translation>
+		</message>
+		<message>
+			<source>Remove</source>
+			<translation>Fjerne</translation>
+		</message>
+		<message>
+			<source>Release</source>
+			<translation>Frigøre</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Beliggenhed:</translation>
 		</message>
 	</context>
 	<context>
@@ -337,6 +402,21 @@
 		<message>
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Harddisken er dynamisk, "Te delen" er ikke tilgængelig</translation>
+		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Vælg mellemtype:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumTypeChangeDialog</name>
+		<message>
+			<source>Modify medium attributes</source>
+			<translation>Rediger medium attributter</translation>
+		</message>
+		<message>
+			<source>&lt;p&gt;You are about to change the settings of the disk image file &lt;b&gt;%1&lt;/b&gt;.&lt;/p&gt;&lt;p&gt;Please choose one of the following modes and press &lt;b&gt;%2&lt;/b&gt; to proceed or &lt;b&gt;%3&lt;/b&gt; otherwise.&lt;/p&gt;</source>
+			<translation>&lt;p&gt;Du er ved at ændre indstillingerne for diskbilledfilen &lt;b&gt;%1&lt;/b&gt;.&lt;/p&gt;&lt;p&gt;Vælg en af følgende tilstande, og tryk på &lt;b&gt;%2&lt;/b&gt; at fortsætte eller &lt;b&gt;%3&lt;/b&gt;ellers.&lt;/p&gt;</translation>
 		</message>
 	</context>
 </language>

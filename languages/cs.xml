@@ -313,6 +313,52 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMediumItem</name>
+		<message>
+			<source>Type:</source>
+			<translation>Typ:</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Umístění:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMediumManager</name>
+		<message>
+			<source>Actions</source>
+			<translation>Akce</translation>
+		</message>
+		<message>
+			<source>New</source>
+			<translation>Nový</translation>
+		</message>
+		<message>
+			<source>Add</source>
+			<translation>Přidat</translation>
+		</message>
+		<message>
+			<source>Add iSCSI</source>
+			<translation>Přidat iSCSI</translation>
+		</message>
+		<message>
+			<source>Modify...</source>
+			<translation>Modifikovat</translation>
+		</message>
+		<message>
+			<source>Remove</source>
+			<translation>Odstranit</translation>
+		</message>
+		<message>
+			<source>Release</source>
+			<translation>Uvolnit</translation>
+		</message>
+		<message>
+			<source>Location:</source>
+			<translation>Umístění:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIVirtualMediaManager</name>
 		<message>
 			<source>WARNING</source>
@@ -337,6 +383,10 @@
 		<message>
 			<source>Hard drive is dynamic, "Shareable" not available</source>
 			<translation>Pevný disk je dynamický, "Sdílený" není k dispozi</translation>
+		</message>
+		<message>
+			<source>Choose medium type:</source>
+			<translation>Vyberte Střední typ:</translation>
 		</message>
 	</context>
 </language>
