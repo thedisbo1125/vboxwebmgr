@@ -65,7 +65,7 @@
 					</table>
 				</div>
 			</div>
-			<div class='vboxVMMMediumInfo'>
+			<div class='vboxVMMMediumInfo' id='UIMediumItemList'>
 				<table>
 					<tr>
 						<th><span class='translate'>Type:</span></th>
@@ -87,10 +87,10 @@
 						<th><span class='translate'>Attached to:</span></th>
 						<td><input class='vmmMediumAttachedTo' type='text' style='width:100%;border:0px solid transparent;background:transparent;' value='' readonly spellcheck='false'/></td>
 					</tr>
-                    <tr>
-                        <th><span class='translate'>UUID:</span></th>
-                        <td><input class='vmmMediumUUID' type='text' style='width:100%;border:0px solid transparent;background:transparent;' value='' readonly spellcheck='false'/></td>
-                    </tr>
+					<tr>
+						<th><span class='translate'>UUID:</span></th>
+						<td><input class='vmmMediumUUID' type='text' style='width:100%;border:0px solid transparent;background:transparent;' value='' readonly spellcheck='false'/></td>
+					</tr>
 					<tr class='vmmAccessErr'>
 						<td colspan='2'></td>
 					</tr>
@@ -217,8 +217,9 @@
  
 // These are translated under a different context for some reason
 $('#vboxVMMTabList').find(".translate").html(function(i,h){return trans(h,'UIMediumManager');}).removeClass('translate');
+$('#UIMediumItemList').find(".translate").html(function(i,h){return trans(h,'UIMediumItem');}).removeClass('translate');
 
-$("#vboxVMMTabs").find(".translate").html(function(i,h){return trans(h,'VBoxMediaManagerDlg');}).removeClass('translate');
+$("#vboxVMMTabs").find(".translate").html(function(i,h){return trans(h,'UIMediumManager');}).removeClass('translate');
 
 
 /*
@@ -429,7 +430,7 @@ var vmmButtons = new Array(
 
 			var med = $('#vboxVMMHDList').find('tr.vboxListItemSelected').first();
 			med = vboxMedia.getMediumById(med.data('medium'));
-			
+
 			var buttons = {};
 			buttons[trans('OK','QIMessageBox')] = function() {
 
@@ -515,7 +516,7 @@ var vmmButtons = new Array(
 				// Translations
 				$('#vboxVMMModifyInstructions').html(msg);
 				
-				$('#vboxVMMModify').find(".translate").html(function(i,h){return trans(h,'UIMediumTypeChangeDialog');}).removeClass('translate');
+				$('#vboxVMMModify').find(".translate").html(function(i,h){return trans(h,'UIVirtualMediaManager');}).removeClass('translate');
 
 				$('#vboxVMMModify').find('table.vboxOptions').find('span').html(function(i,h){return trans(h,'VBoxGlobal', 'MediumType');});
 
@@ -799,11 +800,11 @@ if(!$('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
 
 /* Toolbar */
 var vmmToolbar = new vboxToolbar({buttons: vmmButtons,
-    language_context: 'VBoxMediaManagerDlg',
+    language_context: 'UIMediumManager',
     renderTo: 'vboxMMToolbar'});
 
 /* Actions Menu */
-var vmmMenu = new vboxMenuBar({name: 'vboxMMMenu', language_context: 'VBoxMediaManagerDlg'});
+var vmmMenu = new vboxMenuBar({name: 'vboxMMMenu', language_context: 'UIMediumManager'});
 vmmMenu.addMenu({
 	'name':'vboxMMactions',
 	'label':'Actions',
@@ -821,7 +822,7 @@ if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
 	vmmCMButtons = vmmButtons.slice(0,-1);
 }
 var vmmCMenu = new vboxMenu({name: 'vboxVMMMediaContextMenu', menuItems: vmmCMButtons,
-    language_context: 'VBoxMediaManagerDlg'});
+    language_context: 'UIMediumManager'});
 
 
 /**
