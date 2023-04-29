@@ -309,6 +309,7 @@ var vboxVMDetailsSections = {
 		rows: [
 		   {
 			   title: 'Base Memory',
+			   language_context: 'UIDetails',
 			   callback: function(d) {
 				   return trans('<nobr>%1 MB</nobr>').replace('%1',d['memorySize']);
 			   }
@@ -1068,14 +1069,14 @@ var vboxVMDetailsSections = {
 			    data: ''
 		    },{
 		    	title: "Host Driver",
-		    	language_context: 'VBoxGlobal',
+		    	language_context: 'UIDetails',
 		    	callback: function(d) {
 		    		return trans(vboxAudioDriver(d['audioAdapter']['audioDriver']),'VBoxGlobal');
 		    	},
 		    	condition: function(d) { return d['audioAdapter']['enabled']; }
 		    },{
 		    	title: "Controller",
-		    	language_context: 'VBoxGlobal',
+		    	language_context: 'UIDetails',
 		    	callback: function (d) {
 		    		return trans(vboxAudioController(d['audioAdapter']['audioController']),'VBoxGlobal');
 		    	},
