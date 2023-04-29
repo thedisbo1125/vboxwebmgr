@@ -791,12 +791,6 @@ var vmmButtons = new Array(
 		
 );
 
-// Check for advanced config
-if(!$('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
-	vmmButtons.shift();
-	vmmButtons.shift();
-	vmmButtons.shift();
-}
 
 /* Toolbar */
 var vmmToolbar = new vboxToolbar({buttons: vmmButtons,
@@ -815,12 +809,6 @@ vmmMenu.renderTo('vboxMMMenu');
 /* Context menu for media */
 var vmmCMButtons;
 
-// Check for advanced config. We don't want these in our context menu
-if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
-	vmmCMButtons = vmmButtons.slice(3,-1);
-} else {
-	vmmCMButtons = vmmButtons.slice(0,-1);
-}
 var vmmCMenu = new vboxMenu({name: 'vboxVMMMediaContextMenu', menuItems: vmmCMButtons,
     language_context: 'UIMediumManager'});
 
