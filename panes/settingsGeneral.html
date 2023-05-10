@@ -157,12 +157,13 @@
 <script type='text/javascript'>
 
 /* Translations */
-$('#vboxSettingsTabGeneralInput').find(".translateinput").html(function(i,h){return trans(h,'UIActionPool');});
+$('#vboxSettingsTabGeneralInput').find(".translateinput").html(function(i,h){return trans(h,'UICommon');});
 $('#vboxSettingsTabGeneralInputTab').find(".translateinputtab").html(function(i,h){return trans(h,'UISettingsDialogGlobal');});
 $('#vboxSettingsTabGeneralBasic').find(".translateos").html(function(i,h){return trans(h,'UINameAndSystemEditor');});
 
 /* clipboard translations */
 $('#vboxSettingsClipboardMode').find('option').html(function(i,h){return trans(h,'UICommon');});
+
 
 if($('#vboxPane').data('vboxConfig').vboxAutostartConfig) {
 	

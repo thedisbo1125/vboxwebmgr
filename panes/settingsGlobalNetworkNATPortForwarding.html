@@ -68,7 +68,8 @@
 var sButtons = new Array(
 	{
 		'name' : 'insportfwd',
-		'label' : 'Insert new rule',
+		'label' : 'Add New Rule',
+		'language_context': 'UIPortForwardingTable',
 		'icon' : 'controller_add',
 		'click' : function (e) {
 			var listId = $(e.target).closest('div.vboxTabContent').find('tbody.vboxSettingsGlobalNetworkNatPortForwardingList').first().attr('id');
@@ -89,7 +90,8 @@ var sButtons = new Array(
 	},
 	{
 		'name' : 'delportfwd',
-		'label' : 'Delete selected rule',
+		'label' : 'Remove Selected Rule',
+		'language_context': 'UIPortForwardingTable',
 		'icon' : 'controller_remove',
 		'click' : function (e) {
 			var listId = $(e.target).closest('div.vboxTabContent').find('tbody.vboxSettingsGlobalNetworkNatPortForwardingList').first().attr('id');
@@ -99,6 +101,11 @@ var sButtons = new Array(
 		'enabled' : function(item) {return (item ? true : false);}
 	}
 );
+
+/* Translate column headers */
+$('#vboxSettingsGlobalNetworkNatPortForwardingListDivIPv4').find(".translate").text(function(i,h){return trans(h,'UIPortForwardingTable');}).removeClass('translate');
+$('#vboxSettingsGlobalNetworkNatPortForwardingIPv6').find(".translate").text(function(i,h){return trans(h,'UIPortForwardingTable');}).removeClass('translate');
+
 
 var pfToolbarIPv4 = new vboxToolbarSmall({buttons: sButtons, language_context: 'UIMachineSettingsPortForwardingDlg'});
 pfToolbarIPv4.renderTo('vboxSettingsGlobalNetworkNatPortForwardingToolbarIPv4');

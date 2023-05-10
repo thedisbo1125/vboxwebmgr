@@ -360,6 +360,7 @@ var vboxVMDetailsSections = {
 	 */
 	preview: {
 		title: 'Preview',
+		language_context: 'UICommon',
 		icon: 'fullscreen_16px.png',
 		_resolutionCache: {},
 		settingsLink: 'Display',

@@ -311,10 +311,26 @@
 		</message>
 	</context>
 	<context>
-		<name>UIActionPool</name>
+		<name>UIMachineSettingsGeneral</name>
 		<message>
-			<source>Refresh</source>
-			<translation>Reîmprospăta</translation>
+			<source>Enable Encryption</source>
+			<translation>Activați criptarea</translation>
+		</message>
+		<message>
+			<source>Encryption</source>
+			<translation>Criptare</translation>
+		</message>
+		<message>
+			<source>Encryption Cipher:</source>
+			<translation>Cifrare de criptare:</translation>
+		</message>
+		<message>
+			<source>PS/2 Keyboard</source>
+			<translation>Tastatura PS/2</translation>
+		</message>
+		<message>
+			<source>USB Keyboard</source>
+			<translation>Tastatura USB</translation>
 		</message>
 	</context>
 	<context>

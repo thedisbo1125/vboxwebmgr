@@ -1241,7 +1241,7 @@ function vboxVMsettingsDialog(vm,pane) {
 
 							/* Change title and tell dialog that data is loaded */
 							$('#vboxSettingsDialog').trigger('dataLoaded').dialog('option','title','<img src="images/vbox/vm_settings_16px.png" class="vboxDialogTitleIcon" /> ' +
-									$('<div />').text($('#vboxSettingsDialog').data('vboxMachineData').name).text() + ' - ' + trans('Settings','UISettingsDialog'));
+									$('<div />').text($('#vboxSettingsDialog').data('vboxMachineData').name).text() + ' - ' + trans('Settings','UISettingsDialogMachine'));
 
 							l.removeLoading();
 							reloadConfirmShowing = false;
@@ -1466,7 +1466,7 @@ function vboxVMsettingsDialog(vm,pane) {
 
 		}
 
-		$.when(vboxSettingsDialog(vmData.name + ' - ' + trans('Settings','UISettingsDialog'),panes,dataList,pane,'vm_settings','UISettingsDialogMachine', presaveCallback))
+		$.when(vboxSettingsDialog(vmData.name + ' - ' + trans('Settings','UISettingsDialogMachine'),panes,dataList,pane,'vm_settings','UISettingsDialogMachine', presaveCallback))
 
 			// Always run this
 			.always(function(){
