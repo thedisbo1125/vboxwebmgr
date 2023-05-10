@@ -120,7 +120,7 @@ function vboxAjaxRequest(fn,params,config) {
 			return null;
 
 		// Filter out data and display error messages
-		}).pipe(function(d){
+		}).then(function(d){
 
 			// Fatal error previously occurred
 			if($('#vboxPane').data('vboxFatalError')) {
