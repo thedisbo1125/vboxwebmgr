@@ -1,4 +1,12 @@
 -------------------------------------
+    6.1-008 2023-05-18
+-------------------------------------
+
+- Fix problem where USB Controller and Hardware Virtualization were not checked, but options were enabled
+- Add missing translations and change to new UI's
+- Make changes to support future jquery upgrade
+
+-------------------------------------
     6.1-007a 2023-04-29
 -------------------------------------
 

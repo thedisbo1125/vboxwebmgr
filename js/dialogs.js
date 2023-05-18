@@ -1531,7 +1531,7 @@ function vboxWizardFirstRunDialog(vm) {
 
 	this.onFinish = function() {
 
-		var med = vboxMedia.getMediumById($('#wizardFirstRunMedia').find(":selected").attr('value'));
+		var med = vboxMedia.getMediumById($('#wizardFirstRunMedia').find(":selected").val());
 
 		$(self.dialog).empty().remove();
 
