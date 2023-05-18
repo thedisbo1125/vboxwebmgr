@@ -459,7 +459,8 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 	} else {
 		
 		$(p).find('tr:not(.vboxRunningEnabled)').find('span').removeClass('disabled');
-		$(p).find('tr:not(.vboxRunningEnabled)').find('input,select,textarea').prop('disabled',false);
+		$(p).find('tr:not(.vboxRunningEnabled)').find('select,textarea').prop('disabled',false);
+		$(p).find('tr:not(.vboxRunningEnabled)').find('input:not(.vboxEnablerListen)').prop('disabled',false);
 		$('#vboxSettingsSystemMemory').slider('enable');
 		$('#vboxSettingsSystemProcessor').slider('enable');
 		
