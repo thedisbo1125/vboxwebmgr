@@ -157,7 +157,7 @@
 <script type='text/javascript'>
 
 /* Translations */
-$('#vboxSettingsTabGeneralInput').find(".translateinput").html(function(i,h){return trans(h,'UIActionPool');});
+$('#vboxSettingsTabGeneralInput').find(".translateinput").html(function(i,h){return trans(h,'UICommon');});
 $('#vboxSettingsTabGeneralInputTab').find(".translateinputtab").html(function(i,h){return trans(h,'UISettingsDialogGlobal');});
 $('#vboxSettingsTabGeneralBasic').find(".translateos").html(function(i,h){return trans(h,'UINameAndSystemEditor');});
 
@@ -178,7 +178,7 @@ if($('#vboxPane').data('vboxConfig').vboxAutostartConfig) {
 }
 
 $('#vboxSettingsTabGeneralEncryption').find('option').html(function(i,h){ return trans(h, 'UIMachineSettingsGeneral', 'cipher type')});
-$('#vboxSettingsTabGeneralInput').find('option').html(function(i,h){ return trans(h, 'VBoxGlobal')});
+$('#vboxSettingsTabGeneralInput').find('option').html(function(i,h){ return trans(h, 'UICommon')});
 
 /* Browse for snapshot folder */
 function vboxSnapshotBrowseFolder(btn) {

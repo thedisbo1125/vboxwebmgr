@@ -268,13 +268,13 @@ setInputFilter(document.getElementById("vboxSettingsSystemLogoDisplayTimeID"), f
 */
 
 /* Boot order devices */
-$('#vboxVMBootOrder').find("span.vboxBootOrderDevice").html(function(i,h){return trans(vboxDevice(h),'VBoxGlobal');});
+$('#vboxVMBootOrder').find("span.vboxBootOrderDevice").html(function(i,h){return trans(vboxDevice(h),'UICommon');});
 
 /* Chipsets */
 $('#vboxSettingsSystemChipsetRow').find('option').html(function(i,h){return trans(h,'VBoxGlobal');});
 
 /* Paravirtualization providers */
-$(document.forms['frmVboxSettings'].vboxSettingsParavirtInterface).find('option').html(function(i,h){return trans(h,'VBoxGlobal', 'ParavirtProvider');});
+$(document.forms['frmVboxSettings'].vboxSettingsParavirtInterface).find('option').html(function(i,h){return trans(h,'UICommon', 'ParavirtProvider');});
 
 /* Translate None in TPM List */
 document.forms['frmVboxSettings'].vboxSettingsTPM.options[0].innerHTML = trans('None','VBoxGlobal', 'ParavirtProvider');

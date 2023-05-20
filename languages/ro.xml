@@ -30,6 +30,27 @@
 		</message>		
 	</context>
 	<context>
+		<name>UICommon</name>
+		<message>
+			<source>PS/2 Keyboard</source>
+			<translation>Tastatură PS/2</translation>
+		</message>
+		<message>
+			<source>USB Keyboard</source>
+			<translation>Tastatură USB</translation>
+		</message>
+		<message>
+			<source>Legacy</source>
+			<comment>ParavirtProvider</comment>
+			<translation>Moştenire</translation>
+		</message>
+		<message>
+			<source>Minimal</source>
+			<comment>ParavirtProvider</comment>
+			<translation>Minim</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
@@ -311,10 +332,34 @@
 		</message>
 	</context>
 	<context>
-		<name>UIActionPool</name>
+		<name>UIMachineSettingsGeneral</name>
 		<message>
-			<source>Refresh</source>
-			<translation>Reîmprospăta</translation>
+			<source>Enable Encryption</source>
+			<translation>Activați criptarea</translation>
+		</message>
+		<message>
+			<source>Encryption</source>
+			<translation>Criptare</translation>
+		</message>
+		<message>
+			<source>Encryption Cipher:</source>
+			<translation>Cifrare de criptare:</translation>
+		</message>
+		<message>
+			<source>PS/2 Keyboard</source>
+			<translation>Tastatura PS/2</translation>
+		</message>
+		<message>
+			<source>USB Keyboard</source>
+			<translation>Tastatura USB</translation>
+		</message>
+		<message>
+			<source>Enter New Password:</source>
+			<translation>Introduceți o nouă parolă:</translation>
+		</message>
+		<message>
+			<source>Confirm New Password:</source>
+			<translation>Confirmă noua parolă:</translation>
 		</message>
 	</context>
 	<context>
@@ -326,6 +371,26 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Dezactivați sincronizarea timpului gazdei</translation>
+		</message>
+		<message>
+			<source>Hardware Clock in UTC Time</source>
+			<translation>Ceas hardware în ora UTC</translation>
+		</message>
+		<message>
+			<source>Enable EFI (special OSes only)</source>
+			<translation>Activați EFI (numai sisteme de operare speciale)</translation>
+		</message>
+		<message>
+			<source>Enable Nested Paging</source>
+			<translation>Activați paginarea imbricată</translation>
+		</message>
+		<message>
+			<source>Enable Nested VT-x/AMD-V</source>
+			<translation>Activați Imbricat VT-x/AMD-V</translation>
+		</message>
+		<message>
+			<source>Execution Cap:</source>
+			<translation>Cap de execuție:</translation>
 		</message>
 	</context>
 	<context>

@@ -30,6 +30,21 @@
 		</message>
 	</context>
 	<context>
+		<name>UICommon</name>
+		<message>
+			<source>USB Keyboard</source>
+			<translation>USB klávesnice</translation>
+		</message>
+		<message>
+			<source>PS/2 Keyboard</source>
+			<translation>PS/2 klávesnice</translation>
+		</message>
+		<message>
+			<source>USB Keyboard</source>
+			<translation>USB klávesnice</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
@@ -303,6 +318,10 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Zakázat synchronizaci času hostitele</translation>
+		</message>
+		<message>
+			<source>Enable Nested VT-x/AMD-V</source>
+			<translation>Povolit vnořené VT-x/AMD-V</translation>
 		</message>
 	</context>
 	<context>

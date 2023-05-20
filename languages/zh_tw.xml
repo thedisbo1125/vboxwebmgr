@@ -29,6 +29,17 @@
 		</message>
 	</context>
 	<context>
+		<name>UICommon</name>
+		<message>
+			<source>PS/2 Keyboard</source>
+			<translation>PS/2 鍵盤</translation>
+		</message>
+		<message>
+			<source>USB Keyboard</source>
+			<translation>USB鍵盤</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
@@ -307,6 +318,21 @@
 		<message>
 			<source>Edit Host-only Network</source>
 			<translation>編輯僅主機網絡</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsGeneral</name>
+		<message>
+			<source>Enable Encryption</source>
+			<translation>啟用加密</translation>
+		</message>
+		<message>
+			<source>Encryption</source>
+			<translation>加密</translation>
+		</message>
+		<message>
+			<source>Encryption Cipher:</source>
+			<translation>加密密碼：</translation>
 		</message>
 	</context>
 	<context>

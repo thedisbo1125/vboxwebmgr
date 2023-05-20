@@ -106,7 +106,7 @@
 /* Display */
 
 /* auth method translations */
-$('#vboxSettingsDisplayVRDEAuthID').find('option').html(function(i,h){return trans(h,'VBoxGlobal');});
+$('#vboxSettingsDisplayVRDEAuthID').find('option').html(function(i,h){return trans(h,'UICommon');});
 
 $('#vboxSettingsDisplayMemory').data('form','frmVboxSettings');
 $('#vboxSettingsDisplayMemory').slider({'min':parseInt($('#vboxPane').data('vboxSystemProperties').minGuestVRAM),'max':parseInt($('#vboxPane').data('vboxSystemProperties').maxGuestVRAM)});

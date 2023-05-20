@@ -30,6 +30,17 @@
 		</message>
 	</context>
 	<context>
+		<name>UICommon</name>
+		<message>
+			<source>PS/2 Keyboard</source>
+			<translation>PS/2 Tastatur</translation>
+		</message>
+		<message>
+			<source>USB Keyboard</source>
+			<translation>USB tastatur</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
@@ -318,6 +329,21 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsGeneral</name>
+		<message>
+			<source>Enable Encryption</source>
+			<translation>Aktiver kryptering</translation>
+		</message>
+		<message>
+			<source>Encryption</source>
+			<translation>Kryptering</translation>
+		</message>
+		<message>
+			<source>Encryption Cipher:</source>
+			<translation>Krypterings chiffer:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>
@@ -326,6 +352,10 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Deaktiver synkronisering af værtstid</translation>
+		</message>
+		<message>
+			<source>Enable Nested VT-x/AMD-V</source>
+			<translation>Aktiver indlejret VT-x/AMD-V</translation>
 		</message>
 	</context>
 	<context>
