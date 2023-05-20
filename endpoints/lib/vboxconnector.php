@@ -2306,7 +2306,7 @@ class vboxconnector {
 						}
 
 						// Exists in new?
-						if(is_countable($args['USBDeviceFilters'][$i])){
+						if(is_array($args['USBDeviceFilters'][$i])){
 							if(count($args['USBDeviceFilters'][$i])) {
 
 								// Create filter
