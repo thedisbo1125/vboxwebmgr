@@ -1,4 +1,13 @@
 -------------------------------------
+    7.0-008 2023-05-20
+-------------------------------------
+
+- Fix problem where USB Controller and Hardware Virtualization were not checked, but options were enabled
+- Additional changes to support future jquery upgrade
+- Fix php error when removing USB filters
+- Add missing translations and change to new UI's
+
+-------------------------------------
     7.0-007  2023-04-29
 -------------------------------------
 
