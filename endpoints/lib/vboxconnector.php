@@ -2306,19 +2306,21 @@ class vboxconnector {
 						}
 
 						// Exists in new?
-						if(count($args['USBDeviceFilters'][$i])) {
+						if(is_countable($args['USBDeviceFilters'][$i])){
+							if(count($args['USBDeviceFilters'][$i])) {
 
-							// Create filter
-							$f = $m->USBDeviceFilters->createDeviceFilter($args['USBDeviceFilters'][$i]['name']);
-							$f->active = (bool)$args['USBDeviceFilters'][$i]['active'];
+								// Create filter
+								$f = $m->USBDeviceFilters->createDeviceFilter($args['USBDeviceFilters'][$i]['name']);
+								$f->active = (bool)$args['USBDeviceFilters'][$i]['active'];
 
-							foreach($usbProps as $p) {
-								$f->$p = $args['USBDeviceFilters'][$i][$p];
+								foreach($usbProps as $p) {
+									$f->$p = $args['USBDeviceFilters'][$i][$p];
+								}
+
+								$m->USBDeviceFilters->insertDeviceFilter($i,$f->handle);
+								$f->releaseRemote();
+								$offset--;
 							}
-
-							$m->USBDeviceFilters->insertDeviceFilter($i,$f->handle);
-							$f->releaseRemote();
-							$offset--;
 						}
 					}
 
