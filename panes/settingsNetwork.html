@@ -367,7 +367,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 
 		// attached to
 		$(document.forms['frmVboxSettings'].elements['vboxSettingsNetAttachedTo'+a]).val($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].attachmentType).trigger('change');
-		$(document.forms['frmVboxSettings'].elements['vboxSettingsNetAttachedTo'+a].options[document.forms['frmVboxSettings'].elements['vboxSettingsNetAttachedTo'+a].selectedIndex]).attr('selected','selected');
+		$(document.forms['frmVboxSettings'].elements['vboxSettingsNetAttachedTo'+a].options[document.forms['frmVboxSettings'].elements['vboxSettingsNetAttachedTo'+a].selectedIndex]).prop('selected','selected');
 		$(document.forms['frmVboxSettings'].elements['vboxSettingsNetAttachedTo'+a]).change();
 		
 		// Device or network name, depending on what 'attached to' is

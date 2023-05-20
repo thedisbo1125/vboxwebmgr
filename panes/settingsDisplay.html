@@ -220,7 +220,7 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 		}
 
 
-		$(document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEEnabled).attr('checked',(!$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.enabled)).trigger('click');
+		$(document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEEnabled).prop('checked',(!$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.enabled)).trigger('click');
 		
 		if($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.allowMultiConnection) {
 			document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEMulti.checked = true;

@@ -137,7 +137,7 @@ if($('#vboxPane').data('vboxConfig').enableLPTConfig) {
 			// Port Number
 			var pNum = vboxParallelPorts.getPortName($('#vboxSettingsDialog').data('vboxMachineData').parallelPorts[i].IRQ,$('#vboxSettingsDialog').data('vboxMachineData').parallelPorts[i].IOBase);
 			$(document.forms['frmVboxSettings'].elements['vboxSettingsPPortNumber'+a]).val(pNum);
-			$(document.forms['frmVboxSettings'].elements['vboxSettingsPPortNumber'+a].options[document.forms['frmVboxSettings'].elements['vboxSettingsPPortNumber'+a].selectedIndex]).attr('selected','selected');
+			$(document.forms['frmVboxSettings'].elements['vboxSettingsPPortNumber'+a].options[document.forms['frmVboxSettings'].elements['vboxSettingsPPortNumber'+a].selectedIndex]).prop('selected','selected');
 			$(document.forms['frmVboxSettings'].elements['vboxSettingsPPortNumber'+a]).change();	
 		
 			$(document.forms['frmVboxSettings'].elements['vboxSettingsPPortIRQ'+a]).val($('#vboxSettingsDialog').data('vboxMachineData').parallelPorts[i].IRQ);

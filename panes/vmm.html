@@ -749,7 +749,7 @@ var vmmButtons = new Array(
 			buttons[trans('Release','UIMessageCenter')] = function(){
 				var b = this;
 				$.when(vboxAjaxRequest('mediumRelease',{'medium':m.location,'type':m.deviceType})).done(function(ret){
-					
+
 					var l = new vboxLoader();
 					l.add('vboxGetMedia',function(d){$('#vboxPane').data('vboxMedia',d.responseData);});
 					l.onLoad = function(){
