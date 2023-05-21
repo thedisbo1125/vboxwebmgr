@@ -166,7 +166,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 		var pNum = vboxSerialPorts.getPortName($('#vboxSettingsDialog').data('vboxMachineData').serialPorts[i].IRQ,$('#vboxSettingsDialog').data('vboxMachineData').serialPorts[i].IOBase);
 		$(document.forms['frmVboxSettings'].elements['vboxSettingsPortNumber'+a]).val(pNum);
 		$(document.forms['frmVboxSettings'].elements['vboxSettingsPortNumber'+a].options[document.forms['frmVboxSettings'].elements['vboxSettingsPortNumber'+a].selectedIndex]).prop('selected','selected');
-		$(document.forms['frmVboxSettings'].elements['vboxSettingsPortNumber'+a]).change();	
+		$(document.forms['frmVboxSettings'].elements['vboxSettingsPortNumber'+a]).change();
 
 		$(document.forms['frmVboxSettings'].elements['vboxSettingsSPortIRQ'+a]).val($('#vboxSettingsDialog').data('vboxMachineData').serialPorts[i].IRQ);
 		$(document.forms['frmVboxSettings'].elements['vboxSettingsSPortIO'+a]).val($('#vboxSettingsDialog').data('vboxMachineData').serialPorts[i].IOBase);
@@ -188,13 +188,17 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 	}
 
 	if(!$('#vboxSettingsDialog').data('vboxFullEdit')) {
-		vboxSettingsSPortContainer.find('input.vboxEnablerCheckbox').triggerHandler('click');
+		vboxSettingsSPortContainer.find('input.vboxEnablerCheckbox').each(function() {
+			$(this).triggerHandler('click');
+		});
 		vboxSettingsSPortContainer.children(':not(ul)').find('span').addClass('disabled');
 		vboxSettingsSPortContainer.find('input,select,textarea').prop('disabled',true);
 	} else {
 		vboxSettingsSPortContainer.find('span').removeClass('disabled');
 		vboxSettingsSPortContainer.find('input,select,textarea').prop('disabled',false);
-		vboxSettingsSPortContainer.find('input.vboxEnablerCheckbox').triggerHandler('click');
+		vboxSettingsSPortContainer.find('input.vboxEnablerCheckbox').each(function() {
+			$(this).triggerHandler('click');
+		});
 	}
 	
 });
