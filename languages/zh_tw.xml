@@ -38,6 +38,18 @@
 			<source>USB Keyboard</source>
 			<translation>USB鍵盤</translation>
 		</message>
+		<message>
+			<source>Nested Virtualization</source>
+			<translation>嵌套虛擬化</translation>
+		</message>
+		<message>
+			<source>Unrestricted Guest</source>
+			<translation>不受限制的客人</translation>
+		</message>
+		<message>
+			<source>Long Mode (64-bit)</source>
+			<translation>長模式（64 位）</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIHelpButton</name>
@@ -351,6 +363,13 @@
 		<message>
 			<source>Net Address:</source>
 			<translation>網絡地址</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSF</name>
+		<message>
+			<source>Folders List</source>
+			<translation>文件夾列表</translation>
 		</message>
 	</context>
 	<context>

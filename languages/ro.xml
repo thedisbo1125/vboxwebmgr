@@ -49,6 +49,18 @@
 			<comment>ParavirtProvider</comment>
 			<translation>Minim</translation>
 		</message>
+		<message>
+			<source>Nested Virtualization</source>
+			<translation>Virtualizare imbricată</translation>
+		</message>
+		<message>
+			<source>Unrestricted Guest</source>
+			<translation>Oaspete nerestricționat</translation>
+		</message>
+		<message>
+			<source>Long Mode (64-bit)</source>
+			<translation>Mod lung (64 de biți)</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIHelpButton</name>
@@ -398,6 +410,32 @@
 		<message>
 			<source>Net Address:</source>
 			<translation>Adresa de net:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsUSB</name>
+		<message>
+			<source>USB 1.1 (OHCI) Controller</source>
+			<translation>Controler USB 1.1 (OHCI).</translation>
+		</message>
+		<message>
+			<source>USB 2.0 (EHCI) Controller</source>
+			<translation>Controler USB 2.0 (EHCI).</translation>
+		</message>
+		<message>
+			<source>USB 3.0 (xHCI) Controller</source>
+			<translation>Controler USB 3.0 (xHCI).</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSF</name>
+		<message>
+			<source>At</source>
+			<translation>La</translation>
+		</message>
+		<message>
+			<source>Auto Mount</source>
+			<translation>Montare automată</translation>
 		</message>
 	</context>
 	<context>

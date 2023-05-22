@@ -55,7 +55,7 @@ var vboxHostDetailsSections = {
 					var cpuFeatures = new Array();
 					for(var f in d.cpuFeatures) {
 						if(!d.cpuFeatures[f]) continue;
-						cpuFeatures[cpuFeatures.length] = trans(f);
+						cpuFeatures[cpuFeatures.length] = trans(f,'UICommon');
 					}
 					return cpuFeatures.join(', ');
 

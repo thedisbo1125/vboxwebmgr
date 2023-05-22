@@ -39,6 +39,18 @@
 			<source>USB Keyboard</source>
 			<translation>Klawiatura USB</translation>
 		</message>
+		<message>
+			<source>Nested Virtualization</source>
+			<translation>Wirtualizacja zagnieżdżona</translation>
+		</message>
+		<message>
+			<source>Unrestricted Guest</source>
+			<translation>Nieograniczony gość</translation>
+		</message>
+		<message>
+			<source>Long Mode (64-bit)</source>
+			<translation>Tryb długi (64-bitowy)</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIHelpButton</name>

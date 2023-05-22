@@ -43,6 +43,18 @@
 			<source>USB Keyboard</source>
 			<translation>USB klávesnice</translation>
 		</message>
+		<message>
+			<source>Nested Virtualization</source>
+			<translation>Vnořená virtualizace</translation>
+		</message>
+		<message>
+			<source>Unrestricted Guest</source>
+			<translation>Neomezený host</translation>
+		</message>
+		<message>
+			<source>Long Mode (64-bit)</source>
+			<translation>Dlouhý režim (64bitový)</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIHelpButton</name>
@@ -329,6 +341,17 @@
 		<message>
 			<source>Net Address:</source>
 			<translation>Čistá adresa:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSF</name>
+		<message>
+			<source>At</source>
+			<translation>Na</translation>
+		</message>
+		<message>
+			<source>Auto Mount</source>
+			<translation>Automatická montáž</translation>
 		</message>
 	</context>
 	<context>

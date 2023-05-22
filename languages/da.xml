@@ -39,6 +39,18 @@
 			<source>USB Keyboard</source>
 			<translation>USB tastatur</translation>
 		</message>
+		<message>
+			<source>Nested Virtualization</source>
+			<translation>Indlejret virtualisering</translation>
+		</message>
+		<message>
+			<source>Unrestricted Guest</source>
+			<translation>Ubegrænset Gæst</translation>
+		</message>
+		<message>
+			<source>Long Mode (64-bit)</source>
+			<translation>Lang tilstand (64-bit)</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIHelpButton</name>
@@ -364,12 +376,35 @@
 			<source>Net Address:</source>
 			<translation>Netadresse:</translation>
 		</message>
+		<message>
+			<source>Graphics Controller:</source>
+			<translation>Grafik controller:</translation>
+		</message>
+		<message>
+			<source>(address not set)</source>
+			<translation>(adresse ikke angivet)</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMediumItem</name>
 		<message>
 			<source>Location:</source>
 			<translation>Beliggenhed:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSF</name>
+		<message>
+			<source>Folders List</source>
+			<translation>Mappeliste</translation>
+		</message>
+		<message>
+			<source>At</source>
+			<translation>På</translation>
+		</message>
+		<message>
+			<source>Auto Mount</source>
+			<translation>Automatisk montering</translation>
 		</message>
 	</context>
 	<context>
