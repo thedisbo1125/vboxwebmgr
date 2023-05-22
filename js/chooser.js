@@ -696,9 +696,9 @@ var vboxChooser = {
 			tip = trans(vboxChooser._vmToolTip, 'UIVMListView').replace('%1',('<b>'+$('<span />')
 				.text(vmn.name).html()+'</b>'+(vmn.currentSnapshotName ? ' (' + $('<span />')
 						.text(vmn.currentSnapshotName).html() + ')' : '')))
-				.replace('%2',trans(vboxVMStates.convert(vmn.state),'VBoxGlobal'))
+				.replace('%2',trans(vboxVMStates.convert(vmn.state),'UICommon'))
 				.replace('%3',vboxDateTimeString(vmn.lastStateChange))
-				.replace('%4',trans(vmn.sessionState,'VBoxGlobal').toLowerCase());
+				.replace('%4',trans(vmn.sessionState,'UICommon').toLowerCase());
 
 			$(tbl).tipped({'source':tip,'position':'mouse','delay':1500});
 		}
@@ -712,7 +712,7 @@ var vboxChooser = {
 		// Add VirtualBox version if hosting
 		if(vmn.id == 'host') {
 
-			$(td).html("<div class='vboxFitToContainer vboxVMState'><img src='images/vbox/" + vboxMachineStateIcon(vmn.state) +"' /><span class='vboxVMState'>" + trans(vboxVMStates.convert(vmn.state),'VBoxGlobal') + ' - ' + $('#vboxPane').data('vboxConfig').version.string+'</span></div>');
+			$(td).html("<div class='vboxFitToContainer vboxVMState'><img src='images/vbox/" + vboxMachineStateIcon(vmn.state) +"' /><span class='vboxVMState'>" + trans(vboxVMStates.convert(vmn.state),'UICommon') + ' - ' + $('#vboxPane').data('vboxConfig').version.string+'</span></div>');
 
 			// Check for version mismatches?
 			if(!vboxChooser._versionChecked) {
@@ -724,7 +724,7 @@ var vboxChooser = {
 				}
 			}
 		} else {
-			$(td).html("<div class='vboxFitToContainer vboxVMState'><img src='images/vbox/" + vboxMachineStateIcon(vmn.state) +"' /><span class='vboxVMState'>" + trans(vboxVMStates.convert(vmn.state),'VBoxGlobal') + '</span></div>');
+			$(td).html("<div class='vboxFitToContainer vboxVMState'><img src='images/vbox/" + vboxMachineStateIcon(vmn.state) +"' /><span class='vboxVMState'>" + trans(vboxVMStates.convert(vmn.state),'UICommon') + '</span></div>');
 		}
 
 		$(tr).append(td).appendTo(tbl);

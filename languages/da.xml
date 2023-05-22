@@ -30,6 +30,33 @@
 		</message>
 	</context>
 	<context>
+		<name>UICommon</name>
+		<message>
+			<source>Hosting</source>
+			<translation>Hosting</translation>
+		</message>
+		<message>
+			<source>PS/2 Keyboard</source>
+			<translation>PS/2 Tastatur</translation>
+		</message>
+		<message>
+			<source>USB Keyboard</source>
+			<translation>USB tastatur</translation>
+		</message>
+		<message>
+			<source>Nested Virtualization</source>
+			<translation>Indlejret virtualisering</translation>
+		</message>
+		<message>
+			<source>Unrestricted Guest</source>
+			<translation>Ubegrænset Gæst</translation>
+		</message>
+		<message>
+			<source>Long Mode (64-bit)</source>
+			<translation>Lang tilstand (64-bit)</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
@@ -143,10 +170,6 @@
 	</context>		
 	<context>
 		<name>VBoxGlobal</name>
-		<message>
-			<source>Hosting</source>
-			<translation>Hosting</translation>
-		</message>
 		<message>
 			<source>Guest Network Adapters</source>
 			<translation>Gæstens netværkskort</translation>
@@ -318,6 +341,21 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsGeneral</name>
+		<message>
+			<source>Enable Encryption</source>
+			<translation>Aktiver kryptering</translation>
+		</message>
+		<message>
+			<source>Encryption</source>
+			<translation>Kryptering</translation>
+		</message>
+		<message>
+			<source>Encryption Cipher:</source>
+			<translation>Krypterings chiffer:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>
@@ -327,6 +365,10 @@
 			<source>Disable host time sync</source>
 			<translation>Deaktiver synkronisering af værtstid</translation>
 		</message>
+		<message>
+			<source>Enable Nested VT-x/AMD-V</source>
+			<translation>Aktiver indlejret VT-x/AMD-V</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsDisplay</name>
@@ -334,12 +376,31 @@
 			<source>Net Address:</source>
 			<translation>Netadresse:</translation>
 		</message>
+		<message>
+			<source>Graphics Controller:</source>
+			<translation>Grafik controller:</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMediumItem</name>
 		<message>
 			<source>Location:</source>
 			<translation>Beliggenhed:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSF</name>
+		<message>
+			<source>Folders List</source>
+			<translation>Mappeliste</translation>
+		</message>
+		<message>
+			<source>At</source>
+			<translation>På</translation>
+		</message>
+		<message>
+			<source>Auto Mount</source>
+			<translation>Automatisk montering</translation>
 		</message>
 	</context>
 	<context>

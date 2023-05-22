@@ -29,6 +29,33 @@
 		</message>
 	</context>
 	<context>
+		<name>UICommon</name>
+		<message>
+			<source>Hosting</source>
+			<translation>主機</translation>
+		</message>
+		<message>
+			<source>PS/2 Keyboard</source>
+			<translation>PS/2 鍵盤</translation>
+		</message>
+		<message>
+			<source>USB Keyboard</source>
+			<translation>USB鍵盤</translation>
+		</message>
+		<message>
+			<source>Nested Virtualization</source>
+			<translation>嵌套虛擬化</translation>
+		</message>
+		<message>
+			<source>Unrestricted Guest</source>
+			<translation>不受限制的客人</translation>
+		</message>
+		<message>
+			<source>Long Mode (64-bit)</source>
+			<translation>長模式（64 位）</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
@@ -142,10 +169,6 @@
 	</context>
 	<context>
 		<name>VBoxGlobal</name>
-		<message>
-			<source>Hosting</source>
-			<translation>主機</translation>
-		</message>
 		<message>
 			<source>Guest Network Adapters</source>
 			<translation>虛擬機器網絡介面卡</translation>
@@ -310,6 +333,21 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsGeneral</name>
+		<message>
+			<source>Enable Encryption</source>
+			<translation>啟用加密</translation>
+		</message>
+		<message>
+			<source>Encryption</source>
+			<translation>加密</translation>
+		</message>
+		<message>
+			<source>Encryption Cipher:</source>
+			<translation>加密密碼：</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>
@@ -387,6 +425,18 @@
 	</context>
 	<context>
 		<name>UIVirtualMediaManager</name>
+		<message>
+			<source>Modify medium attributes</source>
+			<translation>修改媒體屬性</translation>
+		</message>
+		<message>
+			<source>Change attributes of the iSCSI disk</source>
+			<translation>更改 iSCSI 磁盤的屬性</translation>
+		</message>
+		<message>
+			<source>Change attributes of the disk image file</source>
+			<translation>更改磁盤映像文件的屬性</translation>
+		</message>
 		<message>
 			<source>WARNING</source>
 			<translation>警告</translation>

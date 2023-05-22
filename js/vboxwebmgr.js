@@ -55,7 +55,7 @@ var vboxHostDetailsSections = {
 					var cpuFeatures = new Array();
 					for(var f in d.cpuFeatures) {
 						if(!d.cpuFeatures[f]) continue;
-						cpuFeatures[cpuFeatures.length] = trans(f);
+						cpuFeatures[cpuFeatures.length] = trans(f,'UICommon');
 					}
 					return cpuFeatures.join(', ');
 
@@ -337,11 +337,11 @@ var vboxVMDetailsSections = {
 			   callback: function(d) {
 				   var acList = [];
 				   if(d['HWVirtExProperties'].Enabled) acList[acList.length] = trans('VT-x/AMD-V');
-				   if(d['HWVirtExProperties'].NestedPaging) acList[acList.length] = trans('Nested Paging');
+				   if(d['HWVirtExProperties'].NestedPaging) acList[acList.length] = trans('Nested Paging','UICommon');
 				   if(d['CpuProperties']['PAE']) acList[acList.length] = trans('PAE/NX');
 				   if(d['CpuProperties']['HWVirt']) acList[acList.length] = trans('Nested Virtualization');
 				   if(d['EffectiveParavirtProvider'] != 'None')
-				       acList[acList.length] = trans(d['EffectiveParavirtProvider'] + ' Paravirtualization');
+				       acList[acList.length] = trans(d['EffectiveParavirtProvider'] + ' Paravirtualization','UIDetails');
 
 				   if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
 					   if(d['HWVirtExProperties'].LargePages) acList[acList.length] = trans('Large Pages');
@@ -2491,7 +2491,7 @@ var vboxMedia = {
 
 		switch(m.variant) {
 
-			case variants.Standard:
+		case variants.Standard:
 	            return trans("Dynamically allocated storage", "VBoxGlobal", null, 'MediumVariant');
 	        case (variants.Standard | variants.Diff):
 	            return trans("Dynamically allocated differencing storage", "VBoxGlobal"), null, 'MediumVariant';
@@ -2512,7 +2512,7 @@ var vboxMedia = {
 	        case (variants.Standard | variants.Fixed | variants.VmdkRawDisk):
 	            return trans("Fixed size storage on raw disk", "VBoxGlobal", null, 'MediumVariant');
 	        default:
-	        	return trans("Dynamically allocated storage", "VBoxGlobal", null, 'MediumVariant');
+	            return trans("Dynamically allocated storage", "VBoxGlobal", null, 'MediumVariant');
 	    }
 
 	},

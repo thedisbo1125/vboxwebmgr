@@ -30,6 +30,33 @@
 		</message>		
 	</context>
 	<context>
+		<name>UICommon</name>
+		<message>
+			<source>Hosting</source>
+			<translation>ホスト</translation>
+		</message>
+		<message>
+			<source>PS/2 Keyboard</source>
+			<translation>PS/2キーボード</translation>
+		</message>
+		<message>
+			<source>USB Keyboard</source>
+			<translation>USBキーボード</translation>
+		</message>
+		<message>
+			<source>Nested Virtualization</source>
+			<translation>ネストされた仮想化</translation>
+		</message>
+		<message>
+			<source>Unrestricted Guest</source>
+			<translation>無制限のゲスト</translation>
+		</message>
+		<message>
+			<source>Long Mode (64-bit)</source>
+			<translation>ロングモード(64ビット)</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
@@ -48,7 +75,7 @@
 		</message>
 		<message>
 			<source>Loading ...</source>
-			<translation>Loading ...</translation>
+			<translation>読み込み中 ...</translation>
 		</message>
 	</context>
 	<context>
@@ -143,10 +170,6 @@
 	</context>		
 	<context>
 		<name>VBoxGlobal</name>
-		<message>
-			<source>Hosting</source>
-			<translation>ホスト</translation>
-		</message>
 		<message>
 			<source>Guest Network Adapters</source>
 			<translation>ゲストネットワークアダプタ</translation>

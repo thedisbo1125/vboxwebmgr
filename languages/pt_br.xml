@@ -29,6 +29,33 @@
 		</message>		
 	</context>
 	<context>
+		<name>UICommon</name>
+		<message>
+			<source>Hosting</source>
+			<translation>Versão</translation>
+		</message>
+		<message>
+			<source>PS/2 Keyboard</source>
+			<translation>Teclado PS/2</translation>
+		</message>
+		<message>
+			<source>USB Keyboard</source>
+			<translation>Teclado USB</translation>
+		</message>
+		<message>
+			<source>Nested Virtualization</source>
+			<translation>Virtualização aninhada</translation>
+		</message>
+		<message>
+			<source>Unrestricted Guest</source>
+			<translation>Convidado irrestrito</translation>
+		</message>
+		<message>
+			<source>Long Mode (64-bit)</source>
+			<translation>Modo longo (64 bits)</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
@@ -142,10 +169,6 @@
 	</context>		
 	<context>
 		<name>VBoxGlobal</name>
-		<message>
-			<source>Hosting</source>
-			<translation>Versão</translation>
-		</message>
 		<message>
 			<source>Guest Network Adapters</source>
 			<translation>Adaptadores de Rede do Convidado</translation>

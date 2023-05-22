@@ -30,6 +30,43 @@
 		</message>		
 	</context>
 	<context>
+		<name>UICommon</name>
+		<message>
+			<source>Hosting</source>
+			<translation>Gazduire</translation>
+		</message>
+		<message>
+			<source>PS/2 Keyboard</source>
+			<translation>Tastatură PS/2</translation>
+		</message>
+		<message>
+			<source>USB Keyboard</source>
+			<translation>Tastatură USB</translation>
+		</message>
+		<message>
+			<source>Legacy</source>
+			<comment>ParavirtProvider</comment>
+			<translation>Moştenire</translation>
+		</message>
+		<message>
+			<source>Minimal</source>
+			<comment>ParavirtProvider</comment>
+			<translation>Minim</translation>
+		</message>
+		<message>
+			<source>Nested Virtualization</source>
+			<translation>Virtualizare imbricată</translation>
+		</message>
+		<message>
+			<source>Unrestricted Guest</source>
+			<translation>Oaspete nerestricționat</translation>
+		</message>
+		<message>
+			<source>Long Mode (64-bit)</source>
+			<translation>Mod lung (64 de biți)</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
@@ -143,10 +180,6 @@
 	</context>		
 	<context>
 		<name>VBoxGlobal</name>
-		<message>
-			<source>Hosting</source>
-			<translation>Gazduire</translation>
-		</message>
 		<message>
 			<source>Guest Network Adapters</source>
 			<translation>Adaptoarele de retea ale clientilor</translation>
@@ -343,12 +376,39 @@
 			<source>Disable host time sync</source>
 			<translation>Dezactivați sincronizarea timpului gazdei</translation>
 		</message>
+		<message>
+			<source>Enable Nested Paging</source>
+			<translation>Activați paginarea imbricată</translation>
+		</message>
+		<message>
+			<source>Enable Nested VT-x/AMD-V</source>
+			<translation>Activați Imbricat VT-x/AMD-V</translation>
+		</message>
+		<message>
+			<source>Paravirtualization Interface:</source>
+			<translation>Interfață de paravirtualizare:</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsDisplay</name>
 		<message>
 			<source>Net Address:</source>
 			<translation>Adresa de net:</translation>
+		</message>
+		<message>
+			<source>Graphics Controller:</source>
+			<translation>Controler grafic:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSF</name>
+		<message>
+			<source>At</source>
+			<translation>La</translation>
+		</message>
+		<message>
+			<source>Auto Mount</source>
+			<translation>Montare automată</translation>
 		</message>
 	</context>
 	<context>
@@ -399,6 +459,18 @@
 	</context>
 	<context>
 		<name>UIVirtualMediaManager</name>
+		<message>
+			<source>Modify medium attributes</source>
+			<translation>Modificați atributele medii</translation>
+		</message>
+		<message>
+			<source>Change attributes of the iSCSI disk</source>
+			<translation>Modificați atributele discului iSCSI</translation>
+		</message>
+		<message>
+			<source>Change attributes of the disk image file</source>
+			<translation>Schimbați atributele fișierului imagine disc</translation>
+		</message>
 		<message>
 			<source>WARNING</source>
 			<translation>AVERTISMENT</translation>
