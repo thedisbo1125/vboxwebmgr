@@ -2492,7 +2492,7 @@ var vboxMedia = {
 
 		switch(m.variant) {
 
-			case variants.Standard:
+		case variants.Standard:
 	            return trans("Dynamically allocated storage", "VBoxGlobal", null, 'MediumVariant');
 	        case (variants.Standard | variants.Diff):
 	            return trans("Dynamically allocated differencing storage", "VBoxGlobal"), null, 'MediumVariant';
@@ -2513,7 +2513,7 @@ var vboxMedia = {
 	        case (variants.Standard | variants.Fixed | variants.VmdkRawDisk):
 	            return trans("Fixed size storage on raw disk", "VBoxGlobal", null, 'MediumVariant');
 	        default:
-	        	return trans("Dynamically allocated storage", "VBoxGlobal", null, 'MediumVariant');
+	            return trans("Dynamically allocated storage", "VBoxGlobal", null, 'MediumVariant');
 	    }
 
 	},
