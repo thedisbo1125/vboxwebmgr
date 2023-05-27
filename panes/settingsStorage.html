@@ -1399,6 +1399,18 @@ function vboxSettingsSelectAttachment(tbl) {
 	            $(tbl).data('attachment', attachment);
 	            
 	        }).addClass('vboxCheckbox');
+
+		var sp = $('<span />').css({'margin-left':'4px'}).text(opt.label);
+
+		if(!$('#vboxSettingsDialog').data('vboxFullEdit')) {
+			if(opt.runningEnabled != undefined) {
+				if(opt.runningEnabled == false) {
+					cbox.addClass('disabled').prop('disabled',true);
+					sp.addClass('disabled');
+				}
+				console.log(opt.runningEnabled);
+			}
+		}
 	        
 	        $('<tr />').addClass('vboxSettingsControllerDeviceOptionRow')
 	            .append($('<th />'))
@@ -1406,7 +1418,7 @@ function vboxSettingsSelectAttachment(tbl) {
 	                    $('<td />')
 	                        .append($('<label />')
 		                        .append(cbox)
-                                .append($('<span />').css({'margin-left':'4px'}).text(opt.label))
+                                .append(sp)
 	                         )
 	             ).appendTo($(tblSA));
 
