@@ -621,7 +621,7 @@ function __vboxDetailsSectionCollapse(e) {
 	
 		
 	// IE8 doesn't display this animation
-	if(!($.browser.msie && $.browser.version.substring(0,1) < 9)) {
+	if(!($.vboxbrowser.msie && $.vboxbrowser.version.substring(0,1) < 9)) {
 		
 		// Get image span of current section only
 		var vboxArrowImage = $(this).find('span.vboxArrowImage');
@@ -662,7 +662,7 @@ function __vboxDetailsSectionCollapse(e) {
 	}
 	
 	$('#vboxVMDetails').find('div.vboxVMDetailsBox'+sectionName)
-		.toggleClass('vboxDetailsSectionCollapsed', (($.browser.msie && $.browser.version.substring(0,1) < 9) ? undefined : 300));
+		.toggleClass('vboxDetailsSectionCollapsed', (($.vboxbrowser.msie && $.vboxbrowser.version.substring(0,1) < 9) ? undefined : 300));
 	
 
 

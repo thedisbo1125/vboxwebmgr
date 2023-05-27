@@ -122,7 +122,7 @@
 			var mu = jQuery.Event("mouseup");
 			for(var i in e) { (md[i] ? null : md[i] = mu[i] = e[i]); }
 			// Fix mouse button for MSIE
-			if(jQuery.browser.msie && e.button == 0) md.button = mu.button = 1;
+			if(jQuery.vboxbrowser.msie && e.button == 0) md.button = mu.button = 1;
 			
 			
 			$("#vboxSettingsUSBAddDeviceClick").trigger(md).trigger(mu);

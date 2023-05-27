@@ -186,7 +186,7 @@ useExistingOptions, val, value, valueIsEditable*/
                 },
 
                 click: function () {
-                    if (!$.browser.safari) {
+                    if (!$.vboxbrowser.safari) {
                         Combobox.openedState($(this), !Combobox.openedState($(this)));
                     }
                 }
@@ -801,7 +801,7 @@ useExistingOptions, val, value, valueIsEditable*/
                 //handles editable cursor
                 handleCursor: function () {
                     if (activeCombobox !== undefined && activeCombobox !== null) {
-                        if ($.browser.msie && Combobox.openedState(activeCombobox)) {
+                        if ($.vboxbrowser.msie && Combobox.openedState(activeCombobox)) {
                             return;
                         }
 

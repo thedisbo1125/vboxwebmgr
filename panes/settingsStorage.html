@@ -1522,7 +1522,7 @@ function vboxSettingsStorageResize() {
 	var h = $('#vboxSettingsStorageTableWrapper').css({'display':'none'}).parent().parent().innerHeight()-4;
 	
 	// IE needs to account for bordering
-	if($.browser.msie) h-= 4;
+	if($.vboxbrowser.msie) h-= 4;
 	
 	// Set height
 	$('#vboxSettingsStorageTableWrapper').css({'display':''}).height(h);
@@ -1583,7 +1583,7 @@ $('#vboxSettingsStorageTableWrapper').one('show',function(){
 	var h = $('#vboxSettingsStorageTableWrapper').parent().css({'padding':'0px','margin':'0px'}).parent().innerHeight();
 	
 	// IE needs to account for bordering
-	if($.browser.msie) h-= 4;
+	if($.vboxbrowser.msie) h-= 4;
 	
 	$('#vboxSettingsStorageTableWrapper').height(h-4);
 		
@@ -1607,7 +1607,7 @@ $('#vboxSettingsStorageTableWrapper').one('show',function(){
 	vboxSettingsStorageResize();
 	
 	// Draggable resize bar
-	$('#vboxStorageResizeBar').draggable({cursor:(jQuery.browser.opera ? 'e-resize' : 'col-resize'),axis:'x',zIndex:99,helper:function(){
+	$('#vboxStorageResizeBar').draggable({cursor:(jQuery.vboxbrowser.opera ? 'e-resize' : 'col-resize'),axis:'x',zIndex:99,helper:function(){
 		
 		return $('<span />'); // dummy element
 		
@@ -1616,8 +1616,8 @@ $('#vboxSettingsStorageTableWrapper').one('show',function(){
 		$('#vboxStorageResizeBar').data('vboxX',e.pageX);
 
 		$('#vboxResizeOverlay').remove();
-		$('body').disableSelection().css({'cursor':(jQuery.browser.opera ? 'e-resize' : 'col-resize')});
-		$('#vboxSettingsDialog').append($('<div />').attr({'id':'vboxResizeOverlay','style':'width:99%;height:99%;border:0px;margin:0px;padding:0px;position:absolute;top:0px;left:0px;cursor:'+(jQuery.browser.opera ? 'e-resize' : 'col-resize')}));
+		$('body').disableSelection().css({'cursor':(jQuery.vboxbrowser.opera ? 'e-resize' : 'col-resize')});
+		$('#vboxSettingsDialog').append($('<div />').attr({'id':'vboxResizeOverlay','style':'width:99%;height:99%;border:0px;margin:0px;padding:0px;position:absolute;top:0px;left:0px;cursor:'+(jQuery.vboxbrowser.opera ? 'e-resize' : 'col-resize')}));
 		
 		
 	},'drag':function(e){
@@ -1710,7 +1710,7 @@ $('#vboxSettingsStorageTableWrapper').one('show',function(){
 
 		$('body').enableSelection().css({'cursor':'default'});
 		$('#vboxResizeOverlay').remove();
-	}}).css({'cursor':(jQuery.browser.opera ? 'e-resize' : 'col-resize'),'height':'98%'});
+	}}).css({'cursor':(jQuery.vboxbrowser.opera ? 'e-resize' : 'col-resize'),'height':'98%'});
 
 	
 });

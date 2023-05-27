@@ -661,7 +661,7 @@ var vboxVMDetailsSections = {
 
 
 						// IE uses filter
-						if($.browser.msie) {
+						if($.vboxbrowser.msie) {
 							$('#'+baseStr+' img.vboxDetailsPreviewImg').css({'display':'none',"filter":""})
 								.attr({'src':'images/vbox/blank.gif'}).parent().css({'background':'#000'});
 						} else {
@@ -680,7 +680,7 @@ var vboxVMDetailsSections = {
 						$('#'+baseStr+' img.vboxDetailsPreviewImg').css({'display':'','height':height+'px','width':width+'px'});
 
 						// IE uses filter
-						if($.browser.msie) {
+						if($.vboxbrowser.msie) {
 
 							if(vboxVMStates.isRunning(vm)) {
 
@@ -768,7 +768,7 @@ var vboxVMDetailsSections = {
 			var divOut1 = "<div class='vboxDetailsPreviewVMName' style='position:absolute;overflow:hidden;padding:0px;height:"+height+"px;width:"+width+"px;"+
 				"display:"+((vboxVMStates.isRunning(d) || vboxVMStates.isSaved(d)) ? 'none': '')+"' >" +
 				"<div style='position:relative;display:table-cell;padding:0px;vertical-align:middle;color:#fff;font-weight:bold;overflow:hidden;text-align:center;height:"+height+"px;width:"+width+"px;" +
-				($.browser.msie ? "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=\"true\", src=\"images/monitor_glossy.png\", sizingMethod=\"scale\")": "" +
+				($.vboxbrowser.msie ? "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=\"true\", src=\"images/monitor_glossy.png\", sizingMethod=\"scale\")": "" +
 					"background:url(images/monitor_glossy.png) top left no-repeat;-moz-background-size:100% 100%;background-size:"+(width+1) +"px " + (height+1)+"px;-webkit-background-size:100% 100%") +
 				"'><span class='textFill' style='font-size: 12px;position:relative;display:inline-block;'>"+$('<div />').html(d.name).text()+"</span></div>"+
 				"</div>";
@@ -3313,7 +3313,7 @@ function vboxToolbar(options) {
 					function(){if($(this).hasClass('vboxEnabled')){$(this).addClass('vboxToolbarButtonHover');}},
 					function(){$(this).removeClass('vboxToolbarButtonHover');}
 			).mousedown(function(e){
-				if($.browser.msie && e.button == 1) e.button = 0;
+				if($.vboxbrowser.msie && e.button == 1) e.button = 0;
 				if(e.button != 0 || $(this).hasClass('vboxDisabled')) return true;
 				$(this).addClass('vboxToolbarButtonDown');
 
@@ -3790,7 +3790,7 @@ function vboxButtonMediaMenu(type,callback,mediumPath) {
 			targetElm = $('#'+targetElm);
 
 		if(!self.buttonStyle)
-			self.buttonStyle = 'height: ' + (self.size + ($.browser.msie || $.browser.webkit ? 3: 7)) + 'px; width: ' + (self.size+10) + 'px; ';
+			self.buttonStyle = 'height: ' + (self.size + ($.vboxbrowser.msie || $.vboxbrowser.webkit ? 3: 7)) + 'px; width: ' + (self.size+10) + 'px; ';
 
 		this._buttonElement = self.buttonElement();
 

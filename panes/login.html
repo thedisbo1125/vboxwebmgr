@@ -27,7 +27,7 @@
 
 $('#vboxLogin').find(".translate").html(function(i,h){return trans(h,'UIUsers');}).removeClass('translate');
 
-if($.browser.msie || $.browser.webkit) $('#vboxLoginBtnRow').css({'display':''});
+if($.vboxbrowser.msie || $.vboxbrowser.webkit) $('#vboxLoginBtnRow').css({'display':''});
 $('#vboxLogin form').on('submit', function(e) {
 	$('#vboxLogin').dialog( "option", "buttons" )[trans('Log in','UIUsers')]();
 	e.stopPropagation();

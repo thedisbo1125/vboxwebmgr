@@ -704,7 +704,7 @@ function vboxInitDisplay(root,context) {
 
 
 	/* Image buttons */
-	if(!jQuery.browser.msie) {
+	if(!jQuery.vboxbrowser.msie) {
 
 		$(root).find('input.vboxImgButton').on('mousedown',function(){
 
