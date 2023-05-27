@@ -4767,7 +4767,8 @@ var vboxStorage = {
 	        case 'HardDisk':
 	            var opts = [{
 	                label: trans('Solid-state Drive','UIMachineSettingsStorage'),
-	                attrib: 'nonRotational'
+	                attrib: 'nonRotational',
+			runningEnabled: false
 	            }];
 	            if($('#vboxPane').data('vboxConfig').enableHDFlushConfig) {
 	                opts.push({
@@ -4814,7 +4815,8 @@ var vboxStorage = {
 	    if(sc.bus == 'SATA' || sc.bus == 'USB') {
 	        return [{
                 label: trans('Hot-pluggable','UIMachineSettingsStorage'),
-                attrib: 'hotPluggable'
+                attrib: 'hotPluggable',
+		runningEnabled: false
 	        }];
 	    }
 	    return [];
