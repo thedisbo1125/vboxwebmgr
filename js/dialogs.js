@@ -369,7 +369,7 @@ function vboxPortForwardConfigDialog(rules) {
 			$(this).trigger('close').empty().remove();
 		};
 
-		$('#vboxSettingsPortForwarding').dialog({'closeOnEscape':true,'width':600,'height':400,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' + trans('Port Forwarding Rules','UIMachineSettingsPortForwardingDlg')}).on("dialogbeforeclose",function(){
+		$('#vboxSettingsPortForwarding').dialog({'closeOnEscape':true,'width':780,'height':400,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' + trans('Port Forwarding Rules','UIMachineSettingsPortForwardingDlg')}).on("dialogbeforeclose",function(){
 	    	$(this).parent().find('span:contains("'+trans('Cancel','QIMessageBox')+'")').trigger('click');
 	    }).on('dialogresizestop',resizeTable);
 
