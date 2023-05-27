@@ -94,6 +94,7 @@ jQuery.uaMatch = function( ua ) {
 	ua = ua.toLowerCase();
 
 	var match = /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
+	/(firefox)[ \/]([\w.]+)/.exec( ua ) ||
 	/(webkit)[ \/]([\w.]+)/.exec( ua ) ||
 	/(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
 	/(msie) ([\w.]+)/.exec( ua ) ||
@@ -109,7 +110,14 @@ jQuery.uaMatch = function( ua ) {
 // Don't clobber any existing jQuery.browser in case it's different
 if ( !jQuery.browser ) {
 	matched = jQuery.uaMatch( navigator.userAgent );
+
 	browser = {};
+
+	browser['opera'] = false;
+	browser['msie'] = false;
+	browser['firefox'] = false;
+	browser['chrome'] = false;
+	browser['edge'] = false;
 
 	if ( matched.browser ) {
 		browser[ matched.browser ] = true;

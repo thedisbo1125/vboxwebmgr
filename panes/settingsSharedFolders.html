@@ -6,6 +6,16 @@
 	$Id: settingsSharedFolders.html 595 2015-04-17 09:50:36Z imoore76 $
 	
 -->
+<style>
+
+input.fullwidth { width: 99%;}
+
+@-moz-document url-prefix() { 
+	input.fullwidth { width: 97%;}
+}
+
+</style>
+
 <table style='width: 100%' id='vboxSettingsSharedFoldersTable'>
 	<tr style='vertical-align: middle'>
 		<td style='width: 100%'>
@@ -320,35 +330,43 @@ function vboxSFBrowseFolder(btn) {
  *
  */
 function vboxSettingsSFEditDialog() {
-	
-	var d = $('<div />').attr({'id':'vboxSettingsSFEdit','class':'vboxNonTabbed vboxDialogContent','style':'display: none;'});
-	
+
+	var height = 216;
+	if($.browser.firefox == true) { height += 22; }
+
+	var d = $('<div />').attr({'id':'vboxSettingsSFEdit','class':'vboxNonTabbed vboxDialogContent','style':'display: none'});
+
 	var tbl = $('<table />').attr({'style':'width: 100%','class':'vboxSettingsTable'});
 
 	// Path
-	$('<tr />').attr({'style':'vertical-align: middle'}).append($('<th />').attr({'style':'white-space: nowrap'}).html(trans('Folder Path:','UIMachineSettingsSFDetails'))).append(
-			$('<td />').attr({'style':'white-space: nowrap'}).html('<table style="width: 100%"><tr><td style="width: 100%"><input type="text" class="vboxText" id="vboxSettingsSFPath" style="width: 100%"/></td><td style="width: auto" class="vboxFileFolderInput"><input type="button" class="vboxImgButton" style="background-image: url(images/vbox/select_file_16px.png)" onClick="vboxSFBrowseFolder(this)" /></td></tr></table>')
-	).appendTo(tbl);
+	$('<tr />').attr({'style':'vertical-align: middle'}).html('<td colspan="1" style="width: 10%; text-align: right"><span style="font-weight:bold">' + trans('Folder Path:','UIMachineSettingsSFDetails') +'</span></td><td colspan="1" style="width: 83%"><input type="text" class="vboxText" id="vboxSettingsSFPath" style="width: 97%; padding-top: 15;"/></td><td colspan="1" style="width: 7%"><input type="button" class="vboxImgButton" style="background-image: url(images/vbox/select_file_16px.png)" onClick="vboxSFBrowseFolder(this)" /></td>').appendTo(tbl);
+
 
 	// Name
-	$('<tr />').append($('<th />').html(trans('Folder Name:','UIMachineSettingsSFDetails'))).append($('<td />').html('<input type="text" class="vboxText" id="vboxSettingsSFName" style="width: 100%" />')).appendTo(tbl);
+	$('<tr />').attr({'style':'vertical-align: middle'}).html('<td colspan="1" style="width: 10%; text-align: right"><span style="font-weight:bold">Folder Name:</span></td><td colspan="2" style="width: 90%"><input type="text" class="vboxText fullwidth" id="vboxSettingsSFName" /></td>').appendTo(tbl);
+
 
 	// Read only
 	$('<tr />').append($('<th />')).append($('<td />').html('<label><input type="checkbox" class="vboxCheckbox" id="vboxSettingsSFRO" /> ' + trans('Read-only','UIMachineSettingsSFDetails')+'</label>')).appendTo(tbl);
-	
+
+
 	// Auto mount
 	$('<tr />').append($('<th />')).append($('<td />').html('<label><input type="checkbox" class="vboxCheckbox" id="vboxSettingsSFAM" /> ' + trans('Auto-mount','UIMachineSettingsSFDetails')+'</label>')).appendTo(tbl);
 
-    // Mount point
-	$('<tr />').append($('<th />').html(trans('Mount point:','UIMachineSettingsSFDetails'))).append($('<td />').html('<input type="text" class="vboxText" id="vboxSettingsSFAMPoint" style="width: 100%" />')).appendTo(tbl);
-	
+
+	// Mount point
+	$('<tr />').attr({'style':'vertical-align: middle'}).html('<td colspan="1" style="width: 10%; text-align: right"><span style="font-weight:bold">' + trans('Mount point:','UIMachineSettingsSFDetails') + '</td><td colspan="2" style="width: 83%"><input type="text" class="vboxText fullwidth" id="vboxSettingsSFAMPoint" /></td>').appendTo(tbl);
+
+
 	// Add "Make Permanent"?
 	if(vboxVMStates.isRunning($('#vboxSettingsDialog').data('vboxMachineData')) || vboxVMStates.isSaved($('#vboxSettingsDialog').data('vboxMachineData')) || vboxVMStates.isPaused($('#vboxSettingsDialog').data('vboxMachineData'))) {
 		
 		$('<tr />').append($('<th />')).append($('<td />').html('<label><input type="checkbox" class="vboxCheckbox" id="vboxSettingsSFPerm" /> ' + trans('Make Permanent','UIMachineSettingsSFDetails')+'</label>')).appendTo(tbl);
+		height += 18;
 	}
 	
-	$(d).append(tbl).dialog({'width':800,'modal':true,'autoOpen':false,'dialogClass':'vboxDialogContent vboxNonTabbed','title':'<img src="images/vbox/sf_16px.png" class="vboxDialogTitleIcon" /> '+trans('Edit Share','UIMachineSettingsSFDetails')});
+	$(d).append(tbl);
+	$(d).dialog({'width':700,'minWidth':500,'height':height,'minHeight':height-8,'modal':true,'autoOpen':false,'dialogClass':'vboxDialogContent vboxNonTabbed','title':'<img src="images/vbox/sf_16px.png" class="vboxDialogTitleIcon" /> '+trans('Edit Share','UIMachineSettingsSFDetails')});
 	
 	return $('#vboxSettingsSFEdit');
 }
