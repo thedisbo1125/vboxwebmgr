@@ -1897,7 +1897,7 @@ var vboxChooser = {
 
 					var vboxArrowImage = $(this).find('span.vboxChooserGroupNameArrowCollapse');
 
-					if(!($.browser.msie && $.browser.version.substring(0,1) < 9)) {
+					if(!($.vboxbrowser.msie && $.vboxbrowser.version.substring(0,1) < 9)) {
 
 						rotateButton = function() {
 
@@ -1930,7 +1930,7 @@ var vboxChooser = {
 
 
 					// Run button rotation and toggle class
-					$.when(rotateButton(), $(this).closest('div.vboxChooserGroup').toggleClass('vboxVMGroupCollapsed', ($.browser.msie && $.browser.version.substring(0,1) < 9) ? undefined : 300)).always(function(){
+					$.when(rotateButton(), $(this).closest('div.vboxChooserGroup').toggleClass('vboxVMGroupCollapsed', ($.vboxbrowser.msie && $.vboxbrowser.version.substring(0,1) < 9) ? undefined : 300)).always(function(){
 
 						// Write out collapsed group list
 						vboxChooser._saveCollapsedGroups();
