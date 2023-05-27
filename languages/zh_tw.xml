@@ -183,6 +183,101 @@
 			<translation>往下</translation>
 			<comment>Host network adapter status</comment>
 		</message>
+		<message>
+			<source>Name</source>
+			<translation>姓名</translation>
+		</message>
+		<message>
+			<source>OS Type</source>
+			<translation>操作系統類型</translation>
+		</message>
+		<message>
+			<source>Base Memory</source>
+			<translation>基本內存</translation>
+		</message>
+		<message>
+			<source>Boot Order</source>
+			<translation>引導順序</translation>
+		</message>
+		<message>
+			<source>General</source>
+			<translation>一般的</translation>
+		</message>
+		<message>
+			<source>System</source>
+			<translation>系統</translation>
+		</message>
+		<message>
+			<source>Display</source>
+			<translation>展示</translation>
+		</message>
+		<message>
+			<source>Storage</source>
+			<translation>貯存</translation>
+		</message>
+		<message>
+			<source>Audio</source>
+			<translation>聲音的</translation>
+		</message>
+		<message>
+			<source>Network</source>
+			<translation>網絡</translation>
+		</message>
+		<message>
+			<source>Serial Ports</source>
+			<translation>串口</translation>
+		</message>
+		<message>
+			<source>USB</source>
+			<translation>USB</translation>
+		</message>
+		<message>
+			<source>Disabled</source>
+			<translation>殘疾人</translation>
+		</message>
+		<message>
+			<source>None</source>
+			<translation>沒有任何</translation>
+		</message>
+		<message>
+			<source>Host Driver</source>
+			<translation>主機驅動程序</translation>
+		</message>
+		<message>
+			<source>Controller</source>
+			<translation>控制器</translation>
+		</message>
+		<message>
+			<source>Disconnected</source>
+			<translation>斷開連接</translation>
+		</message>
+		<message>
+			<source>Floppy</source>
+			<translation>軟盤</translation>
+		</message>
+		<message>
+			<source>Optical</source>
+			<translation>光學的</translation>
+		</message>
+		<message>
+			<source>Hard Disk</source>
+			<translation>硬盤</translation>
+		</message>
+		<message>
+			<source>USB Controller</source>
+			<translation>USB控制器</translation>
+		</message>
+		<message>
+			<source>Device Filters</source>
+			<translation>設備過濾器</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGDetails</name>
+		<message>
+			<source>Shared Folders</source>
+			<translation>共享文件夾</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIVMPreviewWindow</name>

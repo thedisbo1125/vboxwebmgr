@@ -184,6 +184,14 @@
 			<translation>Nede</translation>
 			<comment>Host network adapter status</comment>
 		</message>
+		<message>
+			<source>Base Memory</source>
+			<translation>Basishukommelse</translation>
+		</message>
+		<message>
+			<source>Host Driver</source>
+			<translation>Værtsdriver</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIVMPreviewWindow</name>
