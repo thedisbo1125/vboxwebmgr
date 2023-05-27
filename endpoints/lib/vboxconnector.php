@@ -5123,6 +5123,7 @@ class vboxconnector {
 
          }
 
+
 	/**
 	 * Resize a medium. Currently unimplemented in GUI.
 	 *
