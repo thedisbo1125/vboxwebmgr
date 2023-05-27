@@ -52,7 +52,7 @@ function vboxVMNetAdaptersInit(vm) {
 	
 	// Add spinner and remove tab list if it exists
 	$('#vboxGuestNetAdapterList').remove();
-	$('#vboxGuestNetAdapters').prepend("<div class='vboxTabLoading'><img src='images/spinner.gif'></div>");
+	$('#vboxGuestNetAdapters').prepend("<div class='vboxTabLoading'><img src='images/spinner.gif' /></div>");
 	
 	var pattern = '/VirtualBox/GuestInfo/Net/*';
 	$.when(vboxAjaxRequest('machineEnumerateGuestProperties',{'vm':vm,'pattern':pattern})).done(function(d){
