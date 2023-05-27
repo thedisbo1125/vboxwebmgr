@@ -107,31 +107,31 @@ jQuery.uaMatch = function( ua ) {
 	};
 };
 
-// Don't clobber any existing jQuery.browser in case it's different
-if ( !jQuery.browser ) {
+// Don't clobber any existing jQuery.vboxbrowser in case it's different
+if ( !jQuery.vboxbrowser ) {
 	matched = jQuery.uaMatch( navigator.userAgent );
 
-	browser = {};
+	vboxbrowser = {};
 
-	browser['opera'] = false;
-	browser['msie'] = false;
-	browser['firefox'] = false;
-	browser['chrome'] = false;
-	browser['edge'] = false;
+	vboxbrowser['opera'] = false;
+	vboxbrowser['msie'] = false;
+	vboxbrowser['firefox'] = false;
+	vboxbrowser['chrome'] = false;
+	vboxbrowser['edge'] = false;
 
 	if ( matched.browser ) {
-		browser[ matched.browser ] = true;
-		browser.version = matched.version;
+		vboxbrowser[ matched.browser ] = true;
+		vboxbrowser.version = matched.version;
 	}
 
 	// Chrome is Webkit, but Webkit is also Safari.
-	if ( browser.chrome ) {
-		browser.webkit = true;
-	} else if ( browser.webkit ) {
-		browser.safari = true;
+	if ( vboxbrowser.chrome ) {
+		vboxbrowser.webkit = true;
+	} else if ( vboxbrowser.webkit ) {
+		vboxbrowser.safari = true;
 	}
 
-	jQuery.browser = browser;
+	jQuery.vboxbrowser = vboxbrowser;
 }
 
 
@@ -685,7 +685,7 @@ if(jQuery)( function() {
 
 					if( $(el).hasClass('disabled') ) return true;
 
-					if(!( e.button == o.button || (o.button == 0 && e.button == 1 && $.browser.msie))) return;
+					if(!( e.button == o.button || (o.button == 0 && e.button == 1 && $.vboxbrowser.msie))) return;
 					if(o.clickthrough) $(el).trigger('click');
 					var evt = e;
 					evt.stopPropagation();
@@ -700,7 +700,7 @@ if(jQuery)( function() {
 						$(this).off('mouseup');
 
 
-						if( evt.button == o.button || (o.button == 0 && evt.button == 1 && $.browser.msie)) {
+						if( evt.button == o.button || (o.button == 0 && evt.button == 1 && $.vboxbrowser.msie)) {
 
 							// Menu setup function
 							if(o.menusetup) {

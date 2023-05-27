@@ -52,7 +52,7 @@ $('#vboxUserEdit').on('setMode',function(e,mode) {
 	$('#vboxUserEdit').find('table').first().find('tr:not(.'+mode+')').css('display','none');
 });
 
-if($.browser.msie || $.browser.webkit) $('#vboxUserBtnRow').css({'display':''});
+if($.vboxbrowser.msie || $.vboxbrowser.webkit) $('#vboxUserBtnRow').css({'display':''});
 
 $('#vboxUserEdit form').on("submit",function(e) {
 	$('#vboxUserEdit').parent().find('span:contains("'+trans('OK','QIMessageBox')+'")').trigger('click');

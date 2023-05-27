@@ -133,7 +133,7 @@
 			/*
 			 * Resizable panes functionality
 			 */
-			$('#vboxResizeBar').draggable({cursor:(jQuery.browser.opera ? 'e-resize' : 'col-resize'),axis:'x',zIndex:99,helper:function(){
+			$('#vboxResizeBar').draggable({cursor:(jQuery.vboxbrowser.opera ? 'e-resize' : 'col-resize'),axis:'x',zIndex:99,helper:function(){
 				
 				$('#vboxResizeBarTmp').remove();
 				var h = $('#vboxResizeBar').parent().height();
@@ -144,8 +144,8 @@
 			},scroll:false,'start':function(e,ui){
 				
 				$('#vboxResizeOverlay').remove();
-				$('body').disableSelection().css({'cursor':(jQuery.browser.opera ? 'e-resize' : 'col-resize')});
-				$('#vboxPane').append($('<div />').attr({'id':'vboxResizeOverlay','style':'width:100%;height:100%;border:0px;margin:0px;padding:0px;position:absolute;top:0px;left:0px;z-index:10;cursor:'+(jQuery.browser.opera ? 'e-resize' : 'col-resize')}));
+				$('body').disableSelection().css({'cursor':(jQuery.vboxbrowser.opera ? 'e-resize' : 'col-resize')});
+				$('#vboxPane').append($('<div />').attr({'id':'vboxResizeOverlay','style':'width:100%;height:100%;border:0px;margin:0px;padding:0px;position:absolute;top:0px;left:0px;z-index:10;cursor:'+(jQuery.vboxbrowser.opera ? 'e-resize' : 'col-resize')}));
 				$('#vboxResizeBar').data('vboxX',e.pageX);
 				
 			},'stop':function(e){
@@ -164,14 +164,14 @@
 				
 				$(window).trigger('resize');
 				
-			}}).css('cursor',(jQuery.browser.opera ? 'e-resize' : 'col-resize')).parent().disableSelection();
+			}}).css('cursor',(jQuery.vboxbrowser.opera ? 'e-resize' : 'col-resize')).parent().disableSelection();
 
 			
 			
 			/*
 				progress resize n / s
 			*/
-			$('#vboxResizeBarProgress').draggable({cursor:(jQuery.browser.opera ? 'n-resize' : 'row-resize'),axis:'y',zIndex:99,helper:function(){
+			$('#vboxResizeBarProgress').draggable({cursor:(jQuery.vboxbrowser.opera ? 'n-resize' : 'row-resize'),axis:'y',zIndex:99,helper:function(){
 				
 				$('#vboxResizeBarTmp').remove();
 				return $('#vboxResizeBarProgress').clone(false)
@@ -181,8 +181,8 @@
 			},scroll:false,'start':function(e,ui){
 				
 				$('#vboxResizeOverlay').remove();
-				$('body').disableSelection().css({'cursor':(jQuery.browser.opera ? 'n-resize' : 'row-resize')});
-				$('#vboxPane').append($('<div />').attr({'id':'vboxResizeOverlay','style':'width:100%;height:100%;border:0px;margin:0px;padding:0px;position:absolute;top:0px;left:0px;z-index:10;cursor:'+(jQuery.browser.opera ? 'n-resize' : 'row-resize')}));
+				$('body').disableSelection().css({'cursor':(jQuery.vboxbrowser.opera ? 'n-resize' : 'row-resize')});
+				$('#vboxPane').append($('<div />').attr({'id':'vboxResizeOverlay','style':'width:100%;height:100%;border:0px;margin:0px;padding:0px;position:absolute;top:0px;left:0px;z-index:10;cursor:'+(jQuery.vboxbrowser.opera ? 'n-resize' : 'row-resize')}));
 				$('#vboxResizeBarProgress').data('vboxY',e.pageY);
 				
 			},'stop':function(e){
@@ -201,7 +201,7 @@
 				
 				$(window).trigger('resize');
 				
-			}}).css('cursor',(jQuery.browser.opera ? 'n-resize' : 'row-resize')).parent().disableSelection();
+			}}).css('cursor',(jQuery.vboxbrowser.opera ? 'n-resize' : 'row-resize')).parent().disableSelection();
 			
 			/*
 				Progress resize E / W
@@ -225,7 +225,7 @@
 			});
 			
 			// Draggable bar 
-			$('#vboxResizeBarProgressEW').draggable({cursor:(jQuery.browser.opera ? 'e-resize' : 'col-resize'),axis:'x',zIndex:99,helper:function(){
+			$('#vboxResizeBarProgressEW').draggable({cursor:(jQuery.vboxbrowser.opera ? 'e-resize' : 'col-resize'),axis:'x',zIndex:99,helper:function(){
 				
 				$('#vboxResizeBarTmp').remove();
 			
@@ -235,8 +235,8 @@
 			},scroll:false,'start':function(e,ui){
 				
 				$('#vboxResizeOverlay').remove();
-				$('body').disableSelection().css({'cursor':(jQuery.browser.opera ? 'e-resize' : 'col-resize')});
-				$('#vboxPane').append($('<div />').attr({'id':'vboxResizeOverlay','style':'width:100%;height:100%;border:0px;margin:0px;padding:0px;position:absolute;top:0px;left:0px;z-index:10;cursor:'+(jQuery.browser.opera ? 'e-resize' : 'col-resize')}));
+				$('body').disableSelection().css({'cursor':(jQuery.vboxbrowser.opera ? 'e-resize' : 'col-resize')});
+				$('#vboxPane').append($('<div />').attr({'id':'vboxResizeOverlay','style':'width:100%;height:100%;border:0px;margin:0px;padding:0px;position:absolute;top:0px;left:0px;z-index:10;cursor:'+(jQuery.vboxbrowser.opera ? 'e-resize' : 'col-resize')}));
 				$('#vboxResizeBarProgressEW').data('vboxX',e.pageX);
 				
 			},'stop':function(e){
@@ -254,7 +254,7 @@
 				$('head').append('<style type="text/css" id="vboxProgressOpsStyle">div.vboxProgressOpTitle { width: '+nx+'px; }</style>');
 
 				
-			}}).css('cursor',(jQuery.browser.opera ? 'e-resize' : 'col-resize'));
+			}}).css('cursor',(jQuery.vboxbrowser.opera ? 'e-resize' : 'col-resize'));
 			
 			/*
 			 * Resize panes when the window changes sizes
@@ -409,7 +409,7 @@
 				};
 				
 				// Create but do not open dialog
-				if($.browser.webkit) heightadd = 5;
+				if($.vboxbrowser.webkit) heightadd = 5;
 				else heightadd = 0;
 				$('#vboxLogin').dialog({'closeOnEscape':false,'width':300,'height':'auto','buttons':buttons,'modal':true,'autoOpen':false,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager :: ' + trans('Log in','UIUsers')});
 				$('#vboxLogin').find('input[name=username]').first().focus();
