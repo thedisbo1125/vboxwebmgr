@@ -228,13 +228,6 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 			document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEMulti.checked = false;
 		}
 
-		// If VM is currently running, disable IP address select box
-		var vm = vboxChooser.getSingleSelected();
-
-		if (vboxVMStates.isRunning(vm) == true) {
-			ipaddressselect.disabled = true;
-		}
-
 	}
 
 

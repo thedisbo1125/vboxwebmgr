@@ -742,6 +742,13 @@ function vboxInitDisplay(root,context) {
 			// Find any enabler / disabler listeners
 			$(roottbl).find('.vboxEnablerTrigger').trigger(this.checked ? 'enable' : 'disable');
 
+			var vmrunning = vboxVMStates.isRunning(vboxChooser.getSingleSelected());
+			if (vmrunning == true) {
+				$(roottbl).find('tr:not(.vboxRunningEnabled)').find('span').addClass('disabled');
+				$(roottbl).find('tr:not(.vboxRunningEnabled)').find('input,select,textarea').addClass('disabled').prop('disabled',true);
+			}
+
+
 
 	});
 
