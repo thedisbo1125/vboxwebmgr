@@ -29,11 +29,10 @@
 	<tr>
 		<th class='vboxSettingsNetAdapterNamedLabel'><span class='translate'>Name:</span></th>
 		<td>
-             <select name='vboxSettingsNetName' class='vboxSettingsNetAdapterNamed' style='width: 100%'>
-                <option value=''></option>
-                
-             </select>
-          </td>
+			<select name='vboxSettingsNetName' class='vboxSettingsNetAdapterNamed' style='width: 100%'>
+				<option value=''></option>
+			</select>
+		</td>
 	</tr>
 	
 	<!-- Advanced NAT Settings -->
@@ -399,7 +398,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 		
 		document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a].value = netName;
 
-	    document.forms['frmVboxSettings'].elements['vboxSettingsNetAdapter'+a].value = $('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].adapterType;
+		document.forms['frmVboxSettings'].elements['vboxSettingsNetAdapter'+a].value = $('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].adapterType;
 		document.forms['frmVboxSettings'].elements['vboxSettingsNetMAC'+a].value = $('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].MACAddress;
 		document.forms['frmVboxSettings'].elements['vboxSettingsNetConnected'+a].checked = ($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].cableConnected ? true : false);
 		$(document.forms['frmVboxSettings'].elements['vboxSettingsNetAdapterPromiscuousMode'+a]).val($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].promiscModePolicy);
@@ -452,7 +451,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 			
 			/* Disable these inputs */
 			document.forms['frmVboxSettings'].elements['vboxSettingsNetEnabled'+a].disabled ='disabled';
-		    document.forms['frmVboxSettings'].elements['vboxSettingsNetAdapter'+a].disabled ='disabled';
+			document.forms['frmVboxSettings'].elements['vboxSettingsNetAdapter'+a].disabled ='disabled';
 			document.forms['frmVboxSettings'].elements['vboxSettingsNetMAC'+a].disabled ='disabled';
 			$(document.forms['frmVboxSettings'].elements['vboxSettingsNetMAC'+a]).siblings('input').css('display','none');
 			
@@ -478,7 +477,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 			
 			/* Enable these inputs */
 			document.forms['frmVboxSettings'].elements['vboxSettingsNetEnabled'+a].disabled ='';
-		    document.forms['frmVboxSettings'].elements['vboxSettingsNetAdapter'+a].disabled ='';
+			document.forms['frmVboxSettings'].elements['vboxSettingsNetAdapter'+a].disabled ='';
 			document.forms['frmVboxSettings'].elements['vboxSettingsNetMAC'+a].disabled ='';
 			$(document.forms['frmVboxSettings'].elements['vboxSettingsNetMAC'+a]).siblings('input').css('display','');
 			
