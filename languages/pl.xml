@@ -57,6 +57,14 @@
 		</message>
 	</context>
 	<context>
+		<name>UIDetails</name>
+		<message>
+			<source>HyperV Paravirtualization</source>
+			<comment>details (system)</comment>
+			<translation>Parawirtualizacja HyperV</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>

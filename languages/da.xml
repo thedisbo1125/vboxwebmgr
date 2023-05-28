@@ -57,6 +57,14 @@
 		</message>
 	</context>
 	<context>
+		<name>UIDetails</name>
+		<message>
+			<source>HyperV Paravirtualization</source>
+			<comment>details (system)</comment>
+			<translation>HyperV paravirtualisering</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIHelpButton</name>
 		<message>
 			<source>About</source>
@@ -371,10 +379,33 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsPortForwardingDlg</name>
+		<message>
+			<source>Port Forwarding Rules</source>
+			<translation>Regler for port-viderestilling</translation>
+		</message>
+		<message>
+			<source>Insert new rule</source>
+			<translation>Indsæt ny regel</translation>
+		</message>
+		<message>
+			<source>Copy selected rule</source>
+			<translation>Kopiér valgt regel</translation>
+		</message>
+		<message>
+			<source>Delete selected rule</source>
+			<translation>Slet valgt regel</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSerial</name>
 		<message>
 			<source>Port/File Path:</source>
 			<translation>Port/Filsti:</translation>
+		</message>
+		<message>
+			<source>Create Pipe</source>
+			<translation>Lav rør</translation>
 		</message>
 	</context>
 	<context>
