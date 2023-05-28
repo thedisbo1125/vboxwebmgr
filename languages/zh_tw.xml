@@ -31,6 +31,10 @@
 	<context>
 		<name>UICommon</name>
 		<message>
+			<source>Hosting</source>
+			<translation>主機</translation>
+		</message>
+		<message>
 			<source>PS/2 Keyboard</source>
 			<translation>PS/2 鍵盤</translation>
 		</message>
@@ -166,10 +170,6 @@
 	<context>
 		<name>VBoxGlobal</name>
 		<message>
-			<source>Hosting</source>
-			<translation>主機</translation>
-		</message>
-		<message>
 			<source>Guest Network Adapters</source>
 			<translation>虛擬機器網絡介面卡</translation>
 		</message>
@@ -182,6 +182,73 @@
 			<source>Down</source>
 			<translation>往下</translation>
 			<comment>Host network adapter status</comment>
+		</message>
+		<message>
+			<source>Name</source>
+			<translation>姓名</translation>
+		</message>
+		<message>
+			<source>OS Type</source>
+			<translation>操作系統類型</translation>
+		</message>
+		<message>
+			<source>Boot Order</source>
+			<translation>引導順序</translation>
+		</message>
+		<message>
+			<source>General</source>
+			<translation>一般的</translation>
+		</message>
+		<message>
+			<source>System</source>
+			<translation>系統</translation>
+		</message>
+		<message>
+			<source>Display</source>
+			<translation>展示</translation>
+		</message>
+		<message>
+			<source>Storage</source>
+			<translation>貯存</translation>
+		</message>
+		<message>
+			<source>Audio</source>
+			<translation>聲音的</translation>
+		</message>
+		<message>
+			<source>Network</source>
+			<translation>網絡</translation>
+		</message>
+		<message>
+			<source>Serial Ports</source>
+			<translation>串口</translation>
+		</message>
+		<message>
+			<source>USB</source>
+			<translation>USB</translation>
+		</message>
+		<message>
+			<source>Disabled</source>
+			<translation>殘疾人</translation>
+		</message>
+		<message>
+			<source>None</source>
+			<translation>沒有任何</translation>
+		</message>
+		<message>
+			<source>USB Controller</source>
+			<translation>USB控制器</translation>
+		</message>
+		<message>
+			<source>Device Filters</source>
+			<translation>設備過濾器</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGDetails</name>
+		<message>
+			<source>Shared Folders</source>
+			<translation>共享文件夾</translation>
 		</message>
 	</context>
 	<context>
@@ -333,6 +400,13 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>網絡地址</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsGeneral</name>
 		<message>
 			<source>Enable Encryption</source>
@@ -356,13 +430,6 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>禁用主機時間同步</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>網絡地址</translation>
 		</message>
 	</context>
 	<context>

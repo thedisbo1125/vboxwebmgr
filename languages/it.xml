@@ -32,6 +32,10 @@
 	<context>
 		<name>UICommon</name>
 		<message>
+			<source>Hosting</source>
+			<translation>Ospitando</translation>
+		</message>
+		<message>
 			<source>PS/2 Keyboard</source>
 			<translation>Tastiera PS/2</translation>
 		</message>
@@ -166,10 +170,6 @@
 	</context>		
 	<context>
 		<name>VBoxGlobal</name>
-		<message>
-			<source>Hosting</source>
-			<translation>Ospitando</translation>
-		</message>
 		<message>
 			<source>Guest Network Adapters</source>
 			<translation>Adattatori di Rete Ospite</translation>
@@ -318,6 +318,13 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>Indirizzo di rete:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>
@@ -326,13 +333,6 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Disabilita la sincronizzazione dell'ora dell'host</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>Indirizzo di rete:</translation>
 		</message>
 	</context>
 	<context>

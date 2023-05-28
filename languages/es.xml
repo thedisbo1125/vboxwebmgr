@@ -32,6 +32,10 @@
 	<context>
 		<name>UICommon</name>
 		<message>
+			<source>Hosting</source>
+			<translation>Alojamiento</translation>
+		</message>
+		<message>
 			<source>PS/2 Keyboard</source>
 			<translation>Teclado PS/2</translation>
 		</message>
@@ -166,10 +170,6 @@
 	</context>		
 	<context>
 		<name>VBoxGlobal</name>
-		<message>
-			<source>Hosting</source>
-			<translation>Alojamiento</translation>
-		</message>
 		<message>
 			<source>Guest Network Adapters</source>
 			<translation>Adaptadores de red huésped</translation>
@@ -318,6 +318,40 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>Dirección de red:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSFDetails</name>
+		<message>
+			<source>Folder Path:</source>
+			<translation>Ruta carpeta:</translation>
+		</message>
+		<message>
+			<source>Folder Name:</source>
+			<translation>Nombre carpeta:</translation>
+		</message>
+		<message>
+			<source>Read-only</source>
+			<translation>Sólo lectura</translation>
+		</message>
+		<message>
+			<source>Make Permanent</source>
+			<translation>Hacer permanente</translation>
+		</message>
+		<message>
+			<source>Auto-mount</source>
+			<translation>Automontar</translation>
+		</message>
+		<message>
+			<source>Mount point:</source>
+			<translation>Punto de montaje:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>
@@ -326,13 +360,6 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Deshabilitar la sincronización del tiempo del host</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>Dirección de red:</translation>
 		</message>
 	</context>
 	<context>

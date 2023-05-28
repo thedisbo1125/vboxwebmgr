@@ -32,6 +32,10 @@
 	<context>
 		<name>UICommon</name>
 		<message>
+			<source>Hosting</source>
+			<translation>Gazduire</translation>
+		</message>
+		<message>
 			<source>PS/2 Keyboard</source>
 			<translation>Tastatură PS/2</translation>
 		</message>
@@ -176,10 +180,6 @@
 	</context>		
 	<context>
 		<name>VBoxGlobal</name>
-		<message>
-			<source>Hosting</source>
-			<translation>Gazduire</translation>
-		</message>
 		<message>
 			<source>Guest Network Adapters</source>
 			<translation>Adaptoarele de retea ale clientilor</translation>
@@ -375,6 +375,13 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>Adresa de net:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>
@@ -404,12 +411,9 @@
 			<source>Execution Cap:</source>
 			<translation>Cap de execuție:</translation>
 		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsDisplay</name>
 		<message>
-			<source>Net Address:</source>
-			<translation>Adresa de net:</translation>
+			<source>Paravirtualization Interface:</source>
+			<translation>Interfață de paravirtualizare:</translation>
 		</message>
 	</context>
 	<context>

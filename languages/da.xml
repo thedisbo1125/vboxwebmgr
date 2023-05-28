@@ -32,6 +32,10 @@
 	<context>
 		<name>UICommon</name>
 		<message>
+			<source>Hosting</source>
+			<translation>Hosting</translation>
+		</message>
+		<message>
 			<source>PS/2 Keyboard</source>
 			<translation>PS/2 Tastatur</translation>
 		</message>
@@ -167,10 +171,6 @@
 	<context>
 		<name>VBoxGlobal</name>
 		<message>
-			<source>Hosting</source>
-			<translation>Hosting</translation>
-		</message>
-		<message>
 			<source>Guest Network Adapters</source>
 			<translation>Gæstens netværkskort</translation>
 		</message>
@@ -183,6 +183,10 @@
 			<source>Down</source>
 			<translation>Nede</translation>
 			<comment>Host network adapter status</comment>
+		</message>
+		<message>
+			<source>Serial Ports</source>
+			<translation>Serielle porte</translation>
 		</message>
 	</context>
 	<context>
@@ -341,6 +345,17 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>Netadresse:</translation>
+		</message>
+		<message>
+			<source>Graphics Controller:</source>
+			<translation>Grafik controller:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsGeneral</name>
 		<message>
 			<source>Enable Encryption</source>
@@ -353,6 +368,74 @@
 		<message>
 			<source>Encryption Cipher:</source>
 			<translation>Krypterings chiffer:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSerial</name>
+		<message>
+			<source>Port/File Path:</source>
+			<translation>Port/Filsti:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSF</name>
+		<message>
+			<source>Folders List</source>
+			<translation>Mappeliste</translation>
+		</message>
+		<message>
+			<source>At</source>
+			<translation>På</translation>
+		</message>
+		<message>
+			<source>Auto Mount</source>
+			<translation>Automatisk montering</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSFDetails</name>
+		<message>
+			<source>Folder Path:</source>
+			<translation>Mappesti:</translation>
+		</message>
+		<message>
+			<source>Folder Name:</source>
+			<translation>Mappenavn:</translation>
+		</message>
+		<message>
+			<source>Read-only</source>
+			<translation>Skrivebeskyttet</translation>
+		</message>
+		<message>
+			<source>Auto-mount</source>
+			<translation>Auto-montering</translation>
+		</message>
+		<message>
+			<source>Make Permanent</source>
+			<translation>Gør permanent</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsStorage</name>
+		<message>
+			<source>CD/DVD Drive:</source>
+			<translation>CD/DVD-drev:</translation>
+		</message>
+		<message>
+			<source>Storage Tree</source>
+			<translation>Opbevaringstræ</translation>
+		</message>
+		<message>
+			<source>Set up the virtual hard disk</source>
+			<translation>Konfigurer den virtuelle harddisk</translation>
+		</message>
+		<message>
+			<source>Set up the virtual CD/DVD drive</source>
+			<translation>Konfigurer det virtuelle cd/dvd-drev</translation>
+		</message>
+		<message>
+			<source>Set up the virtual floppy drive</source>
+			<translation>Konfigurer det virtuelle diskettedrev</translation>
 		</message>
 	</context>
 	<context>
@@ -371,40 +454,10 @@
 		</message>
 	</context>
 	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>Netadresse:</translation>
-		</message>
-		<message>
-			<source>Graphics Controller:</source>
-			<translation>Grafik controller:</translation>
-		</message>
-		<message>
-			<source>(address not set)</source>
-			<translation>(adresse ikke angivet)</translation>
-		</message>
-	</context>
-	<context>
 		<name>UIMediumItem</name>
 		<message>
 			<source>Location:</source>
 			<translation>Beliggenhed:</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsSF</name>
-		<message>
-			<source>Folders List</source>
-			<translation>Mappeliste</translation>
-		</message>
-		<message>
-			<source>At</source>
-			<translation>På</translation>
-		</message>
-		<message>
-			<source>Auto Mount</source>
-			<translation>Automatisk montering</translation>
 		</message>
 	</context>
 	<context>

@@ -338,11 +338,11 @@ var vboxVMDetailsSections = {
 			   callback: function(d) {
 				   var acList = [];
 				   if(d['HWVirtExProperties'].Enabled) acList[acList.length] = trans('VT-x/AMD-V');
-				   if(d['HWVirtExProperties'].NestedPaging) acList[acList.length] = trans('Nested Paging');
+				   if(d['HWVirtExProperties'].NestedPaging) acList[acList.length] = trans('Nested Paging','UICommon');
 				   if(d['CpuProperties']['PAE']) acList[acList.length] = trans('PAE/NX');
 				   if(d['CpuProperties']['HWVirt']) acList[acList.length] = trans('Nested Virtualization');
 				   if(d['EffectiveParavirtProvider'] != 'None')
-				       acList[acList.length] = trans(d['EffectiveParavirtProvider'] + ' Paravirtualization');
+				       acList[acList.length] = trans(d['EffectiveParavirtProvider'] + ' Paravirtualization','UIDetails');
 
 				   if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
 					   if(d['HWVirtExProperties'].LargePages) acList[acList.length] = trans('Large Pages');
@@ -3639,7 +3639,7 @@ function vboxButtonMediaMenu(type,callback,mediumPath) {
 
 		DVD: {
 			name: 'mselectcdbtn',
-			label: 'Set up the virtual optical drive',
+			label: 'Set up the virtual CD/DVD drive',
 			language_context: 'UIMachineSettingsStorage',
 			icon: 'cd',
 			click: function () {

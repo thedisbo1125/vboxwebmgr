@@ -32,6 +32,10 @@
 	<context>
 		<name>UICommon</name>
 		<message>
+			<source>Hosting</source>
+			<translation>Hostování</translation>
+		</message>
+		<message>
 			<source>USB Keyboard</source>
 			<translation>USB klávesnice</translation>
 		</message>
@@ -170,10 +174,6 @@
 	</context>		
 	<context>
 		<name>VBoxGlobal</name>
-		<message>
-			<source>Hosting</source>
-			<translation>Hostování</translation>
-		</message>
 		<message>
 			<source>Guest Network Adapters</source>
 			<translation>Síťová rozhraní virtuálních strojů</translation>
@@ -322,21 +322,6 @@
 		</message>
 	</context>
 	<context>
-		<name>UIMachineSettingsSystem</name>
-		<message>
-			<source>BIOS Logo Display Time</source>
-			<translation>Doba zobrazení loga BIOS</translation>
-		</message>
-		<message>
-			<source>Disable host time sync</source>
-			<translation>Zakázat synchronizaci času hostitele</translation>
-		</message>
-		<message>
-			<source>Enable Nested VT-x/AMD-V</source>
-			<translation>Povolit vnořené VT-x/AMD-V</translation>
-		</message>
-	</context>
-	<context>
 		<name>UIMachineSettingsDisplay</name>
 		<message>
 			<source>Net Address:</source>
@@ -352,6 +337,67 @@
 		<message>
 			<source>Auto Mount</source>
 			<translation>Automatická montáž</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSFDetails</name>
+		<message>
+			<source>Folder Path:</source>
+			<translation>Cesta ke složce:</translation>
+		</message>
+		<message>
+			<source>Folder Name:</source>
+			<translation>Název složky:</translation>
+		</message>
+		<message>
+			<source>Read-only</source>
+			<translation>Pouze pro čtení</translation>
+		</message>
+		<message>
+			<source>Make Permanent</source>
+			<translation>Vytvořit trvale</translation>
+		</message>
+		<message>
+			<source>Auto-mount</source>
+			<translation>Automatické připojení</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsStorage</name>
+		<message>
+			<source>Live CD/DVD</source>
+			<translation>Živé CD/DVD</translation>
+		</message>
+		<message>
+			<source>Solid-state Drive</source>
+			<translation>Solid-state disk</translation>
+		</message>
+		<message>
+			<source>Set up the virtual hard disk</source>
+			<translation>Nastaví virtuální pevný disk</translation>
+		</message>
+		<message>
+			<source>Set up the virtual CD/DVD drive</source>
+			<translation>Nastaví virtuální CD/DVD mechaniku</translation>
+		</message>
+		<message>
+			<source>Set up the virtual floppy drive</source>
+			<translation>Nastaví virtuální disketovou mechaniku</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSystem</name>
+		<message>
+			<source>BIOS Logo Display Time</source>
+			<translation>Doba zobrazení loga BIOS</translation>
+		</message>
+		<message>
+			<source>Disable host time sync</source>
+			<translation>Zakázat synchronizaci času hostitele</translation>
+		</message>
+		<message>
+			<source>Enable Nested VT-x/AMD-V</source>
+			<translation>Povolit vnořené VT-x/AMD-V</translation>
 		</message>
 	</context>
 	<context>
