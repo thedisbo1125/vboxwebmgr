@@ -151,7 +151,7 @@
           	for(var i = 0; i < vboxSettingsUSBFilterProps.length; i++) {
               	
           		var val = (filter[vboxSettingsUSBFilterProps[i][1]]||'');
-          		$('<tr />').append($('<th />').attr({'style':'white-space: nowrap; width: auto; text-align: right;'}).html(trans(vboxSettingsUSBFilterProps[i][0]+':','UIMachineSettingsUSBFilterDetails'))).append($('<td />').attr({'style':'width: 100%'}).html('<input type="text" class="vboxText" style="width: 100%" id="vboxSettingsUSBF'+vboxSettingsUSBFilterProps[i][1]+'" value="'+$('<div />').text((filter[vboxSettingsUSBFilterProps[i][1]]||'')).html()+'"/>')).appendTo(tbl);
+          		$('<tr />').append($('<th />').attr({'style':'white-space: nowrap; width: auto; text-align: right;'}).html(trans(vboxSettingsUSBFilterProps[i][0]+':','UIMachineSettingsUSBFilterDetails'))).append($('<td />').attr({'style':'width: 100%'}).html('<input type="text" class="vboxText fullwidth" id="vboxSettingsUSBF'+vboxSettingsUSBFilterProps[i][1]+'" value="'+$('<div />').text((filter[vboxSettingsUSBFilterProps[i][1]]||'')).html()+'"/>')).appendTo(tbl);
           	}
           	
           	// Generate select box
@@ -182,7 +182,7 @@
 			buttons[trans('Cancel','QIMessageBox')] = function() { $('#vboxSettingsUSBFilterEdit').remove(); };
 
 			                  			
-          	$('#vboxSettingsUSBFilterEdit').dialog({'buttons':buttons,'closeOnEscape':false,'width':400,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent vboxNonTabbed','title':'<img src="images/vbox/usb_16px.png" class="vboxDialogTitleIcon" /> '+trans('USB Filter Details','UIMachineSettingsUSBFilterDetails')});
+          	$('#vboxSettingsUSBFilterEdit').dialog({'buttons':buttons,'closeOnEscape':false,'width':400,'minWidth':350,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent vboxNonTabbed','title':'<img src="images/vbox/usb_16px.png" class="vboxDialogTitleIcon" /> '+trans('USB Filter Details','UIMachineSettingsUSBFilterDetails')});
 			
 		}		
 	},
