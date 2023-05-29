@@ -6,6 +6,7 @@
 	$Id: settingsGlobalGeneral.html 595 2015-04-17 09:50:36Z imoore76 $
 
  -->
+
 <table style='width: 100%' class='vboxVertical'>
 	<tr style='vertical-align: middle'>
 		<th><span class='translate'>Default Machine Folder:</span></th>
@@ -22,23 +23,8 @@
 		</td>
 	</tr>
 	
-	<tr><td colspan='2'><hr style='width: 100%' class='vboxSeparatorLine'/></td></tr>
+	<tr><td colspan='2' id='vboxSettingsDividerLineId'><hr style='width: 100%' class='vboxSeparatorLine' /></td></tr>
 	
-	<tr style='vertical-align: middle'>
-		<th><span class='translate'>VRDP Authentication Library:</span></th>
-		<td>
-			<table class="vboxInvisible" style='width: 97%'>
-			<tr style='vertical-align: top'>
-				<td style="width: auto; white-space: nowrap;" class="vboxFileFolderInput">
-					<input type='text' class='vboxText' name='vboxSettingsVRDEAuthLibrary' />
-					<input type="button" class="vboxImgButton" style="background-image: url(images/vbox/select_file_16px.png)"
-						onClick="vboxSettingsBrowseVRDPAuthLibrary(this)" />
-				</td>
-			</tr>
-			</table>				
-		</td>
-	</tr>
-
 	<tr style='vertical-align: middle' id='vboxAutostartConfigPropsGeneral'>
 		<th><span class='translate'>Auto-start DB Path:</span></th>
 		<td>
@@ -52,7 +38,6 @@
 /* Set Defaults */
 
 document.frmVboxSettings.vboxSettingsDefaultMachineFolder.value = $('#vboxSettingsDialog').data('vboxSystemProperties').defaultMachineFolder;
-document.frmVboxSettings.vboxSettingsVRDEAuthLibrary.value = $('#vboxSettingsDialog').data('vboxSystemProperties').VRDEAuthLibrary;
 
 // Autostart config path
 if($('#vboxPane').data('vboxConfig').vboxAutostartConfig) {
@@ -60,7 +45,7 @@ if($('#vboxPane').data('vboxConfig').vboxAutostartConfig) {
 	document.frmVboxSettings.vboxAutostartConfigDBPath.value = $('#vboxSettingsDialog').data('vboxSystemProperties').autostartDatabasePath;
 	
 } else {
-	
+	$('#vboxSettingsDividerLineId').html('');
 	$('#vboxAutostartConfigPropsGeneral').hide();
 }
 
@@ -87,7 +72,6 @@ function vboxSettingsBrowseVRDPAuthLibrary(btn) {
 $('#vboxSettingsDialog').on('save',function(){
 
 	$('#vboxSettingsDialog').data('vboxSystemProperties').defaultMachineFolder = document.frmVboxSettings.vboxSettingsDefaultMachineFolder.value;
-	$('#vboxSettingsDialog').data('vboxSystemProperties').VRDEAuthLibrary = document.frmVboxSettings.vboxSettingsVRDEAuthLibrary.value;
 	
 	// Autostart config path
 	if($('#vboxPane').data('vboxConfig').vboxAutostartConfig) {

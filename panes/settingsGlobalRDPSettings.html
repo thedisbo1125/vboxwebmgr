@@ -13,7 +13,33 @@ td.addspace {
 }
 </style>
 
-<div>
+<ul>
+        <li><a href="#vboxSettingsTabRDPGlobalSettings"><span class='translate'>Settings</span></a></li>
+        <li><a href="#vboxSettingsTabRDPFileSettings"><span class='translate'>RDP File</span></a></li>
+</ul>
+
+<!-- RDP Global Settings Tab -->
+<div id='vboxSettingsTabRDPGlobalSettings'>
+	<table style='width: 100%' class='vboxVertical'>
+		<tr style='vertical-align: middle'>
+			<th><span class='translate'>VRDP Authentication Library:</span></th>
+			<td>
+				<table class="vboxInvisible" style='width: 97%'>
+				<tr style='vertical-align: top'>
+					<td style="width: auto; white-space: nowrap;" class="vboxFileFolderInput">
+						<input type='text' class='vboxText' name='vboxSettingsVRDEAuthLibrary' />
+						<input type="button" class="vboxImgButton" style="background-image: url(images/vbox/select_file_16px.png)"
+							onClick="vboxSettingsBrowseVRDPAuthLibrary(this)" />
+					</td>
+				</tr>
+				</table>				
+			</td>
+		</tr>
+	</table>
+</div>
+
+<!-- RDP File Settings Tab -->
+<div id='vboxSettingsTabRDPFileSettings'>
 	<table style='width: 100%; margin-left:auto; margin-right:auto;'>
 		<tr>
 			<td colspan='1' style='width: 35%' class='addspace'><span class='translate'>Include Default RDP File Settings</span>:</td>
@@ -26,11 +52,7 @@ td.addspace {
 			</td>
 		</tr>
 	</table>
-
-
-<!-- Main Div -->
 </div>
-
 
 <script type='text/javascript'>
 
@@ -47,6 +69,7 @@ if (RDPExtraLines.extralines.length > 0)
 }
 
 document.getElementById('vboxGlobalRDPIncludeDefaultFileSettings').checked = ($('#vboxSettingsDialog').data('vboxRDPSettings').includedeflines == 1);
+document.frmVboxSettings.vboxSettingsVRDEAuthLibrary.value = $('#vboxSettingsDialog').data('vboxSystemProperties').VRDEAuthLibrary;
 
 
 /*
@@ -67,7 +90,7 @@ $('#vboxSettingsDialog').on('save',function(){
 		$('#vboxSettingsDialog').data('vboxRDPSettings').includedeflines = 1;
 	}
 
-/*	$('#vboxSettingsDialog').data('vboxRDPSettings').includedeflines = document.getElementById('vboxGlobalRDPIncludeDefault').checked;*/
+	$('#vboxSettingsDialog').data('vboxSystemProperties').VRDEAuthLibrary = document.frmVboxSettings.vboxSettingsVRDEAuthLibrary.value;
 
 });
 

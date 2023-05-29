@@ -1074,7 +1074,7 @@ function vboxGlobalPrefsDialog() {
 		{'name':'GlobalGeneral','label':'General','icon':'machine','context':'UIGlobalSettingsGeneral'},
 		{'name':'GlobalLanguage','label':'Language','icon':'site','context':'UIGlobalSettingsLanguage'},
 		{'name':'GlobalNetwork','label':'Network','icon':'nw','context':'UIGlobalSettingsNetwork','tabbed':true},
-		{'name':'GlobalRDPSettings','label':'RDP Settings','icon':'machine-rdp','context':'UISettingsDialogGlobal'},
+		{'name':'GlobalRDPSettings','label':'RDP Settings','icon':'machine-rdp','context':'UISettingsDialogGlobal','tabbed':true},
 		{'name':'GlobalUsers','label':'Users','icon':'register','context':'UIUsers'}
 	);
 
