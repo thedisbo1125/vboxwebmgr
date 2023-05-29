@@ -349,6 +349,17 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>Netadresse:</translation>
+		</message>
+		<message>
+			<source>Graphics Controller:</source>
+			<translation>Grafik controller:</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsGeneral</name>
 		<message>
 			<source>Enable Encryption</source>
@@ -361,6 +372,28 @@
 		<message>
 			<source>Encryption Cipher:</source>
 			<translation>Krypterings chiffer:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSF</name>
+		<message>
+			<source>Folders List</source>
+			<translation>Mappeliste</translation>
+		</message>
+		<message>
+			<source>At</source>
+			<translation>På</translation>
+		</message>
+		<message>
+			<source>Auto Mount</source>
+			<translation>Automatisk montering</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsStorage</name>
+		<message>
+			<source>CD/DVD Drive:</source>
+			<translation>CD/DVD-drev:</translation>
 		</message>
 	</context>
 	<context>
@@ -379,36 +412,10 @@
 		</message>
 	</context>
 	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>Netadresse:</translation>
-		</message>
-		<message>
-			<source>Graphics Controller:</source>
-			<translation>Grafik controller:</translation>
-		</message>
-	</context>
-	<context>
 		<name>UIMediumItem</name>
 		<message>
 			<source>Location:</source>
 			<translation>Beliggenhed:</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsSF</name>
-		<message>
-			<source>Folders List</source>
-			<translation>Mappeliste</translation>
-		</message>
-		<message>
-			<source>At</source>
-			<translation>På</translation>
-		</message>
-		<message>
-			<source>Auto Mount</source>
-			<translation>Automatisk montering</translation>
 		</message>
 	</context>
 	<context>
