@@ -1,0 +1,6 @@
+input.fullwidth { width: 99%;}
+
+@-moz-document url-prefix() {
+        input.fullwidth { width: 97%;}
+}
+
