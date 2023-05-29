@@ -1,4 +1,19 @@
 -------------------------------------
+    6.1-009 2023-06-01
+-------------------------------------
+
+- fix issue where settings for serial ports 2 - 4 were enabled even if serial port wasn't
+- Adjust width and height of settings dialog and minimum width and height of select dialog
+- Add/Update/Fix missing translations and change to new UI's
+- Fix issue where "Solid-State Drive" and "Hot-pluggable" checkbox's enabled when VM running
+- cleanup appearance of add/edit shared folder dialog
+- change variable browser to vboxbrowser to stop jquery upgrade script from producing false positive
+- fix issue where Internal Network could have blank option which errors out
+- fix issue where "Allow Multiple Connections" checkbox was enabled when VM running and cannot be changed when running
+- move "VRDP Authentication Library" setting to RDP Settings section
+- clean up "USB Filter Details" dialog
+
+-------------------------------------
     6.1-008b 2023-05-21
 -------------------------------------
 
