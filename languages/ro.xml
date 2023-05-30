@@ -221,20 +221,8 @@
 			<translation>Utilizatori</translation>
 		</message>
 		<message>
-			<source>Include Default RDP File Settings</source>
-			<translation>Includeți setările implicite de fișier RDP</translation>
-		</message>
-		<message>
 			<source>RDP Settings</source>
 			<translation>Setări RDP</translation>
-		</message>
-		<message>
-			<source>Additional RDP File Settings</source>
-			<translation>Setări suplimentare pentru fișiere RDP</translation>
-		</message>
-		<message>
-			<source>VRDP Authentication Library</source>
-			<translation>Biblioteca de autentificare VRDP</translation>
 		</message>
 	</context>
 	<context>
@@ -319,6 +307,33 @@
 			<source>Not logged in.</source>
 			<translation>Neconectat.</translation>
 		</message>		
+	</context>
+	<context>
+		<name>UIGlobalSettingsDialogRDP</name>
+		<message>
+			<source>Settings</source>
+			<translation>Setări</translation>
+		</message>
+		<message>
+			<source>RDP File</source>
+			<translation>Fișier RDP</translation>
+		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Includeți setările implicite de fișier RDP</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Setări RDP</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Setări suplimentare pentru fișiere RDP</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library:</source>
+			<translation>Biblioteca de autentificare VRDP:</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIGlobalSettingsNetwork</name>

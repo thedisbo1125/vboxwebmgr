@@ -215,20 +215,8 @@
 			<translation>Brugere</translation>
 		</message>
 		<message>
-			<source>Include Default RDP File Settings</source>
-			<translation>Medtag standard RDP-filindstillinger</translation>
-		</message>
-		<message>
 			<source>RDP Settings</source>
 			<translation>RDP-indstillinger</translation>
-		</message>
-		<message>
-			<source>Additional RDP File Settings</source>
-			<translation>Yderligere RDP-filindstillinger</translation>
-		</message>
-		<message>
-			<source>VRDP Authentication Library</source>
-			<translation>VRDP Authentication Library</translation>
 		</message>
 	</context>
 	<context>
@@ -313,6 +301,33 @@
 			<source>Not logged in.</source>
 			<translation>Ikke logget ind.</translation>
 		</message>		
+	</context>
+	<context>
+		<name>UIGlobalSettingsDialogRDP</name>
+		<message>
+			<source>Settings</source>
+			<translation>Indstillinger</translation>
+		</message>
+		<message>
+			<source>RDP File</source>
+			<translation>RDP fil</translation>
+		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Medtag standard RDP-filindstillinger</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>RDP-indstillinger</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Yderligere RDP-filindstillinger</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library:</source>
+			<translation>VRDP Autentificeringsbibliotek:</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIGlobalSettingsNetwork</name>

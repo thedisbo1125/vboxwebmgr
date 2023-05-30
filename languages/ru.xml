@@ -211,20 +211,8 @@
 			<translation>Пользователи</translation>
 		</message>
 		<message>
-			<source>Include Default RDP File Settings</source>
-			<translation>Включить настройки файла RDP по умолчанию</translation>
-		</message>
-		<message>
 			<source>RDP Settings</source>
 			<translation>Настройки удаленного рабочего стола</translation>
-		</message>
-		<message>
-			<source>Additional RDP File Settings</source>
-			<translation>Дополнительные настройки файла RDP</translation>
-		</message>
-		<message>
-			<source>VRDP Authentication Library</source>
-			<translation>Библиотека аутентификации VRDP</translation>
 		</message>
 	</context>
 	<context>
@@ -311,6 +299,33 @@
 		</message>		
 	</context>
 	<context>
+		<name>UIGlobalSettingsDialogRDP</name>
+		<message>
+			<source>Settings</source>
+			<translation>Настройки</translation>
+		</message>
+		<message>
+			<source>RDP File</source>
+			<translation>RDP-файл</translation>
+		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Включить настройки файла RDP по умолчанию</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Настройки удаленного рабочего стола</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Дополнительные настройки файла RDP</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library</source>
+			<translation>Библиотека аутентификации VRDP</translation>
+		</message>
+	</context>
+ 	<context>
 		<name>UIGlobalSettingsNetwork</name>
 		<message>
 			<source>Network Interface Limits</source>

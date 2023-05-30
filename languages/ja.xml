@@ -211,20 +211,8 @@
 			<translation>ユーザ</translation>
 		</message>
 		<message>
-			<source>Include Default RDP File Settings</source>
-			<translation>デフォルトの RDP ファイル設定を含める</translation>
-		</message>
-		<message>
 			<source>RDP Settings</source>
 			<translation>RDP 設定</translation>
-		</message>
-		<message>
-			<source>Additional RDP File Settings</source>
-			<translation>追加の RDP ファイル設定</translation>
-		</message>
-		<message>
-			<source>VRDP Authentication Library</source>
-			<translation>VRDP 認証ライブラリ</translation>
 		</message>
 	</context>
 	<context>
@@ -309,6 +297,33 @@
 			<source>Not logged in.</source>
 			<translation>ログインしていません。</translation>
 		</message>		
+	</context>
+	<context>
+		<name>UIGlobalSettingsDialogRDP</name>
+		<message>
+			<source>Settings</source>
+			<translation>設定</translation>
+		</message>
+		<message>
+			<source>RDP File</source>
+			<translation>RDP 設定</translation>
+		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>デフォルトの RDP ファイル設定を含める</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>RDP 設定</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>追加の RDP ファイル設定</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library:</source>
+			<translation>VRDP 認証ライブラリ:</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIGlobalSettingsNetwork</name>
