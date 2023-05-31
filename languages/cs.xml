@@ -203,20 +203,8 @@
 			<translation>Uživatelé</translation>
 		</message>
 		<message>
-			<source>Include Default RDP File Settings</source>
-			<translation>Zahrnout výchozí nastavení souboru RDP</translation>
-		</message>
-		<message>
 			<source>RDP Settings</source>
 			<translation>Nastavení RDP</translation>
-		</message>
-		<message>
-			<source>Additional RDP File Settings</source>
-			<translation>Další nastavení souboru RDP</translation>
-		</message>
-		<message>
-			<source>VRDP Authentication Library</source>
-			<translation>Knihovna ověřování VRDP</translation>
 		</message>
 	</context>
 	<context>
@@ -301,6 +289,33 @@
 			<source>Not logged in.</source>
 			<translation>Nejste přihlášení.</translation>
 		</message>		
+	</context>
+	<context>
+		<name>UIGlobalSettingsDialogRDP</name>
+		<message>
+			<source>Settings</source>
+			<translation>Nastavení</translation>
+		</message>
+		<message>
+			<source>RDP File</source>
+			<translation>Soubor RDP</translation>
+		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Zahrnout výchozí nastavení souboru RDP</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Nastavení RDP</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Další nastavení souboru RDP</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library:</source>
+			<translation>Knihovna ověřování VRDP:</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIGlobalSettingsNetwork</name>

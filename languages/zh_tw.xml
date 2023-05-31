@@ -297,20 +297,8 @@
 			<translation>使用者</translation>
 		</message>
 		<message>
-			<source>Include Default RDP File Settings</source>
-			<translation>包括默认 RDP 文件设置</translation>
-		</message>
-		<message>
 			<source>RDP Settings</source>
 			<translation>RDP 设置</translation>
-		</message>
-		<message>
-			<source>Additional RDP File Settings</source>
-			<translation>其他 RDP 文件设置</translation>
-		</message>
-		<message>
-			<source>VRDP Authentication Library</source>
-			<translation>VRDP 认证库</translation>
 		</message>
 	</context>
 	<context>
@@ -397,6 +385,33 @@
 		</message>
 	</context>
 	<context>
+		<name>UIGlobalSettingsDialogRDP</name>
+		<message>
+			<source>Settings</source>
+			<translation>設置</translation>
+		</message>
+		<message>
+			<source>RDP File</source>
+			<translation>RDP 文件</translation>
+		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>包括默认 RDP 文件设置</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>RDP 设置</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>其他 RDP 文件设置</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library:</source>
+			<translation>VRDP 身份驗證庫：</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIGlobalSettingsNetwork</name>
 		<message>
 			<source>Network Interface Limits</source>
@@ -469,6 +484,13 @@
 		<message>
 			<source>Location:</source>
 			<translation>地點:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSF</name>
+		<message>
+			<source>Folders List</source>
+			<translation>文件夾列表</translation>
 		</message>
 	</context>
 	<context>

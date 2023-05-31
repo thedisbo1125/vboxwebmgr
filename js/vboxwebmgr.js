@@ -3638,7 +3638,7 @@ function vboxButtonMediaMenu(type,callback,mediumPath) {
 
 		DVD: {
 			name: 'mselectcdbtn',
-			label: 'Set up the virtual optical drive',
+			label: 'Set up the virtual CD/DVD drive',
 			language_context: 'UIMachineSettingsStorage',
 			icon: 'cd',
 			click: function () {

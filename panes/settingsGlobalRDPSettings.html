@@ -42,11 +42,11 @@ td.addspace {
 <div id='vboxSettingsTabRDPFileSettings'>
 	<table style='width: 100%; margin-left:auto; margin-right:auto; vboxVertical'>
 		<tr style='vertical-align: top'>
-			<th colspan='1' style='width: 35%; text-align: right; padding-right: 10px;' class='addspace'><span class='translate'>Include Default RDP File Settings</span>:</th>
+			<th colspan='1' style='width: 35%; text-align: right; padding-right: 10px;' class='addspace'><span class='rdptranslate'>Include Default RDP File Settings</span>:</th>
 			<td class='addspace'><input type='checkbox' class='vboxCheckbox' id='vboxGlobalRDPIncludeDefaultFileSettings'></td>
 		</tr>
 		<tr style='vertical-align: top'>
-                	<th colspan='1' style='width: 35%; text-align: right; padding-right: 10px;' class='addspace'><span class='translate'>Additional RDP File Settings</span>:</th>
+                	<th colspan='1' style='width: 35%; text-align: right; padding-right: 10px;' class='addspace'><span class='rdptranslate'>Additional RDP File Settings</span>:</th>
 			<td style='width: 300%' class='addspace'>
 				<textarea spellcheck="false" class='vboxRunningEnabled' rows='16' cols='50' name='vboxGlobalRDPFileSettings' id='vboxGlobalRDPFileSettings'></textarea>
 			</td>
@@ -77,7 +77,7 @@ if (RDPExtraLines.extralines.length > 0)
 document.getElementById('vboxGlobalRDPIncludeDefaultFileSettings').checked = ($('#vboxSettingsDialog').data('vboxRDPSettings').includedeflines == 1);
 document.frmVboxSettings.vboxSettingsVRDEAuthLibrary.value = $('#vboxSettingsDialog').data('vboxSystemProperties').VRDEAuthLibrary;
 
-$(document).find('span.rdptranslate').html(function(i,h){return trans(h,'UIGlobalSettingsGeneral');});
+$(document).find('span.rdptranslate').html(function(i,h){return trans(h,'UIGlobalSettingsDialogRDP');});
 
 
 /*

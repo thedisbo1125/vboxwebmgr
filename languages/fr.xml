@@ -203,20 +203,8 @@
 			<translation>Utilisateurs</translation>
 		</message>
 		<message>
-			<source>Include Default RDP File Settings</source>
-			<translation>Inclure les paramètres de fichier RDP par défaut</translation>
-		</message>
-		<message>
 			<source>RDP Settings</source>
 			<translation>Paramètres RDP</translation>
-		</message>
-		<message>
-			<source>Additional RDP File Settings</source>
-			<translation>Paramètres de fichier RDP supplémentaires</translation>
-		</message>
-		<message>
-			<source>VRDP Authentication Library</source>
-			<translation>Bibliothèque d'authentification VRDP</translation>
 		</message>
 	</context>
 	<context>
@@ -301,6 +289,33 @@
 			<source>Not logged in.</source>
 			<translation>Non connecté.</translation>
 		</message>		
+	</context>
+	<context>
+		<name>UIGlobalSettingsDialogRDP</name>
+		<message>
+			<source>Settings</source>
+			<translation>Paramètres</translation>
+		</message>
+		<message>
+			<source>RDP File</source>
+			<translation>Fichier RDP</translation>
+		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>Inclure les paramètres de fichier RDP par défaut</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>Paramètres RDP</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>Paramètres de fichier RDP supplémentaires</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library:</source>
+			<translation>Bibliothèque d'authentification VRDP:</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIGlobalSettingsNetwork</name>

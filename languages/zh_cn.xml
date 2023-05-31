@@ -203,20 +203,8 @@
 			<translation>用户</translation>
 		</message>
 		<message>
-			<source>Include Default RDP File Settings</source>
-			<translation>包括默认 RDP 文件设置</translation>
-		</message>
-		<message>
 			<source>RDP Settings</source>
 			<translation>RDP 设置</translation>
-		</message>
-		<message>
-			<source>Additional RDP File Settings</source>
-			<translation>其他 RDP 文件设置</translation>
-		</message>
-		<message>
-			<source>VRDP Authentication Library</source>
-			<translation>VRDP 认证库</translation>
 		</message>
 	</context>
 	<context>
@@ -301,6 +289,33 @@
 			<source>Not logged in.</source>
 			<translation>还没有登入。</translation>
 		</message>		
+	</context>
+	<context>
+		<name>UIGlobalSettingsDialogRDP</name>
+		<message>
+			<source>Settings</source>
+			<translation>设置</translation>
+		</message>
+		<message>
+			<source>RDP File</source>
+			<translation>RDP 文件</translation>
+		</message>
+		<message>
+			<source>Include Default RDP File Settings</source>
+			<translation>包括默认 RDP 文件设置</translation>
+		</message>
+		<message>
+			<source>RDP Settings</source>
+			<translation>RDP 设置</translation>
+		</message>
+		<message>
+			<source>Additional RDP File Settings</source>
+			<translation>其他 RDP 文件设置</translation>
+		</message>
+		<message>
+			<source>VRDP Authentication Library:</source>
+			<translation>VRDP 身份验证库：</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIGlobalSettingsNetwork</name>
