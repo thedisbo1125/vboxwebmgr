@@ -662,7 +662,7 @@ buttons[trans('OK','QIMessageBox')] = function(){
 	$(this).dialog("close");
 };
 buttons[trans('Cancel','QIMessageBox')] = function(){$(this).dialog("close");};
-$('#vboxSettingsGlobalNATNetworkEditDialog').dialog({'buttons':buttons,'width':500,'modal':true,'autoOpen':false,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' +trans('Host-only Network Details','UIGlobalSettingsNetworkDetails')});
+$('#vboxSettingsGlobalNATNetworkEditDialog').dialog({'buttons':buttons,'width':500,'modal':true,'autoOpen':false,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' +trans('NAT Network Details','UIGlobalSettingsNetworkDetailsNAT')});
 $('#vboxSettingsGlobalNATNetIPv6').on('enable',function() {
 	if(this.checked) {
 		$('#vboxSettingsGlobalNATNetIPv6Route').prop('disabled', false).siblings().removeClass('vboxDisabled');	
