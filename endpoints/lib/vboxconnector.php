@@ -902,8 +902,8 @@ class vboxconnector {
 
 	        /* Notification when a storage device is attached or removed. */
         	case 'OnStorageDeviceChanged':
-        		$data['machineId'] = $eventDataObject->machineId;
-        		$data['storageDevice'] = $eventDataObject->storageDevice;
+        		$data['machineId'] = $eventDataObject->storageDevice->machine->Id;
+	       		$data['storageDevice'] = $eventDataObject->storageDevice;
         		$data['removed'] = $eventDataObject->removed;
         		break;
 
