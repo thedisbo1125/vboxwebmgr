@@ -4806,9 +4806,9 @@ var vboxStorage = {
 	/**
 	 * Get medium attachment options for storage controller
 	 *
-     * @memberOf vboxStorage
-     * @param {Object} sc - storage controller object
-     * @return {Array} options list
+	 * @memberOf vboxStorage
+	 * @param {Object} sc - storage controller object
+	 * @return {Array} options list
 	 */
 	getMAOptionsForSC: function(sc) {
 	    if(sc.bus == 'SATA' || sc.bus == 'USB') {
