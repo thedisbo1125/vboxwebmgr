@@ -57,13 +57,6 @@ function vboxSettingsBrowseMachineFolder(btn) {
 	},true,trans('Default Machine Folder:','UIGlobalSettingsGeneral').replace(':',''));
 }
 
-function vboxSettingsBrowseVRDPAuthLibrary(btn) {
-	var def = $(btn).siblings('input').first();
-	vboxFileBrowser($(def).val(),function(f){
-		if(f) $(def).val(f);
-	},false,trans('VRDP Authentication Library:','UIGlobalSettingsGeneral').replace(':',''));
-}
-
 /* 
  * 
  * Update Data onSave() 
