@@ -1428,6 +1428,7 @@ class vboxconnector {
 		return true;
 	}
 
+
 	/**
 	 * Save running VM settings. Called from machineSave method if the requested VM is running.
 	 *
@@ -5136,6 +5137,7 @@ class vboxconnector {
              return array('progress' => $progress->handle);
 
          }
+
 
 	/**
 	 * Resize a medium. Currently unimplemented in GUI.
