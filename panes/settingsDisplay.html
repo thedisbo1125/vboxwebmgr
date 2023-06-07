@@ -90,6 +90,14 @@
 		<th><span class='translate'>Authentication Timeout:</span></th>
 		<td><input type='text' class='vboxText' style='width: 100%' name='vboxSettingsDisplayVRDEAuthTimeout' /></td>
 	</tr>
+	<tr class='vboxRunningEnabled vboxSettingsDisplayRDP'>
+		<th><span class='translate'>Video Redirection:</span></th>
+		<td><label><input type='checkbox' class='vboxCheckbox' id='vboxSettingsDisplayVRDEVideoRedirectID'/> <span class='translate vboxEnablerListen'>Enabled</span></label></td>
+	</tr>
+	<tr class='vboxRunningEnabled vboxSettingsDisplayRDP'>
+		<th class='vboxEnablerIgnore' id='videoqualityth'><span class='translate'>Video Quality:</span></th>
+		<td class='vboxEnablerIgnore'><label><input type='text' class='vboxText vboxEnablerIgnore' style='width: 20%' value='75' id='vboxSettingsDisplayRDPVRQualityID' autocomplete="off" ></label></td>
+	</tr>
 	<tr class='vboxSettingsDisplayRDP'>
 		<th><span class='translate'>Extended Features:</span></th>
 		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsDisplayVRDEMulti' /> <span class='translate vboxEnablerListen'>Allow Multiple Connections</span></label></td>
@@ -105,6 +113,196 @@
 
 /* Display */
 
+
+//
+// Get location of the cursor in input
+//
+function GetCaretPos(oField) {
+
+	// Initialize
+	var iCaretPos = 0;
+
+	if (oField.selectionStart || oField.selectionStart == '0')
+		iCaretPos = oField.selectionDirection=='backward' ? oField.selectionStart : oField.selectionEnd;
+
+	// Return results
+	return iCaretPos;
+}
+
+
+//
+// Check if the new value is good
+//
+function proposedvaluegood(cstr, inputelement) {
+
+	var value = inputelement.val();
+	var cursorpos = GetCaretPos(inputelement[0]);
+
+	result = false;
+
+	if(inputelement[0].selectionStart != inputelement[0].selectionEnd) {
+		value = value.replace(window.getSelection(),'');
+	}
+
+	newvalue = value.substring(0,cursorpos) + cstr + value.substring(cursorpos,value.length);
+
+	if(newvalue.length < 3) {
+		if(parseInt(newvalue) < 101) { result = true; }
+	} else if (newvalue == '100') {
+		result = true;
+	}
+
+	return result;
+}
+
+
+//
+// when key down in Video Redirect Quality input
+//
+function VRDPVideoRedirectQualityOnKeyDown(e){
+
+	var validsyskeys = new Array(8,9,16,17,35,36,37,39,46,116);
+	var validkeys = new Array(48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105);
+	var validkeyswctrl = new Array(67,86);
+
+	e = e || window.event;
+
+	if (event.code !== undefined) {
+		var code = e.keyCode;
+	} else {
+		var code = e.code;
+	}
+
+	if(validsyskeys.includes(code)){ return; }
+
+	if((validkeyswctrl.includes(code)) && (e.ctrlKey)) { return; }
+
+	var inputelement = $('#vboxSettingsDisplayRDPVRQualityID');
+
+	if(!(validsyskeys.includes(code)) && (!(validkeys.includes(code)))) { e.preventDefault(); return; }
+
+	if(inputelement.val() == '10') {
+		if(((code == 48) || (code == 96)) && (GetCaretPos(inputelement[0]) != 0)) { 
+			return;
+		} else if (validsyskeys.includes(code)) {
+			return;
+		} else if((validkeys.includes(code)) && (inputelement[0].selectionStart != inputelement[0].selectionEnd)) { 
+			return;
+		} else {
+			e.preventDefault();
+		}
+	}
+
+	if(validkeys.includes(code)) {
+		if(proposedvaluegood(e.key,inputelement) == true) {
+			return;
+		} else {
+			e.preventDefault();
+		}
+	}
+
+}
+
+
+//
+// when text pasted in Video Redirect Quality input
+//
+function VRDPVideoRedirectQualityOnPaste(e) {
+
+	let clipboardstr = (event.clipboardData || window.clipboardData).getData("text");
+
+	var inputelement = $('#vboxSettingsDisplayRDPVRQualityID');
+	var sellength = Math.abs(inputelement[0].selectionStart - inputelement[0].selectionEnd);
+	var cursorpos = GetCaretPos(inputelement[0]);
+
+	proposedvaluegood(clipboardstr,inputelement);
+
+	if(clipboardstr.length < 3) {
+		if(/^\d+$/.test(clipboardstr) == false) {
+			e.preventDefault();
+		} else {
+			if(proposedvaluegood(clipboardstr,inputelement) == true) {
+				return;
+			} else {
+				e.preventDefault();
+			}
+		}
+	} else {
+		if(clipboardstr != '100') {
+			e.preventDefault();
+		} else if ((inputelement.val().length == 0) || (inputelement.val().length == sellength)) {
+			 return;
+		}
+	}	
+	e.preventDefault();
+}
+
+
+//
+// check Video Redirect Quality input on focus out, accepted values are 10 - 100
+//
+function VRDPVideoRedirectQualityOnFocusOut(e) {
+	if(parseInt($('#vboxSettingsDisplayRDPVRQualityID').val()) < 10 ) {
+		$('#vboxSettingsDisplayRDPVRQualityID').val('10');
+	}
+}
+
+
+//
+// Check if should enable or disable Video Redirect Quality input
+//
+function EnableDisableVideoRedirectQuality() {
+	if(document.querySelector("input[name=vboxSettingsDisplayVRDEEnabled]").checked == true) {
+			(document.querySelector("input[id=vboxSettingsDisplayVRDEVideoRedirectID]").checked ? (
+				$('#videoqualityth').removeClass('vboxDisabled'),
+				$('#vboxSettingsDisplayRDPVRQualityID').prop('disabled',false)
+			) : (
+				$('#videoqualityth').addClass('vboxDisabled'),
+				$('#vboxSettingsDisplayRDPVRQualityID').prop('disabled',true)
+			));
+	} else {
+		$('#videoqualityth').addClass('vboxDisabled');
+		$('#vboxSettingsDisplayRDPVRQualityID').prop('disabled',true)
+	}
+}
+
+
+
+//
+// set event listeners for RDP video redirect checkbox
+//
+$("#vboxSettingsDisplayVRDEVideoRedirectID").bind('change', function(event){
+	EnableDisableVideoRedirectQuality();
+});
+
+
+//
+// set event listeners for RDP video redirect quality input
+//
+$("#vboxSettingsDisplayRDPVRQualityID").bind('keydown', function(event){
+	VRDPVideoRedirectQualityOnKeyDown(event);
+});
+
+$("#vboxSettingsDisplayRDPVRQualityID").bind('paste', function(event){
+	VRDPVideoRedirectQualityOnPaste(event);
+});
+
+$("#vboxSettingsDisplayRDPVRQualityID").bind('focusout', function(event){
+	VRDPVideoRedirectQualityOnFocusOut(event);
+});
+
+
+//
+// add additional event listener on RDP enable checkbox
+//
+var rdpcheckbox = document.querySelector("input[name=vboxSettingsDisplayVRDEEnabled]");
+
+rdpcheckbox.addEventListener("change", (event) => {
+	EnableDisableVideoRedirectQuality();
+});
+
+
+
 /* auth method translations */
 $('#vboxSettingsDisplayVRDEAuthID').find('option').html(function(i,h){return trans(h,'UICommon');});
 
@@ -113,7 +311,7 @@ $('#vboxSettingsDisplayMemory').slider({'min':parseInt($('#vboxPane').data('vbox
 
 
 
-/* CHange values when data is loaded */
+/* Change values when data is loaded */
 $('#vboxSettingsDialog').on('dataLoaded', function(){
 
 
@@ -123,6 +321,10 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 
 	document.forms['frmVboxSettings'].vboxSettingsDisplay3d.checked = ($('#vboxSettingsDialog').data('vboxMachineData').accelerate3DEnabled);
 	document.forms['frmVboxSettings'].vboxSettingsDisplay2d.checked = ($('#vboxSettingsDialog').data('vboxMachineData').accelerate2DVideoEnabled);
+	document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEVideoRedirectID.checked = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.videoredirenabled;
+	if($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.videoredirquality != '') {
+		document.forms['frmVboxSettings'].vboxSettingsDisplayRDPVRQualityID.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.videoredirquality;
+	}
 	
 	var p = $('#vboxSettingsTabDisplayVideo').parent().children('div'); 
 	if(!$('#vboxSettingsDialog').data('vboxFullEdit')) {
@@ -258,6 +460,8 @@ $('#vboxSettingsDialog').on('save',function(){
 		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.enabled = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEEnabled.checked;
 		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.allowMultiConnection = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEMulti.checked;
 		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.VNCPassword = document.forms['frmVboxSettings'].vboxSettingsDisplayVNCPassword.value;
+		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.videoredirenabled = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEVideoRedirectID.checked;
+		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.videoredirquality = document.forms['frmVboxSettings'].vboxSettingsDisplayRDPVRQualityID.value;
 	}
 });
 

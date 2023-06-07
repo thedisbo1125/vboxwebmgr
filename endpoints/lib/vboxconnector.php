@@ -503,7 +503,9 @@ class vboxconnector {
 								'netAddress' => $vrde->getVRDEProperty('TCP/Address'),
 								'VNCPassword' => $vrde->getVRDEProperty('VNCPassword'),
 								'authType' => (string)$vrde->authType,
-								'authTimeout' => $vrde->authTimeout
+								'authTimeout' => $vrde->authTimeout,
+								'videoredirenabled' => $vrde->getVRDEProperty('VideoChannel/Enabled'),
+								'videoredirquality' => $vrde->getVRDEProperty('VideoChannel/Quality')
 								)
 							);
 						} catch (Exception $e) {
@@ -1472,6 +1474,8 @@ class vboxconnector {
 				$m->VRDEServer->enabled = $args['VRDEServer']['enabled'];
 				$m->VRDEServer->setVRDEProperty('TCP/Ports',$args['VRDEServer']['ports']);
 				$m->VRDEServer->setVRDEProperty('VNCPassword',$args['VRDEServer']['VNCPassword'] ? $args['VRDEServer']['VNCPassword'] : null);
+				$m->VRDEServer->setVRDEProperty('VideoChannel/Enabled',$args['VRDEServer']['videoredirenabled'] ? $args['VRDEServer']['videoredirenabled'] : false);
+				$m->VRDEServer->setVRDEProperty('VideoChannel/Quality',$args['VRDEServer']['videoredirquality']);
 				$m->VRDEServer->authType = ($args['VRDEServer']['authType'] ? $args['VRDEServer']['authType'] : 'Null');
 				$m->VRDEServer->authTimeout = $args['VRDEServer']['authTimeout'];
 			}
@@ -1936,6 +1940,8 @@ class vboxconnector {
 				$m->VRDEServer->setVRDEProperty('TCP/Ports',$args['VRDEServer']['ports']);
 				$m->VRDEServer->setVRDEProperty('TCP/Address',$args['VRDEServer']['netAddress']);
 				$m->VRDEServer->setVRDEProperty('VNCPassword',$args['VRDEServer']['VNCPassword'] ? $args['VRDEServer']['VNCPassword'] : null);
+				$m->VRDEServer->setVRDEProperty('VideoChannel/Enabled',$args['VRDEServer']['videoredirenabled'] ? $args['VRDEServer']['videoredirenabled'] : false);
+				$m->VRDEServer->setVRDEProperty('VideoChannel/Quality',$args['VRDEServer']['videoredirquality']);
 				$m->VRDEServer->authType = ($args['VRDEServer']['authType'] ? $args['VRDEServer']['authType'] : 'Null');
 				$m->VRDEServer->authTimeout = $args['VRDEServer']['authTimeout'];
 				$m->VRDEServer->allowMultiConnection = $args['VRDEServer']['allowMultiConnection'];
@@ -3819,6 +3825,8 @@ class vboxconnector {
 					'enabled' => $vrde->enabled,
 					'ports' => $vrde->getVRDEProperty('TCP/Ports'),
 					'netAddress' => $vrde->getVRDEProperty('TCP/Address'),
+					'videoredirenabled' => $vrde->getVRDEProperty('VideoChannel/Enabled'),
+					'videoredirquality' => $vrde->getVRDEProperty('VideoChannel/Quality'),
 					'VNCPassword' => $vrde->getVRDEProperty('VNCPassword'),
 					'authType' => (string)$vrde->authType,
 					'authTimeout' => $vrde->authTimeout,
@@ -4401,6 +4409,8 @@ class vboxconnector {
 				'enabled' => $m->VRDEServer->enabled,
 				'ports' => $m->VRDEServer->getVRDEProperty('TCP/Ports'),
 				'netAddress' => $m->VRDEServer->getVRDEProperty('TCP/Address'),
+				'videoredirenabled' => $m->VRDEServer->getVRDEProperty('VideoChannel/Enabled'),
+				'videoredirquality' => $m->VRDEServer->getVRDEProperty('VideoChannel/Quality'),
 				'VNCPassword' => $m->VRDEServer->getVRDEProperty('VNCPassword'),
 				'authType' => (string)$m->VRDEServer->authType,
 				'authTimeout' => $m->VRDEServer->authTimeout,
