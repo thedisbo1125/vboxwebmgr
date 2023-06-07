@@ -625,6 +625,28 @@ function vboxConfirm(q,buttons,cancelText,onCancel) {
     return $(div);
 }
 
+
+/**
+ * Information dialog
+ * @param {String} q - text to display
+ * @return {HTMLNode}
+ * @see jQuery.dialog()
+ */
+function vboxInfo(q) {
+
+	var div = $('<div />').attr({'class':'vboxDialogContent','style':'display: none; width: 500px;'}).html('<img src="images/50px-information_icon.svg.png" style="height: 50px; width: 50px; float: left; padding: 10px;" height="50" width="50" />'+q);
+
+	var buttons = {};
+	buttons[trans('OK','QIMessageBox')] = function() {
+		$(this).remove();
+	}
+
+    $(div).dialog({'closeOnEscape':false,'width':500,'height':'auto','buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});
+
+    return $(div);
+}
+
+
 /**
  * Initialize common UI items
  * @param {String|HTMLNode} root - root HTML Node or node ID to initialize
