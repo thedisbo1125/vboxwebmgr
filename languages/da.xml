@@ -357,10 +357,33 @@
 		</message>
 	</context>
 	<context>
-		<name>UIGlobalSettingsNetworkDetails</name>
+		<name>UIGlobalSettingsNetworkDetailsHost</name>
 		<message>
 			<source>Host-only Network Details</source>
 			<translation>Netværksoplysninger, der kun er værter</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>Netadresse:</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>Videoomdirigering:</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>Videokvalitet:</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>Aktiveret</translation>
+		</message>
+		<message>
+			<source>Graphics Controller:</source>
+			<translation>Grafik controller:</translation>
 		</message>
 	</context>
 	<context>
@@ -379,6 +402,21 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsSF</name>
+		<message>
+			<source>Folders List</source>
+			<translation>Mappeliste</translation>
+		</message>
+		<message>
+			<source>At</source>
+			<translation>På</translation>
+		</message>
+		<message>
+			<source>Auto Mount</source>
+			<translation>Automatisk montering</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>
@@ -394,36 +432,10 @@
 		</message>
 	</context>
 	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>Netadresse:</translation>
-		</message>
-		<message>
-			<source>Graphics Controller:</source>
-			<translation>Grafik controller:</translation>
-		</message>
-	</context>
-	<context>
 		<name>UIMediumItem</name>
 		<message>
 			<source>Location:</source>
 			<translation>Beliggenhed:</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsSF</name>
-		<message>
-			<source>Folders List</source>
-			<translation>Mappeliste</translation>
-		</message>
-		<message>
-			<source>At</source>
-			<translation>På</translation>
-		</message>
-		<message>
-			<source>Auto Mount</source>
-			<translation>Automatisk montering</translation>
 		</message>
 	</context>
 	<context>

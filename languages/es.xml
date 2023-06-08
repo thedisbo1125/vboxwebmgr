@@ -331,6 +331,48 @@
 			<source>Allow to be bridged</source>
 			<translation>Permitir ser puenteado</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>Redes solo-anfitrión</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>Agregar red sólo-anfitrión</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>Eliminar red sólo-anfitrión</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>Editar red sólo-anfitrión</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetailsHost</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>Detalles de red sólo-anfitrión</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>Dirección de red:</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>Redirección de vídeo:</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>Calidad de video:</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>Activado</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -341,13 +383,6 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Deshabilitar la sincronización del tiempo del host</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>Dirección de red:</translation>
 		</message>
 	</context>
 	<context>

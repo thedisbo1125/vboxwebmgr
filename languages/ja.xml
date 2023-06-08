@@ -331,6 +331,48 @@
 			<source>Allow to be bridged</source>
 			<translation>ブリッジを許可する</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>ホストオンリーネットワーク</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>ホストオンリーネットワークを追加</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>ホストオンリーネットワークを除去</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>ホストオンリーネットワークを編集</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetails</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>ホストオンリーネットワーク詳細</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>ネットアドレス:</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>ビデオのリダイレクト:</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>ビデオ品質:</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>有効</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -341,13 +383,6 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>ホスト時刻同期を無効にする</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>ネットアドレス:</translation>
 		</message>
 	</context>
 	<context>

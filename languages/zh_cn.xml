@@ -331,6 +331,48 @@
 			<source>Allow to be bridged</source>
 			<translation>允许桥接</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>仅主机(Host-Only)网络</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>添加仅主机(Host-Only)网络</translation>
+		</message>
+		<message>
+		        <source>Remove Host-only Network</source>
+			<translation>删除仅主机(Host-Only)网络</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>编辑仅主机(Host-Only)网络</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetailsHost</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>仅主机(Host-Only)网络明细</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>网络地址</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>视频重定向：</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>视频质量：</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>启用</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -341,13 +383,6 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>禁用主机时间同步</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>网络地址</translation>
 		</message>
 	</context>
 	<context>

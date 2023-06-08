@@ -331,6 +331,48 @@
 			<source>Allow to be bridged</source>
 			<translation>Pozwól się zmostkować</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>Sieci izolowane</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>Dodaj sieć izolowaną</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>Usuń sieć izolowaną</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>Edytuj sieć izolowaną</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetails</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>Szczegóły sieci izolowanej (host-only)</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>Adres sieciowy:</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>Przekierowanie wideo:</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>Jakość wideo:</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>Włączony</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -341,13 +383,6 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Wyłącz synchronizację czasu hosta</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>Adres sieciowy:</translation>
 		</message>
 	</context>
 	<context>

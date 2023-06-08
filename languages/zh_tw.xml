@@ -443,6 +443,32 @@
 		</message>
 	</context>
 	<context>
+		<name>UIGlobalSettingsNetworkDetailsHost</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>僅主機網絡詳細信息</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>網絡地址</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>視頻重定向：</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>視頻質量：</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>啟用</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsGeneral</name>
 		<message>
 			<source>Enable Encryption</source>
@@ -458,6 +484,17 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsSF</name>
+		<message>
+			<source>Folders List</source>
+			<translation>文件夾列表</translation>
+		</message>
+		<message>
+			<source>Full</source>
+			<translation>滿的</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>
@@ -469,13 +506,6 @@
 		</message>
 	</context>
 	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>網絡地址</translation>
-		</message>
-	</context>
-	<context>
 		<name>UIMediumItem</name>
 		<message>
 			<source>Type:</source>
@@ -484,13 +514,6 @@
 		<message>
 			<source>Location:</source>
 			<translation>地點:</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsSF</name>
-		<message>
-			<source>Folders List</source>
-			<translation>文件夾列表</translation>
 		</message>
 	</context>
 	<context>

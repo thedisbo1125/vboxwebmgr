@@ -331,6 +331,59 @@
 			<source>Allow to be bridged</source>
 			<translation>Nechte se přemostit</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>Síťe pouze s hostem</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>Přidat síť pouze mezi hostem</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>Odebrat síť mezi hostem</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>Upravit síť mezi hostem</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetailsHost</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>Detaily sítě mezi hostitelem</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>Čistá adresa:</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>Přesměrování videa:</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>Kvalita videa:</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>Povoleno</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSF</name>
+		<message>
+			<source>At</source>
+			<translation>Na</translation>
+		</message>
+		<message>
+			<source>Auto Mount</source>
+			<translation>Automatická montáž</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -345,24 +398,6 @@
 		<message>
 			<source>Enable Nested VT-x/AMD-V</source>
 			<translation>Povolit vnořené VT-x/AMD-V</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>Čistá adresa:</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsSF</name>
-		<message>
-			<source>At</source>
-			<translation>Na</translation>
-		</message>
-		<message>
-			<source>Auto Mount</source>
-			<translation>Automatická montáž</translation>
 		</message>
 	</context>
 	<context>

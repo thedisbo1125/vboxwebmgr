@@ -331,6 +331,48 @@
 			<source>Allow to be bridged</source>
 			<translation>Разрешить соединение</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>Виртуальные сети хоста</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>Добавить виртуальную сеть хоста</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>Удалить виртуальную сеть хоста</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>Изменить виртуальную сеть хоста</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetailsHost</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>Детали виртуальной сети хоста</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>Сетевой адрес:</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>Перенаправление видео:</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>Качество видео:</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>Включено</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -341,13 +383,6 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Отключить синхронизацию времени хоста</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsDisplay</name>
-		<message>
-			<source>Net Address:</source>
-			<translation>Сетевой адрес:</translation>
 		</message>
 	</context>
 	<context>
