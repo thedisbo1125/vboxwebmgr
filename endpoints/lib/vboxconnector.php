@@ -1428,6 +1428,7 @@ class vboxconnector {
 		return true;
 	}
 
+
 	/**
 	 * Save running VM settings. Called from machineSave method if the requested VM is running.
 	 *
