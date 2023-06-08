@@ -339,12 +339,47 @@
 			<source>Allow to be bridged</source>
 			<translation>Überbrücken lassen</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>Host-only Netzwerke</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>Host-only Netzwerk hinzufügen</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>Host-only Netzwerk entfernen</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>Host-only Netzwerk ändern</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetailsHost</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>Nur-Host-Netzwerkdetails</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsDisplay</name>
 		<message>
 			<source>Net Address:</source>
 			<translation>Nettoadresse:</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>Videoumleitung:</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>Video-Qualität:</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>Ermöglicht</translation>
 		</message>
 	</context>
 	<context>

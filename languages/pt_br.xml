@@ -338,12 +338,47 @@
 			<source>Allow to be bridged</source>
 			<translation>Permitir ser ligado</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>Redes Exclusivas de Hospedeiro</translation>
+		</message>
+		<message>
+			<source>Add NAT network</source>
+			<translation>Acrescentar Rede NAT</translation>
+		</message>
+		<message>
+			<source>Remove NAT network</source>
+			<translation>Remover rede NAT</translation>
+		</message>
+		<message>
+			<source>Edit NAT network</source>
+			<translation>Editar rede NAT</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetailsHost</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>Detalhes de Rede Exclusiva de Hospedeiro (host-only)</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsDisplay</name>
 		<message>
 			<source>Net Address:</source>
 			<translation>Endereço líquido:</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>Redirecionamento de vídeo:</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>Qualidade de vídeo:</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>Habilitado</translation>
 		</message>
 	</context>
 	<context>

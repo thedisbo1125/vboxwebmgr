@@ -306,7 +306,7 @@
 		<message>
 			<source>Not logged in.</source>
 			<translation>Neconectat.</translation>
-		</message>		
+		</message>
 	</context>
 	<context>
 		<name>UIGlobalSettingsDialogRDP</name>
@@ -367,6 +367,86 @@
 		</message>
 	</context>
 	<context>
+		<name>UIHostNetworkDetailsWidget</name>
+		<message>
+			<source>Lower Address Bound:</source>
+			<translation>Limită inferioară a adresei:</translation>
+		</message>
+		<message>
+			<source>Upper Address Bound:</source>
+			<translation>Limită superioară a adresei:</translation>
+		</message>
+		<message>
+			<source>Enable Server</source>
+			<translation>Activați serverul</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetailsHost</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>Detalii rețea doar-gazdă</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetailsNAT</name>
+		<message>
+			<source>NAT Network Details</source>
+			<translation>Detalii de rețea NAT</translation>
+		</message>
+		<message>
+			<source>Enable Network</source>
+			<translation>Activați rețeaua</translation>
+		</message>
+		<message>
+			<source>Network Name:</source>
+			<translation>Numele retelei</translation>
+		</message>
+		<message>
+			<source>Network CIDR:</source>
+			<translation>Rețeaua CIDR</translation>
+		</message>
+		<message>
+			<source>Network Options:</source>
+			<translation>Opțiuni de rețea:</translation>
+		</message>
+		<message>
+			<source>Supports DHCP</source>
+			<translation>Suporta DHCP</translation>
+		</message>
+		<message>
+			<source>Supports IPv6</source>
+			<translation>Suporta IPv6</translation>
+		</message>
+		<message>
+			<source>Advertise Default IPv6 Route</source>
+			<translation>Faceți publicitate rută IPv6 implicită</translation>
+		</message>
+		<message>
+			<source>Port Forwarding</source>
+			<translation>Redirecționarea porturilor</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsDisplay</name>
+		<message>
+			<source>Net Address:</source>
+			<translation>Adresa de net:</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>Redirecționare video:</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>Calitate video:</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>Activat</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsGeneral</name>
 		<message>
 			<source>Enable Encryption</source>
@@ -398,10 +478,21 @@
 		</message>
 	</context>
 	<context>
-		<name>UIMachineSettingsDisplay</name>
+		<name>UIMachineSettingsSF</name>
 		<message>
-			<source>Net Address:</source>
-			<translation>Adresa de net:</translation>
+			<source>At</source>
+			<translation>La</translation>
+		</message>
+		<message>
+			<source>Auto Mount</source>
+			<translation>Montare automată</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSFDetails</name>
+		<message>
+			<source>Mount point:</source>
+			<translation>Punctul de montare:</translation>
 		</message>
 	</context>
 	<context>
@@ -452,17 +543,6 @@
 		<message>
 			<source>USB 3.0 (xHCI) Controller</source>
 			<translation>Controler USB 3.0 (xHCI).</translation>
-		</message>
-	</context>
-	<context>
-		<name>UIMachineSettingsSF</name>
-		<message>
-			<source>At</source>
-			<translation>La</translation>
-		</message>
-		<message>
-			<source>Auto Mount</source>
-			<translation>Montare automată</translation>
 		</message>
 	</context>
 	<context>

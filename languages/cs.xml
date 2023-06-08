@@ -36,10 +36,6 @@
 			<translation>Hostování</translation>
 		</message>
 		<message>
-			<source>USB Keyboard</source>
-			<translation>USB klávesnice</translation>
-		</message>
-		<message>
 			<source>PS/2 Keyboard</source>
 			<translation>PS/2 klávesnice</translation>
 		</message>
@@ -343,6 +339,29 @@
 			<source>Allow to be bridged</source>
 			<translation>Nechte se přemostit</translation>
 		</message>
+		<message>
+			<source>Host-only Networks</source>
+			<translation>Síťe pouze s hostem</translation>
+		</message>
+		<message>
+			<source>Add Host-only Network</source>
+			<translation>Přidat síť pouze mezi hostem</translation>
+		</message>
+		<message>
+			<source>Remove Host-only Network</source>
+			<translation>Odebrat síť mezi hostem</translation>
+		</message>
+		<message>
+			<source>Edit Host-only Network</source>
+			<translation>Upravit síť mezi hostem</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIGlobalSettingsNetworkDetailsHost</name>
+		<message>
+			<source>Host-only Network Details</source>
+			<translation>Detaily sítě mezi hostitelem</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsDisplay</name>
@@ -353,6 +372,18 @@
 		<message>
 			<source>Graphics Controller:</source>
 			<translation>Grafický ovladač:</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>Přesměrování videa:</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>Kvalita videa:</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>Povoleno</translation>
 		</message>
 	</context>
 	<context>

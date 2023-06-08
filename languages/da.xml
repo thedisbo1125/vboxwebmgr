@@ -361,7 +361,7 @@
 		</message>
 	</context>
 	<context>
-		<name>UIGlobalSettingsNetworkDetails</name>
+		<name>UIGlobalSettingsNetworkDetailsHost</name>
 		<message>
 			<source>Host-only Network Details</source>
 			<translation>Netværksoplysninger, der kun er værter</translation>
@@ -372,6 +372,18 @@
 		<message>
 			<source>Net Address:</source>
 			<translation>Netadresse:</translation>
+		</message>
+		<message>
+			<source>Video Redirection:</source>
+			<translation>Videoomdirigering:</translation>
+		</message>
+		<message>
+			<source>Video Quality:</source>
+			<translation>Videokvalitet:</translation>
+		</message>
+		<message>
+			<source>Enabled</source>
+			<translation>Aktiveret</translation>
 		</message>
 		<message>
 			<source>Graphics Controller:</source>
