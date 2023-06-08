@@ -352,7 +352,7 @@
 		<name>UIGlobalSettingsNetworkDetailsHost</name>
 		<message>
 			<source>Host-only Network Details</source>
-			<translation>Details host-only netwerk</translation>
+			<translation>Host-only netwerkdetails</translation>
 		</message>
 	</context>
 	<context>
