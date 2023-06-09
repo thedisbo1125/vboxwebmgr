@@ -111,47 +111,57 @@ Host Network Interfaces Tab
 			<li><a href="#vboxSettingsGlobalNetEditDHCP"><span class='translate'>DHCP Server</span></a></li>		
 		</ul>
 		<div id="vboxSettingsGlobalNetEditAdapter" class="vboxDialogContent vboxTabContent">
-			<table class="vboxSettingsTable">
-				<tr>
-					<th><span class='translate'>IPv4 Address:</span></th>
-					<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetIPv4' /></td>
-				</tr>
-				<tr>
-					<th><span class='translate'>IPv4 Network Mask:</span></th>
-					<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetIPv4Mask' /></td>
-				</tr>
-				<tr>
-					<th><span class='translate'>IPv6 Address:</span></th>
-					<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetIPv6' /></td>
-				</tr>
-				<tr>
-					<th><span class='translate'>IPv6 Prefix Length:</span></th>
-					<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetIPv6Mask' /></td>
-				</tr>
-			</table>
+			<div class='vboxBordered' style='height:160px; overflow:auto; background-color:white;'>
+				<table class="vboxSettingsTable thpadding tdpadding">
+					<tr>
+						<th/><td style='padding-top: 4px;' />
+					</tr>
+					<tr>
+						<th><span class='translate'>IPv4 Address:</span></th>
+						<td><input type='text' class='vboxText width90' id='vboxSettingsGlobalNetIPv4'/></td>
+					</tr>
+					<tr>
+						<th><span class='translate'>IPv4 Network Mask:</span></th>
+						<td><input type='text' class='vboxText width90' id='vboxSettingsGlobalNetIPv4Mask'/></td>
+					</tr>
+					<tr>
+						<th><span class='translate'>IPv6 Address:</span></th>
+						<td><input type='text' class='vboxText width90' id='vboxSettingsGlobalNetIPv6'/></td>
+					</tr>
+					<tr>
+						<th><span class='translate'>IPv6 Prefix Length:</span></th>
+						<td><input type='text' class='vboxText width90' id='vboxSettingsGlobalNetIPv6Mask'/></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 		<div id="vboxSettingsGlobalNetEditDHCP" class='vboxDialogContent vboxTabContent'>
-			<table class="vboxSettingsTable">
-				<tr>
-					<td colspan='2'><label><input type='checkbox' class='vboxCheckbox vboxEnablerCheckbox' id='vboxSettingsGlobalNetDHCPEnabled' /> <span class='translate'>Enable Server</span></label></td>
-				</tr>
-				<tr>
-					<th><span class='translate'>Server Address:</span></th>
-					<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetServerAddress' /></td>
-				</tr>
-				<tr>
-					<th><span class='translate'>Server Mask:</span></th>
-					<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetServerMask' /></td>
-				</tr>
-				<tr>
-					<th><span class='translate'>Lower Address Bound:</span></th>
-					<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetLower' /></td>
-				</tr>
-				<tr>
-					<th><span class='translate'>Upper Address Bound:</span></th>
-					<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetUpper' /></td>
-				</tr>
-			</table>
+			<div class='vboxBordered' style='height:160px; overflow:auto; background-color:white;'>
+				<table class="vboxSettingsTable thpadding tdpadding">
+					<tr>
+						<th style='padding-left: 15px;'/><td style='padding-top: 4px; padding-left: 5px'/>
+					</tr>
+					<tr>
+						<td colspan='2'><label><input type='checkbox' class='vboxCheckbox vboxEnablerCheckbox' id='vboxSettingsGlobalNetDHCPEnabled' /> <span class='translate'>Enable Server</span></label></td>
+					</tr>
+					<tr>
+						<th><span class='translate'>Server Address:</span></th>
+						<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetServerAddress' /></td>
+					</tr>
+					<tr>
+						<th><span class='translate'>Server Mask:</span></th>
+						<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetServerMask' /></td>
+					</tr>
+					<tr>
+						<th><span class='translate'>Lower Address Bound:</span></th>
+						<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetLower' /></td>
+					</tr>
+					<tr>
+						<th><span class='translate'>Upper Address Bound:</span></th>
+						<td><input type='text' class='vboxText' id='vboxSettingsGlobalNetUpper' /></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
@@ -606,7 +616,11 @@ buttons[trans('OK','QIMessageBox')] = function(){
 	$(this).dialog("close");
 };
 buttons[trans('Cancel','QIMessageBox')] = function(){$(this).dialog("close");};
-$('#vboxSettingsGlobalNetEditDialog').dialog({'buttons':buttons,'width':500,'modal':true,'autoOpen':false,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' +trans('Host-only Network Details','UIGlobalSettingsNetworkDetailsHost')});
+$('#vboxSettingsGlobalNetEditDialog').dialog({'buttons':buttons,
+		'width':500,'minWidth':400,'minHeight':320,
+		'modal':true,'autoOpen':false,'dialogClass':'vboxSettingsDialog vboxDialogContent',
+		'title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' +
+		trans('Host-only Network Details','UIGlobalSettingsNetworkDetailsHost')});
 
 
 function vboxSettingsGlobalNetEditDialog() {

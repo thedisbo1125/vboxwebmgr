@@ -4,3 +4,13 @@ input.fullwidth { width: 99%;}
         input.fullwidth { width: 97%;}
 }
 
+table.thpadding th {
+    padding-left: 15px;
+}
+
+table.tdpadding td {
+    padding-left: 5px;
+    padding-top: 2px;
+}
+
+
