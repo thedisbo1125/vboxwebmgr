@@ -5719,7 +5719,7 @@ class vboxconnector {
 			'hasSnapshots' => $hasSnapshots,
 			'lastAccessError' => $m->lastAccessError,
 			'variant' => $variant,
-			'machineIds' => array(),
+			'machineIds' => $machines,
 			'attachedTo' => $attachedTo,
 			'encryptionSettings' => $encryptionSettings
 		);
