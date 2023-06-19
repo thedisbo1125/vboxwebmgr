@@ -8,7 +8,7 @@
 */
 try {
 
-	// Must be made global or OMV breaks 
+	// Must be made global or OMV breaks
 	global $xmlConfig, $OMV_DEFAULT_FILE;
 
 	require_once("openmediavault/globals.inc");
@@ -24,7 +24,7 @@ try {
 class vboxwebmgrAuthOpenMediaVault implements vboxwebmgrAuth {
 
 	static $session = null;
-	
+
 	var $capabilities = array(
 		'canChangePassword' => false,
 		'sessionStart' => 'sessionStart',
@@ -46,50 +46,50 @@ class vboxwebmgrAuthOpenMediaVault implements vboxwebmgrAuth {
 		require_once("rpc/authentication.inc");
 		$a = new AuthenticationRpc();
 		try {
-			
+
 			$auth = $a->login(array('username'=>$username,'password'=>$password));
-			
+
 			self::$session = &OMVSession::getInstance();
-			
+
 			if(@$auth["authenticated"] &&
 			(self::$session->getRole() !== OMV_ROLE_USER || $this->config['allowNonAdmin'])) {
 				$_SESSION['admin'] = (self::$session->getRole() !== OMV_ROLE_USER);
 				$_SESSION['user'] = $_SESSION['username'];
 				$_SESSION['valid'] = ($_SESSION['admin'] || $this->config['allowNonAdmin']);
 				$_SESSION['authCheckHeartbeat'] = time();
-	
+
 			}
-	
+
 			if(!@$_SESSION['valid']) {
 				return false;
 			}
 			return true;
-	
+
 		} catch (Exception $e) {
 			return false;
 		}
 		return false;
 	}
-	
+
 	function sessionStart($keepopen) {
-		
+
 		self::$session = &OMVSession::getInstance();
 		self::$session->start();
-		
+
 
 		if (self::$session->isAuthenticated() && !self::$session->isTimeout()) {
-			
+
 			self::$session->validate();
 			self::$session->updateLastAccess();
-			
+
 			$_SESSION['admin'] = (self::$session->getRole() !== OMV_ROLE_USER);
 			$_SESSION['user'] = $_SESSION['username'];
 			$_SESSION['valid'] = (self::$session->getRole() !== OMV_ROLE_USER || $this->config['allowNonAdmin']);
-			
+
 		} else {
-			
+
 			$_SESSION['admin'] = $_SESSION['user'] = $_SESSION['valid'] = null;
-			
+
 		}
 
 		if(!$keepopen)
