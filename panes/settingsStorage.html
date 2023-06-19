@@ -496,6 +496,7 @@ var vboxSettingsMAMenu = new vboxMenu({'name':'vboxSettingsMAMenuL',
     'menuItems': [vboxSettingsStorageButtons[1]],
     'language_context': 'UIMachineSettingsStorage'});
 
+
 /*
  * Medium menu buttons
  */
@@ -507,6 +508,7 @@ mAttachToolbarCD.renderTo('vboxSettingsAddAttachmentsMenuCDDiv');
 
 var mAttachToolbarFD = new vboxButtonMediaMenu('Floppy',vboxSettingsControllerAttach);
 mAttachToolbarFD.renderTo('vboxSettingsAddAttachmentsMenuFDDiv');
+
 
 /*
  * Controller actions and menus for each bus type
@@ -575,6 +577,7 @@ $('#vboxSettingsStorageTree').on('itemselect',function(e,item){
  *
  *
  */
+
 
 /*
  * Changing the slot changes the object
@@ -742,7 +745,7 @@ $('#vboxSettingsDialog').on('save',function(){
 
 });
 
-/* WHen data is loaded */
+/* When data is loaded */
 $('#vboxSettingsDialog').on('dataLoaded',function(){
 
 	/*
@@ -776,7 +779,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 	if(!$('#vboxSettingsDialog').data('vboxFullEdit')) {
 		
 		scToolbar.disable();
-		$('#vboxSettingsStorageTree').disableContextMenu()
+		$('#vboxSettingsStorageTree').disableContextMenu();
 				
 		p.find('span:not(.vboxRunningEnabled)').addClass('disabled');
 		p.find('input:not(.vboxRunningEnabled),select,textarea').prop('disabled',true);
@@ -998,6 +1001,7 @@ function vboxSettingsMediumTip(m) {
 
 }
 
+
 /*
  * 
  *	Add disk medium to bus helper function
@@ -1115,16 +1119,16 @@ function vboxSettingsStorageAddMedium(conElm, type) {
     $('<div />').attr({'id':'vboxSettingsStorageUnavailable','style':'display: none'}).html(
     		'<div><img src="images/50px-Question_icon.svg.png" style="float: left; padding: 10px; " />'+msg+'</div>'
     ).dialog({'closeOnEscape':false,'width':600,'height':200,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});
-		
+
 
 }
 
+
 /*
  * 
- * 		Add controller to list helper function
+ * Add controller to list helper function
  *
  */
-
 function vboxSettingsAddController(con,list) {
 	
 	// Elect name if none exists
@@ -1270,64 +1274,60 @@ function vboxSettingsAddController(con,list) {
 }
 
 
-
-
-
 /*
  * 
- *		Add a medium attachment to a controller helper function
+ * Add a medium attachment to a controller helper function
  *
  */
 function vboxSettingsAddAttachment(d,conElm) {
 
 
-    var con = (conElm ? conElm : $('#vboxSettingsStorageTree').find('table.vboxListItemSelected').first().parent());
+	var con = (conElm ? conElm : $('#vboxSettingsStorageTree').find('table.vboxListItemSelected').first().parent());
     
 	// Save bus
-    d.bus = $(con).find('table.vboxSettingsController').data('controller').bus;
+	d.bus = $(con).find('table.vboxSettingsController').data('controller').bus;
     
-    // remove any 'last' classes
-    $(con).children('ul').children().removeClass('last');
+	// remove any 'last' classes
+	$(con).children('ul').children().removeClass('last');
 
-    var li = $('<li />').attr({'class':'last vboxSettingsMediumAttachment'});
-        
+	var li = $('<li />').attr({'class':'last vboxSettingsMediumAttachment'});
 
 	var tbl = $('<table />').attr({'class':'vboxListItem vboxSettingsStorageAttachment'})
 		.data({'attachment':d}).on('click',function(){
-	    	vboxSettingsSelectAttachment(this);
-	    });
+		vboxSettingsSelectAttachment(this);
+	});
     
 	var m = vboxMedia.getMediumById(((d.medium && d.medium.id) ? d.medium.id : null));
 	
-    var tr = $('<tr />');
+	var tr = $('<tr />');
 
-    // Storage type icon
-    $(tr).append($('<td />').attr({'class':'vboxSettingsStorageTypeIcon vboxSettingsMediaType' + d.type,'style':'width:22px'}).html('<img src="images/vbox/blank.gif" style="width:22px" />'));
+	// Storage type icon
+	$(tr).append($('<td />').attr({'class':'vboxSettingsStorageTypeIcon vboxSettingsMediaType' + d.type,'style':'width:22px'}).html('<img src="images/vbox/blank.gif" style="width:22px" />'));
     
-    // Medium name
-    $(tr).append($('<td />').css({'width':'100%'}).append($('<div />').attr({'class':'vboxSettingsStorageMediumName vboxFitToContainer'}).html(vboxMedia.getName(vboxMedia.getMediumById((m && m.base ? m.base : (m && m.id ? m.id : null)))))));
-    
-    
-    $(tbl).append(tr).appendTo(li);
-    
-    // Only if not running
-    if($('#vboxSettingsDialog').data('vboxFullEdit')) {
+	// Medium name
+	$(tr).append($('<td />').css({'width':'100%'}).append($('<div />').attr({'class':'vboxSettingsStorageMediumName vboxFitToContainer'}).html(vboxMedia.getName(vboxMedia.getMediumById((m && m.base ? m.base : (m && m.id ? m.id : null)))))));
 
-    	$(li).contextMenu({
-		 		menu: vboxSettingsMAMenu.menuId(),
-				menusetup : function(el) {
-					vboxSettingsSelectAttachment($(el).find('table.vboxSettingsStorageAttachment'));
-				}
-		 	},
-		 	function(action, el, pos) {
-		 		vboxSettingsStorageButtons[1].click();
-		 	}
+	$(tbl).append(tr).appendTo(li);
+    
+	// Only if not running
+	if($('#vboxSettingsDialog').data('vboxFullEdit')) {
+
+		$(li).contextMenu({
+			menu: vboxSettingsMAMenu.menuId(),
+			menusetup : function(el) {
+				vboxSettingsSelectAttachment($(el).find('table.vboxSettingsStorageAttachment'));
+			}
+		},
+		function(action, el, pos) {
+			vboxSettingsStorageButtons[1].click();
+		}
 		);
-    }
+	}
     
 	$(li).tipped({'source':vboxSettingsMediumTip(m),'position':'mouse','delay':1000}).appendTo(con.children('ul'));
 
 }
+
 
 /*
  * 
