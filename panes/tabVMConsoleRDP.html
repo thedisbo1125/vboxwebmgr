@@ -6,16 +6,15 @@
 	$Id: tabVMConsoleRDP.html 595 2015-04-17 09:50:36Z imoore76 $
 	
  -->
-  <div id='vboxTabVMUnavailable' style='display: none' class='translate'>Virtual machine is not running or is not configured to accept RDP connections.</div>
-  <div id='vboxRDPFormContainer'  style='padding-top: 8px; display: none'>
+
+<div id='vboxTabVMUnavailable' style='display: none' class='translate'>Virtual machine is not running or is not configured to accept RDP connections.</div>
+<div id='vboxRDPFormContainer'  style='padding-top: 8px; display: none'>
 	<form name="vboxRDPForm" id="vboxRDPForm">
 		<div class='vboxInvisible' id='vboxRDPConnParams'>
-		
 			<span id='vboxConsoleLoginInfo'>
-				<span class='translate'>User name</span>: <input class='vboxRDPSet' type=text size=20 name=logonUsername value="">
-				<span class='translate'>Password</span>: <input class='vboxRDPSet' type=password size=20 name=logonPassword value="">
+				<span class='translate'>User name</span>: <input class='vboxRDPSet' type=text size=20 name=logonUsername value="" />
+				<span class='translate'>Password</span>: <input class='vboxRDPSet' type=password size=20 name=logonPassword value="" />
 			</span>
-			
 			<span class='translate'>Requested desktop size</span>:
 			<select id='vboxRDPSize' name='vboxRDPSizeSelect'>
 				<option value='800x600'>800x600</option>
@@ -25,20 +24,21 @@
 			
 		</div>
 	  	<p>
-	  		<input name=connectionButton type=button value="Connect" onclick="vboxRDPConnect();" />
-	  		<input type='text' id='vboxConsoleAddr' name='serverAddress' class='vboxRDPSet' value='' />
+			<input name=connectionButton type=button value="Connect" onclick="vboxRDPConnect();" />
+			<input type='text' id='vboxConsoleAddr' name='serverAddress' class='vboxRDPSet' value='' />
+
 	  		<!-- and hardcore web dev guys across the world frown ... //-->
 	  		&nbsp; &nbsp; &nbsp;
 	 		<input name=cadButton id='vboxConsoleCADButton' style='display: none' type=button value="Ctrl-Alt-Del" onClick="vboxRDPsendCAD()" />
 	 		<input id='vboxVRDPDetachBtn' style='display: none' name='detach' type='button' value='Detach' onClick="vboxRDPDetach();" />
-		   <span id='vboxRDPStatus'></span>
-	  	</p>
+			<span id='vboxRDPStatus'></span>
+		</p>
 	</form>
-  </div>
+</div>
   
-  <div id="FlashRDPContainer" style='width: 100%;'>
-    <div id="FlashRDP" style='width: 100%;'></div>
-  </div>
+<div id="FlashRDPContainer" style='width: 100%;'>
+	<div id="FlashRDP" style='width: 100%;'></div>
+</div>
   
 
 <script type="text/javascript">
