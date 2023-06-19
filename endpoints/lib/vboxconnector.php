@@ -5638,7 +5638,7 @@ class vboxconnector {
 
 		$children = array();
 		$attachedTo = array();
-		$machines = $m->machineIds;
+		$machineIds = $m->machineIds;
 		$hasSnapshots = 0;
 
 		foreach($m->children as $c) { /* @var $c IMedium */
@@ -5646,7 +5646,7 @@ class vboxconnector {
 			$c->releaseRemote();
 		}
 
-		foreach($machines as $mid) {
+		foreach($machineIds as $mid) {
 			$sids = $m->getSnapshotIds($mid);
 			try {
 				/* @var $mid IMachine */
@@ -5719,7 +5719,7 @@ class vboxconnector {
 			'hasSnapshots' => $hasSnapshots,
 			'lastAccessError' => $m->lastAccessError,
 			'variant' => $variant,
-			'machineIds' => $machines,
+			'machineIds' => $machineIds,
 			'attachedTo' => $attachedTo,
 			'encryptionSettings' => $encryptionSettings
 		);
