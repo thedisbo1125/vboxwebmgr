@@ -4,24 +4,24 @@
  */
 
 class vboxwebmgrAuthWebAuth implements vboxwebmgrAuth {
-	
+
 	var $capabilities = array(
 			'canChangePassword' => false,
 			'canLogout' => false
 		);
-	
+
 	var $config = array(
 		'serverUserKey' => 'REMOTE_USER'
 	);
-	
+
 	function vboxwebmgrAuthWebAuth($userConfig = null) {
 		if($userConfig) $this->config = array_merge($this->config,$userConfig);
 	}
-	
+
 	function login($username, $password)
 	{
 	}
-	
+
 	function autoLoginHook()
 	{
 		global $_SESSION;
@@ -31,10 +31,10 @@ class vboxwebmgrAuthWebAuth implements vboxwebmgrAuth {
 			$_SESSION['valid'] = true;
 			$_SESSION['user'] = $_SERVER[$this->config['serverUserKey']];
 			$_SESSION['admin'] = (!$this->config['adminUser']) || ($_SESSION['user'] == $this->config['adminUser']);
-			$_SESSION['authCheckHeartbeat'] = time();			
+			$_SESSION['authCheckHeartbeat'] = time();
 		}
 	}
-	
+
 	function heartbeat($vbox)
 	{
 		global $_SESSION;
@@ -44,11 +44,11 @@ class vboxwebmgrAuthWebAuth implements vboxwebmgrAuth {
 			$_SESSION['authCheckHeartbeat'] = time();
 		}
 	}
-	
+
 	function changePassword($old, $new)
 	{
 	}
-	
+
 	function logout(&$response)
 	{
 		$response['data']['result'] = 1;
@@ -57,19 +57,19 @@ class vboxwebmgrAuthWebAuth implements vboxwebmgrAuth {
 			$response['data']['url'] = $this->config['logoutURL'];
 		}
 	}
-	
+
 	function listUsers()
 	{
-		
+
 	}
-	
+
 	function updateUser($vboxRequest, $skipExistCheck)
 	{
-		
+
 	}
-	
+
 	function deleteUser($user)
 	{
-		
+
 	}
 }
