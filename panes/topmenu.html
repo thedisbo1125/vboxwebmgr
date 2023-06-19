@@ -23,33 +23,32 @@ var menu = {
 	'label': 'File',
 	'menu':[
         {
-			'name':'fileVMM',
-			'label':'Virtual Media Manager...',
-			'icon':'diskimage',
-			'click':function(){vboxVMMDialog();}
+		'name':'fileVMM',
+		'label':'Virtual Media Manager...',
+		'icon':'diskimage',
+		'click':function(){vboxVMMDialog();}
         },
         {
-			'name':'fileImport',
-			'label':'Import Appliance...',
-			'icon':'import',
-			'click':function(){
-				
-				new vboxWizardImportApplianceDialog().run();
-			},
-			'separator': true
+		'name':'fileImport',
+		'label':'Import Appliance...',
+		'icon':'import',
+		'click':function(){
+			new vboxWizardImportApplianceDialog().run();
+		},
+		'separator': true
         },
         {
-			'name':'fileExport',
-			'label':'Export Appliance...',
-			'icon':'export',
-			'click':function(){new vboxWizardExportApplianceDialog().run();}
+		'name':'fileExport',
+		'label':'Export Appliance...',
+		'icon':'export',
+		'click':function(){new vboxWizardExportApplianceDialog().run();}
         },
         {
-			'name':'filePrefs',
-			'label':'Preferences...',
-			'icon':'global_settings',
-			'click':function(){vboxGlobalPrefsDialog();},
-			'separator':true
+		'name':'filePrefs',
+		'label':'Preferences...',
+		'icon':'global_settings',
+		'click':function(){vboxGlobalPrefsDialog();},
+		'separator':true
         }
 	]
 };
@@ -182,19 +181,19 @@ vboxTopMenuBar.addMenu({
 		return (!chooser || (chooser.selectionMode != vboxSelectionModeSingleGroup));
 	},
 	'menu':[
-	    vboxVMActions['new'],
-	    vboxVMActions['add'],
-	    vboxVMActions['settings'],
-	    vboxVMActions['clone'],
-	    vboxVMActions['remove'],
-	    vboxVMActions['group'],
-	    $.extend({},vboxVMActions['start'],{'separator':true}),
-	    vboxVMActions['pause'],
-	    vboxVMActions['reset'],
-	    $.extend({},vboxVMActions['stop'],{'children':sChildren}),
-	    $.extend({},vboxVMActions['discard'],{'separator':true}),
-	    vboxVMActions['logs'],
-	    vboxVMActions['refresh'],
+		vboxVMActions['new'],
+		vboxVMActions['add'],
+		vboxVMActions['settings'],
+		vboxVMActions['clone'],
+		vboxVMActions['remove'],
+		vboxVMActions['group'],
+		$.extend({},vboxVMActions['start'],{'separator':true}),
+		vboxVMActions['pause'],
+		vboxVMActions['reset'],
+		$.extend({},vboxVMActions['stop'],{'children':sChildren}),
+		$.extend({},vboxVMActions['discard'],{'separator':true}),
+		vboxVMActions['logs'],
+		vboxVMActions['refresh'],
 	]
 });
 
@@ -206,17 +205,17 @@ vboxTopMenuBar.addMenu({
 		return (chooser && (chooser.selectionMode == vboxSelectionModeSingleGroup));
 	},
 	'menu':[
-    	vboxVMGroupActions['newmachine'],
-    	vboxVMGroupActions['addmachine'],
-    	$.extend({}, vboxVMGroupActions['rename'], {separator:true}),
-    	vboxVMGroupActions['ungroup'],
-    	$.extend({},vboxVMActions['start'],{'name':'start','separator' : true}),
-        vboxVMActions['pause'],
-        vboxVMActions['reset'],
-    	$.extend({},vboxVMActions['stop'],{'children':sChildren}),
-    	$.extend({},vboxVMActions['discard'],{'separator' : true}),
-    	vboxVMActions['refresh'],
-    	$.extend({}, vboxVMGroupActions['sort'], {separator:true})
+		vboxVMGroupActions['newmachine'],
+		vboxVMGroupActions['addmachine'],
+		$.extend({}, vboxVMGroupActions['rename'], {separator:true}),
+		vboxVMGroupActions['ungroup'],
+		$.extend({},vboxVMActions['start'],{'name':'start','separator' : true}),
+		vboxVMActions['pause'],
+		vboxVMActions['reset'],
+		$.extend({},vboxVMActions['stop'],{'children':sChildren}),
+		$.extend({},vboxVMActions['discard'],{'separator' : true}),
+		vboxVMActions['refresh'],
+		$.extend({}, vboxVMGroupActions['sort'], {separator:true})
 	]
 });
 
@@ -225,37 +224,36 @@ vboxTopMenuBar.addMenu({
 	'label': 'Help',
 	'language_context': 'UIHelpButton',
 	'menu':[
-        {
-			'name':'helpvbox',
-			'label':'VirtualBox User Manual',
-			'icon':'site',
-			'click':function(){
-				window.open('http://www.virtualbox.org/manual/','manual');        	
-        	}
+	{
+		'name':'helpvbox',
+		'label':'VirtualBox User Manual',
+		'icon':'site',
+		'click':function(){
+			window.open('http://www.virtualbox.org/manual/','manual');
+		}
         },
-        
+
         {
-			'name':'helpAbout',
-			'label':trans('About','vboxwebmgr'),
-			'icon':'help',
-			'click':function(){
-        	
-	        	$('#vboxPane').append($('<div />').attr({'id':'vboxAbout','class':'vboxDialogContent','style':'display: none; width: 500px;'}));
-	
-	        	var l = new vboxLoader();
-	        	l.addFileToDOM('panes/about.html',$('#vboxAbout'));
-	        	l.onLoad = function() {
+		'name':'helpAbout',
+		'label':trans('About','vboxwebmgr'),
+		'icon':'help',
+		'click':function(){
+			$('#vboxPane').append($('<div />').attr({'id':'vboxAbout','class':'vboxDialogContent','style':'display: none; width: 500px;'}));
+
+			var l = new vboxLoader();
+			l.addFileToDOM('panes/about.html',$('#vboxAbout'));
+			l.onLoad = function() {
 		        	var buttons = {};
 		        	buttons[trans('Close','UIVMLogViewer')] = function() { $(this).empty().remove(); };
-		
-		            $('#vboxAbout').dialog({'closeOnEscape':false,'width':500,'height':'auto','buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/help_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});			        	
+
+				$('#vboxAbout').dialog({'closeOnEscape':false,'width':500,'height':'auto','buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/help_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});
 	        	};
 	        	l.run();
         	}
         }
-        
-    ]
+	]
 });
+
 
 vboxTopMenuBar.renderTo('vboxMenu');
 
@@ -266,7 +264,7 @@ $('#vboxPane').on('vmSelectionListChanged vmGroupDefsSaving vmGroupDefsSaved',fu
 
 	var updateMenuBar = false;
 	for(var i = 0; i < eventList.length && !updateMenuBar; i++) {
-		
+
 		switch(eventList[i].eventType) {
 			case 'OnMachineStateChanged':
 			case 'OnSessionStateChanged':
@@ -276,11 +274,11 @@ $('#vboxPane').on('vmSelectionListChanged vmGroupDefsSaving vmGroupDefsSaved',fu
 				break;
 		}
 	}
-	
+
 	if(updateMenuBar) {
 		vboxTopMenuBar.update(vboxChooser);
 	}
-	
+
 });
 
 

@@ -49,13 +49,13 @@
 <div id='wizardCopyHDStep3' title='Storage on physical hard disk' style='display: none'>
 
 	<p class='translate'>Please choose whether the new virtual hard disk file should grow as it is used (dynamically allocated) or if it should be created at its maximum size (fixed size).</p>
-	
+
 	<span class='translate vboxCreateDynamic'>&lt;p&gt;A &lt;b&gt;dynamically allocated&lt;/b&gt; hard disk file will only use space on your physical hard disk as it fills up (up to a maximum &lt;b&gt;fixed size&lt;/b&gt;), although it will not shrink again automatically when space on it is freed.&lt;/p&gt;</span>
-	
+
 	<span class='translate vboxCreateFixed'>&lt;p&gt;A &lt;b&gt;fixed size&lt;/b&gt; hard disk file may take longer to create on some systems but is often faster to use.&lt;/p&gt;</span>
-	
+
 	<span class='translate vboxCreateSplit2G'>&lt;p&gt;You can also choose to &lt;b&gt;split&lt;/b&gt; the hard disk file into several files of up to two gigabytes each. This is mainly useful if you wish to store the virtual machine on removable USB devices or old systems, some of which cannot handle very large files.</span>
-	
+
 	<div class='vboxOptions'>
 		<table class='vboxOptions'>
 			<tr style='vertical-align: top;' class='vboxCreateDynamic'>
@@ -75,7 +75,7 @@
 <div id='wizardCopyHDStep4' title='New hard disk to create' style='display: none'>
 
 	<p class='translate'>Please type the name of the new virtual hard disk file into the box below or click on the folder icon to select a different folder to create the file in.</p>
-	
+
 	<div class='vboxOptions'>
 		<table class='vboxOptions'>
 			<tr>
@@ -85,8 +85,7 @@
 				<td style='width: 1%;' id='newVMDiskVMMDest'></td>
 			</tr>
 		</table>
-	</div>	
-
+	</div>
 </div>
 
 <script type='text/javascript'>
@@ -120,6 +119,7 @@ new vboxToolbarSingle({button: {
 	}
 }}).renderTo('newVMDiskVMM');		
 
+
 /* Choose location of new file button */
 new vboxToolbarSingle({button: {
 	'name' : 'mselecthdbtn',
@@ -131,18 +131,18 @@ new vboxToolbarSingle({button: {
 	}
 }}).renderTo('newVMDiskVMMDest');		
 
-	
+
 /* Set up disk selection box */
 function copyHDFillDisks(sel) {
 
 	document.forms['frmwizardCopyHD'].copyHDDiskSelect.options.length = 0;
 	$(document.forms['frmwizardCopyHD'].copyHDDiskSelect).children().remove();
-		
+
 	var s = vboxMedia.mediaForAttachmentType('HardDisk');
-	
+
 	// Sort media
 	s.sort(function(a,b){return strnatcasecmp(a.name,b.name);});
-	
+
 	var mediumSelects = [];
 	for(var i = 0; i < s.length; i++) {
 		document.forms['frmwizardCopyHD'].copyHDDiskSelect.options[i] = new Option(vboxMedia.mediumPrint(s[i]),s[i].id);
@@ -152,7 +152,7 @@ function copyHDFillDisks(sel) {
 	if(sel) {
 		$(document.forms['frmwizardCopyHD'].copyHDDiskSelect).val(sel);
 	}
-	
+
 	$(document.forms['frmwizardCopyHD'].copyHDDiskSelect).mediumselect({'type':'HardDisk','showdiff':false,'media':mediumSelects});
 
 }
@@ -173,7 +173,7 @@ function wizardCopyHDBrowseLocation() {
 		// no path set, use src location
 		loc = vboxDirname(vboxMedia.getMediumById($(document.forms['frmwizardCopyHD'].copyHDDiskSelect).val()).location);
 	}
-		
+
 	vboxFileBrowser(loc,function(f){
 		if(!f) return;
 		// get file name
@@ -197,12 +197,10 @@ $('#wizardCopyHDStep1').on('show',function(e,wiz){
 	// Already initialized?
 	if($('#wizardCopyHDStep1').data('init')) return;
 
-    if(wiz && wiz.suggested && wiz.suggested.medium)
-    	$(document.forms['frmwizardCopyHD'].copyHDDiskSelect).mediumselect({'selectMedium':wiz.suggested.medium});
-    
-    
+	if(wiz && wiz.suggested && wiz.suggested.medium)
+		$(document.forms['frmwizardCopyHD'].copyHDDiskSelect).mediumselect({'selectMedium':wiz.suggested.medium});
+
 	$('#wizardCopyHDStep1').data('init',true);
-	
 });
 
 $('#wizardCopyHDStep2').on('show',function(e,wiz){
@@ -214,7 +212,7 @@ $('#wizardCopyHDStep4').on('show',function(e,wiz){
 
 /* WHen showing step 3, show / hide split option */
 $('#wizardCopyHDStep3').on('show',function(e,wiz){
-		
+
 	var caps = new Array();
 	for(var i = 0; i < document.forms['frmwizardCopyHD'].copyHDFileType.length; i++) {
 		if(document.forms['frmwizardCopyHD'].copyHDFileType[i].checked) {
@@ -222,7 +220,7 @@ $('#wizardCopyHDStep3').on('show',function(e,wiz){
 			break;
 		}
 	}
-	
+
 	var capOpts = ['CreateFixed','CreateDynamic','CreateSplit2G'];
 	for(var i = 0; i < capOpts.length; i++) {
 		if(jQuery.inArray(capOpts[i],caps) < 0) {
@@ -231,15 +229,15 @@ $('#wizardCopyHDStep3').on('show',function(e,wiz){
 			$('#wizardCopyHDStep3').find('.vbox'+capOpts[i]).show();
 		}
 	}
-	
+
 	// Select first visible option
 	$('#wizardCopyHDStep3').find('tr:visible').first().find('input').prop('checked',true);
-	
+
 	if($('#wizardCopyHDStep3').find('tr:visible').length == 1) {
 		if(wiz._lastStep == 2) wiz.displayStep(4);
 		else if(wiz._lastStep == 4) wiz.displayStep(2);
 	}
 });
 
- 
+
 </script>
