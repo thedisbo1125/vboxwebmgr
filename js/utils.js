@@ -603,6 +603,8 @@ function vboxAlert(e,xtraOpts) {
     return acknowledged;
 
 }
+
+
 /**
  * Confirmation dialog
  * @param {String} q - question to ask
@@ -1363,6 +1365,7 @@ var getScrollbarWidth = function() {
 
 	return (w1 - w2);
 };
+
 
 /**
  * Returns the result of case-insensitive string comparison using 'natural' algorithm comparing str1 to str2
