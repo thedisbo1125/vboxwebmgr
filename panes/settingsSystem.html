@@ -113,104 +113,110 @@
 
 <!-- Processor Tab -->
 <div id='vboxSettingsTabSystemProcessor' title='Processors'>
-<table style='width: 100%'>
-	<tr>
-		<th style='text-align:right'><span class='translate'>Processor(s):</span></th>
-		<td style='width: 100%; white-space: nowrap'>
-		<table style='width: 100%'>
-			<tr>
-				<td style='width: 100%; border: 0px; margin: 0px; padding: 0px;'>
-				   <div style='margin-top: 4px' id='vboxSettingsSystemProcessor' class='slider'><div class='sliderScale'></div></div>
-				</td>
-				<td><input type='text' class='vboxText' name='vboxSettingsSystemProcessorValue' size='2' class='sliderValue' /></td>
-			</tr>
-			<tr style='vertical-align: top;'>
-				<td style='border: 0px; margin: 0px; padding: 0px;'>
-                   <table style='width: 100%; border: 0px; margin: 0px; padding: 0px;'>
-					<tr style='vertical-align: top'>
-						<td style='text-align: left;'><span class='vboxSliderMin'>%1 CPU</span></td>
-						<td style='text-align: right;'><span class='vboxSliderMax'>%1 CPUs</span></td>
+	<table style='width: 100%'>
+		<tr>
+			<th style='text-align:right'><span class='translate'>Processor(s):</span></th>
+			<td style='width: 100%; white-space: nowrap'>
+				<table style='width: 100%'>
+					<tr>
+						<td style='width: 100%; border: 0px; margin: 0px; padding: 0px;'>
+							<div style='margin-top: 4px' id='vboxSettingsSystemProcessor' class='slider'><div class='sliderScale'></div></div>
+						</td>
+						<td><input type='text' class='vboxText' name='vboxSettingsSystemProcessorValue' size='2' class='sliderValue' /></td>
 					</tr>
-				   </table>
-				</td>
-				<td></td>
-			</tr>
-		</table>
-
-		</td>
-	</tr>
-	<tr class='vboxRunningEnabled'>
-		<th style='text-align:right'><span class='translate'>Execution Cap:</span></th>
-		<td style='width: 100%; white-space: nowrap'>
-		<table style='width: 100%'>
-			<tr class='vboxRunningEnabled'>
-				<td style='width: 100%; border: 0px; margin: 0px; padding: 0px;'>
-				   <div style='margin-top: 4px' id='vboxSettingsSystemProcessorCap' class='slider'><div class='sliderScale'></div></div>
-				</td>
-				<td><input type='text' class='vboxText vboxRunningEnabled' name='vboxSettingsSystemProcessorCapValue' size='3' class='sliderValue' /></td>
-			</tr>
-			<tr style='vertical-align: top;' class='vboxRunningEnabled'>
-				<td style='border: 0px; margin: 0px; padding: 0px;'>
-                   <table style='width: 100%; border: 0px; margin: 0px; padding: 0px;'>
-					<tr style='vertical-align: top' class='vboxRunningEnabled'>
-						<td style='text-align: left;'><span class='vboxSliderMin' title='Min CPU execution cap in %'>%1%</span></td>
-						<td style='text-align: right;'><span class='vboxSliderMax' title='Max CPU execution cap in %'>%1%</span></td>
+					<tr style='vertical-align: top;'>
+						<td style='border: 0px; margin: 0px; padding: 0px;'>
+							<table style='width: 100%; border: 0px; margin: 0px; padding: 0px;'>
+								<tr style='vertical-align: top'>
+									<td style='text-align: left;'><span class='vboxSliderMin'>%1 CPU</span></td>
+									<td style='text-align: right;'><span class='vboxSliderMax'>%1 CPUs</span></td>
+								</tr>
+							</table>
+						</td>
+						<td></td>
 					</tr>
-				   </table>
-				</td>
-				<td></td>
-			</tr>
-		</table>
-
-		</td>
-	</tr>
-	
-	<tr id='vboxSettingsSystemPAERow'>
-		<th><span class='translate'>Extended Features:</span></th>
-		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemPAE' /> <span class='translate'>Enable PAE/NX</span></label></td>
-	</tr>
-	<tr id='vboxSettingsSystemNestedVTRow'>
-		<th></th>
-		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemNestedVT' /> <span class='translate'>Enable Nested VT-x/AMD-V</span></label></td>
-	</tr>
-</table>
+				</table>
+			</td>
+		</tr>
+		<tr class='vboxRunningEnabled'>
+			<th style='text-align:right'><span class='translate'>Execution Cap:</span></th>
+			<td style='width: 100%; white-space: nowrap'>
+				<table style='width: 100%'>
+					<tr class='vboxRunningEnabled'>
+						<td style='width: 100%; border: 0px; margin: 0px; padding: 0px;'>
+							<div style='margin-top: 4px' id='vboxSettingsSystemProcessorCap' class='slider'><div class='sliderScale'></div></div>
+						</td>
+						<td><input type='text' class='vboxText vboxRunningEnabled' name='vboxSettingsSystemProcessorCapValue' size='3' class='sliderValue' /></td>
+					</tr>
+					<tr style='vertical-align: top;' class='vboxRunningEnabled'>
+						<td style='border: 0px; margin: 0px; padding: 0px;'>
+							<table style='width: 100%; border: 0px; margin: 0px; padding: 0px;'>
+								<tr style='vertical-align: top' class='vboxRunningEnabled'>
+									<td style='text-align: left;'><span class='vboxSliderMin' title='Min CPU execution cap in %'>%1%</span></td>
+									<td style='text-align: right;'><span class='vboxSliderMax' title='Max CPU execution cap in %'>%1%</span></td>
+								</tr>
+							</table>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr id='vboxSettingsSystemPAERow'>
+			<th><span class='translate'>Extended Features:</span></th>
+			<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemPAE' /> <span class='translate'>Enable PAE/NX</span></label></td>
+		</tr>
+		<tr id='vboxSettingsSystemNestedVTRow'>
+			<th></th>
+			<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemNestedVT' /> <span class='translate'>Enable Nested VT-x/AMD-V</span></label></td>
+		</tr>
+	</table>
 </div>
 
 <!-- Acceleration Tab -->
 <div id='vboxSettingsTabSystemAcceleration' title='Acceleration'>
-<table>
-    <tr>
-        <th class='vboxEnablerIgnore'><span class='translate'>Paravirtualization Interface:</span></th>
-        <td><select name='vboxSettingsParavirtInterface' class='vboxEnablerIgnore'>
-            <option value='None'>None</option>
-            <option value='Default'>Default</option>
-            <option value='Legacy'>Legacy</option>
-            <option value='Minimal'>Minimal</option>
-            <option value='HyperV'>HyperV</option>
-            <option value='KVM'>KVM</option>
-        </select></td>
-	<tr>
-		<th style='text-align:right' class='vboxEnablerIgnore vboxSettingsAccelRequired'><span class='translate'>Hardware Virtualization:</span></th>
-		<td style='width:100%'><label><input type='checkbox' name='settingsSystemVT' class='vboxEnablerCheckbox vboxSettingsAccelRequired'/>
-		  <span class='translate vboxSettingsAccelRequired'>Enable VT-x/AMD-V</span></label></td>
-	</tr>
-	<tr>
-		<th></th>
-		<td><label><input type='checkbox' name='settingsSystemPaging' class='vboxEnablerListen' /> <span class='translate vboxEnablerListen'>Enable Nested Paging</span></label></td>
-	</tr>
-	<tr class='vboxSettingsSystemAdvancedOnly'>
-		<th></th>
-		<td><label><input type='checkbox' name='settingsSystemLargePages' class='vboxEnablerListen'/> <span class='translate vboxEnablerListen'>Enable Large Pages</span></label></td>
-	</tr>
-	<tr class='vboxSettingsSystemAdvancedOnly'>
-		<th></th>
-		<td><label><input type='checkbox' name='settingsSystemUnrestrictedExecution' class='vboxEnablerListen'/> <span class='translate vboxEnablerListen'>Enable VT-x unrestricted execution</span></label></td>
-	</tr>   
-	<tr class='vboxSettingsSystemAdvancedOnly'>
-		<th></th>
-		<td><label><input type='checkbox' name='settingsSystemVPID' class='vboxEnablerListen'/> <span class='translate vboxEnablerListen'>Enable VT-x VPID (Intel only)</span></label></td>
-	</tr>                   
-</table>
+	<table>
+		<tr>
+			<th class='vboxEnablerIgnore'><span class='translate'>Paravirtualization Interface:</span></th>
+			<td><select name='vboxSettingsParavirtInterface' class='vboxEnablerIgnore'>
+				<option value='None'>None</option>
+				<option value='Default'>Default</option>
+				<option value='Legacy'>Legacy</option>
+				<option value='Minimal'>Minimal</option>
+				<option value='HyperV'>HyperV</option>
+				<option value='KVM'>KVM</option>
+			</select></td>
+		<tr>
+			<th style='text-align:right' class='vboxEnablerIgnore vboxSettingsAccelRequired'><span class='translate'>Hardware Virtualization:</span></th>
+			<td style='width:100%'><label>
+				<input type='checkbox' name='settingsSystemVT' class='vboxEnablerCheckbox vboxSettingsAccelRequired'/> <span class='translate vboxSettingsAccelRequired'>Enable VT-x/AMD-V</span>
+			</label></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td><label>
+				<input type='checkbox' name='settingsSystemPaging' class='vboxEnablerListen' /> <span class='translate vboxEnablerListen'>Enable Nested Paging</span>
+			</label></td>
+		</tr>
+		<tr class='vboxSettingsSystemAdvancedOnly'>
+			<th></th>
+			<td><label>
+				<input type='checkbox' name='settingsSystemLargePages' class='vboxEnablerListen'/> <span class='translate vboxEnablerListen'>Enable Large Pages</span>
+			</label></td>
+		</tr>
+		<tr class='vboxSettingsSystemAdvancedOnly'>
+			<th></th>
+			<td><label>
+				<input type='checkbox' name='settingsSystemUnrestrictedExecution' class='vboxEnablerListen'/> <span class='translate vboxEnablerListen'>Enable VT-x unrestricted execution</span>
+			</label></td>
+		</tr>
+		<tr class='vboxSettingsSystemAdvancedOnly'>
+			<th></th>
+			<td><label>
+				<input type='checkbox' name='settingsSystemVPID' class='vboxEnablerListen'/> <span class='translate vboxEnablerListen'>Enable VT-x VPID (Intel only)</span>
+			</label></td>
+		</tr>
+	</table>
 </div>
 
 
