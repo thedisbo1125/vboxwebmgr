@@ -89,7 +89,7 @@
 </div>
 
 <!--  Edit Host Networking Properties Dialog -->
-<div id='vboxSettingsGlobalNetEditDialog' style='display: none'>
+<div id='vboxSettingsGlobalNetEditDialogId' style='display: none'>
 
 	<div id='vboxSettingsGlobalNetEdit' class='vboxTabbed'>
 		<ul>
@@ -154,7 +154,7 @@
 
 
 <!--  Edit NAT NET Networking Properties Dialog -->
-<div id='vboxSettingsGlobalNATNetworkEditDialog' style='display: none'>
+<div id='vboxSettingsGlobalNATNetworkEditDialogId' style='display: none'>
 
 
 	<div class='vboxDialogContent'>
@@ -578,7 +578,7 @@ vboxSettingsGlobalNetIntLimits();
  * Edit Network Interface Dialog 
  *
  */
-vboxInitDisplay('vboxSettingsGlobalNetEditDialog','UIHostNetworkDetailsWidget');
+vboxInitDisplay('vboxSettingsGlobalNetEditDialogId','UIHostNetworkDetailsWidget');
 
 var buttons = {};
 buttons[trans('OK','QIMessageBox')] = function(){
@@ -602,7 +602,7 @@ buttons[trans('OK','QIMessageBox')] = function(){
 	$(this).dialog("close");
 };
 buttons[trans('Cancel','QIMessageBox')] = function(){$(this).dialog("close");};
-$('#vboxSettingsGlobalNetEditDialog').dialog({'buttons':buttons,
+$('#vboxSettingsGlobalNetEditDialogId').dialog({'buttons':buttons,
 		'width':500,'minWidth':400,'minHeight':320,
 		'modal':true,'autoOpen':false,'dialogClass':'vboxSettingsDialog vboxDialogContent',
 		'title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' +
@@ -647,7 +647,7 @@ function vboxSettingsGlobalNetEditDialog() {
 		$('#vboxSettingsGlobalNetDHCPEnabled').trigger('click');
 	}
 
-	$('#vboxSettingsGlobalNetEditDialog').dialog('open');
+	$('#vboxSettingsGlobalNetEditDialogId').dialog('open');
 
 }
 
@@ -656,7 +656,7 @@ function vboxSettingsGlobalNetEditDialog() {
 * Edit NAT Network Interface Dialog 
 *
 */
-vboxInitDisplay('vboxSettingsGlobalNATNetworkEditDialog', 'UIGlobalSettingsNetworkDetailsNAT');
+vboxInitDisplay('vboxSettingsGlobalNATNetworkEditDialogId', 'UIGlobalSettingsNetworkDetailsNAT');
 
 var buttons = {};
 buttons[trans('OK','QIMessageBox')] = function(){
@@ -677,7 +677,7 @@ buttons[trans('OK','QIMessageBox')] = function(){
 	$(this).dialog("close");
 };
 buttons[trans('Cancel','QIMessageBox')] = function(){$(this).dialog("close");};
-$('#vboxSettingsGlobalNATNetworkEditDialog').dialog({'buttons':buttons,'width':500,'modal':true,'autoOpen':false,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' +trans('NAT Network Details','UIGlobalSettingsNetworkDetailsNAT')});
+$('#vboxSettingsGlobalNATNetworkEditDialogId').dialog({'buttons':buttons,'width':500,'modal':true,'autoOpen':false,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' +trans('NAT Network Details','UIGlobalSettingsNetworkDetailsNAT')});
 $('#vboxSettingsGlobalNATNetIPv6').on('enable',function() {
 	if(this.checked) {
 		$('#vboxSettingsGlobalNATNetIPv6Route').prop('disabled', false).siblings().removeClass('vboxDisabled');	
@@ -707,7 +707,7 @@ function vboxSettingsGlobalNATNetworkEditDialog() {
 		vboxSettingsGlobalNetworkNatPortForwardingDialog(net, $('#vboxSettingsGlobalNATNetList').children('tr.vboxListItemSelected').first());	
 	});
 	
-	$('#vboxSettingsGlobalNATNetworkEditDialog').dialog('open');
+	$('#vboxSettingsGlobalNATNetworkEditDialogId').dialog('open');
 
 }
 
@@ -837,8 +837,8 @@ $('#vboxSettingsDialog').on('save',function(){
  * Remove dialogs on close
  */
 $('#vboxSettingsDialog').on('close',function(){
-	$('#vboxSettingsGlobalNetEditDialog').remove();
-	$('#vboxSettingsGlobalNATNetworkEditDialog').remove();
+	$('#vboxSettingsGlobalNetEditDialogId').remove();
+	$('#vboxSettingsGlobalNATNetworkEditDialogId').remove();
 });
  
 </script>

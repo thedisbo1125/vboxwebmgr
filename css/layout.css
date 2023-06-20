@@ -1048,13 +1048,13 @@ div.vboxSettingsDialog div.ui-dialog-buttonpane {
 #vboxSettingsGlobalNetList li { padding-left: 4px; list-style: none; }
 #vboxSettingsGlobalNetEditAdapter th { text-align: right; width: auto; white-space: nowrap;}
 #vboxSettingsGlobalNetEditAdapter td, #vboxSettingsGlobalNetEditAdapter td input { text-align: left; width: 100%; white-space: nowrap;}
-#vboxSettingsGlobalNetEditDialog { background: #e9e9e9; }
-#vboxSettingsGlobalNetEditDialog .ui-tabs { background: #999999; margin: 0px 0px 0px 0px; border: 0px solid #999999;}
-#vboxSettingsGlobalNetEditDialog .ui-tabs-panel { background: #eeeeee;}
-#vboxSettingsGlobalNetEditDialog .ui-tabs .ui-state-default { background: #c1c1c1}
-#vboxSettingsGlobalNetEditDialog .ui-tabs .ui-tabs-active { background: #eeeeee}
-#vboxSettingsGlobalNetEditDialog .ui-tabs .ui-tabs-nav { margin: 0px; padding: 0px; border: 0px; background: #aaaaaa; }
-#vboxSettingsGlobalNetEditDialog input.width90 { width: 90%; }
+#vboxSettingsGlobalNetEditDialogId { background: #e9e9e9; }
+#vboxSettingsGlobalNetEditDialogId .ui-tabs { background: #999999; margin: 0px 0px 0px 0px; border: 0px solid #999999;}
+#vboxSettingsGlobalNetEditDialogId .ui-tabs-panel { background: #eeeeee;}
+#vboxSettingsGlobalNetEditDialogId .ui-tabs .ui-state-default { background: #c1c1c1}
+#vboxSettingsGlobalNetEditDialogId .ui-tabs .ui-tabs-active { background: #eeeeee}
+#vboxSettingsGlobalNetEditDialogId .ui-tabs .ui-tabs-nav { margin: 0px; padding: 0px; border: 0px; background: #aaaaaa; }
+#vboxSettingsGlobalNetEditDialogId input.width90 { width: 90%; }
 
 /* User Settings */
 #vboxSettingsUserList { background: #fff; height: 310px; padding: 0px; overflow: auto;}
