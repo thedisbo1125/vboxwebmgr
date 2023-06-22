@@ -323,7 +323,7 @@ $('#vboxSettingsStorageTree').contextMenu({
 
 		var bus = action.substring(3);
 		var c = {'bus':bus,'mediumAttachments':[],'controllerType':vboxStorage[bus].types[0],'useHostIOCache':1,
-				'maxPortCount':vboxStorage[bus]['maxPortCount'],'maxDevicesPerPortCount':vboxStorage[bus]['maxDevicesPerPortCount']};
+			'maxPortCount':vboxStorage[bus]['maxPortCount'],'maxDevicesPerPortCount':vboxStorage[bus]['maxDevicesPerPortCount']};
 
 		vboxSettingsAddController(c, $('#vboxSettingsStorageTree').children('ul').first());
 
