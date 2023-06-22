@@ -584,7 +584,9 @@ $('#vboxSettingsStorageTree').on('itemselect',function(e,item){
 
 
 /*
+ *
  * Changing the slot changes the object
+ *
  */
 document.forms['frmVboxSettings'].vboxSettingsControllerSlot.onchange = function(){
 
@@ -595,7 +597,6 @@ document.forms['frmVboxSettings'].vboxSettingsControllerSlot.onchange = function
 	$(attachment).data('attachment').device = pd[1];
 	
 };
-
 
 
 /*
@@ -887,6 +888,7 @@ $('#vboxSettingsStorageTree').click(function(){$(this).focus();}).keydown(functi
 	
 }).css('outline','none');;
 
+
 /*
  *
  *	Change media attachment helper function
@@ -972,7 +974,7 @@ function vboxSettingsSelectController(tbl) {
 
 
 /*
- *  Generate tooltip for medium helper function 
+ *  Generate tooltip for medium helper function
  */
 function vboxSettingsMediumTip(m) {
 
@@ -1319,7 +1321,7 @@ function vboxSettingsAddAttachment(d,conElm) {
 
 /*
  * 
- *		Called when selecting a medium attachment
+ * Called when selecting a medium attachment
  *
  */
 function vboxSettingsSelectAttachment(tbl) {
