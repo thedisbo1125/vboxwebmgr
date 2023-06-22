@@ -2391,7 +2391,7 @@ var vboxMedia = {
 	 * @static
 	 */
 	getName: function(m) {
-		if(!m) return trans('Empty','VBoxGlobal');
+		if(!m) return trans('Empty','UICommon');
 		if(m.hostDrive) {
 			if (m.description && m.name) {
 				return trans('Host Drive %1 (%2)','VBoxGlobal').replace('%1',m.description).replace('%2',m.name);
@@ -2493,27 +2493,27 @@ var vboxMedia = {
 		switch(m.variant) {
 
 		case variants.Standard:
-	            return trans("Dynamically allocated storage", "VBoxGlobal", null, 'MediumVariant');
+	            return trans("Dynamically allocated storage", "UICommon", null, 'MediumVariant');
 	        case (variants.Standard | variants.Diff):
-	            return trans("Dynamically allocated differencing storage", "VBoxGlobal"), null, 'MediumVariant';
+	            return trans("Dynamically allocated differencing storage", "UICommon"), null, 'MediumVariant';
 	        case (variants.Standard | variants.Fixed):
-	            return trans("Fixed size storage", "VBoxGlobal", null, 'MediumVariant');
+	            return trans("Fixed size storage", "UICommon", null, 'MediumVariant');
 	        case (variants.Standard | variants.VmdkSplit2G):
-	            return trans("Dynamically allocated storage split into files of less than 2GB", "VBoxGlobal", null, 'MediumVariant');
+	            return trans("Dynamically allocated storage split into files of less than 2GB", "UICommon", null, 'MediumVariant');
 	        case (variants.Standard | variants.VmdkSplit2G | variants.Diff):
-	            return trans("Dynamically allocated differencing storage split into files of less than 2GB", "VBoxGlobal", null, 'MediumVariant');
+	            return trans("Dynamically allocated differencing storage split into files of less than 2GB", "UICommon", null, 'MediumVariant');
 	        case (variants.Standard | variants.Fixed | variants.VmdkSplit2G):
-	            return trans("Fixed size storage split into files of less than 2GB", "VBoxGlobal", null, 'MediumVariant');
+	            return trans("Fixed size storage split into files of less than 2GB", "UICommon", null, 'MediumVariant');
 	        case (variants.Standard | variants.VmdkStreamOptimized):
-	            return trans("Dynamically allocated compressed storage", "VBoxGlobal", null, 'MediumVariant');
+	            return trans("Dynamically allocated compressed storage", "UICommon", null, 'MediumVariant');
 	        case (variants.Standard | variants.VmdkStreamOptimized | variants.Diff):
-	            return trans("Dynamically allocated differencing compressed storage", "VBoxGlobal", null, 'MediumVariant');
+	            return trans("Dynamically allocated differencing compressed storage", "UICommon", null, 'MediumVariant');
 	        case (variants.Standard | variants.Fixed | variants.VmdkESX):
-	            return trans("Fixed size ESX storage", "VBoxGlobal", null, 'MediumVariant');
+	            return trans("Fixed size ESX storage", "UICommon", null, 'MediumVariant');
 	        case (variants.Standard | variants.Fixed | variants.VmdkRawDisk):
-	            return trans("Fixed size storage on raw disk", "VBoxGlobal", null, 'MediumVariant');
+	            return trans("Fixed size storage on raw disk", "UICommon", null, 'MediumVariant');
 	        default:
-	            return trans("Dynamically allocated storage", "VBoxGlobal", null, 'MediumVariant');
+	            return trans("Dynamically allocated storage", "UICommon", null, 'MediumVariant');
 	    }
 
 	},
