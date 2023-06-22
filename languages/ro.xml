@@ -65,6 +65,10 @@
 			<source>Long Mode (64-bit)</source>
 			<translation>Mod lung (64 de biți)</translation>
 		</message>
+		<message>
+			<source>Empty</source>
+			<translation>Gol</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIHelpButton</name>
@@ -459,6 +463,77 @@
 		<message>
 			<source>Auto Mount</source>
 			<translation>Montare automată</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsStorage</name>
+		<message>
+			<source>Set up the virtual hard disk</source>
+			<translation>Configurați hard diskul virtual</translation>
+		</message>
+		<message>
+			<source>Set up the virtual CD/DVD drive</source>
+			<translation>Configurați unitatea CD/DVD virtuală</translation>
+		</message>
+		<message>
+			<source>Set up the virtual floppy drive</source>
+			<translation>Configurați unitatea de dischetă virtuală</translation>
+		</message>
+		<message>
+			<source>Encrypted with key:</source>
+			<translation>Criptat cu cheie:</translation>
+		</message>
+		<message>
+			<source>Solid-state Drive</source>
+			<translation>Unitate SSD</translation>
+		</message>
+		<message>
+			<source>Hot-pluggable</source>
+			<translation>Conectare la cald</translation>
+		</message>
+		<message>
+			<source>Choose a virtual optical disk file...</source>
+			<translation>Alegeți un fișier de disc optic virtual...</translation>
+		</message>
+		<message>
+			<source>Details:</source>
+			<translation>Detalii:</translation>
+		</message>
+		<message>
+			<source>Create a new hard disk...</source>
+			<translation>Creați un nou hard disk...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual hard disk file...</source>
+			<translation>Alegeți un fișier de hard disk virtual...</translation>
+		</message>
+		<message>
+			<source>Remove disk from virtual drive</source>
+			<translation>Scoateți discul de pe unitatea virtuală</translation>
+		</message>
+		<message>
+			<source>Floppy Drive:</source>
+			<translation>Unitate de dischetă:</translation>
+		</message>
+		<message>
+			<source>Add Floppy Drive</source>
+			<translation>Adăugați o unitate de dischetă</translation>
+		</message>
+		<message>
+			<source>Add Optical Drive</source>
+			<translation>Adăugați o unitate optică</translation>
+		</message>
+		<message>
+			<source>Port Count:</source>
+			<translation>Număr de porturi:</translation>
+		</message>
+		<message>
+			<source>Live CD/DVD</source>
+			<translation>CD/DVD live</translation>
+		</message>
+		<message>
+			<source>CD/DVD Drive:</source>
+			<translation>Unitate CD/DVD:</translation>
 		</message>
 	</context>
 	<context>
