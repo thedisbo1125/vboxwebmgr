@@ -449,6 +449,14 @@
 			<source>Enabled</source>
 			<translation>Activat</translation>
 		</message>
+		<message>
+			<source>Graphics Controller:</source>
+			<translation>Controler grafic:</translation>
+		</message>
+		<message>
+			<source>Screen</source>
+			<translation>Ecran</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsGeneral</name>
@@ -494,6 +502,21 @@
 	</context>
 	<context>
 		<name>UIMachineSettingsSFDetails</name>
+		<message>
+			<source>Mount point:</source>
+			<translation>Punctul de montare:</translation>
+		</message>
+		<message>
+			<source>Auto-mount</source>
+			<translation>Montare automată</translation>
+		</message>
+	</context>
+	<context>
+		<name>UISharedFolderDetailsEditor</name>
+		<message>
+			<source>Auto-mount</source>
+			<translation>Montare automată</translation>
+		</message>
 		<message>
 			<source>Mount point:</source>
 			<translation>Punctul de montare:</translation>
@@ -568,6 +591,10 @@
 		<message>
 			<source>CD/DVD Drive:</source>
 			<translation>Unitate CD/DVD:</translation>
+		</message>
+		<message>
+			<source>Choose a virtual floppy disk file...</source>
+			<translation>Alegeți un fișier de dischetă virtuală...</translation>
 		</message>
 	</context>
 	<context>
