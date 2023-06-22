@@ -430,6 +430,10 @@
 			<source>Graphics Controller:</source>
 			<translation>Controler grafic:</translation>
 		</message>
+		<message>
+			<source>Screen</source>
+			<translation>Ecran</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsGeneral</name>
@@ -534,6 +538,10 @@
 		<message>
 			<source>CD/DVD Drive:</source>
 			<translation>Unitate CD/DVD:</translation>
+		</message>
+		<message>
+			<source>Choose a virtual floppy disk file...</source>
+			<translation>Alegeți un fișier de dischetă virtuală...</translation>
 		</message>
 	</context>
 	<context>
