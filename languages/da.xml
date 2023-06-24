@@ -417,6 +417,53 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsStorage</name>
+		<message>
+			<source>CD/DVD Drive:</source>
+			<translation>CD/DVD-drev:</translation>
+		</message>
+		<message>
+			<source>Storage Tree</source>
+			<translation>Opbevaringstræ</translation>
+		</message>
+		<message>
+			<source>Set up the virtual hard disk</source>
+			<translation>Konfigurer den virtuelle harddisk</translation>
+		</message>
+		<message>
+			<source>Set up the virtual CD/DVD drive</source>
+			<translation>Konfigurer det virtuelle cd/dvd-drev</translation>
+		</message>
+		<message>
+			<source>Set up the virtual floppy drive</source>
+			<translation>Konfigurer det virtuelle diskettedrev</translation>
+		</message>
+		<message>
+			<source>Create a new hard disk...</source>
+			<translation>Opret en ny harddisk...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual hard disk file...</source>
+			<translation>Vælg en virtuel harddisk-fil...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual optical disk file...</source>
+			<translation>Vælg en virtuel optisk disk-fil...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual floppy disk file...</source>
+			<translation>Vælg en virtuel diskettefil...</translation>
+		</message>
+		<message>
+			<source>Add PCIe Controller</source>
+			<translation>Tilføj PCIe-controller</translation>
+		</message>
+		<message>
+			<source>Add VirtioSCSI Controller</source>
+			<translation>Tilføj VirtioSCSI-controller</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>

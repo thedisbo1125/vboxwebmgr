@@ -375,6 +375,45 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsStorage</name>
+		<message>
+			<source>Choose a virtual hard disk file...</source>
+			<translation>Wybierz plik wirtualnego dysku twardego...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual optical disk file...</source>
+			<translation>Wybierz plik wirtualnego dysku optycznego...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual floppy disk file...</source>
+			<translation>Wybierz plik wirtualnej dyskietki...</translation>
+		</message>
+		<message>
+			<source>Create a new hard disk...</source>
+			<translation>Utwórz nowy dysk twardy...</translation>
+		</message>
+		<message>
+			<source>Set up the virtual hard disk</source>
+			<translation>Skonfiguruj wirtualny dysk twardy</translation>
+		</message>
+		<message>
+			<source>Set up the virtual CD/DVD drive</source>
+			<translation>Skonfiguruj wirtualny napęd CD/DVD</translation>
+		</message>
+		<message>
+			<source>Set up the virtual floppy drive</source>
+			<translation>Skonfiguruj wirtualny napęd dyskietek</translation>
+		</message>
+		<message>
+			<source>Add PCIe Controller</source>
+			<translation>Dodaj kontroler PCIe</translation>
+		</message>
+		<message>
+			<source>Add VirtioSCSI Controller</source>
+			<translation>Dodaj kontroler VirtioSCSI</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>

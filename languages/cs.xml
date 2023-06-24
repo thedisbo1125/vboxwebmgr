@@ -386,6 +386,25 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsStorage</name>
+		<message>
+			<source>Live CD/DVD</source>
+			<translation>Živé CD/DVD</translation>
+		</message>
+		<message>
+			<source>Choose a virtual optical disk file...</source>
+			<translation>Vyberte soubor virtuálního optického disku...</translation>
+		</message>
+		<message>
+			<source>Add PCIe Controller</source>
+			<translation>Přidat PCIe řadič</translation>
+		</message>
+		<message>
+			<source>Add VirtioSCSI Controller</source>
+			<translation>Přidat VirtioSCSI řadič</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>
