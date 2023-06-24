@@ -388,7 +388,9 @@ var vboxSettingsStorageButtons = new Array(
 				if(con) next = $('#vboxSettingsController'+con.bus).find('table.vboxListItem').first();
 			}
 			$('#vboxSettingsStorageTree').find('table.vboxListItemSelected').first().parent().remove();
-			if(!$(next).trigger('click').html()) $('#vboxSettingsStorageTree').trigger('itemselect',null);
+			if(!$(next).trigger('click').html()) {
+				$('#vboxSettingsStorageTree').trigger('itemselect',null);
+			}
 		}		
 	},
 	
