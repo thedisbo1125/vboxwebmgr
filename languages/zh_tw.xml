@@ -537,6 +537,10 @@
 			<source>Add VirtioSCSI Controller</source>
 			<translation>添加 VirtioSCSI 控制器</translation>
 		</message>
+		<message>
+			<source>Storage Tree</source>
+			<translation>存儲樹</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
