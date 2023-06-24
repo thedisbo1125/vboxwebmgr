@@ -1,4 +1,17 @@
 -------------------------------------
+    6.1-010 2023-06-24
+-------------------------------------
+
+- correct title of edit NAT network dialog
+- fix issue with wrong attribute in event "OnStorageDeviceChanged"
+- add ability to enable VRDP Video Redirection and VRDP Video quality on VMs
+- update appearance of "Host-Only Network Details" dialog
+- fix alignment/width of several input fields
+- add/update translations
+- fix issue where DHCP on "Host-only Network Details" was disabled when running VM selected
+- fix issue where "NAT Network Details" was disabled when running VM selected
+
+-------------------------------------
     6.1-009 2023-06-01
 -------------------------------------
 
