@@ -410,6 +410,17 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsStorage</name>
+		<message>
+			<source>Add PCIe Controller</source>
+			<translation>Agregar controlador PCIe</translation>
+		</message>
+		<message>
+			<source>Add VirtioSCSI Controller</source>
+			<translation>Agregar controlador VirtioSCSI</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>

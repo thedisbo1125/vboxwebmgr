@@ -383,6 +383,45 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsStorage</name>
+		<message>
+			<source>Set up the virtual hard disk</source>
+			<translation>Stel de virtuele harde schijf in</translation>
+		</message>
+		<message>
+			<source>Set up the virtual CD/DVD drive</source>
+			<translation>Stel het virtuele cd/dvd-station in</translation>
+		</message>
+		<message>
+			<source>Set up the virtual floppy drive</source>
+			<translation>Stel de virtuele diskettedrive in</translation>
+		</message>
+		<message>
+			<source>Create a new hard disk...</source>
+			<translation>Maak een nieuwe harde schijf...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual hard disk file...</source>
+			<translation>Kies een bestand op de virtuele harde schijf...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual optical disk file...</source>
+			<translation>Kies een virtueel optisch schijfbestand...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual floppy disk file...</source>
+			<translation>Kies een virtueel diskettebestand...</translation>
+		</message>
+		<message>
+			<source>Add PCIe Controller</source>
+			<translation>Toevoegen PCIe-controller</translation>
+		</message>
+		<message>
+			<source>Add VirtioSCSI Controller</source>
+			<translation>Toevoegen VirtioSCSI-controller</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>

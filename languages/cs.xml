@@ -442,6 +442,14 @@
 			<source>Set up the virtual floppy drive</source>
 			<translation>Nastaví virtuální disketovou mechaniku</translation>
 		</message>
+		<message>
+			<source>Add PCIe Controller</source>
+			<translation>Přidat PCIe řadič</translation>
+		</message>
+		<message>
+			<source>Add VirtioSCSI Controller</source>
+			<translation>Přidat VirtioSCSI řadič</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>

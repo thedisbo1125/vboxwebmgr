@@ -596,6 +596,18 @@
 			<source>Choose a virtual floppy disk file...</source>
 			<translation>Alegeți un fișier de dischetă virtuală...</translation>
 		</message>
+		<message>
+			<source>Add USB Controller</source>
+			<translation>Adaugă controlor USB</translation>
+		</message>
+		<message>
+			<source>Add PCIe Controller</source>
+			<translation>Adaugă controlor PCIe</translation>
+		</message>
+		<message>
+			<source>Add VirtioSCSI Controller</source>
+			<translation>Adaugă controlor VirtioSCSI</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>

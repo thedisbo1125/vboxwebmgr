@@ -383,6 +383,17 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsStorage</name>
+		<message>
+			<source>Add PCIe Controller</source>
+			<translation>Добавить PCIe контроллер</translation>
+		</message>
+		<message>
+			<source>Add VirtioSCSI Controller</source>
+			<translation>Добавить VirtioSCSI контроллер</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>

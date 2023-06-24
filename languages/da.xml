@@ -472,6 +472,10 @@
 			<source>Make Permanent</source>
 			<translation>Gør permanent</translation>
 		</message>
+		<message>
+			<source>Mount point:</source>
+			<translation>Mount Point:</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsStorage</name>
@@ -494,6 +498,30 @@
 		<message>
 			<source>Set up the virtual floppy drive</source>
 			<translation>Konfigurer det virtuelle diskettedrev</translation>
+		</message>
+		<message>
+			<source>Create a new hard disk...</source>
+			<translation>Opret en ny harddisk...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual hard disk file...</source>
+			<translation>Vælg en virtuel harddisk-fil...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual optical disk file...</source>
+			<translation>Vælg en virtuel optisk disk-fil...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual floppy disk file...</source>
+			<translation>Vælg en virtuel diskettefil...</translation>
+		</message>
+		<message>
+			<source>Add PCIe Controller</source>
+			<translation>Tilføj PCIe-controller</translation>
+		</message>
+		<message>
+			<source>Add VirtioSCSI Controller</source>
+			<translation>Tilføj VirtioSCSI-controller</translation>
 		</message>
 	</context>
 	<context>

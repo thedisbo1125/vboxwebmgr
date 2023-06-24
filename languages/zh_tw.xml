@@ -464,6 +464,81 @@
 		</message>
 	</context>
 	<context>
+		<name>UIMachineSettingsStorage</name>
+		<message>
+			<source>Choose a virtual hard disk file...</source>
+			<translation>選擇虛擬硬盤文件...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual optical disk file...</source>
+			<translation>選擇虛擬光盤文件...</translation>
+		</message>
+		<message>
+			<source>Choose a virtual floppy disk file...</source>
+			<translation>選擇虛擬軟盤文件...</translation>
+		</message>
+		<message>
+			<source>Create a new hard disk...</source>
+			<translation>創建一個新硬盤...</translation>
+		</message>
+		<message>
+			<source>Set up the virtual hard disk</source>
+			<translation>設置虛擬硬盤</translation>
+		</message>
+		<message>
+			<source>Set up the virtual CD/DVD drive</source>
+			<translation>設置虛擬 CD/DVD 驅動器</translation>
+		</message>
+		<message>
+			<source>Set up the virtual floppy drive</source>
+			<translation>設置虛擬軟盤驅動器</translation>
+		</message>
+		<message>
+			<source>Add Optical Drive</source>
+			<translation>添加光驅</translation>
+		</message>
+		<message>
+			<source>Add Hard Disk</source>
+			<translation>添加硬盤</translation>
+		</message>
+		<message>
+			<source>Add Floppy Drive</source>
+			<translation>添加軟盤驅動器</translation>
+		</message>
+		<message>
+			<source>Add SATA Controller</source>
+			<translation>添加 SATA 控制器</translation>
+		</message>
+		<message>
+			<source>Add IDE Controller</source>
+			<translation>添加 IDE 控制器</translation>
+		</message>
+		<message>
+			<source>Add SCSI Controller</source>
+			<translation>添加 SCSI 控制器</translation>
+		</message>
+		<message>
+			<source>Add SAS Controller</source>
+			<translation>添加 SAS 控制器</translation>
+		</message>
+		<message>
+			<source>Add Floppy Controller</source>
+			<translation>添加軟盤控制器</translation>
+		</message>
+		<message>
+			<source>Add USB Controller</source>
+			<translation>添加 USB 控制器</translation>
+		</message>
+		<message>
+			<source>Add PCIe Controller</source>
+			<translation>添加 PCIe 控制器</translation>
+		</message>
+		<message>
+			<source>Add VirtioSCSI Controller</source>
+			<translation>添加 VirtioSCSI 控制器</translation>
+		</message>
+	</context>
+	<context>
 		<name>UIMachineSettingsSystem</name>
 		<message>
 			<source>BIOS Logo Display Time</source>
