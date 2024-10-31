@@ -1858,18 +1858,22 @@ class vboxconnector {
 
 		$m->CPUCount = $args['CPUCount'];
 		$m->memorySize = $args['memorySize'];
-		$m->firmwareType = $args['firmwareType'];
-		if($args['chipsetType']) $m->chipsetType = $args['chipsetType'];
+		$m->getFirmwareSettings()->firmwareType = $args['firmwareType'];
+		if($args['chipsetType']) $m->Platform->chipsetType = $args['chipsetType'];
 		if($m->snapshotFolder != $args['snapshotFolder']) $m->snapshotFolder = $args['snapshotFolder'];
-		$m->RTCUseUTC = ($args['RTCUseUTC'] ? 1 : 0);
-		$m->setCpuProperty('PAE', ($args['CpuProperties']['PAE'] ? 1 : 0));
-		$m->setCpuProperty('HWVirt', ($args['CpuProperties']['HWVirt'] ? 1 : 0));
-		$m->setCPUProperty('LongMode', (strpos($args['OSTypeId'],'_64') > - 1 ? 1 : 0));
+		$m->Platform->RTCUseUTC = ($args['RTCUseUTC'] ? 1 : 0);
+
+		$m->Platform->getX86()->setCpuProperty('PAE', ($args['CpuProperties']['PAE'] ? 1 : 0));
+		$m->Platform->getX86()->setCpuProperty('HWVirt', ($args['CpuProperties']['HWVirt'] ? 1 : 0));
+		$m->Platform->getX86()->setCPUProperty('LongMode', (strpos($args['OSTypeId'],'_64') > - 1 ? 1 : 0));
 
 		// IOAPIC
-		$m->BIOSSettings->IOAPICEnabled = ($args['BIOSSettings']['IOAPICEnabled'] ? 1 : 0);
-		$m->BIOSSettings->logoDisplayTime = ($args['BIOSSettings']['LogoDisplayTime']);
+		$m->getFirmwareSettings()->ACPIEnabled = ($args['BIOSSettings']['ACPIEnabled'] ? 1 : 0);
+		$m->getFirmwareSettings()->IOAPICEnabled = ($args['BIOSSettings']['IOAPICEnabled'] ? 1 : 0);
+		$m->getFirmwareSettings()->timeOffset = ($args['BIOSSettings']['timeOffset']);
+		$m->getFirmwareSettings()->LogoDisplayTime = ($args['BIOSSettings']['LogoDisplayTime']);
 		$m->CPUExecutionCap = $args['CPUExecutionCap'];
+
 		$m->description = $args['description'];
 		$m->ClipboardMode = $args['ClipboardMode'];
 
@@ -1895,8 +1899,8 @@ class vboxconnector {
 		$hwAccelAvail = $this->vbox->host->getProcessorFeature('HWVirtEx');
 
 		$m->paravirtProvider = $args['paravirtProvider'];
-		$m->setHWVirtExProperty('Enabled', $args['HWVirtExProperties']['Enabled']);
-		$m->setHWVirtExProperty('NestedPaging', ($args['HWVirtExProperties']['Enabled'] && $hwAccelAvail && $args['HWVirtExProperties']['NestedPaging']));
+		$m->Platform->getX86()->setHWVirtExProperty('Enabled', $args['HWVirtExProperties']['Enabled']);
+		$m->Platform->getX86()->setHWVirtExProperty('NestedPaging', ($args['HWVirtExProperties']['Enabled'] && $hwAccelAvail && $args['HWVirtExProperties']['NestedPaging']));
 		$m->setExtraData("VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled", $args['disableHostTimeSync']);
 
 		// Set Keyboard and Mouse
@@ -1931,8 +1935,8 @@ class vboxconnector {
 		$m->GraphicsAdapter->graphicsControllerType = $args['graphicsControllerType'];
 
 		// Video
-		$m->GraphicsAdapter->accelerate3DEnabled = $args['accelerate3DEnabled'];
-		$m->GraphicsAdapter->accelerate2DVideoEnabled = $args['accelerate2DVideoEnabled'];
+		$m->GraphicsAdapter->setFeature(2,$args['accelerate3DEnabled']);
+		$m->GraphicsAdapter->setFeature(1,$args['accelerate2DVideoEnabled']);
 
 		// VRDE settings
 		try {
@@ -1957,7 +1961,7 @@ class vboxconnector {
 		$m->audioSettings->Adapter->audioDriver = $args['audioAdapter']['audioDriver'];
 
 		// Boot order
-		$mbp = $this->vbox->systemProperties->maxBootPosition;
+		$mbp = $this->vbox->getPlatformProperties('x86')->maxBootPosition;
 		for($i = 0; $i < $mbp; $i ++) {
 			if($args['bootOrder'][$i]) {
 				$m->setBootOrder(($i + 1),$args['bootOrder'][$i]);
@@ -2200,7 +2204,7 @@ class vboxconnector {
 
 			try {
 				$p->enabled = $args['serialPorts'][$i]['enabled'];
-				$p->IOBase = @hexdec($args['serialPorts'][$i]['IOBase']);
+				$p->IOAddress = @hexdec($args['serialPorts'][$i]['IOBase']);
 				$p->IRQ = intval($args['serialPorts'][$i]['IRQ']);
 				if($args['serialPorts'][$i]['path']) {
 					$p->path = $args['serialPorts'][$i]['path'];
@@ -2230,7 +2234,7 @@ class vboxconnector {
 
 				$lptChanged = true;
 				try {
-					$p->IOBase = @hexdec($args['parallelPorts'][$i]['IOBase']);
+					$p->IOAddress = @hexdec($args['parallelPorts'][$i]['IOBase']);
 					$p->IRQ = intval($args['parallelPorts'][$i]['IRQ']);
 					$p->path = $args['parallelPorts'][$i]['path'];
 					$p->enabled = $args['parallelPorts'][$i]['enabled'];
@@ -4386,22 +4390,23 @@ class vboxconnector {
 			'OSTypeId' => $m->OSTypeId,
 			'OSTypeDesc' => $this->vbox->getGuestOSType($m->OSTypeId)->description,
 			'CPUCount' => $m->CPUCount,
-			'HPETEnabled' => $m->HPETEnabled,
+			'HPETEnabled' => $m->Platform->getX86()->HPETEnabled,
 			'memorySize' => $m->memorySize,
 			'VRAMSize' => $m->GraphicsAdapter->VRAMSize,
 			'graphicsControllerType' => (string)$m->GraphicsAdapter->graphicsControllerType,
 			'pointingHIDType' => (string)$m->pointingHIDType,
 			'keyboardHIDType' => (string)$m->keyboardHIDType,
-			'accelerate3DEnabled' => $m->GraphicsAdapter->accelerate3DEnabled,
-			'accelerate2DVideoEnabled' => $m->GraphicsAdapter->accelerate2DVideoEnabled,
+			'accelerate3DEnabled' => $m->GraphicsAdapter->isFeatureEnabled(2),
+			'accelerate2DVideoEnabled' => $m->GraphicsAdapter->isFeatureEnabled(1),
 			'BIOSSettings' => array(
-				'ACPIEnabled' => $m->BIOSSettings->ACPIEnabled,
-				'IOAPICEnabled' => $m->BIOSSettings->IOAPICEnabled,
-				'timeOffset' => $m->BIOSSettings->timeOffset,
-				'LogoDisplayTime' => $m->BIOSSettings->LogoDisplayTime
+				'ACPIEnabled' => $m->getFirmwareSettings()->ACPIEnabled,
+				'IOAPICEnabled' => $m->getFirmwareSettings()->IOAPICEnabled,
+				'timeOffset' => $m->getFirmwareSettings()->timeOffset,
+				'LogoDisplayTime' => $m->getFirmwareSettings()->LogoDisplayTime
 				),
+			'firmwareType' => (string)$m->getFirmwareSettings()->firmwareType,
+
 			'TPM' => (string)$m->trustedPlatformModule->type,
-			'firmwareType' => (string)$m->firmwareType,
 			'snapshotFolder' => $m->snapshotFolder,
 			'ClipboardMode' => (string)$m->ClipboardMode,
 			'monitorCount' => $m->GraphicsAdapter->monitorCount,
@@ -4423,20 +4428,21 @@ class vboxconnector {
 				'audioController' => (string)$m->audioSettings->Adapter->audioController,
 				'audioDriver' => (string)$m->audioSettings->Adapter->audioDriver,
 				),
-			'RTCUseUTC' => $m->RTCUseUTC,
+			'RTCUseUTC' => $m->Platform->RTCUseUTC,
 			'EffectiveParavirtProvider' => (string)$m->getEffectiveParavirtProvider(),
 			'HWVirtExProperties' => array(
-				'Enabled' => $m->getHWVirtExProperty('Enabled'),
-				'NestedPaging' => $m->getHWVirtExProperty('NestedPaging'),
-				'LargePages' => $m->getHWVirtExProperty('LargePages'),
-				'UnrestrictedExecution' => $m->getHWVirtExProperty('UnrestrictedExecution'),
-				'VPID' => $m->getHWVirtExProperty('VPID')
+				'Enabled' => $m->Platform->getX86()->getHWVirtExProperty('Enabled'),
+				'NestedPaging' => $m->Platform->getX86()->getHWVirtExProperty('NestedPaging'),
+				'LargePages' => $m->Platform->getX86()->getHWVirtExProperty('LargePages'),
+				'UnrestrictedExecution' => $m->Platform->getX86()->getHWVirtExProperty('UnrestrictedExecution'),
+				'VPID' => $m->Platform->getX86()->getHWVirtExProperty('VPID')
 				),
 			'CpuProperties' => array(
-				'PAE' => $m->getCpuProperty('PAE'),'HWVirt' => $m->getCpuProperty('HWVirt')
+				'PAE' => $m->Platform->getX86()->getCpuProperty('PAE'),
+				'HWVirt' => $m->Platform->getX86()->getCpuProperty('HWVirt')
 				),
 			'bootOrder' => $this->_machineGetBootOrder($m),
-			'chipsetType' => (string)$m->chipsetType,
+			'chipsetType' => (string)$m->Platform->chipsetType,
 			'GUI' => array(
 				'FirstRun' => $m->getExtraData('GUI/FirstRun'),
 			),
@@ -4455,7 +4461,7 @@ class vboxconnector {
 	 */
 	private function _machineGetBootOrder(&$m) {
 		$return = array();
-		$mbp = $this->vbox->systemProperties->maxBootPosition;
+		$mbp = $this->vbox->getPlatformProperties('x86')->maxBootPosition;
 		for($i = 0; $i < $mbp; $i ++) {
 			if(($b = (string)$m->getBootOrder($i + 1)) == 'Null') continue;
 			$return[] = $b;
@@ -4471,7 +4477,7 @@ class vboxconnector {
 	 */
 	private function _machineGetSerialPorts(&$m) {
 		$ports = array();
-		$max = $this->vbox->systemProperties->serialPortCount;
+		$max = $this->vbox->getPlatformProperties('x86')->serialPortCount;
 		for($i = 0; $i < $max; $i++) {
 			try {
 				/* @var $p ISerialPort */
@@ -4479,7 +4485,7 @@ class vboxconnector {
 				$ports[] = array(
 					'slot' => $p->slot,
 					'enabled' => $p->enabled,
-					'IOBase' => '0x'.strtoupper(sprintf('%3s',dechex($p->IOBase))),
+					'IOBase' => '0x'.strtoupper(sprintf('%3s',dechex($p->GetIOAddress()))),
 					'IRQ' => $p->IRQ,
 					'hostMode' => (string)$p->hostMode,
 					'server' => $p->server,
@@ -4510,7 +4516,7 @@ class vboxconnector {
 				$ports[] = array(
 					'slot' => $p->slot,
 					'enabled' => $p->enabled,
-					'IOBase' => '0x'.strtoupper(sprintf('%3s',dechex($p->IOBase))),
+					'IOBase' => '0x'.strtoupper(sprintf('%3s',dechex($p->GetIOAddress()))),
 					'IRQ' => $p->IRQ,
 					'path' => $p->path
 				);
@@ -5852,6 +5858,7 @@ class vboxconnector {
 
 		// Shorthand
 		$sp = $this->vbox->systemProperties;
+		$pp = $this->vbox->getPlatformProperties('x86');
 
 		// capabilities
 		$mfCap = new MediumFormatCapabilities(null,'');
@@ -5881,7 +5888,7 @@ class vboxconnector {
 			'NVMe');
 
 		foreach($scts as $t) {
-		    $scs[$t] = $sp->getStorageControllerHotplugCapable($t);
+		    $scs[$t] = $pp->getStorageControllerHotplugCapable($t);
 		}
 
 		return array(
@@ -5894,15 +5901,15 @@ class vboxconnector {
 			'autostartDatabasePath' => (@$this->settings->vboxAutostartConfig ? $sp->autostartDatabasePath : ''),
 			'infoVDSize' => (string)$sp->infoVDSize,
 			'networkAdapterCount' => 8, // static value for now
-			'maxBootPosition' => (string)$sp->maxBootPosition,
+			'maxBootPosition' => (string)$pp->maxBootPosition,
 			'defaultMachineFolder' => (string)$sp->defaultMachineFolder,
 			'defaultHardDiskFormat' => (string)$sp->defaultHardDiskFormat,
 			'homeFolder' => $this->vbox->homeFolder,
 			'VRDEAuthLibrary' => (string)$sp->VRDEAuthLibrary,
 			'defaultAudioDriver' => (string)$sp->defaultAudioDriver,
 			'defaultVRDEExtPack' => $sp->defaultVRDEExtPack,
-			'serialPortCount' => $sp->serialPortCount,
-			'parallelPortCount' => $sp->parallelPortCount,
+			'serialPortCount' => $pp->serialPortCount,
+			'parallelPortCount' => $pp->parallelPortCount,
 			'mediumFormats' => $mediumFormats,
 		    'scs' => $scs
 		);
