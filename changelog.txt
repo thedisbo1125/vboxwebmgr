@@ -1,4 +1,15 @@
 -------------------------------------
+    7.1-001  2024-10-31
+-------------------------------------
+
+- add VirtualBox 7.1 wsdl files
+- update version in config.php to 7.1-0
+- replace vboxServiceWrapper.php file with 7.1 version
+- make first set of corrections to vboxconnector.php for changed data structures
+- fix code for displaying USB controller
+- add ability to change VRDE Security method (TLS, RDP, Negotiate)
+
+-------------------------------------
     7.1-000  2024-10-31
 -------------------------------------
 
