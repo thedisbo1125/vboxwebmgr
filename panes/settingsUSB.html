@@ -324,7 +324,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 		
 		for(var i = 0; i < $('#vboxSettingsDialog').data('vboxMachineData').USBControllers.length; i++) {
 			var listUSBType = $('#vboxSettingsDialog').data('vboxMachineData').USBControllers[i].type;
-			if(listUSBType == 'OHCI') {
+			if((listUSBType == 'OHCI') || (listUSBType == 'XHCI')) {
 				enabled = true;
 			}
 			switch(listUSBType) {
