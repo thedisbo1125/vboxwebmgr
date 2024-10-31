@@ -16,7 +16,7 @@
 /*
  * This version of vboxwebmgr
  */
-define('VBOXWEBMGR_VER','7.0-0');
+define('VBOXWEBMGR_VER','7.1-0');
 
 class vboxwebmgrConfigClass {
 
