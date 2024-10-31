@@ -502,6 +502,7 @@ class vboxconnector {
 								'ports' => $vrde->getVRDEProperty('TCP/Ports'),
 								'netAddress' => $vrde->getVRDEProperty('TCP/Address'),
 								'VNCPassword' => $vrde->getVRDEProperty('VNCPassword'),
+								'SecurityMethod' => $vrde->getVRDEProperty('Security/Method'),
 								'authType' => (string)$vrde->authType,
 								'authTimeout' => $vrde->authTimeout,
 								'videoredirenabled' => $vrde->getVRDEProperty('VideoChannel/Enabled'),
@@ -1944,6 +1945,7 @@ class vboxconnector {
 				$m->VRDEServer->enabled = $args['VRDEServer']['enabled'];
 				$m->VRDEServer->setVRDEProperty('TCP/Ports',$args['VRDEServer']['ports']);
 				$m->VRDEServer->setVRDEProperty('TCP/Address',$args['VRDEServer']['netAddress']);
+				$m->VRDEServer->setVRDEProperty('Security/Method',$args['VRDEServer']['SecurityMethod']);
 				$m->VRDEServer->setVRDEProperty('VNCPassword',$args['VRDEServer']['VNCPassword'] ? $args['VRDEServer']['VNCPassword'] : null);
 				$m->VRDEServer->setVRDEProperty('VideoChannel/Enabled',$args['VRDEServer']['videoredirenabled'] ? $args['VRDEServer']['videoredirenabled'] : false);
 				$m->VRDEServer->setVRDEProperty('VideoChannel/Quality',$args['VRDEServer']['videoredirquality']);
@@ -3833,6 +3835,7 @@ class vboxconnector {
 					'videoredirenabled' => $vrde->getVRDEProperty('VideoChannel/Enabled'),
 					'videoredirquality' => $vrde->getVRDEProperty('VideoChannel/Quality'),
 					'VNCPassword' => $vrde->getVRDEProperty('VNCPassword'),
+					'SecurityMethod' => $vrde->getVRDEProperty('Security/Method'),
 					'authType' => (string)$vrde->authType,
 					'authTimeout' => $vrde->authTimeout,
 					'VRDEExtPack' => (string)$vrde->VRDEExtPack
@@ -4418,6 +4421,7 @@ class vboxconnector {
 				'videoredirenabled' => $m->VRDEServer->getVRDEProperty('VideoChannel/Enabled'),
 				'videoredirquality' => $m->VRDEServer->getVRDEProperty('VideoChannel/Quality'),
 				'VNCPassword' => $m->VRDEServer->getVRDEProperty('VNCPassword'),
+				'SecurityMethod' => $m->VRDEServer->getVRDEProperty('Security/Method'),
 				'authType' => (string)$m->VRDEServer->authType,
 				'authTimeout' => $m->VRDEServer->authTimeout,
 				'allowMultiConnection' => $m->VRDEServer->allowMultiConnection,
