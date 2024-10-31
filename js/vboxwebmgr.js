@@ -1283,29 +1283,30 @@ var vboxVMDetailsSections = {
 			var usbEnabled = false;
 			var usbType = 'OHCI';
 
-	        for(var i = 0; i < d.USBControllers.length; i++) {
-	            var listUSBType = d.USBControllers[i].type;
-	            if(listUSBType == 'OHCI') {
-	                usbEnabled = true;
-	            }
-	            switch(listUSBType) {
-	                case 'OHCI':
-	                    if(usbType == 'EHCI')
-	                        break;
-	                case 'EHCI':
-	                    if(usbType == 'XHCI')
-	                       break;
-	                default:
-	                    usbType = listUSBType;
-	            }
-	        }
+			for(var i = 0; i < d.USBControllers.length; i++) {
+				var listUSBType = d.USBControllers[i].type;
+				if((listUSBType == 'OHCI') || (listUSBType == 'XHCI')) {
+					usbEnabled = true;
+				}
+
+				switch(listUSBType) {
+					case 'OHCI':
+						if(usbType == 'EHCI')
+							break;
+					case 'EHCI':
+						if(usbType == 'XHCI')
+							break;
+					default:
+						usbType = listUSBType;
+				}
+			}
 
 			if(usbEnabled) {
 
-			    rows.push({
-			        title: trans("USB Controller", 'UIGDetails', null, 'details (usb)'),
-			        data: usbType
-			    });
+				rows.push({
+					title: trans("USB Controller", 'UIGDetails', null, 'details (usb)'),
+					data: usbType
+				});
 
 				var tot = 0;
 				var act = 0;
