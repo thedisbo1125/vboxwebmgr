@@ -1203,21 +1203,21 @@ var vboxVMDetailsSections = {
 					xtra += ' (' + $('<div />').text(p.path).html() + ')';
 				}
 
-				rows[rows.length] = {
+				rows.push({
 					title: trans("Port %1",'VBoxGlobal',null,'details report (serial ports)').replace('%1',(i + 1)),
 					data: xtra,
 					html: true
-				};
+				});
 
 				vboxDetailsTableSPorts++;
 
 			}
 
 			if(vboxDetailsTableSPorts == 0) {
-				rows[rows.length] = {
+				rows.push({
 					title: trans('Disabled','VBoxGlobal',null,'details report (serial ports)'),
 					cssClass: 'vboxDetailsNone'
-				};
+				});
 			}
 
 			return rows;
