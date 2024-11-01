@@ -3571,12 +3571,14 @@ class vboxconnector {
 		/* @var $host IHost */
 		$host = $this->vbox->host;
 
+		$sgf = $this->vbox->systemProperties->supportedGraphicsFeatures;
+
 		$response = array(
 			'id' => 'host',
 			'operatingSystem' => $host->operatingSystem,
 			'OSVersion' => $host->OSVersion,
 			'memorySize' => $host->memorySize,
-			'acceleration3DAvailable' => $host->acceleration3DAvailable,
+			'acceleration3DAvailable' => ((string)$sgf[0]  == 'Acceleration3D' ? true : false),
 			'cpus' => array(),
 			'networkInterfaces' => array(),
 			'DVDDrives' => array(),
