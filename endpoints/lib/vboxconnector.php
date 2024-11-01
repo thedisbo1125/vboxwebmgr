@@ -1854,7 +1854,7 @@ class vboxconnector {
 
 			$guestOS = $this->vbox->getGuestOSType($args['OSTypeId']);
 
-			$m->setCPUProperty('LongMode', ($guestOS->is64Bit ? 1 : 0));
+			$m->Platform->getX86()->setCPUProperty('LongMode', ($guestOS->is64Bit ? 1 : 0));
 		}
 
 		$m->CPUCount = $args['CPUCount'];
@@ -3981,7 +3981,7 @@ class vboxconnector {
 
 
 		/* @var $m IMachine */
-		$m = $this->vbox->createMachine(null,$args['name'],($this->settings->vboxwebmgrGroups ? '' : $args['group']),$args['ostype'],null,null,null,null,null);
+		$m = $this->vbox->createMachine(null,$args['name'],'x86',($this->settings->vboxwebmgrGroups ? '' : $args['group']),$args['ostype'],null,null,null,null,null);
 
 		/* Check for vboxwebmgr groups */
 		if($this->settings->vboxwebmgrGroups && $args['group']) {
@@ -4034,14 +4034,14 @@ class vboxconnector {
 			}
 
 			// Other defaults
-			$this->session->machine->BIOSSettings->IOAPICEnabled = $defaults->recommendedIOAPIC;
-			$this->session->machine->RTCUseUTC = $defaults->recommendedRTCUseUTC;
-			$this->session->machine->firmwareType = (string)$defaults->recommendedFirmware;
-			$this->session->machine->chipsetType = (string)$defaults->recommendedChipset;
+			$this->session->machine->getFirmwareSettings()->IOAPICEnabled = $defaults->recommendedIOAPIC;
+			$this->session->machine->Platform->RTCUseUTC = $defaults->recommendedRTCUseUTC;
+			$this->session->machine->getFirmwareSettings()->firmwareType = (string)$defaults->recommendedFirmware;
+			$this->session->machine->Platform->chipsetType = (string)$defaults->recommendedChipset;
 			$this->session->machine->ClipboardMode = 'Disabled';
 			if(intval($defaults->recommendedVRAM) > 0) $this->session->machine->GraphicsAdapter->setVRAMSize(intval($defaults->recommendedVRAM));
 			$this->session->machine->GraphicsAdapter->setGraphicsControllerType((string)$defaults->recommendedGraphicsController);
-			$this->session->machine->setCpuProperty('PAE',$defaults->recommendedPAE);
+			$this->session->machine->Platform->getX86()->setCpuProperty('PAE',$defaults->recommendedPAE);
 
 			// USB input devices
 			if($defaults->recommendedUSBHid) {
@@ -4051,7 +4051,7 @@ class vboxconnector {
 
 			/* Only if acceleration configuration is available */
 			if($this->vbox->host->getProcessorFeature('HWVirtEx')) {
-				$this->session->machine->setHWVirtExProperty('Enabled',$defaults->recommendedVirtEx);
+				$this->session->machine->Platform->getX86()->setHWVirtExProperty('Enabled',$defaults->recommendedVirtEx);
 			}
 
 			/*
