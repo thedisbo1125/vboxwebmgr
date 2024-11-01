@@ -217,9 +217,16 @@ if($('#vboxPane').data('vboxConfig').enableCustomIcons) {
 function vboxSettingsUpdateOSList(osfam) {
 	document.forms['frmVboxSettings'].vboxSettingsGeneralOSType.options.length = 0;
 	$(document.forms['frmVboxSettings'].vboxSettingsGeneralOSType).children().remove();
+
+	// Hide ARM selections for now, multiple code corrections needed to support ARM CPUs
+	var optioncnt = 0;
 	for(var i = 0; i < vboxSettingsOSTypes[osfam].osTypes.length; i++) {
-		document.forms['frmVboxSettings'].vboxSettingsGeneralOSType.options[i] = new Option(vboxSettingsOSTypes[osfam].osTypes[i].description, vboxSettingsOSTypes[osfam].osTypes[i].id);
+		if (vboxSettingsOSTypes[osfam].osTypes[i].description.includes("ARM") == false) {
+			document.forms['frmVboxSettings'].vboxSettingsGeneralOSType.options[optioncnt] = new Option(vboxSettingsOSTypes[osfam].osTypes[i].description, vboxSettingsOSTypes[osfam].osTypes[i].id);
+			optioncnt += 1;
+		}
 	}
+
 	// Update image
 	document.images["vboxOSTypeImg"].src = "images/vbox/" + vboxGuestOSTypeIcon(vboxSettingsOSTypes[osfam].osTypes[0].id);
 }

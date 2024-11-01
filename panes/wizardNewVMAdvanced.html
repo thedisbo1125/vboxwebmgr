@@ -178,8 +178,14 @@ function newVMUpdateOSList(osfam) {
 	
 	document.forms['frmwizardNewVM'].newVMOSType.options.length = 0;
 	$(document.forms['frmwizardNewVM'].newVMOSType).children().remove();
+
+	// remove ARM from OS Version, additional codes changes to PHP background are needed
+	var optioncnt = 0;
 	for(var i = 0; i < newVMOSTypes[osfam].osTypes.length; i++) {
-		document.forms['frmwizardNewVM'].newVMOSType.options[i] = new Option(newVMOSTypes[osfam].osTypes[i].description, newVMOSTypes[osfam].osTypes[i].id);
+		if (newVMOSTypes[osfam].osTypes[i].description.includes("ARM") == false) {
+			document.forms['frmwizardNewVM'].newVMOSType.options[optioncnt] = new Option(newVMOSTypes[osfam].osTypes[i].description, newVMOSTypes[osfam].osTypes[i].id);
+			optioncnt += 1;
+		}
 	}
 	// Trigger change
 	newVMUpdateOS(newVMOSTypes[osfam].osTypes[0].id);
