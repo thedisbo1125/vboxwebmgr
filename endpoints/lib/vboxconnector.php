@@ -1932,7 +1932,10 @@ class vboxconnector {
 		if(@$this->settings->enableCustomIcons)
 			$m->setExtraData('phpvb/icon', $args['customIcon']);
 
-		$m->GraphicsAdapter->VRAMSize = $args['VRAMSize'];
+		// if graphicsControllerType == null, do not setup VMRAMSize
+		if ($args['graphicsControllerType'] != 'Null') {
+			$m->GraphicsAdapter->VRAMSize = $args['VRAMSize'];
+		}
 		$m->GraphicsAdapter->graphicsControllerType = $args['graphicsControllerType'];
 
 		// Video
