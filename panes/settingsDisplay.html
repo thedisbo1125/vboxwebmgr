@@ -382,7 +382,8 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 		document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAuth.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.authType;
 		document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAuthTimeout.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.authTimeout;
 		document.forms['frmVboxSettings'].vboxSettingsDisplayVNCPassword.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.VNCPassword;
-		document.forms['frmVboxSettings'].vboxSettingsDisplayVRDESecMethodID.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.SecurityMethod;
+		document.forms['frmVboxSettings'].vboxSettingsDisplayVRDESecMethodID.value = 
+			($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.SecurityMethod == '' ? "TLS" : $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.SecurityMethod);
 
 		// Create IP Address array and get configured IP Addresses
 		var ipaddrarray = new Array();
