@@ -353,6 +353,13 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 			$(document.forms['frmVboxSettings'].vboxSettingsDisplay3d).removeClass('disabled').prop('disabled', false)
 			 .parent().removeClass('disabled');
 		}
+		if(!$('#vboxSettingsDialog').data('vboxHostDetails').acceleration2DVideoAvailable) {
+			$(document.forms['frmVboxSettings'].vboxSettingsDisplay2d).addClass('disabled').prop('disabled', true)
+				.parent().addClass('disabled');
+		} else {
+			$(document.forms['frmVboxSettings'].vboxSettingsDisplay2d).removeClass('disabled').prop('disabled', false)
+				.parent().removeClass('disabled');
+		}
 	}
 	
 

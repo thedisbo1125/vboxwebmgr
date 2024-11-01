@@ -3572,13 +3572,20 @@ class vboxconnector {
 		$host = $this->vbox->host;
 
 		$sgf = $this->vbox->systemProperties->supportedGraphicsFeatures;
+		$accd3D = false;
+		$accd2DVideo = false;
+		for ($x = 0; $x < count($sgf); $x++) {
+			if ((string)$sgf[$x] == 'Acceleration3D') { $accd3D = true; };
+			if ((string)$sgf[$x] == 'Acceleration2DVideo') { $accd2DVideo = true; };
+		}
 
 		$response = array(
 			'id' => 'host',
 			'operatingSystem' => $host->operatingSystem,
 			'OSVersion' => $host->OSVersion,
 			'memorySize' => $host->memorySize,
-			'acceleration3DAvailable' => ((string)$sgf[0]  == 'Acceleration3D' ? true : false),
+			'acceleration3DAvailable' => $accd3D,
+			'acceleration2DVideoAvailable' => $accd2DVideo,
 			'cpus' => array(),
 			'networkInterfaces' => array(),
 			'DVDDrives' => array(),
