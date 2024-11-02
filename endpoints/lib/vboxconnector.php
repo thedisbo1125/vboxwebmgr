@@ -1363,7 +1363,7 @@ class vboxconnector {
 			$src = $nsrc->machine;
 		}
 		/* @var $m IMachine */
-		$m = $this->vbox->createMachine($this->vbox->composeMachineFilename($args['name'],null,null,null),$args['name'],null,null,null,false,null,null,null);
+		$m = $this->vbox->createMachine($this->vbox->composeMachineFilename($args['name'],null,null,null),$args['name'],'x86',null,null,null,null,null,null);
 		$sfpath = $m->settingsFilePath;
 
 		/* @var $cm CloneMode */
@@ -1921,10 +1921,10 @@ class vboxconnector {
 				$m->pageFusionEnabled = $args['pageFusionEnabled'];
 			}
 
-			$m->HPETEnabled = $args['HPETEnabled'];
-			$m->setHWVirtExProperty('LargePages', $args['HWVirtExProperties']['LargePages']);
-			$m->setHWVirtExProperty('UnrestrictedExecution', $args['HWVirtExProperties']['UnrestrictedExecution']);
-			$m->setHWVirtExProperty('VPID', $args['HWVirtExProperties']['VPID']);
+			$m->Platform->getX86()->HPETEnabled = $args['HPETEnabled'];
+			$m->Platform->getX86()->setHWVirtExProperty('LargePages', $args['HWVirtExProperties']['LargePages']);
+			$m->Platform->getX86()->setHWVirtExProperty('UnrestrictedExecution', $args['HWVirtExProperties']['UnrestrictedExecution']);
+			$m->Platform->getX86()->setHWVirtExProperty('VPID', $args['HWVirtExProperties']['VPID']);
 
 		}
 
@@ -2240,7 +2240,7 @@ class vboxconnector {
 
 				$lptChanged = true;
 				try {
-					$p->IOAddress = @hexdec($args['parallelPorts'][$i]['IOBase']);
+					$p->IOBase = @hexdec($args['parallelPorts'][$i]['IOBase']);
 					$p->IRQ = intval($args['parallelPorts'][$i]['IRQ']);
 					$p->path = $args['parallelPorts'][$i]['path'];
 					$p->enabled = $args['parallelPorts'][$i]['enabled'];
@@ -4525,7 +4525,7 @@ class vboxconnector {
 	private function _machineGetParallelPorts(&$m) {
 		if(!@$this->settings->enableLPTConfig) return array();
 		$ports = array();
-		$max = $this->vbox->systemProperties->parallelPortCount;
+		$max = $this->vbox->getPlatformProperties('x86')->parallelPortCount;
 		for($i = 0; $i < $max; $i++) {
 			try {
 				/* @var $p IParallelPort */
@@ -4533,7 +4533,7 @@ class vboxconnector {
 				$ports[] = array(
 					'slot' => $p->slot,
 					'enabled' => $p->enabled,
-					'IOBase' => '0x'.strtoupper(sprintf('%3s',dechex($p->GetIOAddress()))),
+					'IOBase' => '0x'.strtoupper(sprintf('%3s',dechex($p->GetIOBase()))),
 					'IRQ' => $p->IRQ,
 					'path' => $p->path
 				);
