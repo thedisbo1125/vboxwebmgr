@@ -5038,6 +5038,7 @@ function vboxAudioController(c) {
 		case 'AC97': return 'ICH AC97';
 		case 'SB16': return 'SoundBlaster 16';
 		case 'HDA': return 'Intel HD Audio';
+		case 'VirtioSound': return 'Virtio-Sound';
 	}
 }
 /**
