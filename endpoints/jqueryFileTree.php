@@ -55,9 +55,9 @@ $request = clean_request();
  */
 $localbrowser = @$settings->browserLocal;
 if($localbrowser) {
-    define('DSEP', DIRECTORY_SEPARATOR);
+	define('DSEP', DIRECTORY_SEPARATOR);
 } else {
-    define('DSEP',$vbox->getDsep());
+	define('DSEP',$vbox->getDsep());
 }
 
 /*
@@ -76,14 +76,14 @@ if(!is_array($allowed_folders))
  * Get a list of windows drives
  */
 function get_windows_drives() {
-    $checklist = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $drives = array();
-    for($i = 0; $i < strlen($d); $i++) {
-        if(is_dir($checklist[$i].':\\')) {
-            $drives[] = $checklist[$i].':\\';
-        }
-    }
-    return $drives;
+	$checklist = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$drives = array();
+	for($i = 0; $i < strlen($d); $i++) {
+		if(is_dir($checklist[$i].':\\')) {
+			$drives[] = $checklist[$i].':\\';
+		}
+	}
+	return $drives;
 }
 
 /*
@@ -94,22 +94,19 @@ if(stripos($vbox->vbox->host->operatingSystem,'win') === 0 && !count($allowed_fo
 	/*
 	 * Assumes web server and vbox host are the same physical machine
 	 */
-    if($request['fullpath'] && !$settings->forceWindowsAllDriveList && !$settings->noWindowsDriveList && stripos(PHP_OS,'win') === 0) {
+	if($request['fullpath'] && !$settings->forceWindowsAllDriveList && !$settings->noWindowsDriveList && stripos(PHP_OS,'win') === 0) {
+		$allowed_folders = get_windows_drives();
 
-
-        $allowed_folders = get_windows_drives();
-
-    /*
-     * Just show all C-Z drive letters if vboxhost is windows and our web server is not...
-     */
-    } else if($request['fullpath'] && ($settings->forceWindowsAllDriveList || (!$settings->noWindowsDriveList && stripos(PHP_OS,'win') === false))) {
-    	$allowed_folders = array();
-        for($i = 67; $i < 91; $i++) {
-        	$allowed_folders[] = chr($i) .':\\';
-        }
-    }
-    $allowed_folders = array_combine($allowed_folders,$allowed_folders);
-
+	/*
+	 * Just show all C-Z drive letters if vboxhost is windows and our web server is not...
+	 */
+	} else if($request['fullpath'] && ($settings->forceWindowsAllDriveList || (!$settings->noWindowsDriveList && stripos(PHP_OS,'win') === false))) {
+		$allowed_folders = array();
+		for($i = 67; $i < 91; $i++) {
+			$allowed_folders[] = chr($i) .':\\';
+		}
+	}
+	$allowed_folders = array_combine($allowed_folders,$allowed_folders);
 }
 
 
@@ -157,43 +154,43 @@ if($request['dir'] == DSEP && count($allowed_folders)) {
 } else {
 
 
-    /* Full, expanded path to $dir */
-    if($request['fullpath']) {
+	/* Full, expanded path to $dir */
+	if($request['fullpath']) {
 
 
-    	/* Go through allowed folders if it is set */
-    	if(count($allowed_folders)) {
+		/* Go through allowed folders if it is set */
+		if(count($allowed_folders)) {
 
 
-    		foreach($allowed_folders as $f) {
+			foreach($allowed_folders as $f) {
 
-    			/* If this was not exactly the requested folder, but a parent,
-    			 * list everything below it.
-    			 */
-    			if((strtoupper($request['dir']) != strtoupper($f)) && strpos(strtoupper($request['dir']),strtoupper($f)) === 0) {
+				/* If this was not exactly the requested folder, but a parent,
+				 * list everything below it.
+				 */
+				if((strtoupper($request['dir']) != strtoupper($f)) && strpos(strtoupper($request['dir']),strtoupper($f)) === 0) {
 
-    				// List entries in this folder
-    				$path = explode(DSEP, substr($request['dir'],strlen($f)));
+					// List entries in this folder
+					$path = explode(DSEP, substr($request['dir'],strlen($f)));
 
-    				if($path[0] == '') {
-    				    array_shift($path);
-    				}
+					if($path[0] == '') {
+						array_shift($path);
+					}
 
-    			    $folder_entry = folder_entry($f, true);
+					$folder_entry = folder_entry($f, true);
 
-    			    $folder_entry['children'] = getdir($f, $request['dirsOnly'], $path);
-    			    $folder_entry['expanded'] = true;
+					$folder_entry['children'] = getdir($f, $request['dirsOnly'], $path);
+					$folder_entry['expanded'] = true;
 
-    			    array_push($returnData, $folder_entry);
+					array_push($returnData, $folder_entry);
 
-    			} else {
-    				array_push($returnData, folder_entry($f,true));
-    			}
+				} else {
+					array_push($returnData, folder_entry($f,true));
+				}
 
-    		}
+			}
 
-    	/* Just get full path */
-    	} else {
+		/* Just get full path */
+		} else {
 
 			// List entries in this folder
 			$path = explode(DSEP,$request['dir']);
@@ -202,15 +199,13 @@ if($request['dir'] == DSEP && count($allowed_folders)) {
 			// Folder entry
 			$returnData = getdir($root, $request['dirsOnly'], $path);
 
-    	}
+		}
 
 
-    } else {
-
-        /* Default action. Return dir requested */
-        $returnData = getdir($request['dir'], $request['dirsOnly']);
-
-    }
+	} else {
+		/* Default action. Return dir requested */
+		$returnData = getdir($request['dir'], $request['dirsOnly']);
+	}
 
 }
 
@@ -223,36 +218,35 @@ echo(json_encode($returnData));
  */
 function getdir($dir, $dirsOnly=false, $recurse=array()) {
 
-    global $allowed_exts;
+	global $allowed_exts;
 
-    if(!$dir) $dir = DSEP;
+	if(!$dir) $dir = DSEP;
 
-    $entries = getDirEntries($dir, $dirsOnly);
+	$entries = getDirEntries($dir, $dirsOnly);
 
-    if(!count($entries))
-        return array();
+	if(!count($entries))
+		return array();
 
-    $dirents = array();
-    foreach($entries as $path => $type) {
+	$dirents = array();
+	foreach($entries as $path => $type) {
 
-        if($type == 'folder' && count($recurse) && (strcasecmp($recurse[0],vbox_basename($path)) == 0)) {
+		if($type == 'folder' && count($recurse) && (strcasecmp($recurse[0],vbox_basename($path)) == 0)) {
 
-            $entry = folder_entry($path, false, true);
-            $entry['children'] = getdir($dir.DSEP.array_shift($recurse), $dirsOnly, $recurse);
+			$entry = folder_entry($path, false, true);
+			$entry['children'] = getdir($dir.DSEP.array_shift($recurse), $dirsOnly, $recurse);
+			array_push($dirents, $entry);
 
-            array_push($dirents, $entry);
+		} else {
 
-        } else {
+			// Push folder on to stack
+			if($type == 'folder') {
 
-        	// Push folder on to stack
-        	if($type == 'folder') {
+			   array_push($dirents, folder_entry($path));
 
-        	   array_push($dirents, folder_entry($path));
-
-        	// Push file on to stack
-        	} else {
-                    $file = basename($path);
-                    $ext = strtolower(preg_replace('/^.*\./', '', $file));
+			// Push file on to stack
+			} else {
+				$file = basename($path);
+				$ext = strtolower(preg_replace('/^.*\./', '', $file));
 
                     if(count($allowed_exts) && !$allowed_exts['.'.$ext]) continue;
                     array_push($dirents, file_entry($path));
@@ -261,40 +255,41 @@ function getdir($dir, $dirsOnly=false, $recurse=array()) {
 
     }
 
-    return $dirents;
 
+    return $dirents;
 }
+
 
 function vbox_basename($b) { return substr($b,strrpos($b,DSEP)+1); }
 
 function file_entry($f) {
-    $f = str_replace(DSEP.DSEP,DSEP,$f);
-    $ext = strtolower(preg_replace('/^.*\./', '', $f));
-    return array(
-        'ext' => $ext,
-        'name' => htmlentities(vbox_basename($f), ENT_QUOTES),
-        'path' => htmlentities($f, ENT_QUOTES),
-        'type' => 'file'
-    );
+	$f = str_replace(DSEP.DSEP,DSEP,$f);
+	$ext = strtolower(preg_replace('/^.*\./', '', $f));
+	return array(
+		'ext' => $ext,
+		'name' => htmlentities(vbox_basename($f), ENT_QUOTES),
+		'path' => htmlentities($f, ENT_QUOTES),
+		'type' => 'file'
+	);
 }
+
 
 function folder_entry($f,$full=false,$expanded=false) {
-    $f = str_replace(DSEP.DSEP,DSEP,$f);
-    $selected = (strnatcasecmp(rtrim($f,DSEP),rtrim($GLOBALS['request']['dir'],DSEP)) == 0) && $expanded;
-    return array(
-        'expanded' => (bool)$expanded,
-        'selected' => (bool)$selected,
-        'path' => htmlentities($f,ENT_QUOTES),
-        'name' => htmlentities(($full ? $f : vbox_basename($f)),ENT_QUOTES),
-        'type' => 'folder',
-        'children' => array()
-    );
+	$f = str_replace(DSEP.DSEP,DSEP,$f);
+	$selected = (strnatcasecmp(rtrim($f,DSEP),rtrim($GLOBALS['request']['dir'],DSEP)) == 0) && $expanded;
+	return array(
+		'expanded' => (bool)$expanded,
+		'selected' => (bool)$selected,
+		'path' => htmlentities($f,ENT_QUOTES),
+		'name' => htmlentities(($full ? $f : vbox_basename($f)),ENT_QUOTES),
+		'type' => 'folder',
+		'children' => array()
+	);
 }
-
 
 
 /**
- * Rreturn a list of directory entries
+ * Return a list of directory entries
  *
  * @param String $dir
  * @return Array of entries
@@ -306,7 +301,7 @@ function getDirEntries($dir, $foldersOnly=false) {
 
 	// Append trailing slash if it isn't here
 	if(substr($dir,-1) != DSEP)
-	    $dir .= DSEP;
+		$dir .= DSEP;
 
 
 	/*
@@ -343,22 +338,17 @@ function getDirEntries($dir, $foldersOnly=false) {
 	} else {
 
 		try {
-
-		    $appl = $vbox->vbox->createAppliance();
-		    $vfs = $appl->createVFSExplorer('file://'.str_replace(DSEP.DSEP,DSEP,$dir));
-		    $progress = $vfs->update();
-		    $progress->waitForCompletion(-1);
-		    $progress->releaseRemote();
-		    list($ents,$types) = $vfs->entryList();
-		    $vfs->releaseRemote();
-		    $appl->releaseRemote();
-
+			$appl = $vbox->vbox->createAppliance();
+			$vfs = $appl->createVFSExplorer('file://'.str_replace(DSEP.DSEP,DSEP,$dir));
+			$progress = $vfs->update();
+			$progress->waitForCompletion(-1);
+			$progress->releaseRemote();
+			list($ents,$types) = $vfs->entryList();
+			$vfs->releaseRemote();
+			$appl->releaseRemote();
 		} catch (Exception $e) {
-
-		    echo($e->getMessage());
-
-		    return array();
-
+			echo($e->getMessage());
+			return array();
 		}
 
 		// Convert types to file / folder
@@ -368,7 +358,7 @@ function getDirEntries($dir, $foldersOnly=false) {
 
 			// Skip . and ..
 			if($ents[$i] == '.' || $ents[$i] == '..')
-			    continue;
+				continue;
 
 			// type 4 is folder
 			$isdir = $types[$i] == 4;

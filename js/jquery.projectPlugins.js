@@ -19,9 +19,9 @@
  * http://stackoverflow.com/questions/14488774/using-html-in-a-dialogs-title-in-jquery-ui-1-10
  */
 $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
-    _title: function(title) {
-    	title.html(this.options.title ? this.options.title : "&#160;");
-    }
+	_title: function(title) {
+		title.html(this.options.title ? this.options.title : "&#160;");
+	}
 }));
 /**
  * Adds deprecated enable/disableSelection to jquery.
@@ -139,29 +139,29 @@ if ( !jQuery.vboxbrowser ) {
  * Modified version of http://archive.plugins.jquery.com/project/TextFill
  */
 ;(function($) {
-    $.fn.textFill = function(options) {
+	$.fn.textFill = function(options) {
 
-    	var maxFontSize = options.maxFontPixels;
-    	var maxHeight = parseInt(options.height);
-    	var maxWidth = parseInt(options.width);
+		var maxFontSize = options.maxFontPixels;
+		var maxHeight = parseInt(options.height);
+		var maxWidth = parseInt(options.width);
 
-    	var ourText = $(this);
+		var ourText = $(this);
 
-        var fontSize = parseInt(ourText.css('font-size'));
-        var fontSizeOrig = fontSize;
-        var textHeight = $(ourText).outerHeight(true);
-        var textWidth = $(ourText).outerWidth(true);
+		var fontSize = parseInt(ourText.css('font-size'));
+		var fontSizeOrig = fontSize;
+		var textHeight = $(ourText).outerHeight(true);
+		var textWidth = $(ourText).outerWidth(true);
 
-        do {
-        	ourText.css('font-size', fontSize++);
-        	textHeight = $(ourText).outerHeight(true);
-        	textWidth = $(ourText).outerWidth(true);
+		do {
+			ourText.css('font-size', fontSize++);
+			textHeight = $(ourText).outerHeight(true);
+			textWidth = $(ourText).outerWidth(true);
 
-        } while(textHeight <= maxHeight && textWidth <= maxWidth && fontSize <= maxFontSize);
+		} while(textHeight <= maxHeight && textWidth <= maxWidth && fontSize <= maxFontSize);
 
-        fontSize--;
-        return ourText.css({'font-size':(fontSize)+'px','top':(fontSize > fontSizeOrig ? '-1' : '0') + 'px'});
-    };
+		fontSize--;
+		return ourText.css({'font-size':(fontSize)+'px','top':(fontSize > fontSizeOrig ? '-1' : '0') + 'px'});
+	};
 })(jQuery);
 
 
@@ -501,32 +501,31 @@ if(jQuery) (function($){
 			var top = this;
 
 			$(this).each( function() {
-
 				function showTree(c, t, fullpath) {
 
-				    // If a UL is not the target, find or create it
-				    if($(c).prop('tagName') != 'UL') {
-				        var target = $(c).children('UL').first();
-				        if(target.length) {
-				            c = $(target);
-				        } else {
-				            var rootList = $('<ul />').addClass("jqueryFileTree");
-				            $(c).append(rootList);
-				            c = rootList;
-				        }
-				    }
+					// If a UL is not the target, find or create it
+					if($(c).prop('tagName') != 'UL') {
+						var target = $(c).children('UL').first();
+						if(target.length) {
+							c = $(target);
+						} else {
+							var rootList = $('<ul />').addClass("jqueryFileTree");
+							$(c).append(rootList);
+							c = rootList;
+						}
+					}
 
-				    // If data is already loaded, just show it
-				    if($(c).children().length) {
-				        $(c).slideDown({ duration: o.expandSpeed, easing: o.expandEasing });
-				        return;
-				    }
+					// If data is already loaded, just show it
+					if($(c).children().length) {
+						$(c).slideDown({ duration: o.expandSpeed, easing: o.expandEasing });
+						return;
+					}
 
-				    $(c).append($('<li />').addClass("wait").text(o.loadMessage));
+					$(c).append($('<li />').addClass("wait").text(o.loadMessage));
 
 					$.post(o.script, JSON.stringify({ 'dir': t, 'dirsOnly' : (o.dirsOnly ? true : false), 'fullpath' : (fullpath ? true : false)}), function(data) {
 
-					    $(c).children('.wait').remove();
+						$(c).children('.wait').remove();
 						$(c).append(toHTML(data));
 
 						if(o.scrollTo) {
@@ -541,63 +540,64 @@ if(jQuery) (function($){
 				}
 
 				function folderElement(data) {
-				    return $('<li/>').addClass("folder")
-				        .addClass(data.expanded ? 'expanded' : 'collapsed')
-				        .addClass('vboxListItem')
-				        .append(
-				                $('<a/>').attr({'href':'#','name':data.path,'rel':data.path})
-				                    .addClass(data.selected ? 'vboxListItemSelected' : '')
-				                    .text(data.name)
-				        );
+					return $('<li/>').addClass("folder")
+						.addClass(data.expanded ? 'expanded' : 'collapsed')
+						.addClass('vboxListItem')
+						.append(
+							$('<a/>').attr({'href':'#','name':data.path,'rel':data.path})
+								.addClass(data.selected ? 'vboxListItemSelected' : '')
+								.text(data.name)
+						);
 				}
 
 				function fileElement(data) {
-				    return $('<li/>').addClass('file file_' + data.ext +' vboxListItem')
-				        .append(
-				                $('<a/>').attr({'href':'#','name':data.path,'rel':data.path}).text(data.name)
-				         );
+					return $('<li/>').addClass('file file_' + data.ext +' vboxListItem')
+						.append(
+							$('<a/>').attr({'href':'#','name':data.path,'rel':data.path}).text(data.name)
+						);
 				}
+
 				function toHTML(data) {
 
-				    data.sort(function(a,b){
-				        if(a.type == b.type)
-				            return strnatcasecmp(a.path, b.path);
-				        return a.type == 'folder' ? -1 : 1
-				    });
+					data.sort(function(a,b){
+						if(a.type == b.type)
+							return strnatcasecmp(a.path, b.path);
+						return a.type == 'folder' ? -1 : 1
+					});
 
-				    var elms = [];
-				    for(var i = 0; i < data.length; i++) {
+					var elms = [];
+					for(var i = 0; i < data.length; i++) {
 
-				        // Folder
-				        if(data[i].type == 'folder') {
-				            var direlm = folderElement(data[i]);
-				            if(data[i].expanded) {
-				                var listelm = $('<ul/>').addClass('jqueryFileTree');
-				                var children = toHTML(data[i].children);
-				                for(var a = 0; a < children.length; a++) {
-				                    $(listelm).append(children[a]);
-				                }
-				                $(direlm).append(listelm);
-				            }
-				            elms.push(direlm);
+						// Folder
+						if(data[i].type == 'folder') {
+							var direlm = folderElement(data[i]);
+							if(data[i].expanded) {
+								var listelm = $('<ul/>').addClass('jqueryFileTree');
+								var children = toHTML(data[i].children);
+								for(var a = 0; a < children.length; a++) {
+									$(listelm).append(children[a]);
+								}
+								$(direlm).append(listelm);
+							}
+							elms.push(direlm);
 
 
-				        // File
-				        } else {
-				            elms.push(fileElement(data[i]));
-				        }
-				    }
-				    return elms;
+						// File
+						} else {
+							elms.push(fileElement(data[i]));
+						}
+					}
+					return elms;
 				}
 
 				function bindTree(t) {
-				    // Expand / collapse
+					// Expand / collapse
 					$(t).find('LI A').on('dblclick', function(e) {
 						e.preventDefault();
 						// Folder
 						if( $(this).parent().hasClass('folder') ) {
 
-						    // Is collapsed. Expand
+							// Is collapsed. Expand
 							if( $(this).parent().hasClass('collapsed') ) {
 								// Expand
 								if( !o.multiFolder ) {
@@ -605,13 +605,13 @@ if(jQuery) (function($){
 									$(top).find('LI.folder').removeClass('expanded').addClass('collapsed');
 								}
 								$(this).parent().removeClass('collapsed').addClass('expanded');
-							    showTree( $(this).parent(), $(this).attr('name') );
+								showTree( $(this).parent(), $(this).attr('name') );
 
 							// Is expanded. Collapse
 							} else {
 								// Collapse
 								$(this).parent().removeClass('expanded').addClass('collapsed')
-								    .children('UL').slideUp({ duration: o.collapseSpeed, easing: o.collapseEasing });
+									.children('UL').slideUp({ duration: o.collapseSpeed, easing: o.collapseEasing });
 							}
 						} else {
 							h($(this).attr('name'));
