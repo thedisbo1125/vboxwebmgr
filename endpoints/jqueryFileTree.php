@@ -200,8 +200,6 @@ if($request['dir'] == DSEP && count($allowed_folders)) {
 			$returnData = getdir($root, $request['dirsOnly'], $path);
 
 		}
-
-
 	} else {
 		/* Default action. Return dir requested */
 		$returnData = getdir($request['dir'], $request['dirsOnly']);
@@ -240,27 +238,23 @@ function getdir($dir, $dirsOnly=false, $recurse=array()) {
 
 			// Push folder on to stack
 			if($type == 'folder') {
-
-			   array_push($dirents, folder_entry($path));
+				array_push($dirents, folder_entry($path));
 
 			// Push file on to stack
 			} else {
 				$file = basename($path);
 				$ext = strtolower(preg_replace('/^.*\./', '', $file));
-
-                    if(count($allowed_exts) && !$allowed_exts['.'.$ext]) continue;
-                    array_push($dirents, file_entry($path));
-        	}
-        }
-
-    }
-
-
-    return $dirents;
+				if(count($allowed_exts) && !$allowed_exts['.'.$ext]) continue;
+				array_push($dirents, file_entry($path));
+			}
+		}
+	}
+	return $dirents;
 }
 
 
 function vbox_basename($b) { return substr($b,strrpos($b,DSEP)+1); }
+
 
 function file_entry($f) {
 	$f = str_replace(DSEP.DSEP,DSEP,$f);
