@@ -1,4 +1,16 @@
 -------------------------------------
+    7.1-002  2024-11-02
+-------------------------------------
+
+- change 3D acceleration check of host to new data structure
+- add additional keyboard and mouse options
+- add check for host 2D video acceleration supported and disable checkbox if it isn't
+- fix issue with setting 'graphicsControllerType' to Null and 'VRAMSize' size
+- more code changes to vboxconnector.php for changed data structures
+- remove ARM selection from OS Version, additional code changes and testing needed to correctly support ARM
+- remove version 6.1 wsdl files
+
+-------------------------------------
     7.1-001  2024-10-31
 -------------------------------------
 
