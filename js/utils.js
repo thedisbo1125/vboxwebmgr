@@ -1087,7 +1087,6 @@ function vboxProgressUpdate(prequest,d,modal) {
 			}
 			if(maxList > 0) $('#vboxProgressOps').children('div.vboxProgressComplete').slice(maxList).remove();
 		}
-
 		return;
 	}
 
