@@ -12,25 +12,27 @@
  *
  */
 $(document).ready(function(){
-    $(window).keydown(function(i){if(i.keyCode&&i.keyCode===27){
-        i.preventDefault();
-        try {
-                var flash = RDPWebClient.getFlashById("FlashRDP");
-                flash.keyboardSendScancodes('01');
-        } catch (e) {
-                //alert(e.message);
-        }
-    }});
-    $(document).keydown(function(i){if(i.keyCode&&i.keyCode===27){
-        i.preventDefault();
-        try {
-                var flash = RDPWebClient.getFlashById("FlashRDP");
-                flash.keyboardSendScancodes('01');
-        } catch (e) {
-                //alert(e.message);
-        }
-    }});
+	$(window).keydown(function(i){if(i.keyCode&&i.keyCode===27){
+		i.preventDefault();
+		try {
+			var flash = RDPWebClient.getFlashById("FlashRDP");
+			flash.keyboardSendScancodes('01');
+		} catch (e) {
+			//alert(e.message);
+		}
+	}});
+
+	$(document).keydown(function(i){if(i.keyCode&&i.keyCode===27){
+		i.preventDefault();
+		try {
+			var flash = RDPWebClient.getFlashById("FlashRDP");
+			flash.keyboardSendScancodes('01');
+		} catch (e) {
+			//alert(e.message);
+		}
+	}});
 });
+
 
 /**
  * Traverse a tree and return matching nodes.
@@ -59,6 +61,7 @@ function vboxTraverse(tree,prop,val,all,children) {
 	return (all ? leafs : null);
 }
 
+
 /**
  * Performs AJAX request, alert()'s returned errors
  *
@@ -76,9 +79,9 @@ function vboxAjaxRequest(fn,params,config) {
 		return def.reject();
 
 	var data = {
-        'fn': fn,
-        'params': params ? params : null,
-        'persist': config && config.persist ? config.persist : null
+		'fn': fn,
+		'params': params ? params : null,
+		'persist': config && config.persist ? config.persist : null
 	};
 
 	$.when($.post(vboxEndpointConfig.api, JSON.stringify(data), undefined,"json")
@@ -198,6 +201,7 @@ function vboxAjaxRequest(fn,params,config) {
 	return def.promise();
 }
 
+
 /**
  * Return VRDE host address of VM
  * @param {Object} vm - virtual machine object
@@ -215,6 +219,7 @@ function vboxGetVRDEHost(vm) {
 	return chost;
 }
 
+
 /**
  * Return the correct icon string relative to images/vbox/ for the guest OS type
  * @param {String} osTypeId - guest OS type id
@@ -222,9 +227,9 @@ function vboxGetVRDEHost(vm) {
  */
 function vboxGuestOSTypeIcon(osTypeId) {
 
-    var strIcon = "os_other.png";
-    switch (osTypeId)
-    {
+	var strIcon = "os_other.png";
+	switch (osTypeId)
+	{
 		case "Other":                      strIcon = "os_other.png"; break;
 		case "Other_64":                   strIcon = "os_other_64.png"; break;
 		case "DOS":                        strIcon = "os_dos.png"; break;
@@ -411,11 +416,12 @@ function vboxGuestOSTypeIcon(osTypeId) {
 		case "VBoxBS_64":                  strIcon = "os_other_64.png"; break;
 		case "VirtualBox_Host":            strIcon = "os_virtualbox.png"; break;
 
-        default:
-            break;
-    }
-    return strIcon;
+		default:
+			break;
+	}
+	return strIcon;
 }
+
 
 /**
  * Return the correct icon relative to images/vbox/ for the VM state.
@@ -425,32 +431,32 @@ function vboxGuestOSTypeIcon(osTypeId) {
 function vboxMachineStateIcon(state)
 {
 	var strIcon = "state_powered_off_16px.png";
-    var strNoIcon = "state_running_16px.png";
+	var strNoIcon = "state_running_16px.png";
 
-    switch (state)
-    {
-        case "PoweredOff": strIcon = "state_powered_off_16px.png"; break;
-        case "Saved": strIcon = "state_saved_16px.png"; break;
-        case "Saving": strIcon = "state_saving_16px.png"; break;
-        case "Snapshotting": strIcon = "snapshot_offline_16px.png"; break;
-        case "LiveSnapshotting": strIcon = "snapshot_online_16px.png"; break;
-        case "Aborted": strIcon = "state_aborted_16px.png"; break;
-        case "Running": strIcon = "state_running_16px.png"; break;
-        case "Paused": strIcon = "state_paused_16px.png"; break;
-        case "Stuck": strIcon = "state_stuck_16px.png"; break;
-        case "Saving": strIcon = "state_discarding_16px.png"; break;
-        case "Restoring": strIcon = "vm_settings_16px.png"; break;
-        case "RestoringSnapshot": strIcon = "discard_cur_state_16px.png"; break;
-        case "DeletingSnapshot": strIcon = "state_discarding_16px.png"; break;
-        case "Hosting" : strIcon = "vm_settings_16px.png"; break;
-        case "Inaccessible": strIcon = "state_aborted_16px.png"; break;
-        default:
-            strIcon = strNoIcon;
-    }
+	switch (state)
+	{
+		case "PoweredOff": strIcon = "state_powered_off_16px.png"; break;
+		case "Saved": strIcon = "state_saved_16px.png"; break;
+		case "Saving": strIcon = "state_saving_16px.png"; break;
+		case "Snapshotting": strIcon = "snapshot_offline_16px.png"; break;
+		case "LiveSnapshotting": strIcon = "snapshot_online_16px.png"; break;
+		case "Aborted": strIcon = "state_aborted_16px.png"; break;
+		case "Running": strIcon = "state_running_16px.png"; break;
+		case "Paused": strIcon = "state_paused_16px.png"; break;
+		case "Stuck": strIcon = "state_stuck_16px.png"; break;
+		case "Saving": strIcon = "state_discarding_16px.png"; break;
+		case "Restoring": strIcon = "vm_settings_16px.png"; break;
+		case "RestoringSnapshot": strIcon = "discard_cur_state_16px.png"; break;
+		case "DeletingSnapshot": strIcon = "state_discarding_16px.png"; break;
+		case "Hosting" : strIcon = "vm_settings_16px.png"; break;
+		case "Inaccessible": strIcon = "state_aborted_16px.png"; break;
+		default:
+			strIcon = strNoIcon;
+	}
 
-    return strIcon;
-
+	return strIcon;
 }
+
 
 /**
  * File or Folder browser dialog
@@ -482,20 +488,23 @@ function vboxFileBrowser(root,fn,foldersonly,title,icon,strictFiles) {
 	var d1 = $('<div />').attr({'id':'vboxBrowseFolder','class':'vboxDialogContent','style':'display:none'});
 
 	$('<div />').attr({'id':'vboxBrowseFolderList'}).fileTree({ 'root': (root ? root : '/'),'dirsOnly':foldersonly,'loadMessage':trans('Loading ...','UIVMDesktop'),'scrollTo':'#vboxBrowseFolder'},function(f){
-    	buttons[trans('OK','QIMessageBox')](f);
-    }).appendTo(d1);
+		buttons[trans('OK','QIMessageBox')](f);
+	}).appendTo(d1);
 
-    $(d1).dialog({'closeOnEscape':true,'width':500,'minWidth':400,'height':600,'minHeight':400,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="'+(icon ? icon : 'images/jqueryFileTree/'+(foldersonly ? 'folder_open' : 'file')+'.png') + '" class="vboxDialogTitleIcon" /> ' + (title ? title : trans((foldersonly ? 'Select Folder' : 'Select File')))}).on("dialogbeforeclose",function(){
-    	$(this).parent().find('span:contains("'+trans('Cancel','QIMessageBox')+'")').trigger('click');
-    });
-
+	$(d1).dialog({'closeOnEscape':true,'width':500,'minWidth':400,'height':600,'minHeight':400,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="'+(icon ? icon : 'images/jqueryFileTree/'+(foldersonly ? 'folder_open' : 'file')+'.png') + '" class="vboxDialogTitleIcon" /> ' + (title ? title : trans((foldersonly ? 'Select Folder' : 'Select File')))}).on("dialogbeforeclose",function(){
+		$(this).parent().find('span:contains("'+trans('Cancel','QIMessageBox')+'")').trigger('click');
+	});
 }
+
+
 /**
  * Convert megabytes to human readable string
  * @param {Integer} mb - megabytes
  * @return {String} human readable size representation (e.g. 2 GB, 500 MB, etc..)
  */
 function vboxMbytesConvert(mb) {return vboxBytesConvert(parseFloat(mb) * 1024 * 1024);}
+
+
 /**
  * Convert bytes to human readable string
  * @param {Integer} bytes - bytes
@@ -508,6 +517,8 @@ function vboxBytesConvert(bytes) {
 
 	return Math.round(parseFloat(bytes)*Math.pow(10,2))/Math.pow(10,2) + " " + trans(ext[unitCount], 'VBoxGlobal');
 }
+
+
 /**
  * Parse str param into megabytes
  * @param {String} str - size string (2 TB, 500 MB, etc..) to parse
@@ -548,7 +559,7 @@ function vboxConvertMbytes(str) {
  */
 function vboxAlert(e,xtraOpts) {
 
-    var acknowledged = $.Deferred();
+	var acknowledged = $.Deferred();
 
 	var msg = '';
 
@@ -586,8 +597,8 @@ function vboxAlert(e,xtraOpts) {
 
 	var buttons = { };
 	buttons[trans('OK','QIMessageBox')] = function(f) {
-	    $(this).trigger('close').empty().remove();
-	    acknowledged.resolve();
+		$(this).trigger('close').empty().remove();
+		acknowledged.resolve();
 	};
 
 	var dialogOpts = {'closeOnEscape':false,'width':600,'height':'auto','buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'};
@@ -600,8 +611,7 @@ function vboxAlert(e,xtraOpts) {
 
 	$(div).dialog(dialogOpts);
 
-    return acknowledged;
-
+	return acknowledged;
 }
 
 
@@ -622,9 +632,9 @@ function vboxConfirm(q,buttons,cancelText,onCancel) {
 
 	buttons[cancelText] = function() { $(this).remove(); if(onCancel) { onCancel(); }};
 
-    $(div).dialog({'closeOnEscape':false,'width':500,'height':'auto','buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});
+	$(div).dialog({'closeOnEscape':false,'width':500,'height':'auto','buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});
 
-    return $(div);
+	return $(div);
 }
 
 
@@ -643,9 +653,9 @@ function vboxInfo(q) {
 		$(this).remove();
 	}
 
-    $(div).dialog({'closeOnEscape':false,'width':500,'height':'auto','buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});
+	$(div).dialog({'closeOnEscape':false,'width':500,'height':'auto','buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});
 
-    return $(div);
+	return $(div);
 }
 
 
@@ -793,6 +803,7 @@ function vboxInitDisplay(root,context) {
 
 }
 
+
 /**
  * Color VISIBLE children rows of parent elm
  * @param {HTMLNode} elm - element who's children to color
@@ -811,6 +822,7 @@ function vboxColorRows(elm,startOdd,headerClass) {
 		(odd++ % 2 ? $(this).addClass('vboxOddRow') : $(this).removeClass('vboxOddRow'));
 	});
 }
+
 
 /**
  * Return an HTML div node sized to parent with overflow hidden
@@ -869,6 +881,7 @@ function vboxProgress(prequest,callback,icon,title,target,blocking) {
 
 }
 
+
 /**
  * Generate modal progress dialog
  *
@@ -922,6 +935,7 @@ function vboxProgressCreateDialog(prequest,icon,title,target,callback) {
 
 
 }
+
 
 /**
  * Generate progress list element and append it
@@ -978,11 +992,12 @@ function vboxProgressCreateListElement(prequest,icon,title,target,callback) {
 	if($('#vboxProgressPlaceholder'+pid)[0]) {
 		$('#vboxProgressPlaceholder'+pid).replaceWith(div);
 	} else {
-	    $('#vboxProgressOps').prepend(div);
+		$('#vboxProgressOps').prepend(div);
 	}
 
 
 }
+
 
 /**
  * OnUnload warning shown when an operation is in progress
@@ -994,6 +1009,7 @@ function vboxOpInProgressCheck() {
 	}
 }
 
+
 /**
  * Update progress dialog box. Callback run from vboxAjaxRequest
  *
@@ -1003,6 +1019,7 @@ function vboxOpInProgressCheck() {
 function vboxProgressUpdateModal(prequest, data) {
 	vboxProgressUpdate(prequest,data,true);
 }
+
 
 /**
  * Update progress dialog box or progress list row with % completed
@@ -1063,13 +1080,12 @@ function vboxProgressUpdate(prequest,d,modal) {
 		// Check for max elements
 		if($('#vboxPane').data('vboxConfig').maxProgressList) {
 			var maxList = $('#vboxPane').data('vboxConfig').maxProgressList;
-	        try {
-	        	maxList = Math.max(2,parseInt(maxList));
-		    } catch (e) {
-		        maxList = 5;
-		    }
-		    if(maxList > 0) $('#vboxProgressOps').children('div.vboxProgressComplete').slice(maxList).remove();
-
+			try {
+				maxList = Math.max(2,parseInt(maxList));
+			} catch (e) {
+				maxList = 5;
+			}
+			if(maxList > 0) $('#vboxProgressOps').children('div.vboxProgressComplete').slice(maxList).remove();
 		}
 
 		return;
@@ -1095,6 +1111,7 @@ function vboxProgressUpdate(prequest,d,modal) {
 	window.setTimeout(def.resolve, 2000);
 
 }
+
 
 /**
  * Position element to mouse event
@@ -1141,6 +1158,7 @@ function vboxPositionEvent(elm,e) {
 	$(elm).css({ top: y, left: x });
 }
 
+
 /**
  * Position element inside visible window
  * @param {HTMLNode} elm - element
@@ -1165,9 +1183,11 @@ function vboxPositionToWindow(elm) {
 
 }
 
+
 /*
  * keycode input validation functions
  */
+
 /**
  * Return true if k param is a number
  * @param {Integer} k - keycode
@@ -1176,6 +1196,8 @@ function vboxPositionToWindow(elm) {
 function vboxValidateNum(k) {
 	return ((k >= 96 && k <= 105)||(k >= 48 && k <= 57));
 }
+
+
 /**
  * Return true if k param is a number or '.'
  * @param {Integer} k - keycode
@@ -1184,6 +1206,8 @@ function vboxValidateNum(k) {
 function vboxValidateIP(k) {
 	return (vboxValidateNum(k) || k == 190 || k == 110 || k == 59 || k==78);
 }
+
+
 /**
  * Return true if k param is a valid control code (shift, backspace, etc..)
  * @param {Integer} k - keycode
@@ -1208,6 +1232,7 @@ function vboxValidateCtrl(k) {
 	return false;
 }
 
+
 /** Parse Cookies and populate $('#vboxPane').data('vboxCookies') */
 function vboxParseCookies() {
 	if($('#vboxPane').data('vboxCookiesParsed')) return;
@@ -1220,6 +1245,7 @@ function vboxParseCookies() {
 	$('#vboxPane').data('vboxCookies', cookies);
 	$('#vboxPane').data('vboxCookiesParsed',true);
 }
+
 
 /**
  * General application failure
@@ -1239,6 +1265,7 @@ function vboxwebmgrFailure(msg) {
 	}
 }
 
+
 /**
  * Set a cookie and update $('#vboxPane').data('vboxCookies')
  * @param {String} k - cookie key
@@ -1250,6 +1277,7 @@ function vboxSetCookie(k,v,expire) {
 	document.cookie = k+"="+v+"; expires="+exp.toGMTString()+"; path=/";
 	$('#vboxPane').data('vboxCookies')[k] = v;
 }
+
 
 /**
  * Set a local data item using the local storage mechanism
@@ -1272,6 +1300,7 @@ function vboxSetLocalDataItem(k,v,nocookies) {
 		localStorage.removeItem(k);
 	}
 }
+
 
 /**
  * Get a local data item using the local storage mechanism
@@ -1374,101 +1403,115 @@ var getScrollbarWidth = function() {
  * @return {Integer} integer for use in list sorting comparison
  */
 function strnatcasecmp(str1, str2) {
-    // Returns the result of case-insensitive string comparison using 'natural' algorithm
-    //
-    // version: 1004.2314
-    // discuss at: http://phpjs.org/functions/strnatcasecmp    // +      original by: Martin Pool
-    // + reimplemented by: Pierre-Luc Paour
-    // + reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
-    // + reimplemented by: Brett Zamir (http://brett-zamir.me)
-    // +      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)    // *     example 1: strnatcasecmp(10, 1);
-    // *     returns 1: 1
-    // *     example 1: strnatcasecmp('1', '10');
-    // *     returns 1: -1
-    var a = (str1+'').toLowerCase();    var b = (str2+'').toLowerCase();
+	// Returns the result of case-insensitive string comparison using 'natural' algorithm
+	//
+	// version: 1004.2314
+	// discuss at: http://phpjs.org/functions/strnatcasecmp    
+	// +      original by: Martin Pool
+	// + reimplemented by: Pierre-Luc Paour
+	// + reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
+	// + reimplemented by: Brett Zamir (http://brett-zamir.me)
+	// + bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+	// * example 1: strnatcasecmp(10, 1);
+	// * returns 1: 1
+	// * example 1: strnatcasecmp('1', '10');
+	// * returns 1: -1
+	var a = (str1+'').toLowerCase();
+	var b = (str2+'').toLowerCase();
 
-    var isWhitespaceChar = function (a) {
-        return a.charCodeAt(0) <= 32;
-    };
-    var isDigitChar = function (a) {
-        var charCode = a.charCodeAt(0);
-        return ( charCode >= 48  && charCode <= 57 );
-    };
-    var compareRight = function (a,b) {
-        var bias = 0;
-        var ia = 0;
-        var ib = 0;
-        var ca;
-        var cb;
+	var isWhitespaceChar = function (a) {
+		return a.charCodeAt(0) <= 32;
+	};
+	var isDigitChar = function (a) {
+		var charCode = a.charCodeAt(0);
+		return ( charCode >= 48  && charCode <= 57 );
+	};
+	var compareRight = function (a,b) {
+		var bias = 0;
+		var ia = 0;
+		var ib = 0;
+		var ca;
+		var cb;
 
-        // The longest run of digits wins.  That aside, the greatest        // value wins, but we can't know that it will until we've scanned
-        // both numbers to know that they have the same magnitude, so we
-        // remember it in BIAS.
-        for (;; ia++, ib++) {
-            ca = a.charAt(ia);            cb = b.charAt(ib);
+		// The longest run of digits wins.  That aside, the greatest
+		// value wins, but we can't know that it will until we've scanned
+		// both numbers to know that they have the same magnitude, so we
+		// remember it in BIAS.
+		for (;; ia++, ib++) {
+			ca = a.charAt(ia);
+			cb = b.charAt(ib);
 
-            if (!isDigitChar(ca) &&
-                !isDigitChar(cb)) {
-                return bias;            } else if (!isDigitChar(ca)) {
-                return -1;
-            } else if (!isDigitChar(cb)) {
-                return +1;
-            } else if (ca < cb) {                if (bias == 0) {
-                    bias = -1;
-                }
-            } else if (ca > cb) {
-                if (bias == 0) {                    bias = +1;
-                }
-            } else if (ca == 0 && cb == 0) {
-                return bias;
-            }        }
-    };
+			if (!isDigitChar(ca) && !isDigitChar(cb)) {
+				return bias;
+			} else if (!isDigitChar(ca)) {
+				return -1;
+			} else if (!isDigitChar(cb)) {
+				return +1;
+			} else if (ca < cb) {
+				if (bias == 0) {
+					bias = -1;
+				}
+			} else if (ca > cb) {
+				if (bias == 0) {
+					bias = +1;
+				}
+			} else if (ca == 0 && cb == 0) {
+				return bias;
+			}
+		}
+	};
 
-    var ia = 0, ib = 0;
-    var nza = 0, nzb = 0;    var ca, cb;
-    var result;
+	var ia = 0, ib = 0;
+	var nza = 0, nzb = 0;
+	var ca, cb;
+	var result;
 
-    while (true) {
-        // only count the number of zeroes leading the last number compared        nza = nzb = 0;
+	while (true) {
+		// only count the number of zeroes leading the last number compared   nza = nzb = 0;
 
-        ca = a.charAt(ia);
-        cb = b.charAt(ib);
-         // skip over leading spaces or zeros
-        while (isWhitespaceChar( ca ) || ca =='0') {
-            if (ca == '0') {
-                nza++;
-            } else {                // only count consecutive zeroes
-                nza = 0;
-            }
+		ca = a.charAt(ia);
+		cb = b.charAt(ib);
+		// skip over leading spaces or zeros
+		while (isWhitespaceChar( ca ) || ca =='0') {
+			if (ca == '0') {
+				nza++;
+			} else {
+				// only count consecutive zeroes
+				nza = 0;
+			}
 
-            ca = a.charAt(++ia);        }
+			ca = a.charAt(++ia);
+		}
 
-        while (isWhitespaceChar( cb ) || cb == '0') {
-            if (cb == '0') {
-                nzb++;            } else {
-                // only count consecutive zeroes
-                nzb = 0;
-            }
-             cb = b.charAt(++ib);
-        }
+		while (isWhitespaceChar( cb ) || cb == '0') {
+			if (cb == '0') {
+				nzb++;
+			} else {
+				// only count consecutive zeroes
+				nzb = 0;
+			}
+			cb = b.charAt(++ib);
+		}
 
-        // process run of digits
-        if (isDigitChar(ca) && isDigitChar(cb)) {            if ((result = compareRight(a.substring(ia), b.substring(ib))) != 0) {
-                return result;
-            }
-        }
-         if (ca == 0 && cb == 0) {
-            // The strings compare the same.  Perhaps the caller
-            // will want to call strcmp to break the tie.
-            return nza - nzb;
-        }
-        if (ca < cb) {
-            return -1;
-        } else if (ca > cb) {
-            return +1;        }
+		// process run of digits
+		if (isDigitChar(ca) && isDigitChar(cb)) {
+			if ((result = compareRight(a.substring(ia), b.substring(ib))) != 0) {
+				return result;
+			}
+		}
+		if (ca == 0 && cb == 0) {
+			// The strings compare the same.  Perhaps the caller
+			// will want to call strcmp to break the tie.
+			return nza - nzb;
+		}
+		if (ca < cb) {
+			return -1;
+		} else if (ca > cb) {
+			return +1;
+		}
 
-        ++ia; ++ib;
-    }
+		++ia; ++ib;
+	}
 }
 
 /** Filter prototype for older browsers
@@ -1476,32 +1519,32 @@ function strnatcasecmp(str1, str2) {
  */
 if (!Array.prototype.filter)
 {
-  Array.prototype.filter = function(fun /*, thisp */)
-  {
-    "use strict";
+	Array.prototype.filter = function(fun /*, thisp */)
+	{
+		"use strict";
 
-    if (this == null)
-      throw new TypeError();
+		if (this == null)
+			throw new TypeError();
 
-    var t = Object(this);
-    var len = t.length >>> 0;
-    if (typeof fun != "function")
-      throw new TypeError();
+		var t = Object(this);
+		var len = t.length >>> 0;
+		if (typeof fun != "function")
+			throw new TypeError();
 
-    var res = [];
-    var thisp = arguments[1];
-    for (var i = 0; i < len; i++)
-    {
-      if (i in t)
-      {
-        var val = t[i]; // in case fun mutates this
-        if (fun.call(thisp, val, i, t))
-          res.push(val);
-      }
-    }
+		var res = [];
+		var thisp = arguments[1];
+		for (var i = 0; i < len; i++)
+		{
+			if (i in t)
+			{
+				var val = t[i]; // in case fun mutates this
+				if (fun.call(thisp, val, i, t))
+					res.push(val);
+			}
+		}
 
-    return res;
-  };
+		return res;
+	};
 }
 
 $(document).ready(function() {
