@@ -233,7 +233,6 @@ function getdir($dir, $dirsOnly=false, $recurse=array()) {
 			$entry = folder_entry($path, false, true);
 			$entry['children'] = getdir($dir.DSEP.array_shift($recurse), $dirsOnly, $recurse);
 			array_push($dirents, $entry);
-
 		} else {
 
 			// Push folder on to stack
