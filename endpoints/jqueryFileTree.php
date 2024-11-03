@@ -201,6 +201,7 @@ if($request['dir'] == DSEP && count($allowed_folders)) {
 
 		}
 	} else {
+
 		/* Default action. Return dir requested */
 		$returnData = getdir($request['dir'], $request['dirsOnly']);
 	}
@@ -248,6 +249,7 @@ function getdir($dir, $dirsOnly=false, $recurse=array()) {
 			}
 		}
 	}
+
 	return $dirents;
 }
 
