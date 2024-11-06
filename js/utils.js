@@ -264,7 +264,7 @@ function vboxGuestOSTypeIcon(osTypeId) {
 		case "Windows2012_64":             strIcon = "os_win2k12_64.png"; break;
 		case "Windows2016_64":             strIcon = "os_win2k16_64.png"; break;
 		case "Windows2019_64":             strIcon = "os_win2k19_64.png"; break;
-		case "Windows2022_64":             strIcon = "os_win_other_64.png"; break;
+		case "Windows2022_64":             strIcon = "os_win2k22_64.png"; break;
 		case "OS21x":                      strIcon = "os_os2_other.png"; break;
 		case "OS2Warp3":                   strIcon = "os_os2warp3.png"; break;
 		case "OS2Warp4":                   strIcon = "os_os2warp4.png"; break;
