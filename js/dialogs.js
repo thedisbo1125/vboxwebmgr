@@ -1682,7 +1682,8 @@ function vboxSettingsDialog(title,panes,data,pane,icon,langContext,presave) {
 		/* Tell dialog that data is loaded */
 		$('#vboxSettingsDialog').trigger('dataLoaded');
 
-		var buttons = { };
+		var buttons = [];
+
 		buttons[trans('OK','QIMessageBox')] = function() {
 
 		    $(this).trigger('save');
