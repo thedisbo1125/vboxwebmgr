@@ -1,5 +1,5 @@
 -------------------------------------
-    7.1-003  2024-11-
+    7.1-003  2024-11-07
 -------------------------------------
 
 - fix issue with VirtioSound audio controllwer displaying as blank
