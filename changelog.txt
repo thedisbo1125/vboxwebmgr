@@ -1,4 +1,12 @@
 -------------------------------------
+    7.1-003  2024-11-
+-------------------------------------
+
+- fix issue with VirtioSound audio controllwer displaying as blank
+- cleanup code spacing
+- add missing OS images/update images
+
+-------------------------------------
     7.1-002  2024-11-02
 -------------------------------------
 
