@@ -1370,7 +1370,6 @@ class vboxconnector {
 		$cm = new CloneMode(null,$args['vmState']);
 		$state = $cm->ValueMap[$args['vmState']];
 
-
 		$opts = array();
 		if(!$args['reinitNetwork']) $opts[] = 'KeepAllMACs';
 		if($args['link']) $opts[] = 'Link';
