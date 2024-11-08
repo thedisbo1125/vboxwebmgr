@@ -153,7 +153,6 @@ if($request['dir'] == DSEP && count($allowed_folders)) {
 
 } else {
 
-
 	/* Full, expanded path to $dir */
 	if($request['fullpath']) {
 
@@ -201,11 +200,9 @@ if($request['dir'] == DSEP && count($allowed_folders)) {
 
 		}
 	} else {
-
-		/* Default action. Return dir requested */
-		$returnData = getdir($request['dir'], $request['dirsOnly']);
+            /* Default action. Return dir requested */
+            $returnData = getdir($request['dir'], $request['dirsOnly']);
 	}
-
 }
 
 header('Content-type: application/json');
@@ -244,6 +241,7 @@ function getdir($dir, $dirsOnly=false, $recurse=array()) {
 			} else {
 				$file = basename($path);
 				$ext = strtolower(preg_replace('/^.*\./', '', $file));
+
 				if(count($allowed_exts) && !$allowed_exts['.'.$ext]) continue;
 				array_push($dirents, file_entry($path));
 			}
