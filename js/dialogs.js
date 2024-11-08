@@ -1713,12 +1713,9 @@ function vboxSettingsDialog(title,panes,data,pane,icon,langContext,presave) {
             $('#vboxSettingsDialog table.vboxSettingsTable').css('width','100%');
             $('#vboxSettingsDialog').dialog('option','title',(icon ? '<img src="images/vbox/'+icon+'_16px.png" class="vboxDialogTitleIcon" /> ' : '') + trans(panes[0].label,langContext));
         }
-
-
     };
 
     loader.run();
 
     return results.promise();
-
 }
