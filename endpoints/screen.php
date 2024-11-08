@@ -121,6 +121,11 @@ try {
         $screenWidth = array_shift($res);
         $screenHeight = array_shift($res);
 
+        // If we were unable to get screen dimensions, set it to something
+        if(!$screenWidth || !$screenHeight) {
+            $screenWidth = 640;
+            $screenHeight = 480;
+        }
 
         // Force screenshot width while maintaining aspect ratio
         if($force_width) {
@@ -144,11 +149,6 @@ try {
 
         }
 
-        // If we were unable to get screen dimensions, set it to something
-        if(!$screenWidth || !$screenHeight) {
-            $screenWidth = 640;
-            $screenHeight = 480;
-        }
         // array() for compatibility with readSavedScreenshotPNGToArray return value
         try {
             $imageraw = array($vbox->session->console->display->takeScreenShotToArray(0, $screenWidth, $screenHeight, 'PNG'));
