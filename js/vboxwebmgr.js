@@ -1487,6 +1487,8 @@ var vboxVMActions = {
 		icon: 'vm_add',
 		name: 'add',
 		click: function(){
+			var allowedexts = new Array();
+			allowedexts.push('.vbox','.xml');
 			vboxFileBrowser($('#vboxPane').data('vboxSystemProperties').defaultMachineFolder,function(f){
 				if(!f) return;
 				var l = new vboxLoader();
@@ -1498,7 +1500,7 @@ var vboxVMActions = {
 				};
 				l.run();
 
-			},false,trans('Add existing virtual machine','UIActionPool'),'images/vbox/machine_16px.png',true);
+			},false,trans('Add existing virtual machine','UIActionPool'),'images/vbox/machine_16px.png',true,allowedexts);
 		}
 	},
 
@@ -2672,18 +2674,23 @@ var vboxMedia = {
 
 			title = null;
 			icon = null;
+			var allowedexts = new Array();
+
 			switch(type) {
 				case 'HardDisk':
 					title = trans('Choose a virtual hard disk file...','UIMachineSettingsStorage');
 					icon = 'images/vbox/hd_16px.png';
+					allowedexts.push('.vdi','.vmdk','.vhd','.vhdx','.hdd','.qed','.qcow','.qcow2');
 					break;
 				case 'Floppy':
 					title = trans('Choose a virtual floppy disk file...','UIMachineSettingsStorage');
 					icon = 'images/vbox/fd_16px.png';
+					allowedexts.push('.img','.ima','.dsk','.flp','.vfd');
 					break;
 				case 'DVD':
 					title = trans('Choose a virtual optical disk file...','UIMachineSettingsStorage');
 					icon = 'images/vbox/cd_16px.png';
+					allowedexts.push('.cdr','.cue','.dmg','.iso','.viso');
 					break;
 			}
 			vboxFileBrowser(path,function(f){
@@ -2718,7 +2725,7 @@ var vboxMedia = {
 					l.run();
 				},{'path':f,'type':type});
 				ml.run();
-			},false,title,icon);
+			},false,title,icon,true,allowedexts);
 		} // </ choose >
 
 	} // </ actions >
