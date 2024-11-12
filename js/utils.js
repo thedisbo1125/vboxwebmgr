@@ -79,9 +79,9 @@ function vboxAjaxRequest(fn,params,config) {
 		return def.reject();
 
 	var data = {
-		'fn': fn,
-		'params': params ? params : null,
-		'persist': config && config.persist ? config.persist : null
+		"fn": fn,
+		"params": params ? params : null,
+		"persist": config && config.persist ? config.persist : null
 	};
 
 	$.when($.post(vboxEndpointConfig.api, JSON.stringify(data), undefined,"json")
