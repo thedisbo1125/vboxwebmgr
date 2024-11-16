@@ -2487,11 +2487,11 @@ var vboxMedia = {
 		var variants = $('#vboxPane').data('vboxMediumVariants');
 
 
-/*
- * [Standard] => 0 [VmdkSplit2G] => 1 [VmdkRawDisk] => 2 [VmdkStreamOptimized] =>
- * 4 [VmdkESX] => 8 [Fixed] => 65536 [Diff] => 131072 [NoCreateDir] =>
- * 1073741824
- */
+		/*
+		 * [Standard] => 0 [VmdkSplit2G] => 1 [VmdkRawDisk] => 2 [VmdkStreamOptimized] =>
+		 * 4 [VmdkESX] => 8 [Fixed] => 65536 [Diff] => 131072 [NoCreateDir] =>
+		 * 1073741824
+		 */
 
 		switch(m.variant) {
 
