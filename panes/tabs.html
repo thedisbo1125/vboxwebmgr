@@ -151,7 +151,7 @@ function vboxTabs(id) {
 		$(''+tab).css('display','').trigger('show');
 		self.tabSelected = tab;
 		$('#tablistMain').children().removeClass('selected');
-		$('#tablistMain').find('a[href='+tab+']').parent().addClass('selected');
+		$('#tablistMain').find('a[href="#'+tab+'"]').parent().addClass('selected');
 
 		
 	};
