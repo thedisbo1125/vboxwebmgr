@@ -5935,7 +5935,7 @@ class vboxconnector {
 			'serialPortCount' => $pp->serialPortCount,
 			'parallelPortCount' => $pp->parallelPortCount,
 			'mediumFormats' => $mediumFormats,
-		    'scs' => $scs
+			'scs' => $scs
 		);
 	}
 
