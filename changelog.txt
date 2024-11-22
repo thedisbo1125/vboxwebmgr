@@ -1,4 +1,18 @@
 -------------------------------------
+    7.1-005  2024-11-22
+-------------------------------------
+
+- add additional images
+- cleanup code spacing
+- fix divide by zero error in screen.php
+- add ability to limit files shown with jqueryFileTree
+- fix/change display of storage controller icons
+- code fixes to support jquery upgrade
+- code changes to support showing invalid settings info in button pane of settings dialog
+- begin applying changes to jquery-ui.css, migrating to version 1.11.4
+- fix issue with snapshots not working
+
+-------------------------------------
     7.1-004  2024-11-08
 -------------------------------------
 
