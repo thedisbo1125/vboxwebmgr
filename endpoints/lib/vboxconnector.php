@@ -1369,7 +1369,6 @@ class vboxconnector {
 		$cm = new CloneMode(null,$args['vmState']);
 		$state = $cm->ValueMap[$args['vmState']];
 
-
 		$opts = array();
 		if(!$args['reinitNetwork']) $opts[] = 'KeepAllMACs';
 		if($args['link']) $opts[] = 'Link';
@@ -1870,6 +1869,7 @@ class vboxconnector {
 		$m->BIOSSettings->IOAPICEnabled = ($args['BIOSSettings']['IOAPICEnabled'] ? 1 : 0);
 		$m->BIOSSettings->logoDisplayTime = ($args['BIOSSettings']['LogoDisplayTime']);
 		$m->CPUExecutionCap = $args['CPUExecutionCap'];
+
 		$m->description = $args['description'];
 		$m->ClipboardMode = $args['ClipboardMode'];
 
@@ -3590,8 +3590,13 @@ class vboxconnector {
 		 * Supported CPU features?
 		 */
 		$response['cpuFeatures'] = array();
-		foreach(array('HWVirtEx'=>'HWVirtEx','PAE'=>'PAE','NestedPaging'=>'Nested Paging','LongMode'=>'Long Mode (64-bit)'
-		,'UnrestrictedGuest'=>'Unrestricted Guest','NestedHWVirt'=>'Nested Virtualization') as $k=>$v) {
+		foreach(array(
+            'HWVirtEx'=>'HWVirtEx',
+            'PAE'=>'PAE',
+            'NestedPaging'=>'Nested Paging',
+            'LongMode'=>'Long Mode (64-bit)',
+            'UnrestrictedGuest'=>'Unrestricted Guest',
+            'NestedHWVirt'=>'Nested Virtualization') as $k=>$v) {
 			$response['cpuFeatures'][$v] = $host->getProcessorFeature($k);
 		}
 

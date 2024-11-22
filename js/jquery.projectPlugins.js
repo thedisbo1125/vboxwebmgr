@@ -502,7 +502,6 @@ if(jQuery) (function($){
 			var top = this;
 
 			$(this).each( function() {
-
 				function showTree(c, t, fullpath) {
 
 				    // If a UL is not the target, find or create it
@@ -558,6 +557,7 @@ if(jQuery) (function($){
 				                $('<a/>').attr({'href':'#','name':data.path,'rel':data.path}).text(data.name)
 				         );
 				}
+
 				function toHTML(data) {
 
 				    data.sort(function(a,b){
