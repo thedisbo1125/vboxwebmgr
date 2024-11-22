@@ -210,6 +210,9 @@ function wizardImportApplianceBrowseLocation() {
 		
 	var loc = $('#vboxPane').data('vboxSystemProperties').defaultMachineFolder;
 
+	var allowedexts = new Array();
+	allowedexts.push('.ovf','.ova');
+
 	vboxFileBrowser(loc,function(f){
 		
 		if(!f) return;
@@ -232,7 +235,7 @@ function wizardImportApplianceBrowseLocation() {
 		},{'file':$(document.forms['frmwizardImportAppliance'].elements.wizardImportApplianceLocation).val()});
 		l.run();
 		
-	},false,trans('Select an appliance to import','UIWizardImportApp'),'images/vbox/os_type_16px.png');
+	},false,trans('Select an appliance to import','UIWizardImportApp'),'images/vbox/os_type_16px.png',true,allowedexts);
 
 }
 

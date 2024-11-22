@@ -63,9 +63,15 @@ if($localbrowser) {
 /*
  * Compose allowed file types list
  */
-$allowed_exts = $settings->browserRestrictFiles;
-if(is_array($allowed_exts) && count($allowed_exts) > 0) $allowed_exts = array_combine($allowed_exts,$allowed_exts);
-else $allowed_exts = array();
+$allowed_exts = array();
+if(($request['allowedexts']) && count($request['allowedexts']) > 0){
+    $allowed_exts = array();
+    foreach ($request['allowedexts'] as $key => $value) {
+        $allowed_exts[$value] = $value;
+    }
+} else {
+    $allowed_exts = $settings->browserRestrictFiles;
+}
 
 /* Allowed folders list */
 $allowed_folders = @$settings->browserRestrictFolders;

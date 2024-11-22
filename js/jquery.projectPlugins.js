@@ -497,6 +497,7 @@ if(jQuery) (function($){
 			if( o.loadMessage == undefined ) o.loadMessage = trans('Loading ...','UIVMDesktop');
 			if( o.scrollTo == undefined ) o.scrollTo = null;
 			if( o.dirsOnly == undefined) o.dirsOnly = false;
+			if( o.allowedexts == undefined) o.allowedexts = null;
 
 			var top = this;
 
@@ -524,7 +525,7 @@ if(jQuery) (function($){
 
 				    $(c).append($('<li />').addClass("wait").text(o.loadMessage));
 
-					$.post(o.script, JSON.stringify({ 'dir': t, 'dirsOnly' : (o.dirsOnly ? true : false), 'fullpath' : (fullpath ? true : false)}), function(data) {
+					$.post(o.script, JSON.stringify({ 'dir': t, 'allowedexts': o.allowedexts, 'dirsOnly' : (o.dirsOnly ? true : false), 'fullpath' : (fullpath ? true : false)}), function(data) {
 
 					    $(c).children('.wait').remove();
 						$(c).append(toHTML(data));

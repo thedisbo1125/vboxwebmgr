@@ -217,10 +217,13 @@ function wizardImportApplianceBrowseLocation() {
 		
 	var loc = $('#vboxPane').data('vboxSystemProperties').defaultMachineFolder;
 
+	var allowedexts = new Array();
+	allowedexts.push('.ovf','.ova');
+
 	vboxFileBrowser(loc,function(f){
 		if(!f) return;
 		document.forms['frmwizardImportAppliance'].elements.wizardImportApplianceLocation.value = f;
-	},false,trans('Select an appliance to import','UIWizardImportApp'),'images/vbox/os_type_16px.png');
+	},false,trans('Select an appliance to import','UIWizardImportApp'),'images/vbox/os_type_16px.png',true,allowedexts);
 
 }
 
