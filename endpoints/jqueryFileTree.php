@@ -159,7 +159,6 @@ if($request['dir'] == DSEP && count($allowed_folders)) {
         /* Go through allowed folders if it is set */
         if(count($allowed_folders)) {
 
-
             foreach($allowed_folders as $f) {
 
                 /* If this was not exactly the requested folder, but a parent,
@@ -234,16 +233,15 @@ function getdir($dir, $dirsOnly=false, $recurse=array()) {
 
             // Push folder on to stack
             if($type == 'folder') {
-
-               array_push($dirents, folder_entry($path));
+                array_push($dirents, folder_entry($path));
 
             // Push file on to stack
             } else {
-                    $file = basename($path);
-                    $ext = strtolower(preg_replace('/^.*\./', '', $file));
+                $file = basename($path);
+                $ext = strtolower(preg_replace('/^.*\./', '', $file));
 
-                    if(count($allowed_exts) && !$allowed_exts['.'.$ext]) continue;
-                    array_push($dirents, file_entry($path));
+                if(count($allowed_exts) && !$allowed_exts['.'.$ext]) continue;
+                array_push($dirents, file_entry($path));
             }
         }
     }
