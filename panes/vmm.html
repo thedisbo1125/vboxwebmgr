@@ -372,8 +372,6 @@ var vmmButtons = new Array(
 		    	$(d).dialog({'width':400,'height':350,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':trans('Add iSCSI')});
 			};
 			l.run();
-					
-			
 		}
 	},
 	{
@@ -656,7 +654,6 @@ var vmmButtons = new Array(
 			
 			// If we are removing a hard disk and configured to allow deletions
 			if(m.deviceType == 'HardDisk' && $('#vboxPane').data('vboxConfig').deleteOnRemove && m.format != 'iSCSI') {
-
 				
 				q = trans('<p>Do you want to delete the storage unit of the virtual hard disk <nobr><b>%1</b></nobr>?'+
 				        '</p><p>If you select <b>Delete</b> then the specified storage unit will be permanently deleted. '+

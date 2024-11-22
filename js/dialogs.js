@@ -29,19 +29,19 @@ function vboxWizardImportApplianceDialog() {
 
     /* Restore defaults is added to last step */
     this.stepButtons = [
-           {
-               'name' : trans('Restore Defaults','UIWizardImportApp'),
-               'steps' : [-1],
-               'click' : function() {
-                   wizardImportApplianceParsed();
-               }
-           }
-       ];
+        {
+            'name' : trans('Restore Defaults','UIWizardImportApp'),
+            'steps' : [-1],
+            'click' : function() {
+                wizardImportApplianceParsed();
+            }
+        }
+    ];
 
     /* Data to be loaded */
     this.data = [
-       {'fn':'vboxGetEnumerationMap','args':{'class':'NetworkAdapterType'},'callback':function(d){$('#vboxPane').data('vboxNetworkAdapterTypes',d.responseData);}},
-       {'fn':'vboxGetEnumerationMap','args':{'class':'AudioControllerType'},'callback':function(d){$('#vboxPane').data('vboxAudioControllerTypes',d.responseData);}},
+        {'fn':'vboxGetEnumerationMap','args':{'class':'NetworkAdapterType'},'callback':function(d){$('#vboxPane').data('vboxNetworkAdapterTypes',d.responseData);}},
+        {'fn':'vboxGetEnumerationMap','args':{'class':'AudioControllerType'},'callback':function(d){$('#vboxPane').data('vboxAudioControllerTypes',d.responseData);}},
     ];
 
     /* Perform action on finish */
@@ -146,6 +146,7 @@ function vboxWizardImportApplianceDialog() {
 
 }
 
+
 /**
  * Run the export appliance wizard
  */
@@ -188,7 +189,6 @@ function vboxWizardExportApplianceDialog() {
     /* Function run when wizard completes */
     this.onFinish = function() {
 
-
         // Actually export appliances
         function vboxExportApp(force) {
 
@@ -229,8 +229,6 @@ function vboxWizardExportApplianceDialog() {
             l.run();
 
             $(self.dialog).empty().remove();
-
-
         }
 
         /* Remove required classes */
@@ -266,13 +264,11 @@ function vboxWizardExportApplianceDialog() {
                 return;
             }
             vboxExportApp(0);
-
         };
         fe.run();
-
     };
-
 }
+
 
 /**
  * Show the medium encryption dialog
@@ -343,8 +339,6 @@ function vboxPortForwardConfigDialog(rules) {
             var h = $('#vboxSettingsPortForwarding').children('table').hide().parent().innerHeight() - 16;
             $('#vboxSettingsPortForwarding').children('table').css({'height':h+'px'}).show();
             $('#vboxSettingsPortForwardingListDiv').css({'height':(h-6)+'px','overflow':'auto'});
-
-
         };
 
         var buttons = {};
@@ -355,7 +349,7 @@ function vboxPortForwardConfigDialog(rules) {
             for(var i = 0; i < rules.length; i++) {
                 if($(rules[i]).data('vboxRule')[3] == 0 || $(rules[i]).data('vboxRule')[5] == 0) {
                     vboxAlert(trans("The current port forwarding rules are not valid. " +
-                               "None of the host or guest port values may be set to zero.",'UIMessageCenter'));
+                        "None of the host or guest port values may be set to zero.",'UIMessageCenter'));
                     return;
                 }
                 rulesToPass[i] = $(rules[i]).data('vboxRule');
@@ -376,9 +370,9 @@ function vboxPortForwardConfigDialog(rules) {
         resizeTable();
     };
     l.run();
-
     return results.promise();
 }
+
 
 /**
  * Run the New Virtual Machine Wizard
@@ -403,7 +397,7 @@ function vboxWizardNewVMDialog(vmgroup) {
     this.context = 'UIWizardNewVM';
     this.finishText = trans('Create','UIWizardNewVM');
     this.data = [
-       {'fn':'vboxGetMedia','callback':function(d){$('#vboxPane').data('vboxMedia',d.responseData);}}
+        {'fn':'vboxGetMedia','callback':function(d){$('#vboxPane').data('vboxMedia',d.responseData);}}
     ];
 
     /* Function to run when wizard completes */
@@ -486,21 +480,16 @@ function vboxWizardNewVMDialog(vmgroup) {
                     var size = newVMOSTypesObj[$(self.form).find('[name=newVMOSType]').val()].recommendedHDD;
 
                     $.when(new vboxWizardNewHDDialog({'name':jQuery.trim($(self.form).find('[name=newVMName]').val()),'size':size,'group':vmgroup}).run())
-                            .done(function(med){
+                        .done(function(med){
+                            $(self.form).find('[name=newVMDisk]').eq(2).trigger('click').prop('checked',true);
 
-                                $(self.form).find('[name=newVMDisk]').eq(2).trigger('click').prop('checked',true);
-
-                                // Add newly created disk as option and select it
-                                vmNewFillExistingDisks(med);
-
-                                vboxNewVMFinish();
-
-                            });
-
+                            // Add newly created disk as option and select it
+                            vmNewFillExistingDisks(med);
+                            vboxNewVMFinish();
+                        });
                     return;
 
                 } else if($(self.form).find('[name=newVMDisk]:checked').val() == 'none') {
-
                     buttons = {};
                     buttons[trans('Continue','UIMessageCenter')] = function(){
                         $(this).empty().remove();
@@ -509,19 +498,16 @@ function vboxWizardNewVMDialog(vmgroup) {
                     vboxConfirm(trans('You are about to create a new virtual machine without a hard disk. You will not be able to install an operating system on the machine until you add one. In the mean time you will only be able to start the machine using a virtual optical disk or from the network.','UIMessageCenter'), buttons, trans('Go Back','UIMessageCenter'));
                     return;
                 }
-
                 vboxNewVMFinish();
-
             };
             fe.run();
-
 
         },{'name':document.forms['frmwizardNewVM'].newVMName.value, 'group':vmgroup});
 
         fnl.run();
     };
-
 }
+
 
 /**
  * Run the Clone Virtual Machine Wizard
@@ -691,8 +677,8 @@ function vboxShowLogsDialogInit(vm) {
         vboxShowLogsInit(vm);
     };
     l.run();
-
 }
+
 
 /**
  * Show the Virtual Media Manager Dialog
@@ -774,6 +760,7 @@ function vboxVMMDialog(select,type,hideDiff,mPath) {
     return results.promise();
 }
 
+
 /**
  * Run the New Virtual Disk wizard
  * @param {Object} suggested - sugggested defaults such as hard disk name and path
@@ -799,8 +786,8 @@ function vboxWizardNewHDDialog(suggested) {
     this.height = 450;
 
     this.data = [
-       {'fn':'vboxSystemPropertiesGet','callback':function(d){$('#vboxPane').data('vboxSystemProperties',d.responseData);}},
-       {'fn':'vboxGetMedia','callback':function(d){$('#vboxPane').data('vboxMedia',d.responseData);}}
+        {'fn':'vboxSystemPropertiesGet','callback':function(d){$('#vboxPane').data('vboxSystemProperties',d.responseData);}},
+        {'fn':'vboxGetMedia','callback':function(d){$('#vboxPane').data('vboxMedia',d.responseData);}}
     ];
 
     // Compose folder if suggested name exists
@@ -914,6 +901,7 @@ function vboxWizardNewHDDialog(suggested) {
     };
 }
 
+
 /**
  * Run the Copy Virtual Disk wizard
  * @param {Object} suggested - sugggested defaults such as hard disk name and path
@@ -997,10 +985,10 @@ function vboxWizardCopyHDDialog(suggested) {
         fe.onLoad = function() {
             if(fileExists) {
                 vboxAlert(trans("<p>The hard disk storage unit at location <b>%1</b> already " +
-                           "exists. You cannot create a new virtual hard disk that uses this " +
-                           "location because it can be already used by another virtual hard " +
-                           "disk.</p>" +
-                           "<p>Please specify a different location.</p>",'UIMessageCenter').replace('%1',loc));
+                    "exists. You cannot create a new virtual hard disk that uses this " +
+                    "location because it can be already used by another virtual hard " +
+                    "disk.</p>" +
+                    "<p>Please specify a different location.</p>",'UIMessageCenter').replace('%1',loc));
                 return;
             }
             $(self.dialog).empty().remove();
@@ -1026,10 +1014,9 @@ function vboxWizardCopyHDDialog(suggested) {
             l.run();
         };
         fe.run();
-
-
     };
 }
+
 
 /**
  * Display guest network adapters dialog
@@ -1038,7 +1025,7 @@ function vboxWizardCopyHDDialog(suggested) {
 function vboxGuestNetworkAdaptersDialogInit(vm) {
 
     /*
-     *     Dialog
+     * Dialog
      */
     $('#vboxPane').append($('<div />').attr({'id':'vboxGuestNetworkDialog','style':'display: none'}));
 
@@ -1059,14 +1046,12 @@ function vboxGuestNetworkAdaptersDialogInit(vm) {
         vboxVMNetAdaptersInit(vm,nic);
     };
     l.run();
-
 }
 
 
 /**
  * Display Global Preferences dialog
  */
-
 function vboxGlobalPrefsDialog() {
 
     // Prefs
@@ -1107,7 +1092,6 @@ function vboxGlobalPrefsDialog() {
 
             }
 
-
             // Add functions to change settings on save
             // parameters: function name:  format is remote_<name>, in vboxconnector.php
             // is a function, nothing to return,
@@ -1123,11 +1107,8 @@ function vboxGlobalPrefsDialog() {
 
             // Update system properties
             $('#vboxPane').data('vboxSystemProperties',$('#vboxSettingsDialog').data('vboxSystemProperties'));
-
     });
-
 }
-
 
 
 /**
@@ -1176,7 +1157,7 @@ function vboxVMsettingsDialog(vm,pane) {
                         if(vboxVMStates.isRunning(vmData)) {
                             vboxAlert(trans('The virtual machine that you are changing has been started. Only certain settings can be changed while a machine is running. All other changes will be lost if you close this window now.','UIMessageCenter'));
                         }
-                      });
+                    });
 
                     break;
 
@@ -1219,47 +1200,39 @@ function vboxVMsettingsDialog(vm,pane) {
                          * Data to be reloaded
                          */
                         var reload = [
-                          vboxAjaxRequest('vboxGetMedia',{}).done(function(d){$('#vboxPane').data('vboxMedia',d.responseData);}),
+                            vboxAjaxRequest('vboxGetMedia',{}).done(function(d){$('#vboxPane').data('vboxMedia',d.responseData);}),
+                            vboxAjaxRequest('getNetworking',{}).done(function(d){$('#vboxSettingsDialog').data('vboxNetworking',d.responseData);}),
+                            vboxAjaxRequest('vboxRecentMediaGet',{}).done(function(d){$('#vboxPane').data('vboxRecentMedia',d.responseData);}),
+                            vboxAjaxRequest('consoleGetSharedFolders',{'vm':vm.id}).done(function(d){$('#vboxSettingsDialog').data('vboxTransientSharedFolders',d.responseData);}),
 
-                          vboxAjaxRequest('getNetworking',{}).done(function(d){$('#vboxSettingsDialog').data('vboxNetworking',d.responseData);}),
-
-                          vboxAjaxRequest('vboxRecentMediaGet',{}).done(function(d){$('#vboxPane').data('vboxRecentMedia',d.responseData);}),
-
-                          vboxAjaxRequest('consoleGetSharedFolders',{'vm':vm.id}).done(function(d){$('#vboxSettingsDialog').data('vboxTransientSharedFolders',d.responseData);}),
-
-                          $.when(vboxVMDataMediator.getVMDataCombined(vm.id)).done(function(vmData) {
-
-                              // data received from deferred object
-                              $('#vboxSettingsDialog').data('vboxMachineData',vmData);
-                              $('#vboxSettingsDialog').data('vboxFullEdit', (vboxVMStates.isPoweredOff(vmData) && !vboxVMStates.isSaved(vmData)));
-
-                              })
-                          ];
+                            $.when(vboxVMDataMediator.getVMDataCombined(vm.id)).done(function(vmData) {
+                                // data received from deferred object
+                                $('#vboxSettingsDialog').data('vboxMachineData',vmData);
+                                $('#vboxSettingsDialog').data('vboxFullEdit', (vboxVMStates.isPoweredOff(vmData) && !vboxVMStates.isSaved(vmData)));
+                            })
+                        ];
 
                         // Only when all of these are done
                         $.when.apply($, reload).done(function(){
 
                             /* Change title and tell dialog that data is loaded */
                             $('#vboxSettingsDialog').trigger('dataLoaded').dialog('option','title','<img src="images/vbox/vm_settings_16px.png" class="vboxDialogTitleIcon" /> ' +
-                                    $('<div />').text($('#vboxSettingsDialog').data('vboxMachineData').name).text() + ' - ' + trans('Settings','UISettingsDialogMachine'));
+                                $('<div />').text($('#vboxSettingsDialog').data('vboxMachineData').name).text() + ' - ' + trans('Settings','UISettingsDialogMachine'));
 
                             l.removeLoading();
                             reloadConfirmShowing = false;
                         });
-
-
                     };
 
                     reloadConfirmShowing = true;
 
                     vboxConfirm(trans("<p>The machine settings were changed while you were editing them. You currently have unsaved setting changes.</p><p>Would you like to reload the changed settings or to keep your own changes?</p>",'UIMessageCenter'),
-                            buttons,
-                            trans('Keep changes', 'UIMessageCenter'), function(){
-                                reloadConfirmShowing = false;
-                            });
-
+                        buttons,
+                        trans('Keep changes', 'UIMessageCenter'), function(){
+                            reloadConfirmShowing = false;
+                        }
+                    );
                     return;
-
             }
         }
     };
@@ -1346,8 +1319,7 @@ function vboxVMsettingsDialog(vm,pane) {
             $.when(vboxMediumEncryptionPasswordsDialog(vm.name, encIds))
 
                 .done(function(pwdata) {
-
-                    var runs = []
+                    var runs = [];
 
                     // Each medium attached
                     for(var i = 0; i < media.length; i++) {
@@ -1461,19 +1433,15 @@ function vboxVMsettingsDialog(vm,pane) {
                 .fail(function() {
                     encMediaSettings.reject();
                 });
-
             return encMediaSettings.promise();
-
         }
 
         $.when(vboxSettingsDialog(vmData.name + ' - ' + trans('Settings','UISettingsDialogMachine'),panes,dataList,pane,'vm_settings','UISettingsDialogMachine', presaveCallback))
 
             // Always run this
             .always(function(){
-
                 // No longer watch for changed VM settings
                 $('#vboxPane').unbind('vboxEvents',machineSettingsChanged);
-
             })
 
             // Run this when "Save" is clicked
@@ -1493,13 +1461,9 @@ function vboxVMsettingsDialog(vm,pane) {
                 };
                 loader.run();
         });
-
     });
-
     return results.promise();
 }
-
-
 
 
 /**
@@ -1751,12 +1715,10 @@ function vboxSettingsDialog(title,panes,data,pane,icon,langContext,presave) {
             $('#vboxSettingsDialog table.vboxSettingsTable').css('width','100%');
             $('#vboxSettingsDialog').dialog('option','title',(icon ? '<img src="images/vbox/'+icon+'_16px.png" class="vboxDialogTitleIcon" /> ' : '') + trans(panes[0].label,langContext));
         }
-
-
     };
 
     loader.run();
 
     return results.promise();
-
 }
+

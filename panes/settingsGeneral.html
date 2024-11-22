@@ -220,6 +220,7 @@ function vboxSettingsUpdateOSList(osfam) {
 	for(var i = 0; i < vboxSettingsOSTypes[osfam].osTypes.length; i++) {
 		document.forms['frmVboxSettings'].vboxSettingsGeneralOSType.options[i] = new Option(vboxSettingsOSTypes[osfam].osTypes[i].description, vboxSettingsOSTypes[osfam].osTypes[i].id);
 	}
+
 	// Update image
 	document.images["vboxOSTypeImg"].src = "images/vbox/" + vboxGuestOSTypeIcon(vboxSettingsOSTypes[osfam].osTypes[0].id);
 }
