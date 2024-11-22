@@ -1329,14 +1329,14 @@ var vboxChooser = {
 				ml.run();
 			};
 
-			$.when(vboxAjaxRequest('machinesSaveGroups',{'vms':vms})).done(function(res){
+			$.when(vboxAjaxRequest("machinesSaveGroups",{"vms":vms})).done(function(res){
 
 				if(res.responseData.errored) {
 					reloadAll();
 					vboxChooser._editable = true;
 					$('#vboxPane').trigger('vmGroupDefsSaved');
 				} else {
-					$.when(vboxAjaxRequest('vboxGroupDefinitionsSet',{'groupDefinitions':allGroups})).always(function(){
+					$.when(vboxAjaxRequest("vboxGroupDefinitionsSet",{"groupDefinitions":allGroups})).always(function(){
 						vboxChooser._editable = true;
 						$('#vboxPane').trigger('vmGroupDefsSaved');
 					});
@@ -1345,7 +1345,7 @@ var vboxChooser = {
 			}).fail(reloadAll);
 
 		} else {
-			$.when(vboxAjaxRequest('vboxGroupDefinitionsSet',{'groupDefinitions':allGroups})).always(function(){
+			$.when(vboxAjaxRequest("vboxGroupDefinitionsSet",{"groupDefinitions":allGroups})).always(function(){
 				vboxChooser._editable = true;
 				$('#vboxPane').trigger('vmGroupDefsSaved');
 			});
@@ -2122,7 +2122,7 @@ var vboxChooser = {
 
 
 		// Get groups and machine list. datamediator will start listener
-		$.when(vboxAjaxRequest('vboxGroupDefinitionsGet')).done(function(g) {
+		$.when(vboxAjaxRequest("vboxGroupDefinitionsGet")).done(function(g) {
 
 			vboxChooser._groupDefs = g.responseData;
 

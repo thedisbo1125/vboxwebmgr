@@ -187,7 +187,7 @@ var vboxEventListener = {
 		// Add to queue
 		return vboxEventListener._requestQueue.addReq(function(){
 
-			return $.when(new Date().getTime(), vboxAjaxRequest('getEvents',{}, {'persist':vboxEventListener._persist})).done(function(lastTime,d) {
+			return $.when(new Date().getTime(), vboxAjaxRequest("getEvents",{}, {"persist":vboxEventListener._persist})).done(function(lastTime,d) {
 
 				// Don't do anything if this is not running
 				if(!vboxEventListener._running) return;

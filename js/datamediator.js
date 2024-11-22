@@ -85,7 +85,7 @@ var vboxVMDataMediator = {
 
 
 		var mList = $.Deferred();
-		$.when(vboxAjaxRequest('vboxGetMachines')).done(function(d) {
+		$.when(vboxAjaxRequest("vboxGetMachines")).done(function(d) {
 
 			var vmData = {};
 			var subscribeList = [];
@@ -141,7 +141,7 @@ var vboxVMDataMediator = {
 
 			vboxVMDataMediator.promises.getVMDetails[vmid] = $.Deferred();
 
-			$.when(vboxAjaxRequest('machineGetDetails',{vm:vmid})).done(function(d){
+			$.when(vboxAjaxRequest("machineGetDetails",{vm:vmid})).done(function(d){
 				vboxVMDataMediator.vmDetailsData[d.responseData.id] = d.responseData;
 				vboxVMDataMediator.promises.getVMDetails[vmid].resolve(d.responseData);
 			}).fail(function(){
@@ -172,7 +172,7 @@ var vboxVMDataMediator = {
 
 			vboxVMDataMediator.promises.getVMRuntimeData[vmid] = $.Deferred();
 
-			$.when(vboxAjaxRequest('machineGetRuntimeData',{vm:vmid})).done(function(d){
+			$.when(vboxAjaxRequest("machineGetRuntimeData",{vm:vmid})).done(function(d){
 				vboxVMDataMediator.vmRuntimeData[d.responseData.id] = d.responseData;
 				if(vboxVMDataMediator.promises.getVMRuntimeData[vmid])
 					vboxVMDataMediator.promises.getVMRuntimeData[vmid].resolve(d.responseData);
@@ -237,7 +237,7 @@ var vboxVMDataMediator = {
 		if(!vboxVMDataMediator.vmData[vmid]) return;
 
 		var def = $.Deferred();
-		$.when(vboxAjaxRequest('vboxGetMachines',{'vm':vmid})).done(function(d) {
+		$.when(vboxAjaxRequest("vboxGetMachines",{"vm":vmid})).done(function(d) {
 			vm = d.responseData[0];
 			vboxVMDataMediator.vmData[vm.id] = vm;
 			def.resolve();
@@ -314,7 +314,7 @@ $(document).ready(function(){
 			vboxVMDataMediator.vmData[eventData.machineId].currentStateModified = eventData.enrichmentData.currentStateModified;
 
 			// Get media again
-			$.when(vboxAjaxRequest('vboxGetMedia')).done(function(d){$('#vboxPane').data('vboxMedia',d.responseData);});
+			$.when(vboxAjaxRequest("vboxGetMedia")).done(function(d){$('#vboxPane').data('vboxMedia',d.responseData);});
 
 		}
 		if(vboxVMDataMediator.vmDetailsData[eventData.machineId])
