@@ -388,8 +388,23 @@ var vboxSettingsStorageButtons = new Array(
 				var con = $('#vboxSettingsStorageTree').find('table.vboxListItemSelected').first().data('controller');
 				if(con) next = $('#vboxSettingsController'+con.bus).find('table.vboxListItem').first();
 			}
+
+			// get attachment container
+			var t1 = $('#vboxSettingsStorageTree').find('table.vboxListItemSelected').first().parent().parent();
+
+			// remove attachment
 			$('#vboxSettingsStorageTree').find('table.vboxListItemSelected').first().parent().remove();
-			if(!$(next).trigger('click').html()) $('#vboxSettingsStorageTree').trigger('itemselect',null);
+
+			// if no more attachments, trigger click to change icon
+			if ($(t1).find('li').length == 0)
+			{
+				$(t1).parent().find('table.vboxSettingsController').find('td.vboxSettingsStorageTypeIcon')
+					.click();
+			}
+
+			if(!$(next).trigger('click').html()) {
+				$('#vboxSettingsStorageTree').trigger('itemselect',null);
+			}
 		}		
 	},
 	
@@ -1127,6 +1142,38 @@ function vboxSettingsStorageAddMedium(conElm, type) {
 
 
 /*
+ *
+ * Expand/Collapse storage controller
+ *
+ */
+function vboxSettingsExpandCollapseStorageController(storcon, busname, iconName, expand) {
+
+    // get li with attachments
+    var n = $(storcon).closest('li');
+
+    // get count of attachments
+    var ctrlattachmentcnt = $(n).children('ul').children('li').length;
+
+    // set expand/collapse string to blank
+    var ctrlimage = '';
+
+    if (expand) {
+        if (ctrlattachmentcnt != 0) ctrlimage = '_expand';
+        $(n).children('ul').addClass('vboxHidden').css('display','none');
+        $(storcon).removeClass('vboxSettingsController'+busname+'Expanded').addClass('vboxSettingsController'+busname)
+            .css({'background-image':'url(images/vbox/'+iconName+ctrlimage+'_16px.png)'});
+
+    } else {
+        if (ctrlattachmentcnt != 0) ctrlimage = '_collapse';
+        $(n).children('ul').removeClass('vboxHidden').css('display','');
+        $(storcon).removeClass('vboxSettingsController'+busname).addClass('vboxSettingsController'+busname+'Expanded')
+            .css({'background-image':'url(images/vbox/'+iconName+ctrlimage+'_16px.png)'})
+
+    }
+}
+
+
+/*
  * 
  * Add controller to list helper function
  *
@@ -1164,11 +1211,17 @@ function vboxSettingsAddController(con,list) {
 		vboxSettingsSelectController(this);
 	});
 
+	var ctrlimage = '';
+	var ctrlclass = '';
+
 	// filter out any dummy medium attachments
 	var mas = new Array();
 	for(var i = 0; i < con.mediumAttachments.length; i++) {
-		if(con.mediumAttachments[i].controller)
+		if(con.mediumAttachments[i].controller) {
 			mas[mas.length] = con.mediumAttachments[i];
+			ctrlimage = '_collapse';
+			ctrlclass = 'Expanded';
+		}
 	}
 	con.mediumAttachments = mas;
 
@@ -1178,26 +1231,31 @@ function vboxSettingsAddController(con,list) {
 	var tr = $('<tr />');
 
 	var iconName = vboxStorage.getBusIconName(con.bus);
-	$('<td />').attr({'class':'vboxSettingsStorageTypeIcon vboxSettingsController' + con.bus + 'Expanded'})
+	$('<td />').attr({'class':'vboxSettingsStorageTypeIcon vboxSettingsController' + con.bus + ctrlclass})
 	.css({
-		'background-image':'url(images/vbox/'+iconName+'_collapse_16px.png)'
+		'background-image':'url(images/vbox/'+iconName+ctrlimage+'_16px.png)'
 	}).html('<div style="width:22px" />').click(function(){
 
-		if(!$(this).data('toggleClicked')) {
-			
-			$(this).data('toggleClicked', true);
+		var n = $(this).closest('li');
+		var ctrlattachmentcnt = $(n).children('ul').children('li').length;
+		var ctrlimage = '';
 
-			var n = $(this).closest('li');
+		if (ctrlattachmentcnt > 0) {
+			if(!$(this).data('toggleClicked')) {
+				$(this).data('toggleClicked', true);
+				vboxSettingsExpandCollapseStorageController(this,con.bus,iconName,true);
+			} else {
+				$(this).data('toggleClicked', false);
+				vboxSettingsExpandCollapseStorageController(this,con.bus,iconName,false);
+			}
+            vboxSettingsSelectController(tbl);
+		} else {
 			$(n).children('ul').addClass('vboxHidden').css('display','none');
 			$(this).removeClass('vboxSettingsController'+con.bus+'Expanded').addClass('vboxSettingsController'+con.bus)
-			.css({'background-image':'url(images/vbox/'+iconName+'_expand_16px.png)'});
-		} else {
-			$(this).data('toggleClicked', false);
-			var n = $(this).closest('li');
-			$(n).children('ul').removeClass('vboxHidden').css('display','');
-			$(this).removeClass('vboxSettingsController'+con.bus).addClass('vboxSettingsController'+con.bus+'Expanded')
-			.css({'background-image':'url(images/vbox/'+iconName+'_collapse_16px.png)'})
+				.css({'background-image':'url(images/vbox/'+iconName+'_16px.png)'});
+            vboxSettingsSelectController(tbl);
 		}
+
 		return false;
 
 	}).appendTo(tr);
@@ -1275,6 +1333,11 @@ function vboxSettingsAddAttachment(d,conElm) {
 
 	var con = (conElm ? conElm : $('#vboxSettingsStorageTree').find('table.vboxListItemSelected').first().parent());
 
+	var n = $(con).closest('li');
+	var ctrlattachmentcnt = $(n).children('ul').children('li').length;
+	var ultest = $(con).find('table.vboxSettingsController').parent().find('ul.vboxSettingsControllerAttachments');
+
+
 	// Save bus
 	d.bus = $(con).find('table.vboxSettingsController').data('controller').bus;
 
@@ -1316,6 +1379,17 @@ function vboxSettingsAddAttachment(d,conElm) {
 	}
 
 	$(li).tipped({'source':vboxSettingsMediumTip(m),'position':'mouse','delay':1000}).appendTo(con.children('ul'));
+
+	if (ctrlattachmentcnt == 0) {
+		var tbl = $(ultest).parent().find('table.vboxSettingsController');
+		if ($(tbl).find('td.vboxSettingsStorageTypeIcon').hasClass('vboxSettingsController'+d.bus+'Expanded') == false) {
+
+		// trigger two clicks so controller becomes expanded
+		$(tbl).find('td.vboxSettingsStorageTypeIcon').click();
+		$(tbl).find('td.vboxSettingsStorageTypeIcon').click();
+		}
+        }
+
 }
 
 
