@@ -494,8 +494,9 @@ function vboxFileBrowser(root,fn,foldersonly,title,icon,strictFiles) {
     $(d1).dialog({'closeOnEscape':true,'width':500,'minWidth':400,'height':600,'minHeight':400,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="'+(icon ? icon : 'images/jqueryFileTree/'+(foldersonly ? 'folder_open' : 'file')+'.png') + '" class="vboxDialogTitleIcon" /> ' + (title ? title : trans((foldersonly ? 'Select Folder' : 'Select File')))}).on("dialogbeforeclose",function(){
     	$(this).parent().find('span:contains("'+trans('Cancel','QIMessageBox')+'")').trigger('click');
     });
-
 }
+
+
 /**
  * Convert megabytes to human readable string
  * @param {Integer} mb - megabytes
@@ -611,7 +612,6 @@ function vboxAlert(e,xtraOpts) {
 	$(div).dialog(dialogOpts);
 
     return acknowledged;
-
 }
 
 
@@ -1088,7 +1088,6 @@ function vboxProgressUpdate(prequest,d,modal) {
 		    if(maxList > 0) $('#vboxProgressOps').children('div.vboxProgressComplete').slice(maxList).remove();
 
 		}
-
 		return;
 	}
 
