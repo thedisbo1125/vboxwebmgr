@@ -32,6 +32,7 @@ $(document).ready(function(){
     }});
 });
 
+
 /**
  * Traverse a tree and return matching nodes.
  * @param {Object} tree - tree to traverse
@@ -58,6 +59,7 @@ function vboxTraverse(tree,prop,val,all,children) {
 	}
 	return (all ? leafs : null);
 }
+
 
 /**
  * Performs AJAX request, alert()'s returned errors
@@ -198,6 +200,7 @@ function vboxAjaxRequest(fn,params,config) {
 	return def.promise();
 }
 
+
 /**
  * Return VRDE host address of VM
  * @param {Object} vm - virtual machine object
@@ -214,6 +217,7 @@ function vboxGetVRDEHost(vm) {
 	}
 	return chost;
 }
+
 
 /**
  * Return the correct icon string relative to images/vbox/ for the guest OS type
@@ -417,6 +421,7 @@ function vboxGuestOSTypeIcon(osTypeId) {
     return strIcon;
 }
 
+
 /**
  * Return the correct icon relative to images/vbox/ for the VM state.
  * @param {String} state - virtual machine state
@@ -451,6 +456,7 @@ function vboxMachineStateIcon(state)
     return strIcon;
 
 }
+
 
 /**
  * File or Folder browser dialog
@@ -496,6 +502,8 @@ function vboxFileBrowser(root,fn,foldersonly,title,icon,strictFiles) {
  * @return {String} human readable size representation (e.g. 2 GB, 500 MB, etc..)
  */
 function vboxMbytesConvert(mb) {return vboxBytesConvert(parseFloat(mb) * 1024 * 1024);}
+
+
 /**
  * Convert bytes to human readable string
  * @param {Integer} bytes - bytes
@@ -508,6 +516,8 @@ function vboxBytesConvert(bytes) {
 
 	return Math.round(parseFloat(bytes)*Math.pow(10,2))/Math.pow(10,2) + " " + trans(ext[unitCount], 'VBoxGlobal');
 }
+
+
 /**
  * Parse str param into megabytes
  * @param {String} str - size string (2 TB, 500 MB, etc..) to parse
@@ -793,6 +803,7 @@ function vboxInitDisplay(root,context) {
 
 }
 
+
 /**
  * Color VISIBLE children rows of parent elm
  * @param {HTMLNode} elm - element who's children to color
@@ -811,6 +822,7 @@ function vboxColorRows(elm,startOdd,headerClass) {
 		(odd++ % 2 ? $(this).addClass('vboxOddRow') : $(this).removeClass('vboxOddRow'));
 	});
 }
+
 
 /**
  * Return an HTML div node sized to parent with overflow hidden
@@ -869,6 +881,7 @@ function vboxProgress(prequest,callback,icon,title,target,blocking) {
 
 }
 
+
 /**
  * Generate modal progress dialog
  *
@@ -922,6 +935,7 @@ function vboxProgressCreateDialog(prequest,icon,title,target,callback) {
 
 
 }
+
 
 /**
  * Generate progress list element and append it
@@ -984,6 +998,7 @@ function vboxProgressCreateListElement(prequest,icon,title,target,callback) {
 
 }
 
+
 /**
  * OnUnload warning shown when an operation is in progress
  * @return {String} warning message indicating operation is in progress
@@ -994,6 +1009,7 @@ function vboxOpInProgressCheck() {
 	}
 }
 
+
 /**
  * Update progress dialog box. Callback run from vboxAjaxRequest
  *
@@ -1003,6 +1019,7 @@ function vboxOpInProgressCheck() {
 function vboxProgressUpdateModal(prequest, data) {
 	vboxProgressUpdate(prequest,data,true);
 }
+
 
 /**
  * Update progress dialog box or progress list row with % completed
@@ -1096,6 +1113,7 @@ function vboxProgressUpdate(prequest,d,modal) {
 
 }
 
+
 /**
  * Position element to mouse event
  * @param {HTMLNode} elm - HTML node to position
@@ -1141,6 +1159,7 @@ function vboxPositionEvent(elm,e) {
 	$(elm).css({ top: y, left: x });
 }
 
+
 /**
  * Position element inside visible window
  * @param {HTMLNode} elm - element
@@ -1165,9 +1184,11 @@ function vboxPositionToWindow(elm) {
 
 }
 
+
 /*
  * keycode input validation functions
  */
+
 /**
  * Return true if k param is a number
  * @param {Integer} k - keycode
@@ -1176,6 +1197,8 @@ function vboxPositionToWindow(elm) {
 function vboxValidateNum(k) {
 	return ((k >= 96 && k <= 105)||(k >= 48 && k <= 57));
 }
+
+
 /**
  * Return true if k param is a number or '.'
  * @param {Integer} k - keycode
@@ -1184,6 +1207,8 @@ function vboxValidateNum(k) {
 function vboxValidateIP(k) {
 	return (vboxValidateNum(k) || k == 190 || k == 110 || k == 59 || k==78);
 }
+
+
 /**
  * Return true if k param is a valid control code (shift, backspace, etc..)
  * @param {Integer} k - keycode
@@ -1208,6 +1233,7 @@ function vboxValidateCtrl(k) {
 	return false;
 }
 
+
 /** Parse Cookies and populate $('#vboxPane').data('vboxCookies') */
 function vboxParseCookies() {
 	if($('#vboxPane').data('vboxCookiesParsed')) return;
@@ -1220,6 +1246,7 @@ function vboxParseCookies() {
 	$('#vboxPane').data('vboxCookies', cookies);
 	$('#vboxPane').data('vboxCookiesParsed',true);
 }
+
 
 /**
  * General application failure
@@ -1239,6 +1266,7 @@ function vboxwebmgrFailure(msg) {
 	}
 }
 
+
 /**
  * Set a cookie and update $('#vboxPane').data('vboxCookies')
  * @param {String} k - cookie key
@@ -1250,6 +1278,7 @@ function vboxSetCookie(k,v,expire) {
 	document.cookie = k+"="+v+"; expires="+exp.toGMTString()+"; path=/";
 	$('#vboxPane').data('vboxCookies')[k] = v;
 }
+
 
 /**
  * Set a local data item using the local storage mechanism
@@ -1272,6 +1301,7 @@ function vboxSetLocalDataItem(k,v,nocookies) {
 		localStorage.removeItem(k);
 	}
 }
+
 
 /**
  * Get a local data item using the local storage mechanism
