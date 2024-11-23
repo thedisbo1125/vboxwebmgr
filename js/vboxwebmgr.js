@@ -4914,7 +4914,6 @@ var vboxStorage = {
 			}
 			return s;
 		},
-		displayInherit: 'SATA'
 	},
 
 	Floppy: {
@@ -4956,7 +4955,6 @@ var vboxStorage = {
 			}
 			return s;
 		},
-	displayInherit: 'IDE'
 	},
 
 	VirtioSCSI: {
