@@ -53,6 +53,7 @@ function trans(s,c,n,h) {
 
     if(!c) c = 'VBoxGlobal';
     var r = transreal(s,c,n,h);
+
     if(typeof r != 'string') {
        // console.log('Could not translate ' + s + ' with ' + c);
        return s;

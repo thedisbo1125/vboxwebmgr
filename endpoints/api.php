@@ -314,7 +314,6 @@ try {
              */
             $vbox->{$request['fn']}($request['params'],array(&$response));
 
-
             /*
              * Send back persistent request in response
             */

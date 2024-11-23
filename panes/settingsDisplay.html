@@ -325,7 +325,7 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 	if($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.videoredirquality != '') {
 		document.forms['frmVboxSettings'].vboxSettingsDisplayRDPVRQualityID.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.videoredirquality;
 	}
-	
+
 	var p = $('#vboxSettingsTabDisplayVideo').parent().children('div'); 
 	if(!$('#vboxSettingsDialog').data('vboxFullEdit')) {
 		$(p).find('tr:not(.vboxRunningEnabled)').find('span').addClass('disabled');
