@@ -4902,14 +4902,14 @@ var vboxStorage = {
 	},
 
 	SAS: {
-		maxPortCount: 8,
+		maxPortCount: 32,
 		maxDevicesPerPortCount: 1,
 		types: ['LsiLogicSas'],
 		driveTypes: ['dvd','disk'],
 		slotName: function(p,d) { return trans('SAS Port %1','VBoxGlobal', null, 'StorageSlot').replace('%1',p); },
 		slots: function() {
 			var s = {};
-			for(var i = 0; i < 8; i++) {
+			for(var i = 0; i < 32; i++) {
 				s[i+'-0'] = trans('SAS Port %1','VBoxGlobal', null, 'StorageSlot').replace('%1',i);
 			}
 			return s;
