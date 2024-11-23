@@ -487,9 +487,9 @@ function vboxFileBrowser(root,fn,foldersonly,title,icon,strictFiles,allowedexts)
 
 	var d1 = $('<div />').attr({'id':'vboxBrowseFolder','class':'vboxDialogContent','style':'display:none'});
 
-	$('<div />').attr({'id':'vboxBrowseFolderList'}).fileTree({ 'root': (root ? root : '/'),'dirsOnly':foldersonly,'allowedexts':allowedexts,'loadMessage':trans('Loading ...','UIVMDesktop'),'scrollTo':'#vboxBrowseFolder'},function(f){
-		buttons[trans('OK','QIMessageBox')](f);
-	}).appendTo(d1);
+    $('<div />').attr({'id':'vboxBrowseFolderList'}).fileTree({ 'root': (root ? root : '/'),'dirsOnly':foldersonly,'allowedexts':allowedexts,'loadMessage':trans('Loading ...','UIVMDesktop'),'scrollTo':'#vboxBrowseFolder'},function(f){
+        buttons[trans('OK','QIMessageBox')](f);
+    }).appendTo(d1);
 
 	$(d1).dialog({'closeOnEscape':true,'width':500,'minWidth':400,'height':600,'minHeight':400,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="'+(icon ? icon : 'images/jqueryFileTree/'+(foldersonly ? 'folder_open' : 'file')+'.png') + '" class="vboxDialogTitleIcon" /> ' + (title ? title : trans((foldersonly ? 'Select Folder' : 'Select File')))}).on("dialogbeforeclose",function(){
 		$(this).parent().find('span:contains("'+trans('Cancel','QIMessageBox')+'")').trigger('click');

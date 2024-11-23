@@ -35,7 +35,7 @@ function getrdpextralines()
             {
                 $includedeflines = false;
             }
-	}
+        }
     }
 
     if ($includedeflines == true)
@@ -57,7 +57,7 @@ require_once(dirname(__FILE__).'/lib/vboxconnector.php');
 $_GET = clean_request();
 
 foreach(array('port','host','vm') as $g) {
-	@$_GET[$g] = str_replace(array("\n","\r","\0"),'',@$_GET[$g]);
+    @$_GET[$g] = str_replace(array("\n","\r","\0"),'',@$_GET[$g]);
 }
 
 
