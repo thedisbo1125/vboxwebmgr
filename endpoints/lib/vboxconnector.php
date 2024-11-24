@@ -3609,14 +3609,14 @@ class vboxconnector {
 		 */
 		$response['cpuFeatures'] = array();
 		foreach(array(
-			'HWVirtEx'=>'HWVirtEx',
-			'PAE'=>'PAE',
-			'NestedPaging'=>'Nested Paging',
-			'LongMode'=>'Long Mode (64-bit)',
-			'UnrestrictedGuest'=>'Unrestricted Guest',
-			'NestedHWVirt'=>'Nested Virtualization') as $k=>$v) {
-			$response['cpuFeatures'][$v] = $host->getProcessorFeature($k);
-		}
+            'HWVirtEx'=>'HWVirtEx',
+            'PAE'=>'PAE',
+            'NestedPaging'=>'Nested Paging',
+            'LongMode'=>'Long Mode (64-bit)',
+            'UnrestrictedGuest'=>'Unrestricted Guest',
+            'NestedHWVirt'=>'Nested Virtualization') as $k=>$v) {
+                $response['cpuFeatures'][$v] = $host->getProcessorFeature($k);
+            }
 
 		/*
 		 * NICs

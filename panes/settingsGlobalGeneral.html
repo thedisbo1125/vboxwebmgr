@@ -62,7 +62,7 @@ function vboxSettingsBrowseMachineFolder(btn) {
 $('#vboxSettingsDialog').on('save',function(){
 
     $('#vboxSettingsDialog').data('vboxSystemProperties').defaultMachineFolder = document.frmVboxSettings.vboxSettingsDefaultMachineFolder.value;
-    
+
     // Autostart config path
     if($('#vboxPane').data('vboxConfig').vboxAutostartConfig) {
         $('#vboxSettingsDialog').data('vboxSystemProperties').autostartDatabasePath = document.frmVboxSettings.vboxAutostartConfigDBPath.value;

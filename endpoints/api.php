@@ -301,6 +301,7 @@ try {
 
             }
 
+
             /*
              *  Persistent request data
              */
@@ -313,6 +314,7 @@ try {
              * Call to vboxconnector
              */
             $vbox->{$request['fn']}($request['params'],array(&$response));
+
 
             /*
              * Send back persistent request in response
