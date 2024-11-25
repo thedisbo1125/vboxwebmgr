@@ -2019,7 +2019,7 @@ class vboxconnector {
 			$c->useHostIOCache = $sc['useHostIOCache'];
 
 			// Set sata port count
-			if(($sc['bus'] == 'SATA' )|| ($sc['bus'] == 'PCIe') || ($sc['bus'] == 'SAS')) {
+			if(($sc['bus'] == 'SATA') || ($sc['bus'] == 'PCIe') || ($sc['bus'] == 'SAS')) {
 				$max = max(1,intval(@$sc['portCount']));
 				foreach($sc['mediumAttachments'] as $ma) {
 					$max = max($max,(intval($ma['port'])+1));
