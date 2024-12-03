@@ -73,6 +73,11 @@
 	background-repeat: no-repeat;
 }
 
+.ui-widget-icon-block {
+	left: 50%;
+	margin-left: -8px;
+	display: block;
+}
 
 /* Misc visuals
 ----------------------------------*/
@@ -121,6 +126,30 @@
 	top: 0;
 	left: 0;
 	cursor: default;
+}
+
+/* icon support */
+.ui-menu-icons {
+	position: relative;
+}
+.ui-menu-icons .ui-menu-item {
+	position: relative;
+	padding-left: 2em;
+}
+
+/* left-aligned */
+.ui-menu .ui-icon {
+	position: absolute;
+	top: .2em;
+    bottom: 0;
+	left: .2em;
+	margin: auto 0;
+}
+
+/* right-aligned */
+.ui-menu .ui-menu-icon {
+	position: static;
+	float: right;
 }
 
 .ui-button {
@@ -519,48 +548,6 @@ button.ui-button::-moz-focus-inner {
 	cursor: default;
 }
 
-/* icon support */
-.ui-menu-icons {
-	position: relative;
-}
-.ui-menu-icons .ui-menu-item a {
-	position: relative;
-	padding-left: 2em;
-}
-
-/* left-aligned */
-.ui-menu .ui-icon {
-	position: absolute;
-	top: .2em;
-	left: .2em;
-	margin: auto 0;
-}
-
-/* right-aligned */
-.ui-menu .ui-menu-icon {
-	position: static;
-	float: right;
-}
-
-.ui-progressbar {
-	height: 2em;
-	text-align: left;
-	overflow: hidden;
-}
-.ui-progressbar .ui-progressbar-value {
-	margin: -1px;
-	height: 100%;
-}
-.ui-progressbar .ui-progressbar-overlay {
-	background: url("../images/jquery-ui/animated-overlay.gif");
-	height: 100%;
-	filter: alpha(opacity=25); /* support: IE8 */
-	opacity: 0.25;
-}
-.ui-progressbar-indeterminate .ui-progressbar-value {
-	background-image: none;
-}
-
 .ui-resizable {
 	position: relative;
 }
@@ -631,6 +618,25 @@ button.ui-button::-moz-focus-inner {
 	right: -5px;
 	top: -5px;
 }
+.ui-progressbar {
+	height: 2em;
+	text-align: left;
+	overflow: hidden;
+}
+.ui-progressbar .ui-progressbar-value {
+	margin: -1px;
+	height: 100%;
+}
+.ui-progressbar .ui-progressbar-overlay {
+	background: url("../images/jquery-ui/animated-overlay.gif");
+	height: 100%;
+	filter: alpha(opacity=25); /* support: IE8 */
+	opacity: 0.25;
+}
+.ui-progressbar-indeterminate .ui-progressbar-value {
+	background-image: none;
+}
+
 .ui-selectable {
 	-ms-touch-action: none;
 	touch-action: none;
@@ -953,14 +959,14 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
 	border: 1px solid #aaaaaa;
-	background: #ffffff/*{bgColorActive}*/ url("../images/jquery-ui/ui-bg_glass_65_ffffff_1x400.png")/*{bgImgUrlActive}*/ 50%/*{bgActiveXPos}*/ 50%/*{bgActiveYPos}*/ repeat-x/*{bgActiveRepeat}*/;
-	font-weight: normal/*{fwDefault}*/;
-	color: #212121/*{fcActive}*/;
+	background: #ffffff url("../images/jquery-ui/ui-bg_glass_65_ffffff_1x400.png") 50% 50% repeat-x;
+	font-weight: normal;
+	color: #212121;
 }
 .ui-state-active a,
 .ui-state-active a:link,
 .ui-state-active a:visited {
-	color: #212121/*{fcActive}*/;
+	color: #212121;
 	text-decoration: none;
 }
 
@@ -1261,9 +1267,9 @@ body .ui-tooltip {
 
 /* Overlays */
 .ui-widget-overlay {
-	background: #aaaaaa/*{bgColorOverlay}*/ url("../images/jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;
-	opacity: .3/*{opacityOverlay}*/;
-	filter: Alpha(Opacity=30)/*{opacityFilterOverlay}*/;
+	background: #aaaaaa url("../images/jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;
+	opacity: .3;
+	filter: Alpha(Opacity=30);
 }
 .ui-widget-shadow {
 	margin: -8px/*{offsetTopShadow}*/ 0 0 -8px/*{offsetLeftShadow}*/;
