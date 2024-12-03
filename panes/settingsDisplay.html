@@ -348,14 +348,14 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 		
 		if(!$('#vboxSettingsDialog').data('vboxHostDetails').acceleration3DAvailable) {
 	        $(document.forms['frmVboxSettings'].vboxSettingsDisplay3d).addClass('disabled').prop('disabled', true)
-	           .parent().addClass('disabled');
+	           .parent().addClass('disabled').prop('title', '3D acceleration not supported by hardware');
 		} else {
 			$(document.forms['frmVboxSettings'].vboxSettingsDisplay3d).removeClass('disabled').prop('disabled', false)
 			 .parent().removeClass('disabled');
 		}
 		if(!$('#vboxSettingsDialog').data('vboxHostDetails').acceleration2DVideoAvailable) {
 			$(document.forms['frmVboxSettings'].vboxSettingsDisplay2d).addClass('disabled').prop('disabled', true)
-				.parent().addClass('disabled');
+				.parent().addClass('disabled').prop('title', '2D Video acceleration not supported by hardware');
 		} else {
 			$(document.forms['frmVboxSettings'].vboxSettingsDisplay2d).removeClass('disabled').prop('disabled', false)
 				.parent().removeClass('disabled');
