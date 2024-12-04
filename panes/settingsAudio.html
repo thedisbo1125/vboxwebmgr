@@ -13,14 +13,14 @@
 	<tr>
 		<th><span class='translate'>Host Audio Driver:</span></th>
           <td>
-             <select name='vboxSettingsAudioDriver'>
+             <select class="vboxselectstdbackground" name='vboxSettingsAudioDriver'>
 		   	</select>
           </td>
 	</tr>
 	<tr>
 		<th><span class='translate'>Audio Controller:</span></th>
 		<td>
-			<select name='vboxSettingsAudioController'>
+			<select class="vboxselectstdbackground" name='vboxSettingsAudioController'>
            </select>
           </td>
 	</tr>
@@ -90,7 +90,6 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 
 	$(document.forms['frmVboxSettings'].vboxSettingsAudioDriver).val($('#vboxSettingsDialog').data('vboxMachineData').audioAdapter.audioDriver);
 	$(document.forms['frmVboxSettings'].vboxSettingsAudioController).val($('#vboxSettingsDialog').data('vboxMachineData').audioAdapter.audioController);
-	
 
 	var p = $(document.forms['frmVboxSettings'].vboxSettingsAudioController).closest('table'); 
 	if(!$('#vboxSettingsDialog').data('vboxFullEdit')) {
@@ -103,14 +102,14 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 		$(document.forms['frmVboxSettings'].vboxSettingsAudioEnabled).prop('checked',$('#vboxSettingsDialog').data('vboxMachineData').audioAdapter.enabled).triggerHandler('click');		
 	}
 });
-	
+
 /* Change settings onSave() */
 $('#vboxSettingsDialog').on('save',function(){
 
 	$('#vboxSettingsDialog').data('vboxMachineData').audioAdapter.audioDriver = document.forms['frmVboxSettings'].vboxSettingsAudioDriver.value;
 	$('#vboxSettingsDialog').data('vboxMachineData').audioAdapter.audioController = document.forms['frmVboxSettings'].vboxSettingsAudioController.value;
 	$('#vboxSettingsDialog').data('vboxMachineData').audioAdapter.enabled = document.forms['frmVboxSettings'].vboxSettingsAudioEnabled.checked;
-		
+
 });
 
 </script>

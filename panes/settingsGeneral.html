@@ -23,14 +23,14 @@
 	</tr>
 	<tr>
 		<th><span class='translateos'>Type:</span></th>
-		<td><select name='vboxSettingsGeneralOSFamily' id='vboxSettingsGeneralOSFamily' >
+		<td><select class="vboxselectstdbackground" name='vboxSettingsGeneralOSFamily' id='vboxSettingsGeneralOSFamily' >
 			<option value='Linux'>Linux</option>
 		</select></td>
 		<td rowspan='2'><img name='vboxOSTypeImg' height='32' width='32' /></td>
 	</tr>
 	<tr>
 		<th><span class='translateos'>Version:</span></th>
-		<td><select id='vboxSettingsGeneralOSType' name='vboxSettingsGeneralOSType'>
+		<td><select class="vboxselectstdbackground" id='vboxSettingsGeneralOSType' name='vboxSettingsGeneralOSType'>
 			<option value='Debian'>Debian</option>
 		</select></td>
 	</tr>
@@ -42,7 +42,7 @@
 	<tr class='vboxStartStopConfig vboxRunningEnabled'>
 		<th><span class='translate'>Startup Mode:</span></th>
 		<td colspan='2'>
-			<select name='vboxStartStopConfigStartup'>
+			<select class="vboxselectstdbackground" name='vboxStartStopConfigStartup'>
 				<option value='auto'>Automatic</option>
 				<option value='manual'>Manual</option>
 			</select>
@@ -52,7 +52,7 @@
 	<tr class='vboxAutostartConfig vboxRunningEnabled' id='vboxAutostartConfigShutdown'>
 		<th><span class='translate'>Shutdown mode:</span></th>
 		<td colspan='2'>
-			<select name='vboxAutostartConfigShutdownOptions'>
+			<select class="vboxselectstdbackground" name='vboxAutostartConfigShutdownOptions'>
 				<option value='Disabled'>Disabled</option>
 				<option value='SaveState'>Save State</option>
 				<option value='PowerOff'>Power Off</option>
@@ -85,7 +85,7 @@
 	</tr>
 	<tr id='vboxSettingsClipboardMode' class='vboxRunningEnabled'>
 		<th style='text-align:right'><span class='translate'>Shared Clipboard:</span></th>
-			<td><select name='vboxSettingsClipboardMode' style="width: 150px">
+			<td><select class="vboxselectstdbackground" name='vboxSettingsClipboardMode' style="width: 150px">
 					<option value='Disabled'>Disabled</option>
 					<option value='HostToGuest'>Host To Guest</option>
 					<option value='GuestToHost'>Guest To Host</option>
@@ -114,7 +114,7 @@
     <tr>
         <th><span class='translate'>Encryption Cipher:</span></th>
         <td>
-            <select name='vboxSettingsTabGeneralEncryptionCipher'>
+            <select class="vboxselectstdbackground" name='vboxSettingsTabGeneralEncryptionCipher'>
                 <option value=''>Leave Unchanged</option>
                 <option value='AES-XTS256-PLAIN64'>AES-XTS256-PLAIN64</option>
                 <option value='AES-XTS128-PLAIN64'>AES-XTS128-PLAIN64</option>
@@ -138,7 +138,7 @@
     <table class='vboxVertical'>
     	<tr>
     		<th><span class='translateinput'>Keyboard</span><span>:</span></th>
-    		<td><select name='vboxSettingsTabGeneralInputKeyboard'>
+    		<td><select class="vboxselectstdbackground" name='vboxSettingsTabGeneralInputKeyboard'>
     			<option value='PS2Keyboard'>PS/2 Keyboard</option>
     			<option value='USBKeyboard'>USB Keyboard</option>
 			<option value='ComboKeyboard'>PS/2 and USB Keyboard</opton>
@@ -147,7 +147,7 @@
     	</tr>    
     	<tr>
     		<th><span class='translateinput'>Mouse</span><span>:</span></th>
-    		<td><select name='vboxSettingsTabGeneralInputMouse'>
+    		<td><select class="vboxselectstdbackground" name='vboxSettingsTabGeneralInputMouse'>
     			<option value='PS2Mouse'>PS/2 Mouse</option>
     			<option value='USBMouse'>USB Mouse</option>
     			<option value='USBTablet'>USB Tablet</option>

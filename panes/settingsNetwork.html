@@ -14,7 +14,7 @@
 	<tr class='vboxRunningEnabled'>
 		<th style='min-width: 120px'><span class='translate'>Attached to:</span></th>
 		<td style='width: 100%' class='vboxEnablerTrigger'>
-			<select name='vboxSettingsNetAttachedTo' onchange='vboxSettingsUpdateNetworkOptions(this);' style='width: 100%'>
+			<select class="vboxselectstdbackground" name='vboxSettingsNetAttachedTo' onchange='vboxSettingsUpdateNetworkOptions(this);' style='width: 100%'>
 				<option value='Null' class='translate'>Not attached</option>
 				<option value='NAT' class='translate'>NAT</option>
 				<option value='NATNetwork' class='translate'>NAT Network</option>
@@ -29,7 +29,7 @@
 	<tr class='vboxRunningEnabled'>
 		<th class='vboxSettingsNetAdapterNamedLabel'><span class='translate'>Name:</span></th>
 		<td>
-			<select name='vboxSettingsNetName' class='vboxSettingsNetAdapterNamed' style='width: 100%'>
+			<select class="vboxSettingsNetAdapterNamed vboxselectstdbackground" name='vboxSettingsNetName' style='width: 100%'>
 				<option value=''></option>
 			</select>
 		</td>
@@ -62,7 +62,7 @@
 	<tr class='vboxSettingsNetToggleAdvanced' style='display: none'>
 		<th><span class='translate'>Adapter Type:</span></th>
 		<td>
-			<select name='vboxSettingsNetAdapter' style='width: 100%'>
+			<select class="vboxselectstdbackground" name='vboxSettingsNetAdapter' style='width: 100%'>
 			</select>
 		</td>
 	</tr>
@@ -75,7 +75,7 @@
 	<tr class='vboxRunningEnabled vboxSettingsNetToggleAdvanced vboxSettingsNetPromiscuousMode' style='display: none'>
 		<th class='vboxSettingsNetPromiscuousMode'><span class='translate'>Promiscuous Mode:</span></th>
 		<td>
-			<select class='vboxSettingsNetPromiscuousMode' name='vboxSettingsNetAdapterPromiscuousMode' style='width: 100%'>
+			<select class='vboxSettingsNetPromiscuousMode vboxselectstdbackground' name='vboxSettingsNetAdapterPromiscuousMode' style='width: 100%'>
 				<option value='Deny'>Deny</option>
 				<option value='AllowNetwork'>Allow VMs</option>
 				<option value='AllowAll'>Allow All</option>
