@@ -386,17 +386,22 @@ $('#vboxSettingsDialog').on('save',function(){
 	
 	if(frmEnabled) {
 		$('#vboxSettingsDialog').data('vboxMachineData').USBControllers = [{
-		'name': 'OHCI',
-		'type': 'OHCI'
-	}];
-}
+			'name': 'OHCI',
+			'type': 'OHCI'
+		}];
 
-if(frmType != 'OHCI') {
-	$('#vboxSettingsDialog').data('vboxMachineData').USBControllers.push({
-		'name': frmType,
-		'type': frmType
-	});
-}
+		if(frmType == 'EHCI') {
+			$('#vboxSettingsDialog').data('vboxMachineData').USBControllers.push({
+				'name': frmType,
+				'type': frmType
+			});
+		} else if (frmType == 'XHCI') {
+			$('#vboxSettingsDialog').data('vboxMachineData').USBControllers = [{
+				'name': 'xHCI',
+				'type': frmType
+			}];
+		}
+	}
 
 	$('#vboxSettingsDialog').data('vboxMachineData').USBDeviceFilters = new Array();
 
