@@ -385,6 +385,69 @@
 			<source>Enabled</source>
 			<translation>Povoleno</translation>
 		</message>
+		<message>
+			<source>Security Method:</source>
+			<translation>Metoda zabezpečení:</translation>
+		</message>
+		<message>
+			<source>VRDP CA Certificate:</source>
+			<translation>Certifikát VRDP CA:</translation>
+		</message>
+		<message>
+			<source>VRDP Server Certificate:</source>
+			<translation>Certifikát serveru VRDP:</translation>
+		</message>
+		<message>
+			<source>VRDP Private Key:</source>
+			<translation>Soukromý klíč VRDP:</translation>
+		</message>
+		<message>
+			<source>Negotiate</source>
+			<translation>Vyjednávat</translation>
+		</message>
+		<message>
+			<source>address not set</source>
+			<translation>adresa není nastavena</translation>
+		</message>
+		<message>
+			<source>Not Set</source>
+			<translation>Nenastaveno</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsNetwork</name>
+		<message>
+			<source>NAT Alias Mode:</source>
+			<translation>Režim aliasu NAT:</translation>
+		</message>
+		<message>
+			<source>Proxy Only</source>
+			<translation>Pouze proxy</translation>
+		</message>
+		<message>
+			<source>Same Ports</source>
+			<translation>Stejné porty</translation>
+		</message>
+		<message>
+			<source>Advanced NAT Options:</source>
+			<translation>Pokročilé možnosti NAT:</translation>
+		</message>
+		<message>
+			<source>Pass DNS Domain</source>
+			<translation>Předat doménu DNS</translation>
+		</message>
+		<message>
+			<source>DNS Proxy</source>
+			<translation>DNS proxy</translation>
+		</message>
+		<message>
+			<source>Use Host Resolver</source>
+			<translation>Použijte Host Resolver</translation>
+		</message>
+		<message>
+			<source>Bind to IP</source>
+			<translation>Vazba na IP</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSF</name>
@@ -450,6 +513,14 @@
 			<source>Add VirtioSCSI Controller</source>
 			<translation>Přidat VirtioSCSI řadič</translation>
 		</message>
+		<message>
+			<source>Support Discard (TRIM)</source>
+			<translation>Podpora vyřazení (TRIM)</translation>
+		</message>
+		<message>
+			<source>Ignore Flush Requests</source>
+			<translation>Ignorovat požadavky na flush</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -464,6 +535,26 @@
 		<message>
 			<source>Enable Nested VT-x/AMD-V</source>
 			<translation>Povolit vnořené VT-x/AMD-V</translation>
+		</message>
+		<message>
+			<source>Enable Page Fusion</source>
+			<translation>Povolit Page Fusion</translation>
+		</message>
+		<message>
+			<source>Enable Large Pages</source>
+			<translation>Povolit velké stránky</translation>
+		</message>
+		<message>
+			<source>Enable VT-x unrestricted execution</source>
+			<translation>Povolit neomezené provádění VT-x</translation>
+		</message>
+		<message>
+			<source>Enable VT-x VPID (Intel only)</source>
+			<translation>Povolit VT-x VPID (pouze Intel)</translation>
+		</message>
+		<message>
+			<source>HPET (high precision event timer)</source>
+			<translation>HPET (vysoce přesný časovač událostí)</translation>
 		</message>
 	</context>
 	<context>

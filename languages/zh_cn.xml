@@ -381,6 +381,69 @@
 			<source>Enabled</source>
 			<translation>启用</translation>
 		</message>
+		<message>
+			<source>Security Method:</source>
+			<translation>安全方法：</translation>
+		</message>
+		<message>
+			<source>VRDP CA Certificate:</source>
+			<translation>VRDP CA 证书：</translation>
+		</message>
+		<message>
+			<source>VRDP Server Certificate:</source>
+			<translation>VRDP 服务器证书：</translation>
+		</message>
+		<message>
+			<source>VRDP Private Key:</source>
+			<translation>VRDP 私钥：</translation>
+		</message>
+		<message>
+			<source>Negotiate</source>
+			<translation>谈判</translation>
+		</message>
+		<message>
+			<source>address not set</source>
+			<translation>未设置地址</translation>
+		</message>
+		<message>
+			<source>Not Set</source>
+			<translation>未设置</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsNetwork</name>
+		<message>
+			<source>NAT Alias Mode:</source>
+			<translation>NAT别名模式：</translation>
+		</message>
+		<message>
+			<source>Proxy Only</source>
+			<translation>仅限代理</translation>
+		</message>
+		<message>
+			<source>Same Ports</source>
+			<translation>相同端口</translation>
+		</message>
+		<message>
+			<source>Advanced NAT Options:</source>
+			<translation>高级 NAT 选项：</translation>
+		</message>
+		<message>
+			<source>Pass DNS Domain</source>
+			<translation>传递 DNS 域</translation>
+		</message>
+		<message>
+			<source>DNS Proxy</source>
+			<translation>DNS 代理</translation>
+		</message>
+		<message>
+			<source>Use Host Resolver</source>
+			<translation>使用主机解析器</translation>
+		</message>
+		<message>
+			<source>Bind to IP</source>
+			<translation>绑定 IP</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsStorage</name>
@@ -392,6 +455,14 @@
 			<source>Add VirtioSCSI Controller</source>
 			<translation>添加 VirtioSCSI 控制器</translation>
 		</message>
+		<message>
+			<source>Support Discard (TRIM)</source>
+			<translation>支持丢弃（TRIM）</translation>
+		</message>
+		<message>
+			<source>Ignore Flush Requests</source>
+			<translation>忽略刷新请求</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -402,6 +473,26 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>禁用主机时间同步</translation>
+		</message>
+		<message>
+			<source>Enable Page Fusion</source>
+			<translation>启用页面融合</translation>
+		</message>
+		<message>
+			<source>Enable Large Pages</source>
+			<translation>启用大页面</translation>
+		</message>
+		<message>
+			<source>Enable VT-x unrestricted execution</source>
+			<translation>启用 VT-x 不受限制执行</translation>
+		</message>
+		<message>
+			<source>Enable VT-x VPID (Intel only)</source>
+			<translation>启用 VT-x VPID（仅限英特尔）</translation>
+		</message>
+		<message>
+			<source>HPET (high precision event timer)</source>
+			<translation>HPET（高精度事件计时器）</translation>
 		</message>
 	</context>
 	<context>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>Chinese (Traditional)</comment>
 	<context>
 		<name>vboxwebmgr</name>
 		<message>
@@ -185,6 +186,10 @@
 			<source>Up</source>
 			<translation>往上</translation>
 			<comment>Host network adapter status</comment>
+		</message>
+		<message>
+			<source>Normal</source>
+			<translation>普通的</translation>
 		</message>
 		<message>
 			<source>Down</source>
@@ -447,6 +452,34 @@
 			<source>Enabled</source>
 			<translation>啟用</translation>
 		</message>
+		<message>
+			<source>Security Method:</source>
+			<translation>安全方法：</translation>
+		</message>
+		<message>
+			<source>VRDP CA Certificate:</source>
+			<translation>VRDP CA 憑證：</translation>
+		</message>
+		<message>
+			<source>VRDP Server Certificate:</source>
+			<translation>VRDP 伺服器憑證：</translation>
+		</message>
+		<message>
+			<source>VRDP Private Key:</source>
+			<translation>VRDP 私鑰：</translation>
+		</message>
+		<message>
+			<source>Negotiate</source>
+			<translation>談判</translation>
+		</message>
+		<message>
+			<source>address not set</source>
+			<translation>地址未設定</translation>
+		</message>
+		<message>
+			<source>Not Set</source>
+			<translation>未設定</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsGeneral</name>
@@ -461,6 +494,52 @@
 		<message>
 			<source>Encryption Cipher:</source>
 			<translation>加密密碼：</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsNetwork</name>
+		<message>
+			<source>NAT Alias Mode:</source>
+			<translation>NAT 別名模式：</translation>
+		</message>
+		<message>
+			<source>Proxy Only</source>
+			<translation>僅限代理</translation>
+		</message>
+		<message>
+			<source>Same Ports</source>
+			<translation>相同連接埠</translation>
+		</message>
+		<message>
+			<source>Advanced NAT Options:</source>
+			<translation>進階 NAT 選項：</translation>
+		</message>
+		<message>
+			<source>Pass DNS Domain</source>
+			<translation>傳遞 DNS 網域</translation>
+		</message>
+		<message>
+			<source>DNS Proxy</source>
+			<translation>DNS代理</translation>
+		</message>
+		<message>
+			<source>Use Host Resolver</source>
+			<translation>使用主機解析器</translation>
+		</message>
+		<message>
+			<source>Bind to IP</source>
+			<translation>綁定IP</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSerial</name>
+		<message>
+			<source>Create Pipe</source>
+			<translation>創建管道</translation>
+		</message>
+		<message>
+			<source>Port/File Path:</source>
+			<translation>連接埠/檔案路徑：</translation>
 		</message>
 	</context>
 	<context>
@@ -541,6 +620,14 @@
 			<source>Storage Tree</source>
 			<translation>存儲樹</translation>
 		</message>
+		<message>
+			<source>Support Discard (TRIM)</source>
+			<translation>支持丟棄（TRIM）</translation>
+		</message>
+		<message>
+			<source>Ignore Flush Requests</source>
+			<translation>忽略刷新請求</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -551,6 +638,26 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>禁用主機時間同步</translation>
+		</message>
+		<message>
+			<source>Enable Page Fusion</source>
+			<translation>啟用頁面融合</translation>
+		</message>
+		<message>
+			<source>Enable Large Pages</source>
+			<translation>啟用大頁面</translation>
+		</message>
+		<message>
+			<source>Enable VT-x unrestricted execution</source>
+			<translation>啟用 VT-x 無限制執行</translation>
+		</message>
+		<message>
+			<source>Enable VT-x VPID (Intel only)</source>
+			<translation>啟用 VT-x VPID（僅限 Intel）</translation>
+		</message>
+		<message>
+			<source>HPET (high precision event timer)</source>
+			<translation>HPET（高精度事件定時器）</translation>
 		</message>
 	</context>
 	<context>

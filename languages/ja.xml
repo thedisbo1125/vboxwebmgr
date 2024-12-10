@@ -374,12 +374,71 @@
 			<translation>ビデオのリダイレクト:</translation>
 		</message>
 		<message>
-			<source>Video Quality:</source>
-			<translation>ビデオ品質:</translation>
-		</message>
-		<message>
 			<source>Enabled</source>
 			<translation>有効</translation>
+		</message>
+		<message>
+			<source>Security Method:</source>
+			<translation>セキュリティ方法:</translation>
+		</message>
+		<message>
+			<source>VRDP CA Certificate:</source>
+			<translation>VRDP CA 証明書:</translation>
+		</message>
+		<message>
+			<source>VRDP Server Certificate:</source>
+			<translation>VRDP サーバー証明書:</translation>
+		</message>
+		<message>
+			<source>VRDP Private Key:</source>
+			<translation>VRDP 秘密キー:</translation>
+		</message>
+		<message>
+			<source>Negotiate</source>
+			<translation>交渉する</translation>
+		</message>
+		<message>
+			<source>address not set</source>
+			<translation>アドレスが設定されていません</translation>
+		</message>
+		<message>
+			<source>Not Set</source>
+			<translation>未設定</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsNetwork</name>
+		<message>
+			<source>NAT Alias Mode:</source>
+			<translation>NAT エイリアス モード:</translation>
+		</message>
+		<message>
+			<source>Proxy Only</source>
+			<translation>プロキシのみ</translation>
+		</message>
+		<message>
+			<source>Same Ports</source>
+			<translation>同じポート</translation>
+		</message>
+		<message>
+			<source>Advanced NAT Options:</source>
+			<translation>高度な NAT オプション:</translation>
+		</message>
+		<message>
+			<source>Pass DNS Domain</source>
+			<translation>DNSドメインを渡す</translation>
+		</message>
+		<message>
+			<source>DNS Proxy</source>
+			<translation>DNS プロキシ</translation>
+		</message>
+		<message>
+			<source>Use Host Resolver</source>
+			<translation>ホストリゾルバを使用する</translation>
+		</message>
+		<message>
+			<source>Bind to IP</source>
+			<translation>IPにバインド</translation>
 		</message>
 	</context>
 	<context>
@@ -392,6 +451,14 @@
 			<source>Add VirtioSCSI Controller</source>
 			<translation>VirtioSCSI コントローラーを追加</translation>
 		</message>
+		<message>
+			<source>Support Discard (TRIM)</source>
+			<translation>サポート破棄 (TRIM)</translation>
+		</message>
+		<message>
+			<source>Ignore Flush Requests</source>
+			<translation>フラッシュ要求を無視する</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -402,6 +469,26 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>ホスト時刻同期を無効にする</translation>
+		</message>
+		<message>
+			<source>Enable Page Fusion</source>
+			<translation>ページフュージョンを有効にする</translation>
+		</message>
+		<message>
+			<source>Enable Large Pages</source>
+			<translation>ラージページを有効にする</translation>
+		</message>
+		<message>
+			<source>Enable VT-x unrestricted execution</source>
+			<translation>VT-xの無制限実行を有効にする</translation>
+		</message>
+		<message>
+			<source>Enable VT-x VPID (Intel only)</source>
+			<translation>VT-x VPID を有効にする (Intel のみ)</translation>
+		</message>
+		<message>
+			<source>HPET (high precision event timer)</source>
+			<translation>HPET（高精度イベントタイマー）</translation>
 		</message>
 	</context>
 	<context>

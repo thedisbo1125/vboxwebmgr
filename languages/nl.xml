@@ -381,6 +381,80 @@
 			<source>Enabled</source>
 			<translation>Ingeschakeld</translation>
 		</message>
+		<message>
+			<source>Security Method:</source>
+			<translation>Beveiligingsmethode:</translation>
+		</message>
+		<message>
+			<source>VRDP CA Certificate:</source>
+			<translation>VRDP CA-certificaat:</translation>
+		</message>
+		<message>
+			<source>VRDP Server Certificate:</source>
+			<translation>VRDP-servercertificaat:</translation>
+		</message>
+		<message>
+			<source>VRDP Private Key:</source>
+			<translation>VRDP-privésleutel:</translation>
+		</message>
+		<message>
+			<source>Negotiate</source>
+			<translation>Onderhandelen</translation>
+		</message>
+		<message>
+			<source>address not set</source>
+			<translation>adres niet ingesteld</translation>
+		</message>
+		<message>
+			<source>Not Set</source>
+			<translation>Niet ingesteld</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsNetwork</name>
+		<message>
+			<source>NAT Alias Mode:</source>
+			<translation>NAT Alias-modus:</translation>
+		</message>
+		<message>
+			<source>Proxy Only</source>
+			<translation>Alleen proxy</translation>
+		</message>
+		<message>
+			<source>Same Ports</source>
+			<translation>Dezelfde havens</translation>
+		</message>
+		<message>
+			<source>Advanced NAT Options:</source>
+			<translation>Geavanceerde NAT-opties:</translation>
+		</message>
+		<message>
+			<source>Pass DNS Domain</source>
+			<translation>DNS-domein doorgeven</translation>
+		</message>
+		<message>
+			<source>DNS Proxy</source>
+			<translation>DNS-proxy</translation>
+		</message>
+		<message>
+			<source>Use Host Resolver</source>
+			<translation>Host Resolver gebruiken</translation>
+		</message>
+		<message>
+			<source>Bind to IP</source>
+			<translation>Binden aan IP</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsSerial</name>
+		<message>
+			<source>Create Pipe</source>
+			<translation>Pijp maken</translation>
+		</message>
+		<message>
+			<source>Port/File Path:</source>
+			<translation>Poort/bestandspad:</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsStorage</name>
@@ -420,6 +494,14 @@
 			<source>Add VirtioSCSI Controller</source>
 			<translation>Toevoegen VirtioSCSI-controller</translation>
 		</message>
+		<message>
+			<source>Support Discard (TRIM)</source>
+			<translation>Ondersteuning voor afdanken (TRIM)</translation>
+		</message>
+		<message>
+			<source>Ignore Flush Requests</source>
+			<translation>Negeer Flush-verzoeken</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -430,6 +512,26 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Schakel hosttijdsynchronisatie uit</translation>
+		</message>
+		<message>
+			<source>Enable Page Fusion</source>
+			<translation>Paginafusie inschakelen</translation>
+		</message>
+		<message>
+			<source>Enable Large Pages</source>
+			<translation>Grote pagina's inschakelen</translation>
+		</message>
+		<message>
+			<source>Enable VT-x unrestricted execution</source>
+			<translation>VT-x onbeperkte uitvoering inschakelen</translation>
+		</message>
+		<message>
+			<source>Enable VT-x VPID (Intel only)</source>
+			<translation>VT-x VPID inschakelen (alleen Intel)</translation>
+		</message>
+		<message>
+			<source>HPET (high precision event timer)</source>
+			<translation>HPET (High Precision Event Timer)</translation>
 		</message>
 	</context>
 	<context>
