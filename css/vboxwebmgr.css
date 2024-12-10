@@ -13,6 +13,31 @@ table.tdpadding td {
     padding-top: 2px;
 }
 
+label.showbox {
+    width: 100%;
+    border-width: 1px;
+    border-style:solid;
+    border-color:black;
+    padding: 2.5px;
+    display: inline-block;
+    background-color: white;
+    border-radius: 3px;
+}
+
+label.vboxcertdisabled {
+    color: #6d6d6d;
+    background-color: #f7f7f7;
+    border-color: #8f8f9d;
+}
+
+input.selectfilebutton {
+    background-image: url("../images/vbox/select_file_16px.png");
+}
+
+input.selectfilebutton:disabled {
+    background-image: url("../images/vbox/select_file_disabled_16px.png");
+}
+
 select.vboxselectstdbackground {
     background-color: white;
     border-radius: 4px;
@@ -25,11 +50,12 @@ select.vboxselectstdbackground {
 }
 
 select.vboxselectstdbackground:hover {
-    background-color: #e9e9ed; // #e9e9ed;   //e9e9ed
+    background-color: #e9e9ed;
 }
 
 select.vboxselectstdbackground:disabled {
     background-color: #f7f7f7;
+    color: #6d6d6d;
 }
 
 
