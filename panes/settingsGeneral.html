@@ -16,7 +16,7 @@
 
 <!-- Basic Tab -->
 <div id='vboxSettingsTabGeneralBasic' title='Basic'>
-<table class='vboxVertical'>
+<table class='vboxVertical thpaddingtop'>
 	<tr>
 		<th><span class='translateos'>Name:</span></th>
 		<td colspan='2'><input type='text' class='vboxText' name='vboxSettingsGeneralName' style='width: 98%'/></td>
@@ -36,7 +36,7 @@
 	</tr>
 	<tr id='vboxSettingsRowVMIcon' class='vboxRunningEnabled' style='display:none'>
 		<th><span class='translate'>Icon URL:</span></th>
-		<td><input name='vboxSettingsGeneralIcon' type='text' class='vboxText' style='width:99%'/></td>
+		<td><input name='vboxSettingsGeneralIcon' type='text' class='vboxTextBox' style='width:99%'/></td>
 		<td style='text-align:center;'><img src='images/vbox/blank.gif' id='vboxSettingsGeneralIconImg' height='32' width='32' /></td>
 	</tr>
 	<tr class='vboxStartStopConfig vboxRunningEnabled'>
@@ -74,11 +74,11 @@
 
 <!-- Advanced Tab -->
 <div id='vboxSettingsTabGeneralAdvanced' title='Advanced'>
-<table class='vboxVertical'>
+<table class='vboxVertical thpaddingtop'>
 	<tr>
 		<th><span class='translate'>Snapshot Folder:</span></th>
 		<td class='vboxFileFolderInput'>
-			<input type='text' class='vboxText' name='vboxSettingsGeneralSnapshotFolder' style='width: 100%'/>
+			<input type='text' class='vboxTextBox' name='vboxSettingsGeneralSnapshotFolder' style='width: 100%'/>
 			<input type="button" class="vboxImgButton" style="background-image: url(images/vbox/select_file_16px.png)" onClick="vboxSnapshotBrowseFolder(this);" />
 		</td>
         <td style="width: 20px; display: inline-block;"/>
@@ -103,7 +103,7 @@
 
 <!-- Encryption Tab -->
 <div id='vboxSettingsTabGeneralEncryption' title='Encryption'>
-<table class='vboxVertical'>
+<table class='vboxVertical thpaddingtop'>
     <tr>
         <td colspan='2'>
             <label><input type='checkbox' class='vboxCheckbox vboxEnablerCheckbox' name='vboxSettingsGeneralEncryptionEnable' />
@@ -123,11 +123,11 @@
     </tr>
     <tr>
         <th><span class='translate'>Enter New Password:</span></th>
-        <td><input type='password' class='vboxText' name='vboxGeneralEncryptionPassword' style='width: 98%'/></td>
+        <td><input type='password' class='vboxTextBox' name='vboxGeneralEncryptionPassword' style='width: 98%'/></td>
     </tr>
     <tr>
         <th><span class='translate'>Confirm New Password:</span></th>
-        <td><input type='password' class='vboxText' name='vboxGeneralEncryptionPassword2'style='width: 98%'/></td>
+        <td><input type='password' class='vboxTextBox' name='vboxGeneralEncryptionPassword2'style='width: 98%'/></td>
     </tr>
 
 </table>
@@ -135,7 +135,7 @@
 
 <!-- Input Tab -->
 <div id='vboxSettingsTabGeneralInput' title='Input'>
-    <table class='vboxVertical'>
+    <table class='vboxVertical thpaddingtop'>
     	<tr>
     		<th><span class='translateinput'>Keyboard</span><span>:</span></th>
     		<td><select class="vboxselectstdbackground" name='vboxSettingsTabGeneralInputKeyboard'>
