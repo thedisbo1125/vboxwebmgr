@@ -13,212 +13,212 @@
  */
 var vboxVMDataMediator = {
 
-	/* Promises for data */
-	promises : {
-		'getVMDetails':{},
-		'getVMRuntimeData':{}
-	},
+    /* Promises for data */
+    promises : {
+        'getVMDetails':{},
+        'getVMRuntimeData':{}
+    },
 
-	/* Holds Basic VM data */
-	vmData : null,
+    /* Holds Basic VM data */
+    vmData : null,
 
-	/* Holds VM details */
-	vmDetailsData : {},
+    /* Holds VM details */
+    vmDetailsData : {},
 
-	/* Holds VM runtime data */
-	vmRuntimeData : {},
+    /* Holds VM runtime data */
+    vmRuntimeData : {},
 
-	/* Expire cached promise / data */
-	expireVMDetails: function(vmid) {
-		vboxVMDataMediator.promises.getVMDetails[vmid] = null;
-		vboxVMDataMediator.vmDetailsData[vmid] = null;
-	},
-	expireVMRuntimeData: function(vmid) {
-		vboxVMDataMediator.promises.getVMRuntimeData[vmid] = null;
-		vboxVMDataMediator.vmRuntimeData[vmid] = null;
-	},
-	expireAll: function() {
-		for(var i in vboxVMDataMediator.promises) {
-			if(typeof(i) != 'string') continue;
-			vboxVMDataMediator.promises[i] = {};
-		}
-		vboxVMDataMediator.vmData = null;
-		vboxVMDataMediator.vmRuntimeData = {};
-		vboxVMDataMediator.vmDetailsData = {};
-	},
+    /* Expire cached promise / data */
+    expireVMDetails: function(vmid) {
+        vboxVMDataMediator.promises.getVMDetails[vmid] = null;
+        vboxVMDataMediator.vmDetailsData[vmid] = null;
+    },
+    expireVMRuntimeData: function(vmid) {
+        vboxVMDataMediator.promises.getVMRuntimeData[vmid] = null;
+        vboxVMDataMediator.vmRuntimeData[vmid] = null;
+    },
+    expireAll: function() {
+        for(var i in vboxVMDataMediator.promises) {
+            if(typeof(i) != 'string') continue;
+            vboxVMDataMediator.promises[i] = {};
+        }
+        vboxVMDataMediator.vmData = null;
+        vboxVMDataMediator.vmRuntimeData = {};
+        vboxVMDataMediator.vmDetailsData = {};
+    },
 
-	/**
-	 * Get basic vm data
-	 *
-	 * @param vmid {String} ID of VM
-	 * @returns {Object} vm data
-	 */
-	getVMData: function(vmid) {
+    /**
+     * Get basic vm data
+     *
+     * @param vmid {String} ID of VM
+     * @returns {Object} vm data
+     */
+    getVMData: function(vmid) {
 
-		// VMList must exist
-		if(!vboxVMDataMediator.vmData) {
-			return;
-		}
+        // VMList must exist
+        if(!vboxVMDataMediator.vmData) {
+            return;
+        }
 
-		return vboxVMDataMediator.vmData[vmid];
+        return vboxVMDataMediator.vmData[vmid];
 
-	},
+    },
 
-	/**
-	 * Return list of machines, subscribe to running VM events
-	 * and start the event listener
-	 *
-	 * @returns {Object} promise
-	 */
-	getVMList: function() {
+    /**
+     * Return list of machines, subscribe to running VM events
+     * and start the event listener
+     *
+     * @returns {Object} promise
+     */
+    getVMList: function() {
 
-		// Return array from existing data
-		if(vboxVMDataMediator.vmData) {
-			var list = [];
-			for(var i in vboxVMDataMediator.vmData) {
-				if(typeof i != 'string') continue;
-				if(i == 'host') continue;
-				list.push(vboxVMDataMediator.vmData[i]);
-			}
-			return list;
-		}
-
-
-		var mList = $.Deferred();
-		$.when(vboxAjaxRequest("vboxGetMachines")).done(function(d) {
-
-			var vmData = {};
-			var subscribeList = [];
-
-			for(var i = 0; i < d.responseData.length; i++) {
-
-				// Enforce VM ownership
-			    if($('#vboxPane').data('vboxConfig').enforceVMOwnership && !$('#vboxPane').data('vboxSession').admin && d.responseData[i].owner != $('#vboxPane').data('vboxSession').user) {
-			    	continue;
-			    }
-
-				vmData[d.responseData[i].id] = d.responseData[i];
-
-				if(vboxVMStates.isRunning({'state':d.responseData[i].state}) || vboxVMStates.isPaused({'state':d.responseData[i].state}))
-					subscribeList[subscribeList.length] = d.responseData[i].id;
-
-			}
-
-			// Start event listener
-			$.when(vboxEventListener.start(subscribeList)).done(function(){
-				vboxVMDataMediator.vmData = vmData;
-				mList.resolve(d.responseData);
-
-			}).fail(function() {
-				mList.reject();
-			});
+        // Return array from existing data
+        if(vboxVMDataMediator.vmData) {
+            var list = [];
+            for(var i in vboxVMDataMediator.vmData) {
+                if(typeof i != 'string') continue;
+                if(i == 'host') continue;
+                list.push(vboxVMDataMediator.vmData[i]);
+            }
+            return list;
+        }
 
 
-		}).fail(function() {
-			mList.reject();
-		});
+        var mList = $.Deferred();
+        $.when(vboxAjaxRequest("vboxGetMachines")).done(function(d) {
 
-		return mList.promise();
-	},
+            var vmData = {};
+            var subscribeList = [];
 
-	/**
-	 * Get VM details data
-	 *
-	 * @param vmid {String} ID of VM to get data for
-	 * @param forceRefresh {Boolean} force refresh of VM data
-	 * @returns {Object} vm data or promise
-	 */
-	getVMDetails: function(vmid, forceRefresh) {
+            for(var i = 0; i < d.responseData.length; i++) {
 
-		// Data exists
-		if(vboxVMDataMediator.vmDetailsData[vmid] && !forceRefresh) {
-			vboxVMDataMediator.promises.getVMDetails[vmid] = null;
-			return vboxVMDataMediator.vmDetailsData[vmid];
-		}
+                // Enforce VM ownership
+                if($('#vboxPane').data('vboxConfig').enforceVMOwnership && !$('#vboxPane').data('vboxSession').admin && d.responseData[i].owner != $('#vboxPane').data('vboxSession').user) {
+                    continue;
+                }
 
-		// Promise does not yet exist?
-		if(!vboxVMDataMediator.promises.getVMDetails[vmid]) {
+                vmData[d.responseData[i].id] = d.responseData[i];
 
-			vboxVMDataMediator.promises.getVMDetails[vmid] = $.Deferred();
+                if(vboxVMStates.isRunning({'state':d.responseData[i].state}) || vboxVMStates.isPaused({'state':d.responseData[i].state}))
+                    subscribeList[subscribeList.length] = d.responseData[i].id;
 
-			$.when(vboxAjaxRequest("machineGetDetails",{vm:vmid})).done(function(d){
-				vboxVMDataMediator.vmDetailsData[d.responseData.id] = d.responseData;
-				vboxVMDataMediator.promises.getVMDetails[vmid].resolve(d.responseData);
-			}).fail(function(){
-				vboxVMDataMediator.promises.getVMDetails[vmid].reject();
-				vboxVMDataMediator.promises.getVMDetails[vmid] = null;
-			});
+            }
 
-		}
-		return vboxVMDataMediator.promises.getVMDetails[vmid];
-	},
+            // Start event listener
+            $.when(vboxEventListener.start(subscribeList)).done(function(){
+                vboxVMDataMediator.vmData = vmData;
+                mList.resolve(d.responseData);
 
-	/**
-	 * Get VM's runtime data
-	 *
-	 * @param vmid {String} ID of VM to get data for
-	 * @returns {Object} VM runtime data or promise
-	 */
-	getVMRuntimeData: function(vmid) {
+            }).fail(function() {
+                mList.reject();
+            });
 
-		// Data exists
-		if(vboxVMDataMediator.vmRuntimeData[vmid]) {
-			vboxVMDataMediator.promises.getVMRuntimeData[vmid] = null;
-			return vboxVMDataMediator.vmRuntimeData[vmid];
-		}
 
-		// Promise does not yet exist?
-		if(!vboxVMDataMediator.promises.getVMRuntimeData[vmid]) {
+        }).fail(function() {
+            mList.reject();
+        });
 
-			vboxVMDataMediator.promises.getVMRuntimeData[vmid] = $.Deferred();
+        return mList.promise();
+    },
 
-			$.when(vboxAjaxRequest("machineGetRuntimeData",{vm:vmid})).done(function(d){
-				vboxVMDataMediator.vmRuntimeData[d.responseData.id] = d.responseData;
-				if(vboxVMDataMediator.promises.getVMRuntimeData[vmid])
-					vboxVMDataMediator.promises.getVMRuntimeData[vmid].resolve(d.responseData);
-			}).fail(function(){
-				vboxVMDataMediator.promises.getVMRuntimeData[vmid].reject();
-				vboxVMDataMediator.promises.getVMRuntimeData[vmid] = null;
-			});
+    /**
+     * Get VM details data
+     *
+     * @param vmid {String} ID of VM to get data for
+     * @param forceRefresh {Boolean} force refresh of VM data
+     * @returns {Object} vm data or promise
+     */
+    getVMDetails: function(vmid, forceRefresh) {
 
-		}
-		return vboxVMDataMediator.promises.getVMRuntimeData[vmid];
-	},
+        // Data exists
+        if(vboxVMDataMediator.vmDetailsData[vmid] && !forceRefresh) {
+            vboxVMDataMediator.promises.getVMDetails[vmid] = null;
+            return vboxVMDataMediator.vmDetailsData[vmid];
+        }
 
-	/**
-	 * Return all data for a VM
-	 * @param vmid {String} ID of VM to get data for
-	 * @returns promise
-	 */
-	getVMDataCombined : function(vmid) {
+        // Promise does not yet exist?
+        if(!vboxVMDataMediator.promises.getVMDetails[vmid]) {
 
-		// Special case for 'host'
-		if(vmid == 'host') {
-			var def = $.Deferred();
-			$.when(vboxVMDataMediator.getVMDetails(vmid)).done(function(d){
-				def.resolve(d);
-			}).fail(function(){
-				def.reject();
-			});
-			return def.promise();
-		}
+            vboxVMDataMediator.promises.getVMDetails[vmid] = $.Deferred();
 
-		if(!vboxVMDataMediator.vmData[vmid]) return;
+            $.when(vboxAjaxRequest("machineGetDetails",{vm:vmid})).done(function(d){
+                vboxVMDataMediator.vmDetailsData[d.responseData.id] = d.responseData;
+                vboxVMDataMediator.promises.getVMDetails[vmid].resolve(d.responseData);
+            }).fail(function(){
+                vboxVMDataMediator.promises.getVMDetails[vmid].reject();
+                vboxVMDataMediator.promises.getVMDetails[vmid] = null;
+            });
 
-		var runtime = function() { return {};};
-		if(vboxVMStates.isRunning({'state':vboxVMDataMediator.vmData[vmid].state}) || vboxVMStates.isPaused({'state':vboxVMDataMediator.vmData[vmid].state})) {
-			runtime = vboxVMDataMediator.getVMRuntimeData(vmid);
-		}
+        }
+        return vboxVMDataMediator.promises.getVMDetails[vmid];
+    },
 
-		var def = $.Deferred();
-		$.when(vboxVMDataMediator.getVMDetails(vmid), runtime, vboxVMDataMediator.getVMData(vmid)).done(function(d1,d2,d3){
-			def.resolve($.extend(true,{},d1,d2,d3));
-		}).fail(function(){
-			def.reject();
-		});
-		return def.promise();
+    /**
+     * Get VM's runtime data
+     *
+     * @param vmid {String} ID of VM to get data for
+     * @returns {Object} VM runtime data or promise
+     */
+    getVMRuntimeData: function(vmid) {
 
-	},
+        // Data exists
+        if(vboxVMDataMediator.vmRuntimeData[vmid]) {
+            vboxVMDataMediator.promises.getVMRuntimeData[vmid] = null;
+            return vboxVMDataMediator.vmRuntimeData[vmid];
+        }
+
+        // Promise does not yet exist?
+        if(!vboxVMDataMediator.promises.getVMRuntimeData[vmid]) {
+
+            vboxVMDataMediator.promises.getVMRuntimeData[vmid] = $.Deferred();
+
+            $.when(vboxAjaxRequest("machineGetRuntimeData",{vm:vmid})).done(function(d){
+                vboxVMDataMediator.vmRuntimeData[d.responseData.id] = d.responseData;
+                if(vboxVMDataMediator.promises.getVMRuntimeData[vmid])
+                    vboxVMDataMediator.promises.getVMRuntimeData[vmid].resolve(d.responseData);
+            }).fail(function(){
+                vboxVMDataMediator.promises.getVMRuntimeData[vmid].reject();
+                vboxVMDataMediator.promises.getVMRuntimeData[vmid] = null;
+            });
+
+        }
+        return vboxVMDataMediator.promises.getVMRuntimeData[vmid];
+    },
+
+    /**
+     * Return all data for a VM
+     * @param vmid {String} ID of VM to get data for
+     * @returns promise
+     */
+    getVMDataCombined : function(vmid) {
+
+        // Special case for 'host'
+        if(vmid == 'host') {
+            var def = $.Deferred();
+            $.when(vboxVMDataMediator.getVMDetails(vmid)).done(function(d){
+                def.resolve(d);
+            }).fail(function(){
+                def.reject();
+            });
+            return def.promise();
+        }
+
+        if(!vboxVMDataMediator.vmData[vmid]) return;
+
+        var runtime = function() { return {};};
+        if(vboxVMStates.isRunning({'state':vboxVMDataMediator.vmData[vmid].state}) || vboxVMStates.isPaused({'state':vboxVMDataMediator.vmData[vmid].state})) {
+            runtime = vboxVMDataMediator.getVMRuntimeData(vmid);
+        }
+
+        var def = $.Deferred();
+        $.when(vboxVMDataMediator.getVMDetails(vmid), runtime, vboxVMDataMediator.getVMData(vmid)).done(function(d1,d2,d3){
+            def.resolve($.extend(true,{},d1,d2,d3));
+        }).fail(function(){
+            def.reject();
+        });
+        return def.promise();
+
+    },
 
 	/**
 	 * Get new VM data
