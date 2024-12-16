@@ -176,6 +176,7 @@ class vboxwebmgrConfigClass {
 			unset($this->user);
 			unset($this->pass);
 		}
+
 		// Set to selected server based on browser cookie
 		if(isset($_COOKIE['vboxServer']) && isset($this->servers) && is_array($this->servers) && count($this->servers)) {
 			foreach($this->servers as $s) {
@@ -184,15 +185,18 @@ class vboxwebmgrConfigClass {
 					break;
 				}
 			}
+
 		// If servers is not an array, set to empty array
 		} elseif(!isset($this->servers) || !is_array($this->servers)) {
 			$this->servers = array();
 		}
+
 		// We still have no server set, use the first one from
 		// the servers array
 		if(empty($this->location) && count($this->servers)) {
 			foreach($this->servers[0] as $k=>$v) $this->$k = $v;
 		}
+
 		// Make sure name is set
 		if(!isset($this->name) || !$this->name) {
 			$this->name = parse_url($this->location);
@@ -209,6 +213,7 @@ class vboxwebmgrConfigClass {
 
 		// Ensure authlib is set
 		if(empty($this->authLib)) $this->authLib = 'Builtin';
+
 		// include interface
 		include_once(dirname(__FILE__).'/authinterface.php');
 		include_once(dirname(__FILE__).'/auth/'.str_replace(array('.','/','\\'),'',$this->authLib).'.php');

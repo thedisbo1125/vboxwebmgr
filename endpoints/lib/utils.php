@@ -85,6 +85,7 @@ function clean_request() {
 }
 
 if(!function_exists('hash')) {
+
     // Lower security, but better than nothing
 
     /**

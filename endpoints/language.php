@@ -55,8 +55,8 @@ function trans(s,c,n,h) {
     var r = transreal(s,c,n,h);
 
     if(typeof r != 'string') {
-       // console.log('Could not translate ' + s + ' with ' + c);
-       return s;
+        // console.log('Could not translate ' + s + ' with ' + c);
+        return s;
     }
 
     return r;
@@ -65,7 +65,6 @@ function trans(s,c,n,h) {
 
 function transreal(w,context,number,comment) {
     try {
-
         if(__vboxLangData['contexts'][context]['messages'][w]['translation']) {
 
             if(__vboxLangData['contexts'][context]['messages'][w]['translation']['numerusform']) {
