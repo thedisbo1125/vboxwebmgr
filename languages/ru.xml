@@ -381,6 +381,45 @@
 			<source>Enabled</source>
 			<translation>Включено</translation>
 		</message>
+		<message>
+			<source>Security Method:</source>
+			<translation>Метод безопасности:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsNetwork</name>
+		<message>
+			<source>NAT Alias Mode:</source>
+			<translation>Режим псевдонима NAT:</translation>
+		</message>
+		<message>
+			<source>Proxy Only</source>
+			<translation>Только прокси</translation>
+		</message>
+		<message>
+			<source>Same Ports</source>
+			<translation>Те же порты</translation>
+		</message>
+		<message>
+			<source>Advanced NAT Options:</source>
+			<translation>Расширенные параметры NAT:</translation>
+		</message>
+		<message>
+			<source>Pass DNS Domain</source>
+			<translation>Передать DNS-домен</translation>
+		</message>
+		<message>
+			<source>DNS Proxy</source>
+			<translation>DNS-прокси</translation>
+		</message>
+		<message>
+			<source>Use Host Resolver</source>
+			<translation>Использовать Host Resolver</translation>
+		</message>
+		<message>
+			<source>Bind to IP</source>
+			<translation>Привязать к IP</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsStorage</name>
@@ -392,6 +431,14 @@
 			<source>Add VirtioSCSI Controller</source>
 			<translation>Добавить VirtioSCSI контроллер</translation>
 		</message>
+		<message>
+			<source>Support Discard (TRIM)</source>
+			<translation>Поддержка отмены (TRIM)</translation>
+		</message>
+		<message>
+			<source>Ignore Flush Requests</source>
+			<translation>Игнорировать запросы на очистку</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -402,6 +449,26 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Отключить синхронизацию времени хоста</translation>
+		</message>
+		<message>
+			<source>Enable Page Fusion</source>
+			<translation>Включить слияние страниц</translation>
+		</message>
+		<message>
+			<source>Enable Large Pages</source>
+			<translation>Включить большие страницы</translation>
+		</message>
+		<message>
+			<source>Enable VT-x unrestricted execution</source>
+			<translation>Включить неограниченное выполнение VT-x</translation>
+		</message>
+		<message>
+			<source>Enable VT-x VPID (Intel only)</source>
+			<translation>Включить VT-x VPID (только Intel)</translation>
+		</message>
+		<message>
+			<source>HPET (high precision event timer)</source>
+			<translation>HPET (высокоточный таймер событий)</translation>
 		</message>
 	</context>
 	<context>

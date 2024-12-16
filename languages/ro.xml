@@ -457,6 +457,10 @@
 			<source>Screen</source>
 			<translation>Ecran</translation>
 		</message>
+		<message>
+			<source>Security Method:</source>
+			<translation>Metoda de securitate:</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsGeneral</name>
@@ -487,6 +491,41 @@
 		<message>
 			<source>Confirm New Password:</source>
 			<translation>Confirmă noua parolă:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsNetwork</name>
+		<message>
+			<source>NAT Alias Mode:</source>
+			<translation>Mod Alias ​​NAT:</translation>
+		</message>
+		<message>
+			<source>Proxy Only</source>
+			<translation>Numai proxy</translation>
+		</message>
+		<message>
+			<source>Same Ports</source>
+			<translation>Aceleași porturi</translation>
+		</message>
+		<message>
+			<source>Advanced NAT Options:</source>
+			<translation>Opțiuni avansate NAT:</translation>
+		</message>
+		<message>
+			<source>Pass DNS Domain</source>
+			<translation>Treceți domeniul DNS</translation>
+		</message>
+		<message>
+			<source>DNS Proxy</source>
+			<translation>Proxy DNS</translation>
+		</message>
+		<message>
+			<source>Use Host Resolver</source>
+			<translation>Utilizați Host Resolver</translation>
+		</message>
+		<message>
+			<source>Bind to IP</source>
+			<translation>Leagă la IP</translation>
 		</message>
 	</context>
 	<context>
@@ -608,6 +647,14 @@
 			<source>Add VirtioSCSI Controller</source>
 			<translation>Adaugă controlor VirtioSCSI</translation>
 		</message>
+		<message>
+			<source>Support Discard (TRIM)</source>
+			<translation>Renunțare la suport (TRIM)</translation>
+		</message>
+		<message>
+			<source>Ignore Flush Requests</source>
+			<translation>Ignorați cererile de spălare</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -642,6 +689,26 @@
 		<message>
 			<source>Paravirtualization Interface:</source>
 			<translation>Interfață de paravirtualizare:</translation>
+		</message>
+		<message>
+			<source>Enable Page Fusion</source>
+			<translation>Activați Fuziunea paginii</translation>
+		</message>
+		<message>
+			<source>Enable Large Pages</source>
+			<translation>Activați pagini mari</translation>
+		</message>
+		<message>
+			<source>Enable VT-x unrestricted execution</source>
+			<translation>Activați execuția fără restricții VT-x</translation>
+		</message>
+		<message>
+			<source>Enable VT-x VPID (Intel only)</source>
+			<translation>Activați VT-x VPID (numai Intel)</translation>
+		</message>
+		<message>
+			<source>HPET (high precision event timer)</source>
+			<translation>HPET (temporizator de evenimente de înaltă precizie)</translation>
 		</message>
 	</context>
 	<context>

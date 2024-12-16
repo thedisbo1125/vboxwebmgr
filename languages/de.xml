@@ -381,7 +381,57 @@
 			<source>Enabled</source>
 			<translation>Ermöglicht</translation>
 		</message>
+		<message>
+			<source>Security Method:</source>
+			<translation>Sicherheitsmethode:</translation>
+		</message>
 	</context>
+	<context>
+		<name>UIMachineSettingsNetwork</name>
+		<message>
+			<source>NAT Alias Mode:</source>
+			<translation>NAT-Alias-Modus:</translation>
+		</message>
+		<message>
+			<source>Proxy Only</source>
+			<translation>Nur Proxy</translation>
+		</message>
+		<message>
+			<source>Same Ports</source>
+			<translation>Gleiche Ports</translation>
+		</message>
+		<message>
+			<source>Advanced NAT Options:</source>
+			<translation>Erweiterte NAT-Optionen:</translation>
+		</message>
+		<message>
+			<source>Pass DNS Domain</source>
+			<translation>DNS-Domäne übergeben</translation>
+		</message>
+		<message>
+			<source>DNS Proxy</source>
+			<translation>DNS-Proxy</translation>
+		</message>
+		<message>
+			<source>Use Host Resolver</source>
+			<translation>Host-Resolver verwenden</translation>
+		</message>
+		<message>
+			<source>Bind to IP</source>
+			<translation>An IP binden</translation>
+		</message>
+	</context>
+    <context>
+        <name>UIMachineSettingsSerial</name>
+        <message>
+            <source>Port/File Path:</source>
+            <translation>Port/Dateipfad:</translation>
+        </message>
+        <message>
+            <source>Create Pipe</source>
+            <translation>Rohr erstellen</translation>
+        </message>
+    </context>
 	<context>
 		<name>UIMachineSettingsSFDetails</name>
 		<message>
@@ -447,6 +497,14 @@
 			<source>Add VirtioSCSI Controller</source>
 			<translation>VirtioSCSI-Controller hinzufügen</translation>
 		</message>
+		<message>
+			<source>Support Discard (TRIM)</source>
+			<translation>Unterstützung für Verwerfen (TRIM)</translation>
+		</message>
+		<message>
+			<source>Ignore Flush Requests</source>
+			<translation>Flush-Anfragen ignorieren</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -457,6 +515,26 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Deaktivieren Sie die Synchronisierung der Hostzeit</translation>
+		</message>
+		<message>
+			<source>Enable Page Fusion</source>
+			<translation>Page Fusion aktivieren</translation>
+		</message>
+		<message>
+			<source>Enable Large Pages</source>
+			<translation>Große Seiten aktivieren</translation>
+		</message>
+		<message>
+			<source>Enable VT-x unrestricted execution</source>
+			<translation>Aktivieren Sie die uneingeschränkte VT-x-Ausführung</translation>
+		</message>
+		<message>
+			<source>Enable VT-x VPID (Intel only)</source>
+			<translation>VT-x VPID aktivieren (nur Intel)</translation>
+		</message>
+		<message>
+			<source>HPET (high precision event timer)</source>
+			<translation>HPET (Hochpräziser Ereignistimer)</translation>
 		</message>
 	</context>
 	<context>

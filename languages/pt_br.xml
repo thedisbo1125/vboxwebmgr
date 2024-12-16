@@ -380,6 +380,10 @@
 			<source>Enabled</source>
 			<translation>Habilitado</translation>
 		</message>
+		<message>
+			<source>Security Method:</source>
+			<translation>Método de segurança:</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsStorage</name>
@@ -391,6 +395,14 @@
 			<source>Add VirtioSCSI Controller</source>
 			<translation>Adicionar Controladora VirtioSCSI</translation>
 		</message>
+		<message>
+			<source>Support Discard (TRIM)</source>
+			<translation>Suporte ao descarte (TRIM)</translation>
+		</message>
+		<message>
+			<source>Ignore Flush Requests</source>
+			<translation>Ignorar solicitações de descarga</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -401,6 +413,26 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Desativar sincronização de horário do host</translation>
+		</message>
+		<message>
+			<source>Enable Page Fusion</source>
+			<translation>Ativar o Page Fusion</translation>
+		</message>
+		<message>
+			<source>Enable Large Pages</source>
+			<translation>Ativar páginas grandes</translation>
+		</message>
+		<message>
+			<source>Enable VT-x unrestricted execution</source>
+			<translation>Ativar a execução irrestrita do VT-x</translation>
+		</message>
+		<message>
+			<source>Enable VT-x VPID (Intel only)</source>
+			<translation>Ativar VPID VT-x (somente Intel)</translation>
+		</message>
+		<message>
+			<source>HPET (high precision event timer)</source>
+			<translation>HPET (temporizador de eventos de alta precisão)</translation>
 		</message>
 	</context>
 	<context>

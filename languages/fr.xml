@@ -381,6 +381,45 @@
 			<source>Enabled</source>
 			<translation>Activé</translation>
 		</message>
+		<message>
+			<source>Security Method:</source>
+			<translation>Méthode de sécurité :</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsNetwork</name>
+		<message>
+			<source>NAT Alias Mode:</source>
+			<translation>Mode d'alias NAT :</translation>
+		</message>
+		<message>
+			<source>Proxy Only</source>
+			<translation>Procuration uniquement</translation>
+		</message>
+		<message>
+			<source>Same Ports</source>
+			<translation>Mêmes ports</translation>
+		</message>
+		<message>
+			<source>Advanced NAT Options:</source>
+			<translation>Options NAT avancées :</translation>
+		</message>
+		<message>
+			<source>Pass DNS Domain</source>
+			<translation>Passer le domaine DNS</translation>
+		</message>
+		<message>
+			<source>DNS Proxy</source>
+			<translation>Proxy DNS</translation>
+		</message>
+		<message>
+			<source>Use Host Resolver</source>
+			<translation>Utiliser le résolveur d'hôte</translation>
+		</message>
+		<message>
+			<source>Bind to IP</source>
+			<translation>Se lier à IP</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsStorage</name>
@@ -392,6 +431,14 @@
 			<source>Add VirtioSCSI Controller</source>
 			<translation>Ajouter un contrôleur VirtioSCSI</translation>
 		</message>
+		<message>
+			<source>Support Discard (TRIM)</source>
+			<translation>Prise en charge du rejet (TRIM)</translation>
+		</message>
+		<message>
+			<source>Ignore Flush Requests</source>
+			<translation>Ignorer les demandes de vidage</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -402,6 +449,26 @@
 		<message>
 			<source>Disable host time sync</source>
 			<translation>Désactiver la synchronisation de l'heure de l'hôte</translation>
+		</message>
+		<message>
+			<source>Enable Page Fusion</source>
+			<translation>Activer la fusion de pages</translation>
+		</message>
+		<message>
+			<source>Enable Large Pages</source>
+			<translation>Activer les grandes pages</translation>
+		</message>
+		<message>
+			<source>Enable VT-x unrestricted execution</source>
+			<translation>Activer l'exécution sans restriction de VT-x</translation>
+		</message>
+		<message>
+			<source>Enable VT-x VPID (Intel only)</source>
+			<translation>Activer VT-x VPID (Intel uniquement)</translation>
+		</message>
+		<message>
+			<source>HPET (high precision event timer)</source>
+			<translation>HPET (minuterie d'événements de haute précision)</translation>
 		</message>
 	</context>
 	<context>

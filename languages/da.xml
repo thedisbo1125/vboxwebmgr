@@ -389,6 +389,10 @@
 			<source>Graphics Controller:</source>
 			<translation>Grafik controller:</translation>
 		</message>
+		<message>
+			<source>Security Method:</source>
+			<translation>Sikkerhedsmetode:</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsGeneral</name>
@@ -403,6 +407,41 @@
 		<message>
 			<source>Encryption Cipher:</source>
 			<translation>Krypterings chiffer:</translation>
+		</message>
+	</context>
+	<context>
+		<name>UIMachineSettingsNetwork</name>
+		<message>
+			<source>NAT Alias Mode:</source>
+			<translation>NAT Alias ​​Mode:</translation>
+		</message>
+		<message>
+			<source>Proxy Only</source>
+			<translation>Kun fuldmagt</translation>
+		</message>
+		<message>
+			<source>Same Ports</source>
+			<translation>Samme havne</translation>
+		</message>
+		<message>
+			<source>Advanced NAT Options:</source>
+			<translation>Avancerede NAT-indstillinger:</translation>
+		</message>
+		<message>
+			<source>Pass DNS Domain</source>
+			<translation>Bestå DNS-domæne</translation>
+		</message>
+		<message>
+			<source>DNS Proxy</source>
+			<translation>DNS proxy</translation>
+		</message>
+		<message>
+			<source>Use Host Resolver</source>
+			<translation>Brug Host Resolver</translation>
+		</message>
+		<message>
+			<source>Bind to IP</source>
+			<translation>Bind til IP</translation>
 		</message>
 	</context>
 	<context>
@@ -523,6 +562,14 @@
 			<source>Add VirtioSCSI Controller</source>
 			<translation>Tilføj VirtioSCSI-controller</translation>
 		</message>
+		<message>
+			<source>Support Discard (TRIM)</source>
+			<translation>Unterstützung von Discard (TRIM)</translation>
+		</message>
+		<message>
+			<source>Ignore Flush Requests</source>
+			<translation>Ignorer skylleanmodninger</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsSystem</name>
@@ -537,6 +584,26 @@
 		<message>
 			<source>Enable Nested VT-x/AMD-V</source>
 			<translation>Aktiver indlejret VT-x/AMD-V</translation>
+		</message>
+		<message>
+			<source>Enable Page Fusion</source>
+			<translation>Aktiver Page Fusion</translation>
+		</message>
+		<message>
+			<source>Enable Large Pages</source>
+			<translation>Aktiver store sider</translation>
+		</message>
+		<message>
+			<source>Enable VT-x unrestricted execution</source>
+			<translation>Aktiver VT-x ubegrænset udførelse</translation>
+		</message>
+		<message>
+			<source>Enable VT-x VPID (Intel only)</source>
+			<translation>Aktiver VT-x VPID (kun Intel)</translation>
+		</message>
+		<message>
+			<source>HPET (high precision event timer)</source>
+			<translation>HPET (hændelsestimer med høj præcision)</translation>
 		</message>
 	</context>
 	<context>
