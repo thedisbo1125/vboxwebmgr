@@ -482,6 +482,7 @@ function vboxFileBrowser(root,fn,foldersonly,title,icon,strictFiles,allowedexts)
 		$('#vboxBrowseFolder').trigger('close').empty().remove();
 		fn(f);
 	};
+
 	buttons[trans('Cancel','QIMessageBox')] = function() { fn(null); $('#vboxBrowseFolder').trigger('close').empty().remove(); };
 
 	var d1 = $('<div />').attr({'id':'vboxBrowseFolder','class':'vboxDialogContent','style':'display:none'});
