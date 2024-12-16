@@ -13,4 +13,76 @@ table.tdpadding td {
     padding-top: 2px;
 }
 
+label.showbox {
+    width: 100%;
+    border-width: 1px;
+    border-style:solid;
+    border-color:black;
+    padding: 2.5px;
+    display: inline-block;
+    background-color: white;
+    border-radius: 3px;
+    box-sizing: border-box; 
+}
+
+label.showbox:disabled {
+    background-color: #f7f7f7;
+}
+
+label.vboxcertdisabled {
+    color: #6d6d6d;
+    background-color: #f7f7f7;
+    border-color: #8f8f9d;
+}
+
+input.selectfilebutton {
+    background-image: url("../images/vbox/select_file_16px.png");
+}
+
+input.selectfilebutton:disabled {
+    background-image: url("../images/vbox/select_file_disabled_16px.png");
+    border-color:#8f8f9d;
+}
+
+table.vboxVertical input.vboxTextBox {
+    border-radius: 3px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+}
+
+table.vboxVertical input.vboxTextBox:disabled {
+    background-color: #f7f7f7;
+    border-color:#8f8f9d;
+    color: #6d6d6d;
+}
+
+table.vboxVertical input.vboxTextBoxPadding {
+    padding-right: -8px;
+}
+
+select.vboxselectstdbackground {
+    background-color: white;
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: black;
+    border-style:solid;
+    -moz-border-radius: 3px;
+    height: 22.5px;
+    font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+    box-sizing: border-box;
+}
+
+select.vboxselectstdbackground:hover {
+    background-color: #e9e9ed;
+}
+
+select.vboxselectstdbackground:disabled {
+    background-color: #f7f7f7;
+    color: #6d6d6d;
+    border-color: #8f8f9d;
+}
+
+
 

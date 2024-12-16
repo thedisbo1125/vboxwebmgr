@@ -503,6 +503,9 @@ class vboxconnector {
 								'netAddress' => $vrde->getVRDEProperty('TCP/Address'),
 								'VNCPassword' => $vrde->getVRDEProperty('VNCPassword'),
 								'SecurityMethod' => $vrde->getVRDEProperty('Security/Method'),
+								'SecurityCACertificate' => $vrde->getVRDEProperty('Security/CACertificate'),
+								'SecurityServerCertificate' => $vrde->getVRDEProperty('Security/ServerCertificate'),
+								'SecurityServerPrivateKey' => $vrde->getVRDEProperty('Security/ServerPrivateKey'),
 								'authType' => (string)$vrde->authType,
 								'authTimeout' => $vrde->authTimeout,
 								'videoredirenabled' => $vrde->getVRDEProperty('VideoChannel/Enabled'),
@@ -1942,6 +1945,9 @@ class vboxconnector {
 				$m->VRDEServer->setVRDEProperty('TCP/Ports',$args['VRDEServer']['ports']);
 				$m->VRDEServer->setVRDEProperty('TCP/Address',$args['VRDEServer']['netAddress']);
 				$m->VRDEServer->setVRDEProperty('Security/Method',$args['VRDEServer']['SecurityMethod']);
+				$m->VRDEServer->setVRDEProperty('Security/CACertificate',$args['VRDEServer']['SecurityCACertificate']);
+				$m->VRDEServer->setVRDEProperty('Security/ServerCertificate',$args['VRDEServer']['SecurityServerCertificate']);
+				$m->VRDEServer->setVRDEProperty('Security/ServerPrivateKey',$args['VRDEServer']['SecurityServerPrivateKey']);
 				$m->VRDEServer->setVRDEProperty('VNCPassword',$args['VRDEServer']['VNCPassword'] ? $args['VRDEServer']['VNCPassword'] : null);
 				$m->VRDEServer->setVRDEProperty('VideoChannel/Enabled',$args['VRDEServer']['videoredirenabled'] ? $args['VRDEServer']['videoredirenabled'] : false);
 				$m->VRDEServer->setVRDEProperty('VideoChannel/Quality',$args['VRDEServer']['videoredirquality']);
@@ -3837,6 +3843,9 @@ class vboxconnector {
 					'videoredirquality' => $vrde->getVRDEProperty('VideoChannel/Quality'),
 					'VNCPassword' => $vrde->getVRDEProperty('VNCPassword'),
 					'SecurityMethod' => $vrde->getVRDEProperty('Security/Method'),
+					'SecurityCACertificate' => $vrde->getVRDEProperty('Security/CACertificate'),
+					'SecurityServerCertificate' => $vrde->getVRDEProperty('Security/ServerCertificate'),
+					'SecurityServerPrivateKey' => $vrde->getVRDEProperty('Security/ServerPrivateKey'),
 					'authType' => (string)$vrde->authType,
 					'authTimeout' => $vrde->authTimeout,
 					'VRDEExtPack' => (string)$vrde->VRDEExtPack
@@ -4422,6 +4431,9 @@ class vboxconnector {
 				'videoredirquality' => $m->VRDEServer->getVRDEProperty('VideoChannel/Quality'),
 				'VNCPassword' => $m->VRDEServer->getVRDEProperty('VNCPassword'),
 				'SecurityMethod' => $m->VRDEServer->getVRDEProperty('Security/Method'),
+				'SecurityCACertificate' => $m->VRDEServer->getVRDEProperty('Security/CACertificate'),
+				'SecurityServerCertificate' => $m->VRDEServer->getVRDEProperty('Security/ServerCertificate'),
+				'SecurityServerPrivateKey' => $m->VRDEServer->getVRDEProperty('Security/ServerPrivateKey'),
 				'authType' => (string)$m->VRDEServer->authType,
 				'authTimeout' => $m->VRDEServer->authTimeout,
 				'allowMultiConnection' => $m->VRDEServer->allowMultiConnection,
