@@ -11,182 +11,178 @@
  */
 var __vboxIsCanvasSupported = null; // cached
 var isCanvasSupported = function(){
-	if(__vboxIsCanvasSupported === null) {
-		try {
-			var elem = document.createElement('canvas');
-			__vboxIsCanvasSupported = !!(elem && elem.getContext && elem.getContext('2d'));
-		} catch (err) {
-			__vboxIsCanvasSupported = false;
-		}
-	}
-	return __vboxIsCanvasSupported;
+    if(__vboxIsCanvasSupported === null) {
+        try {
+            var elem = document.createElement('canvas');
+            __vboxIsCanvasSupported = !!(elem && elem.getContext && elem.getContext('2d'));
+        } catch (err) {
+            __vboxIsCanvasSupported = false;
+        }
+    }
+    return __vboxIsCanvasSupported;
 };
 
 var __vboxPreviewCanvasCache = [];
 function vboxDrawPreviewCanvas(can, imageObj, text, width, height) {
 
-	var screenMargin = 7;
-	var margin = 10;
+    var screenMargin = 7;
+    var margin = 10;
 
-	var resizeToImage = (imageObj && (imageObj.width == width));
+    var resizeToImage = (imageObj && (imageObj.width == width));
 
-	// Height / width comes from direct image values
-	if(imageObj && resizeToImage) {
+    // Height / width comes from direct image values
+    if(imageObj && resizeToImage) {
 
-		height = imageObj.height;
-		width = imageObj.width;
+        height = imageObj.height;
+        width = imageObj.width;
 
-	// Set height while maintaining aspect ratio
-	} else if (imageObj) {
+    // Set height while maintaining aspect ratio
+    } else if (imageObj) {
 
-		height = imageObj.height * (width/imageObj.width);
-	}
+        height = imageObj.height * (width/imageObj.width);
+    }
 
-	// Margins are added to width
-	height += ((margin+screenMargin)*2);
-	width += ((margin+screenMargin)*2);
+    // Margins are added to width
+    height += ((margin+screenMargin)*2);
+    width += ((margin+screenMargin)*2);
 
-	// Does canvas still exist?
-	// VM selection can change while this function is running
-	// in which case the canvas goes away
-	if(!can) return;
+    // Does canvas still exist?
+    // VM selection can change while this function is running
+    // in which case the canvas goes away
+    if(!can) return;
 
-	// Set canvas values
-	can.height = height;
-	can.width = width;
+    // Set canvas values
+    can.height = height;
+    can.width = width;
 
-	var ctx = can.getContext('2d');
-
-
-	// Clear the canvas
-	ctx.clearRect(0,0,width,height);
-
-	ctx.save();
-
-	// Draw and cache monitor image if it is not present
-	if(!__vboxPreviewCanvasCache[width+'x'+height]) {
-
-		var cachedCanvas = document.createElement('canvas');
-
-		cachedCanvas.width = width;
-		cachedCanvas.height = height;
-
-		var cachedCtx = cachedCanvas.getContext('2d');
-
-		cachedCtx.beginPath();
-		cachedCtx.strokeStyle = "#000000";
-		cachedCtx.lineWidth = 0.3;
-		cachedCtx.lineCap = 'butt';
-
-		cachedCtx.moveTo(margin*2,margin);
-
-		// top and top right
-		cachedCtx.lineTo(width-(margin*2), margin);
-		cachedCtx.arcTo(width-margin, margin, width-margin,margin*2, margin);
-
-		// Side and bottom right
-		cachedCtx.lineTo(width-margin, height-(margin*2));
-		cachedCtx.arcTo(width-margin, height-margin, width-(margin*2), height-margin, margin);
-
-		// bottom and bottom left
-		cachedCtx.lineTo(margin*2, height-margin);
-		cachedCtx.arcTo(margin, height-margin, margin, height-(margin*2), margin);
-
-		// Left line and top left
-		cachedCtx.lineTo(margin, margin*2);
-		cachedCtx.arcTo(margin, margin, margin * 2, margin, margin);
-
-		cachedCtx.closePath();
-		cachedCtx.save();
-		cachedCtx.shadowOffsetX = 5;
-		cachedCtx.shadowOffsetY = 5;
-		cachedCtx.shadowBlur = 4;
-		cachedCtx.shadowColor = "rgba(30, 30, 30, 0.2)";
+    var ctx = can.getContext('2d');
 
 
-		var grad = cachedCtx.createLinearGradient(0, margin, 0, height);
-		grad.addColorStop(0, "rgb(200,200,200)");
-		grad.addColorStop(0.4, "rgb(100,100,100)");
-		grad.addColorStop(0.5, "rgb(66,66,66)");
-		grad.addColorStop(0.7, "rgb(100,100,100)");
-		grad.addColorStop(1, "rgb(200,200,200)");
+    // Clear the canvas
+    ctx.clearRect(0,0,width,height);
 
-		cachedCtx.fillStyle = grad;
+    ctx.save();
 
-		cachedCtx.fill();
+    // Draw and cache monitor image if it is not present
+    if(!__vboxPreviewCanvasCache[width+'x'+height]) {
 
-		// Redraw so that shadow is seen on all sides
-		cachedCtx.shadowOffsetX = -5;
-		cachedCtx.shadowOffsetY = -5;
-		cachedCtx.fill();
-		cachedCtx.restore();
-		cachedCtx.fillRect(margin+screenMargin,margin+screenMargin,width-(margin*2)-(screenMargin*2),height-(margin*2)-(screenMargin*2));
-		cachedCtx.stroke();
-		cachedCtx.restore();
+        var cachedCanvas = document.createElement('canvas');
 
-		var cvs = document.createElement('canvas');
+        cachedCanvas.width = width;
+        cachedCanvas.height = height;
 
-		/* Gloss */
-		var rectX = 0;
-		var rectY = 0;
-		var rectWidth = width-(margin+screenMargin)*2;
-		var rectHeight = height-(margin+screenMargin)*2;
+        var cachedCtx = cachedCanvas.getContext('2d');
 
-		cvs.width = rectWidth;
-		cvs.height = rectHeight;
+        cachedCtx.beginPath();
+        cachedCtx.strokeStyle = "#000000";
+        cachedCtx.lineWidth = 0.3;
+        cachedCtx.lineCap = 'butt';
 
-		var ctxBlur = cvs.getContext('2d');
-		ctxBlur.beginPath();
-		ctxBlur.lineWidth = 1;
-		ctxBlur.strokeStyle = "#000000";
-		ctxBlur.moveTo(rectX,rectY);
-		ctxBlur.lineTo(rectWidth, rectY);
-		ctxBlur.lineTo(rectWidth,rectHeight*1.0/3.0);
-		ctxBlur.bezierCurveTo(rectX+rectWidth / 2.0, rectY + rectHeight * 1.0/3.0,
-				rectX+rectWidth / 2.0, rectY + rectHeight * 2.0/3.0,
-				rectX, rectY + rectHeight * 2.0/3.0);
-		ctxBlur.closePath();
-		ctxBlur.fillStyle="rgba(255,255,255,0.3)";
-		ctxBlur.fill();
+        cachedCtx.moveTo(margin*2,margin);
 
-		stackBlurCanvasRGBA( cvs, 0, 0, rectWidth, rectHeight, 17 );
+        // top and top right
+        cachedCtx.lineTo(width-(margin*2), margin);
+        cachedCtx.arcTo(width-margin, margin, width-margin,margin*2, margin);
 
-		ctx.drawImage(cvs, margin+screenMargin, margin+screenMargin, rectWidth, rectHeight);
+        // Side and bottom right
+        cachedCtx.lineTo(width-margin, height-(margin*2));
+        cachedCtx.arcTo(width-margin, height-margin, width-(margin*2), height-margin, margin);
 
-		__vboxPreviewCanvasCache[width+'x'+height] = {
-				'monitor' : cachedCanvas,
-				'gloss' : cvs
-		};
+        // bottom and bottom left
+        cachedCtx.lineTo(margin*2, height-margin);
+        cachedCtx.arcTo(margin, height-margin, margin, height-(margin*2), margin);
 
-	}
+        // Left line and top left
+        cachedCtx.lineTo(margin, margin*2);
+        cachedCtx.arcTo(margin, margin, margin * 2, margin, margin);
 
-	// Draw cached monitor canvas
-	ctx.drawImage(__vboxPreviewCanvasCache[width+'x'+height]['monitor'], 0, 0, width, height);
-
-	/* Screenshot */
-	if(imageObj) {
-
-		ctx.drawImage(imageObj, 0, 0, imageObj.width, imageObj.height, (margin+screenMargin), (margin+screenMargin), width-(margin*2)-(screenMargin*2),height-(margin*2)-(screenMargin*2));
-	}
-
-	// Draw cached gloss canvas
-	ctx.drawImage(__vboxPreviewCanvasCache[width+'x'+height]['gloss'], 0, 0, width, height);
-
-	/* Text */
-	if(!imageObj) {
-
-		txtCan = document.createElement('canvas');
-		txtCan.width = width-(margin+screenMargin)*2;
-		txtCan.height = height-(margin+screenMargin)*2;
-
-		fitTextToCanvas(txtCan, text, 18);
-
-		ctx.drawImage(txtCan, (margin+screenMargin), (margin+screenMargin));
-
-	}
+        cachedCtx.closePath();
+        cachedCtx.save();
+        cachedCtx.shadowOffsetX = 5;
+        cachedCtx.shadowOffsetY = 5;
+        cachedCtx.shadowBlur = 4;
+        cachedCtx.shadowColor = "rgba(30, 30, 30, 0.2)";
 
 
-	return;
+        var grad = cachedCtx.createLinearGradient(0, margin, 0, height);
+        grad.addColorStop(0, "rgb(200,200,200)");
+        grad.addColorStop(0.4, "rgb(100,100,100)");
+        grad.addColorStop(0.5, "rgb(66,66,66)");
+        grad.addColorStop(0.7, "rgb(100,100,100)");
+        grad.addColorStop(1, "rgb(200,200,200)");
+
+        cachedCtx.fillStyle = grad;
+
+        cachedCtx.fill();
+
+        // Redraw so that shadow is seen on all sides
+        cachedCtx.shadowOffsetX = -5;
+        cachedCtx.shadowOffsetY = -5;
+        cachedCtx.fill();
+        cachedCtx.restore();
+        cachedCtx.fillRect(margin+screenMargin,margin+screenMargin,width-(margin*2)-(screenMargin*2),height-(margin*2)-(screenMargin*2));
+        cachedCtx.stroke();
+        cachedCtx.restore();
+
+        var cvs = document.createElement('canvas');
+
+        /* Gloss */
+        var rectX = 0;
+        var rectY = 0;
+        var rectWidth = width-(margin+screenMargin)*2;
+        var rectHeight = height-(margin+screenMargin)*2;
+
+        cvs.width = rectWidth;
+        cvs.height = rectHeight;
+
+        var ctxBlur = cvs.getContext('2d');
+        ctxBlur.beginPath();
+        ctxBlur.lineWidth = 1;
+        ctxBlur.strokeStyle = "#000000";
+        ctxBlur.moveTo(rectX,rectY);
+        ctxBlur.lineTo(rectWidth, rectY);
+        ctxBlur.lineTo(rectWidth,rectHeight*1.0/3.0);
+        ctxBlur.bezierCurveTo(rectX+rectWidth / 2.0, rectY + rectHeight * 1.0/3.0,
+            rectX+rectWidth / 2.0, rectY + rectHeight * 2.0/3.0,
+            rectX, rectY + rectHeight * 2.0/3.0);
+        ctxBlur.closePath();
+        ctxBlur.fillStyle="rgba(255,255,255,0.3)";
+        ctxBlur.fill();
+
+        stackBlurCanvasRGBA( cvs, 0, 0, rectWidth, rectHeight, 17 );
+
+        ctx.drawImage(cvs, margin+screenMargin, margin+screenMargin, rectWidth, rectHeight);
+
+        __vboxPreviewCanvasCache[width+'x'+height] = {
+            'monitor' : cachedCanvas,
+            'gloss' : cvs
+        };
+    }
+
+    // Draw cached monitor canvas
+    ctx.drawImage(__vboxPreviewCanvasCache[width+'x'+height]['monitor'], 0, 0, width, height);
+
+    /* Screenshot */
+    if(imageObj) {
+        ctx.drawImage(imageObj, 0, 0, imageObj.width, imageObj.height, (margin+screenMargin), (margin+screenMargin), width-(margin*2)-(screenMargin*2),height-(margin*2)-(screenMargin*2));
+    }
+
+    // Draw cached gloss canvas
+    ctx.drawImage(__vboxPreviewCanvasCache[width+'x'+height]['gloss'], 0, 0, width, height);
+
+    /* Text */
+    if(!imageObj) {
+        txtCan = document.createElement('canvas');
+        txtCan.width = width-(margin+screenMargin)*2;
+        txtCan.height = height-(margin+screenMargin)*2;
+
+        fitTextToCanvas(txtCan, text, 18);
+
+        ctx.drawImage(txtCan, (margin+screenMargin), (margin+screenMargin));
+
+    }
+
+    return;
 }
 
 
@@ -199,10 +195,10 @@ function vboxDrawPreviewCanvas(can, imageObj, text, width, height) {
  */
 var fitTextToCanvas = function(can, text, fontSize) {
 
-	var lineHeightOffset = 1.4;
-	var lineHeight = fontSize * lineHeightOffset;
-	var minFontSize = 10;
-	var padding = 2;
+    var lineHeightOffset = 1.4;
+    var lineHeight = fontSize * lineHeightOffset;
+    var minFontSize = 10;
+    var padding = 2;
 
     var words = text.split(" ");
 
@@ -214,10 +210,10 @@ var fitTextToCanvas = function(can, text, fontSize) {
 
     var wrapTextLines = function() {
 
-    	context.font = "bold " + fontSize + "pt Arial";
+        context.font = "bold " + fontSize + "pt Arial";
 
-    	var line = '';
-    	var lines = [];
+        var line = '';
+        var lines = [];
 
          for (var n = 0; n < words.length; n++) {
 
@@ -225,19 +221,19 @@ var fitTextToCanvas = function(can, text, fontSize) {
 
             if((context.measureText(testLine).width + padding) > maxWidth) {
 
-            	// Only one word is too big
-            	if(testLine.indexOf(' ') == -1) {
+                // Only one word is too big
+                if(testLine.indexOf(' ') == -1) {
 
-            		if(fontSize > minFontSize) {
-            			fontSize *= 0.9;
-            			return wrapTextLines();
-            		}
-            		line = testLine;
+                    if(fontSize > minFontSize) {
+                        fontSize *= 0.9;
+                        return wrapTextLines();
+                    }
+                    line = testLine;
 
-            	} else {
-            		lines[lines.length] = line;
-            		line = words[n];
-            	}
+                } else {
+                    lines[lines.length] = line;
+                    line = words[n];
+                }
 
             } else {
 
@@ -247,11 +243,11 @@ var fitTextToCanvas = function(can, text, fontSize) {
 
         }
         if(line.length) {
-        	if((context.measureText(line).width + padding) > maxWidth && fontSize > minFontSize) {
-    			fontSize *= 0.9;
-    			return wrapTextLines();
-        	}
-        	lines[lines.length] = line;
+            if((context.measureText(line).width + padding) > maxWidth && fontSize > minFontSize) {
+                fontSize *= 0.9;
+                return wrapTextLines();
+            }
+            lines[lines.length] = line;
         }
         return lines;
 
@@ -264,9 +260,9 @@ var fitTextToCanvas = function(can, text, fontSize) {
     // one lineheight addition because it will be off the
     // visible canvas and should not be included in calculations
     while(((lines.length * lineHeight)-(lineHeight-fontSize) > maxHeight) &&  fontSize > minFontSize) {
-    	fontSize *= 0.9;
-    	lines = wrapTextLines();
-    	lineHeight = fontSize * lineHeightOffset;
+        fontSize *= 0.9;
+        lines = wrapTextLines();
+        lineHeight = fontSize * lineHeightOffset;
     }
 
     context.fillStyle = "#ffffff";
@@ -277,17 +273,17 @@ var fitTextToCanvas = function(can, text, fontSize) {
     var totalHeight = Math.round((lines.length * lineHeight)-(lineHeight-fontSize));
 
     for(var i = 0; i < lines.length; i++) {
-    	/*
-    	Uncomment to debug line heights
+        /*
+        Uncomment to debug line heights
 
-    	context.moveTo(0, (maxHeight/2)-(totalHeight/2)+(lineHeight*i));
-    	context.lineTo(maxWidth, (maxHeight/2)-(totalHeight/2)+(lineHeight*i));
-    	context.stroke();
-    	context.moveTo(0, (maxHeight/2)-(totalHeight/2)+(lineHeight*i)+lineHeight);
-    	context.lineTo(maxWidth, (maxHeight/2)-(totalHeight/2)+(lineHeight*i)+lineHeight);
-    	context.stroke();
-		*/
-    	context.fillText(lines[i],(maxWidth/2),(maxHeight/2)-(totalHeight/2)+(lineHeight*i)+lineHeight-(lineHeight-fontSize));
+        context.moveTo(0, (maxHeight/2)-(totalHeight/2)+(lineHeight*i));
+        context.lineTo(maxWidth, (maxHeight/2)-(totalHeight/2)+(lineHeight*i));
+        context.stroke();
+        context.moveTo(0, (maxHeight/2)-(totalHeight/2)+(lineHeight*i)+lineHeight);
+        context.lineTo(maxWidth, (maxHeight/2)-(totalHeight/2)+(lineHeight*i)+lineHeight);
+        context.stroke();
+        */
+        context.fillText(lines[i],(maxWidth/2),(maxHeight/2)-(totalHeight/2)+(lineHeight*i)+lineHeight-(lineHeight-fontSize));
     }
     return can;
 
@@ -297,11 +293,11 @@ var fitTextToCanvas = function(can, text, fontSize) {
 
 StackBlur - a fast almost Gaussian Blur For Canvas
 
-Version: 	0.5
-Author:		Mario Klingemann
-Contact: 	mario@quasimondo.com
-Website:	http://www.quasimondo.com/StackBlurForCanvas
-Twitter:	@quasimondo
+Version:    0.5
+Author:     Mario Klingemann
+Contact:    mario@quasimondo.com
+Website:    http://www.quasimondo.com/StackBlurForCanvas
+Twitter:    @quasimondo
 
 In case you find this class useful - especially in commercial projects -
 I am not totally unhappy for a small donation to my PayPal account
@@ -354,22 +350,22 @@ var mul_table = [
 
 
 var shg_table = [
-	     9, 11, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 17,
-		17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19,
-		19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20,
-		20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21,
-		21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
-		21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22,
-		22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22,
-		22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23,
-		23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-		23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-		23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-		23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
-		24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
-		24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
-		24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
-		24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24 ];
+         9, 11, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 17,
+        17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19,
+        19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20,
+        20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21,
+        21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
+        21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22,
+        22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22,
+        22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23,
+        23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
+        23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
+        23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
+        23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
+        24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
+        24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
+        24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
+        24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24 ];
 
 var stackBlurCanvasRGBA = function( canvas, top_x, top_y, width, height, radius )
 {
