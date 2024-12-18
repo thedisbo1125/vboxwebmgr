@@ -1285,7 +1285,7 @@ var vboxVMDetailsSections = {
 
             for(var i = 0; i < d.USBControllers.length; i++) {
                 var listUSBType = d.USBControllers[i].type;
-                if(listUSBType == 'OHCI') {
+                if((listUSBType == 'OHCI') || (listUSBType == 'XHCI')) {
                     usbEnabled = true;
                 }
 
