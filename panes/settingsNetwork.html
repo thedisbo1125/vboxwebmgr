@@ -14,7 +14,7 @@
 	<tr class='vboxRunningEnabled'>
 		<th style='min-width: 120px'><span class='translate'>Attached to:</span></th>
 		<td style='width: 100%' class='vboxEnablerTrigger'>
-			<select name='vboxSettingsNetAttachedTo' onchange='vboxSettingsUpdateNetworkOptions(this);' style='width: 100%'>
+			<select class="vboxselectstdbackground" name='vboxSettingsNetAttachedTo' onchange='vboxSettingsUpdateNetworkOptions(this);' style='width: 100%'>
 				<option value='Null' class='translate'>Not attached</option>
 				<option value='NAT' class='translate'>NAT</option>
 				<option value='NATNetwork' class='translate'>NAT Network</option>
@@ -29,7 +29,7 @@
 	<tr class='vboxRunningEnabled'>
 		<th class='vboxSettingsNetAdapterNamedLabel'><span class='translate'>Name:</span></th>
 		<td>
-			<select name='vboxSettingsNetName' class='vboxSettingsNetAdapterNamed' style='width: 100%'>
+			<select class="vboxSettingsNetAdapterNamed vboxselectstdbackground" name='vboxSettingsNetName' style='width: 100%'>
 				<option value=''></option>
 			</select>
 		</td>
@@ -39,16 +39,16 @@
 	<tr class='vboxSettingsAdvancedNat' style='display: none'>
 		<th><span class='translate'>NAT Alias Mode:</span></th>
 		<td>
-			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetAliasModeProxyOnly' /> <span class='translate vboxEnablerListen'>Proxy Only</span></label><br />
-			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetAliasModeSamePorts' /> <span class='translate vboxEnablerListen'>Same Ports</span></label><br />
+			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetAliasModeProxyOnly' /> <span class='translate vboxEnablerListen'>Proxy Only</span></label><br  class='spaceUnder' />
+			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetAliasModeSamePorts' /> <span class='translate vboxEnablerListen'>Same Ports</span></label><br  class='spaceUnder' />
 		</td>
 	</tr>
 	<tr class='vboxSettingsAdvancedNat' style='display: none'>
 		<th><span class='translate'>Advanced NAT Options</span> :</th>
 		<td>
-			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetPassDNSDomain' /> <span class='translate vboxEnablerListen'>Pass DNS Domain</span></label><br />
-			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetDNSProxy' /> <span class='translate vboxEnablerListen'>DNS Proxy</span></label><br />
-			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetUseHostResolver' /> <span class='translate vboxEnablerListen'>Use Host Resolver</span></label><br />
+			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetPassDNSDomain' /> <span class='translate vboxEnablerListen'>Pass DNS Domain</span></label><br class='spaceUnder' />
+			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetDNSProxy' /> <span class='translate vboxEnablerListen'>DNS Proxy</span></label><br  class='spaceUnder' />
+			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetUseHostResolver' /> <span class='translate vboxEnablerListen'>Use Host Resolver</span></label><br  class='spaceUnder' />
 			<span class='translate vboxEnablerListen'>Bind to IP</span> <input type='text' class='vboxTextbox' class='vboxEnablerListen' name='vboxSettingsNetBindIp' size='16'/>
 		</td>
 	</tr>
@@ -62,7 +62,7 @@
 	<tr class='vboxSettingsNetToggleAdvanced' style='display: none'>
 		<th><span class='translate'>Adapter Type:</span></th>
 		<td>
-			<select name='vboxSettingsNetAdapter' style='width: 100%'>
+			<select class="vboxselectstdbackground" name='vboxSettingsNetAdapter' style='width: 100%'>
 			</select>
 		</td>
 	</tr>
@@ -75,7 +75,7 @@
 	<tr class='vboxRunningEnabled vboxSettingsNetToggleAdvanced vboxSettingsNetPromiscuousMode' style='display: none'>
 		<th class='vboxSettingsNetPromiscuousMode'><span class='translate'>Promiscuous Mode:</span></th>
 		<td>
-			<select class='vboxSettingsNetPromiscuousMode' name='vboxSettingsNetAdapterPromiscuousMode' style='width: 100%'>
+			<select class='vboxSettingsNetPromiscuousMode vboxselectstdbackground' name='vboxSettingsNetAdapterPromiscuousMode' style='width: 100%'>
 				<option value='Deny'>Deny</option>
 				<option value='AllowNetwork'>Allow VMs</option>
 				<option value='AllowAll'>Allow All</option>

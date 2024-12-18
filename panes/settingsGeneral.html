@@ -16,33 +16,34 @@
 
 <!-- Basic Tab -->
 <div id='vboxSettingsTabGeneralBasic' title='Basic'>
-<table class='vboxVertical'>
+<table class='vboxVertical thpaddingtop'>
 	<tr>
 		<th><span class='translateos'>Name:</span></th>
-		<td colspan='2'><input type='text' class='vboxText' name='vboxSettingsGeneralName' style='width: 98%'/></td>
+		<td colspan='2'><input type='text' class='vboxTextBox' name='vboxSettingsGeneralName' style='width: 100%'/></td>
+		<td style="width: 0px; display: inline-block;"/>
 	</tr>
 	<tr>
 		<th><span class='translateos'>Type:</span></th>
-		<td><select name='vboxSettingsGeneralOSFamily' id='vboxSettingsGeneralOSFamily' >
+		<td><select class="vboxselectstdbackground" name='vboxSettingsGeneralOSFamily' id='vboxSettingsGeneralOSFamily' >
 			<option value='Linux'>Linux</option>
 		</select></td>
 		<td rowspan='2'><img name='vboxOSTypeImg' height='32' width='32' /></td>
 	</tr>
 	<tr>
 		<th><span class='translateos'>Version:</span></th>
-		<td><select id='vboxSettingsGeneralOSType' name='vboxSettingsGeneralOSType'>
+		<td><select class="vboxselectstdbackground" id='vboxSettingsGeneralOSType' name='vboxSettingsGeneralOSType'>
 			<option value='Debian'>Debian</option>
 		</select></td>
 	</tr>
 	<tr id='vboxSettingsRowVMIcon' class='vboxRunningEnabled' style='display:none'>
 		<th><span class='translate'>Icon URL:</span></th>
-		<td><input name='vboxSettingsGeneralIcon' type='text' class='vboxText' style='width:99%'/></td>
+		<td><input name='vboxSettingsGeneralIcon' type='text' class='vboxTextBox' style='width:99%'/></td>
 		<td style='text-align:center;'><img src='images/vbox/blank.gif' id='vboxSettingsGeneralIconImg' height='32' width='32' /></td>
 	</tr>
 	<tr class='vboxStartStopConfig vboxRunningEnabled'>
 		<th><span class='translate'>Startup Mode:</span></th>
 		<td colspan='2'>
-			<select name='vboxStartStopConfigStartup'>
+			<select class="vboxselectstdbackground" name='vboxStartStopConfigStartup'>
 				<option value='auto'>Automatic</option>
 				<option value='manual'>Manual</option>
 			</select>
@@ -52,7 +53,7 @@
 	<tr class='vboxAutostartConfig vboxRunningEnabled' id='vboxAutostartConfigShutdown'>
 		<th><span class='translate'>Shutdown mode:</span></th>
 		<td colspan='2'>
-			<select name='vboxAutostartConfigShutdownOptions'>
+			<select class="vboxselectstdbackground" name='vboxAutostartConfigShutdownOptions'>
 				<option value='Disabled'>Disabled</option>
 				<option value='SaveState'>Save State</option>
 				<option value='PowerOff'>Power Off</option>
@@ -74,17 +75,18 @@
 
 <!-- Advanced Tab -->
 <div id='vboxSettingsTabGeneralAdvanced' title='Advanced'>
-<table class='vboxVertical'>
+<table class='vboxVertical thpaddingtop'>
 	<tr>
 		<th><span class='translate'>Snapshot Folder:</span></th>
 		<td class='vboxFileFolderInput'>
-			<input type='text' class='vboxText' name='vboxSettingsGeneralSnapshotFolder' style='width: 94%'/>
+			<input type='text' class='vboxTextBox' name='vboxSettingsGeneralSnapshotFolder' style='width: 100%'/>
 			<input type="button" class="vboxImgButton" style="background-image: url(images/vbox/select_file_16px.png)" onClick="vboxSnapshotBrowseFolder(this);" />
 		</td>
+        <td style="width: 20px; display: inline-block;"/>
 	</tr>
 	<tr id='vboxSettingsClipboardMode' class='vboxRunningEnabled'>
 		<th style='text-align:right'><span class='translate'>Shared Clipboard:</span></th>
-			<td><select name='vboxSettingsClipboardMode' style="width: 150px">
+			<td><select class="vboxselectstdbackground" name='vboxSettingsClipboardMode' style="width: 150px">
 					<option value='Disabled'>Disabled</option>
 					<option value='HostToGuest'>Host To Guest</option>
 					<option value='GuestToHost'>Guest To Host</option>
@@ -102,7 +104,7 @@
 
 <!-- Encryption Tab -->
 <div id='vboxSettingsTabGeneralEncryption' title='Encryption'>
-<table class='vboxVertical'>
+<table class='vboxVertical thpaddingtop'>
     <tr>
         <td colspan='2'>
             <label><input type='checkbox' class='vboxCheckbox vboxEnablerCheckbox' name='vboxSettingsGeneralEncryptionEnable' />
@@ -113,7 +115,7 @@
     <tr>
         <th><span class='translate'>Encryption Cipher:</span></th>
         <td>
-            <select name='vboxSettingsTabGeneralEncryptionCipher'>
+            <select class="vboxselectstdbackground" name='vboxSettingsTabGeneralEncryptionCipher'>
                 <option value=''>Leave Unchanged</option>
                 <option value='AES-XTS256-PLAIN64'>AES-XTS256-PLAIN64</option>
                 <option value='AES-XTS128-PLAIN64'>AES-XTS128-PLAIN64</option>
@@ -122,11 +124,11 @@
     </tr>
     <tr>
         <th><span class='translate'>Enter New Password:</span></th>
-        <td><input type='password' class='vboxText' name='vboxGeneralEncryptionPassword' style='width: 98%'/></td>
+        <td><input type='password' class='vboxTextBox' name='vboxGeneralEncryptionPassword' style='width: 98%'/></td>
     </tr>
     <tr>
         <th><span class='translate'>Confirm New Password:</span></th>
-        <td><input type='password' class='vboxText' name='vboxGeneralEncryptionPassword2'style='width: 98%'/></td>
+        <td><input type='password' class='vboxTextBox' name='vboxGeneralEncryptionPassword2'style='width: 98%'/></td>
     </tr>
 
 </table>
@@ -134,10 +136,10 @@
 
 <!-- Input Tab -->
 <div id='vboxSettingsTabGeneralInput' title='Input'>
-    <table class='vboxVertical'>
+    <table class='vboxVertical thpaddingtop'>
     	<tr>
     		<th><span class='translateinput'>Keyboard</span><span>:</span></th>
-    		<td><select name='vboxSettingsTabGeneralInputKeyboard'>
+    		<td><select class="vboxselectstdbackground" name='vboxSettingsTabGeneralInputKeyboard'>
     			<option value='PS2Keyboard'>PS/2 Keyboard</option>
     			<option value='USBKeyboard'>USB Keyboard</option>
 			<option value='ComboKeyboard'>PS/2 and USB Keyboard</opton>
@@ -146,7 +148,7 @@
     	</tr>    
     	<tr>
     		<th><span class='translateinput'>Mouse</span><span>:</span></th>
-    		<td><select name='vboxSettingsTabGeneralInputMouse'>
+    		<td><select class="vboxselectstdbackground" name='vboxSettingsTabGeneralInputMouse'>
     			<option value='PS2Mouse'>PS/2 Mouse</option>
     			<option value='USBMouse'>USB Mouse</option>
     			<option value='USBTablet'>USB Tablet</option>

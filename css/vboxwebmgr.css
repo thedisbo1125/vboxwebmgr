@@ -13,6 +13,19 @@ table.tdpadding td {
     padding-top: 2px;
 }
 
+table.thpaddingtop th {
+    padding-top: 7px;
+}
+
+tabloe.trpaddingright tr {
+    padding-right: -10px;
+}
+
+br.spaceUnder {
+  display: block;
+  margin-bottom: 3px;
+}
+
 label.showbox {
     width: 100%;
     border-width: 1px;
