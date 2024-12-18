@@ -385,6 +385,30 @@
 			<source>Security Method:</source>
 			<translation>Метод безопасности:</translation>
 		</message>
+		<message>
+			<source>VRDP CA Certificate:</source>
+			<translation>Сертификат VRDP CA:</translation>
+		</message>
+		<message>
+			<source>VRDP Server Certificate:</source>
+			<translation>Сертификат сервера VRDP:</translation>
+		</message>
+		<message>
+			<source>VRDP Private Key:</source>
+			<translation>Закрытый ключ VRDP:</translation>
+		</message>
+		<message>
+			<source>Negotiate</source>
+			<translation>Вести переговоры</translation>
+		</message>
+		<message>
+			<source>address not set</source>
+			<translation>адрес не установлен</translation>
+		</message>
+		<message>
+			<source>Not Set</source>
+			<translation>Не установлено</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsNetwork</name>

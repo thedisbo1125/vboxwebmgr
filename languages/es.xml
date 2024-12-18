@@ -385,6 +385,34 @@
 			<source>Security Method:</source>
 			<translation>Método de seguridad:</translation>
 		</message>
+		<message>
+			<source>VRDP CA Certificate:</source>
+			<translation>Certificado VRDP CA:</translation>
+		</message>
+		<message>
+			<source>VRDP Server Certificate:</source>
+			<translation>Certificado de servidor VRDP:</translation>
+		</message>
+		<message>
+			<source>VRDP Private Key:</source>
+			<translation>Clave privada VRDP:</translation>
+		</message>
+		<message>
+			<source>Negotiate</source>
+			<translation>Negociar</translation>
+		</message>
+		<message>
+			<source>address not set</source>
+			<translation>dirección no establecida</translation>
+		</message>
+		<message>
+			<source>Not Set</source>
+			<translation>No establecido</translation>
+		</message>
+		<message>
+			<source>2D Video acceleration not supported by hardware</source>
+			<translation>Aceleración de video 2D no compatible con hardware</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsNetwork</name>

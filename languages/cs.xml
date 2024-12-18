@@ -389,6 +389,30 @@
 			<source>Security Method:</source>
 			<translation>Metoda zabezpečení:</translation>
 		</message>
+		<message>
+			<source>VRDP CA Certificate:</source>
+			<translation>Certifikát VRDP CA:</translation>
+		</message>
+		<message>
+			<source>VRDP Server Certificate:</source>
+			<translation>Certifikát serveru VRDP:</translation>
+		</message>
+		<message>
+			<source>VRDP Private Key:</source>
+			<translation>Soukromý klíč VRDP:</translation>
+		</message>
+		<message>
+			<source>Negotiate</source>
+			<translation>Vyjednávat</translation>
+		</message>
+		<message>
+			<source>address not set</source>
+			<translation>adresa není nastavena</translation>
+		</message>
+		<message>
+			<source>Not Set</source>
+			<translation>Nenastaveno</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsNetwork</name>

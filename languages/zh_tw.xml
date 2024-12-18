@@ -456,6 +456,30 @@
 			<source>Security Method:</source>
 			<translation>安全方法：</translation>
 		</message>
+		<message>
+			<source>VRDP CA Certificate:</source>
+			<translation>VRDP CA 憑證：</translation>
+		</message>
+		<message>
+			<source>VRDP Server Certificate:</source>
+			<translation>VRDP 伺服器憑證：</translation>
+		</message>
+		<message>
+			<source>VRDP Private Key:</source>
+			<translation>VRDP 私鑰：</translation>
+		</message>
+		<message>
+			<source>Negotiate</source>
+			<translation>談判</translation>
+		</message>
+		<message>
+			<source>address not set</source>
+			<translation>地址未設定</translation>
+		</message>
+		<message>
+			<source>Not Set</source>
+			<translation>未設定</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsGeneral</name>

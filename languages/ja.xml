@@ -385,6 +385,30 @@
 			<source>Security Method:</source>
 			<translation>セキュリティ方法:</translation>
 		</message>
+		<message>
+			<source>VRDP CA Certificate:</source>
+			<translation>VRDP CA 証明書:</translation>
+		</message>
+		<message>
+			<source>VRDP Server Certificate:</source>
+			<translation>VRDP サーバー証明書:</translation>
+		</message>
+		<message>
+			<source>VRDP Private Key:</source>
+			<translation>VRDP 秘密キー:</translation>
+		</message>
+		<message>
+			<source>Negotiate</source>
+			<translation>交渉する</translation>
+		</message>
+		<message>
+			<source>address not set</source>
+			<translation>アドレスが設定されていません</translation>
+		</message>
+		<message>
+			<source>Not Set</source>
+			<translation>未設定</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsNetwork</name>

@@ -385,6 +385,30 @@
 			<source>Security Method:</source>
 			<translation>Beveiligingsmethode:</translation>
 		</message>
+		<message>
+			<source>VRDP CA Certificate:</source>
+			<translation>VRDP CA-certificaat:</translation>
+		</message>
+		<message>
+			<source>VRDP Server Certificate:</source>
+			<translation>VRDP-servercertificaat:</translation>
+		</message>
+		<message>
+			<source>VRDP Private Key:</source>
+			<translation>VRDP-privésleutel:</translation>
+		</message>
+		<message>
+			<source>Negotiate</source>
+			<translation>Onderhandelen</translation>
+		</message>
+		<message>
+			<source>address not set</source>
+			<translation>adres niet ingesteld</translation>
+		</message>
+		<message>
+			<source>Not Set</source>
+			<translation>Niet ingesteld</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsNetwork</name>

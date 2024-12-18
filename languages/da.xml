@@ -393,6 +393,30 @@
 			<source>Security Method:</source>
 			<translation>Sikkerhedsmetode:</translation>
 		</message>
+		<message>
+			<source>VRDP CA Certificate:</source>
+			<translation>VRDP CA-certifikat:</translation>
+		</message>
+		<message>
+			<source>VRDP Server Certificate:</source>
+			<translation>VRDP-servercertifikat:</translation>
+		</message>
+		<message>
+			<source>VRDP Private Key:</source>
+			<translation>VRDP privat nøgle:</translation>
+		</message>
+		<message>
+			<source>Negotiate</source>
+			<translation>Forhandle</translation>
+		</message>
+		<message>
+			<source>address not set</source>
+			<translation>adresse ikke angivet</translation>
+		</message>
+		<message>
+			<source>Not Set</source>
+			<translation>Ikke indstillet</translation>
+		</message>
 	</context>
 	<context>
 		<name>UIMachineSettingsGeneral</name>
