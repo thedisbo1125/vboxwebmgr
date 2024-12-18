@@ -1673,7 +1673,7 @@ function vboxSettingsDialog(title,panes,data,pane,icon,langContext,presave) {
         // Show dialog
         $('#vboxSettingsDialog').dialog({'closeOnEscape':true,
             'width':(panes.length > 1 ? 950 : 840),'height':(panes.length > 1 ? 550 : 500),
-            'buttons':buttons,'modal':true,'autoOpen':true,
+            'minWidth':840,'minHeight':500,'buttons':buttons,'modal':true,'autoOpen':true,
             'dialogClass':'vboxSettingsDialog vboxDialogContent',
             'title':(icon ? '<img src="images/vbox/'+icon+'_16px.png" class="vboxDialogTitleIcon" /> ' : '') + title}).on("dialogbeforeclose",function(){
             $(this).parent().find('span:contains("'+trans('Cancel','QIMessageBox')+'")').trigger('click');
