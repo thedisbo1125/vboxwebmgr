@@ -140,10 +140,7 @@ function vboxWizardImportApplianceDialog() {
         } else {
             vboxImportApp();
         }
-
-
     };
-
 }
 
 
