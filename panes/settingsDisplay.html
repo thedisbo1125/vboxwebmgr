@@ -501,11 +501,12 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 
 
 		// Add option to unset address
-		ipaddressselect.add(new Option("<address not set>"));
+        const addrnotset = "<" + trans("address not set",'UIMachineSettingsDisplay') + ">";
+		ipaddressselect.add(new Option(addrnotset));
 
 		// Set IP Address on VRDE Address Select
 		if (($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress) == "") {
-			ipaddressselect.value = "<address not set>";
+			ipaddressselect.value = addrnotset;
 		}
 		else {
 	 		ipaddressselect.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress;
@@ -528,6 +529,8 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 /* Change settings onSave() */
 $('#vboxSettingsDialog').on('save',function(){
 
+    const addrnotset = "<" + trans("address not set",'UIMachineSettingsDisplay') + ">";
+
 	$('#vboxSettingsDialog').data('vboxMachineData').VRAMSize = $(document.forms['frmVboxSettings'].vboxSettingsDisplayMemoryValue).val();
 
 	$('#vboxSettingsDialog').data('vboxMachineData').graphicsControllerType = $(document.forms['frmVboxSettings'].vboxSettingsGraphicsController).val();
@@ -538,7 +541,7 @@ $('#vboxSettingsDialog').on('save',function(){
 	if($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer && $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.VRDEExtPack) {
 		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.ports = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEPort.value;
 
-		if (document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAddr.value == "<address not set>") {
+		if (document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAddr.value == addrnotset) {
 	                $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress = "";
 		}
 		else {
