@@ -769,6 +769,7 @@ function vboxInitDisplay(root,context) {
 
         $(roottbl).find('input:not(.vboxEnablerCheckbox,.vboxEnablerIgnore)').prop('disabled',!this.checked);
         $(roottbl).find('select:not(.vboxEnablerIgnore)').prop('disabled',!this.checked);
+        (this.checked ? $(roottbl).find('label.certfilename').removeClass('vboxcertdisabled') : $(roottbl).find('label.certfilename:not(.vboxEnablerIgnore)').addClass('vboxcertdisabled'));
         (this.checked ? $(roottbl).find('th').removeClass('vboxDisabled') : $(roottbl).find('th:not(.vboxEnablerIgnore)').addClass('vboxDisabled'));
         (this.checked ? $(roottbl).find('.vboxEnablerListen').removeClass('vboxDisabled') : $(roottbl).find('.vboxEnablerListen').addClass('vboxDisabled'));
 
@@ -778,7 +779,9 @@ function vboxInitDisplay(root,context) {
         var vmrunning = vboxVMStates.isRunning(vboxChooser.getSingleSelected());
         if (vmrunning == true) {
             $(roottbl).find('tr:not(.vboxRunningEnabled)').find('span').addClass('disabled');
-            $(roottbl).find('tr:not(.vboxRunningEnabled)').find('input,select,textarea').addClass('disabled').prop('disabled',true);
+            $(roottbl).find('tr:not(.vboxRunningEnabled)').find('input,textarea').addClass('disabled').prop('disabled',true);
+            $(roottbl).find('tr:not(.vboxRunningEnabled)').find('select').prop('disabled',true).addClass('disabled');
+            $(roottbl).find('tr:not(.vboxRunningEnabled)').find('label.certfilename').addClass('vboxcertdisabled');
         }
     });
 
