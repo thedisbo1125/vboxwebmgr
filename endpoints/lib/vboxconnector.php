@@ -2267,7 +2267,7 @@ class vboxconnector {
 			} catch (Exception $e) { $this->errors[] = $e; }
 		}
 
-		// USB Filters
+		// USB Controllers
 
 		$usbEx = array();
 		$usbNew = array();
@@ -2294,7 +2294,8 @@ class vboxconnector {
 			$this->session->machine->addUSBController($name, $newByName[$name]['type']);
 		}
 
-		// filters
+		// USB Filters
+
 		$deviceFilters = $this->_machineGetUSBDeviceFilters($this->session->machine);
 		if(!is_array($args['USBDeviceFilters'])) $args['USBDeviceFilters'] = array();
 
