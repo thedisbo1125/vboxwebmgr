@@ -1268,70 +1268,70 @@ var vboxVMDetailsSections = {
 		}
 	},
 
-	/*
-	 * USB
-	 */
-	usb: {
-		icon: 'usb_16px.png',
-		title: 'USB',
-		language_context: 'UIGDetails',
-		settingsLink: 'USB',
-		rows: function(d) {
+    /*
+     * USB
+     */
+    usb: {
+        icon: 'usb_16px.png',
+        title: 'USB',
+        language_context: 'UIGDetails',
+        settingsLink: 'USB',
+        rows: function(d) {
 
-			var rows = [];
+            var rows = [];
 
-			var usbEnabled = false;
-			var usbType = 'OHCI';
+            var usbEnabled = false;
+            var usbType = 'OHCI';
 
-			for(var i = 0; i < d.USBControllers.length; i++) {
-				var listUSBType = d.USBControllers[i].type;
-				if((listUSBType == 'OHCI') || (listUSBType == 'XHCI')) {
-					usbEnabled = true;
-				}
+            for(var i = 0; i < d.USBControllers.length; i++) {
+                var listUSBType = d.USBControllers[i].type;
+                if((listUSBType == 'OHCI') || (listUSBType == 'XHCI')) {
+                    usbEnabled = true;
+                }
 
-				switch(listUSBType) {
-					case 'OHCI':
-						if(usbType == 'EHCI')
-							break;
-					case 'EHCI':
-						if(usbType == 'XHCI')
-							break;
-					default:
-						usbType = listUSBType;
-				}
-			}
+                switch(listUSBType) {
+                    case 'OHCI':
+                        if(usbType == 'EHCI')
+                            break;
+                    case 'EHCI':
+                        if(usbType == 'XHCI')
+                            break;
+                    default:
+                        usbType = listUSBType;
+                }
+            }
 
-			if(usbEnabled) {
+            if(usbEnabled) {
 
-				rows.push({
-					title: trans("USB Controller", 'UIGDetails', null, 'details (usb)'),
-					data: usbType
-				});
+                rows.push({
+                    title: trans("USB Controller", 'UIGDetails', null, 'details (usb)'),
+                    data: usbType
+                });
 
-				var tot = 0;
-				var act = 0;
-				for(var i = 0; i < d.USBDeviceFilters.length; i++) {
-					tot++;
-					if(d.USBDeviceFilters[i].active) act++;
-				}
+                var tot = 0;
+                var act = 0;
+                for(var i = 0; i < d.USBDeviceFilters.length; i++) {
+                    tot++;
+                    if(d.USBDeviceFilters[i].active) act++;
+                }
 
-				rows.push({
-					title: trans("Device Filters", 'UIGDetails', null, 'details (usb)'),
-					data: trans('%1 (%2 active)', 'UIGDetails', null, 'details (usb)').replace('%1',tot).replace('%2',act)
-				});
+                rows.push({
+                    title: trans("Device Filters", 'UIGDetails', null, 'details (usb)'),
+                    data: trans('%1 (%2 active)', 'UIGDetails', null, 'details (usb)').replace('%1',tot).replace('%2',act)
+                });
 
-			} else {
+            } else {
 
-				rows.push({
-					title: trans("Disabled", 'UIGDetails', null, 'details report (USB)'),
-					cssClass: 'vboxDetailsNone'
-				});
-			}
+                rows.push({
+                    title: trans("Disabled", 'UIGDetails', null, 'details report (USB)'),
+                    cssClass: 'vboxDetailsNone'
+                });
+            }
 
-			return rows;
+            return rows;
 
-		}
-	},
+        }
+    },
 
 	/*
 	 * Shared folders list
