@@ -1,5 +1,5 @@
 -------------------------------------
-    7.1-006  2024-12-
+    7.1-006  2024-12-22
 -------------------------------------
 
 - cleanup code spacing
@@ -7,7 +7,7 @@
 - additional changes to support jquery-ui version 1.12.1
 - adjust spacing of get directory buttons
 - switch from minimized jquery.scrollTo while working on upgrading version
-- add popup message to 2D and 3D acceleration checkboxes when not supported by hardware
+- add popup message to 2D acceleration checkboxe when not supported by hardware
 - fix display of select elements
 - fix setting USB controller type
 - add ability to change PKI certificate used for RDP on VMs
