@@ -1,17 +1,21 @@
 -------------------------------------
-    7.0-011 2024-11-22
+    7.0-011 2024-12-22
 -------------------------------------
 
 - fix issue with snapshots not working
 - fix code spacing
 - fix divide by zero error in screen.php
 - add new Keyboard and Mouse settings
-- begin changes to upgrade jquery-ui.css to version 1.11.4
 - add new/missing images
 - code changes to support jquery upgrade
 - add ability to limit files shown with jqueryFileTree
 - fix/change display of storage controller icons
 - increase port count on SAS controller to 32
+- add ability to change VRDE Security method (TLS, RDP, Negotiate)
+- fix setting USB controller type
+- add/update translations
+- add ability to change PKI certificate used for RDP on VMs
+- fix display of select elements
 
 -------------------------------------
     7.0-010 2023-06-24
