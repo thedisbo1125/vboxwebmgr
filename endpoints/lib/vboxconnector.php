@@ -2360,7 +2360,6 @@ class vboxconnector {
 		$machine->releaseRemote();
 
 		return true;
-
 	}
 
 	/**
