@@ -293,9 +293,9 @@ var fitTextToCanvas = function(can, text, fontSize) {
 
 StackBlur - a fast almost Gaussian Blur For Canvas
 
-Version:     0.5
-Author:        Mario Klingemann
-Contact:     mario@quasimondo.com
+Version:    0.5
+Author:     Mario Klingemann
+Contact:    mario@quasimondo.com
 Website:    http://www.quasimondo.com/StackBlurForCanvas
 Twitter:    @quasimondo
 
