@@ -766,25 +766,23 @@ function vboxInitDisplay(root,context) {
 
     $(root).find('input.vboxEnablerCheckbox').on('click', function(e) {
 
-            var roottbl = $(this).closest('table');
+        var roottbl = $(this).closest('table');
 
-            $(roottbl).find('input:not(.vboxEnablerCheckbox,.vboxEnablerIgnore)').prop('disabled',!this.checked);
-            $(roottbl).find('select:not(.vboxEnablerIgnore)').prop('disabled',!this.checked);
-            (this.checked ? $(roottbl).find('label.certfilename').removeClass('vboxcertdisabled') : $(roottbl).find('label.certfilename:not(.vboxEnablerIgnore)').addClass('vboxcertdisabled'));
-            (this.checked ? $(roottbl).find('th').removeClass('vboxDisabled') : $(roottbl).find('th:not(.vboxEnablerIgnore)').addClass('vboxDisabled'));
-            (this.checked ? $(roottbl).find('.vboxEnablerListen').removeClass('vboxDisabled') : $(roottbl).find('.vboxEnablerListen').addClass('vboxDisabled'));
+        $(roottbl).find('input:not(.vboxEnablerCheckbox,.vboxEnablerIgnore)').prop('disabled',!this.checked);
+        $(roottbl).find('select:not(.vboxEnablerIgnore)').prop('disabled',!this.checked);
+        (this.checked ? $(roottbl).find('label.certfilename').removeClass('vboxcertdisabled') : $(roottbl).find('label.certfilename:not(.vboxEnablerIgnore)').addClass('vboxcertdisabled'));
+        (this.checked ? $(roottbl).find('th').removeClass('vboxDisabled') : $(roottbl).find('th:not(.vboxEnablerIgnore)').addClass('vboxDisabled'));
+        (this.checked ? $(roottbl).find('.vboxEnablerListen').removeClass('vboxDisabled') : $(roottbl).find('.vboxEnablerListen').addClass('vboxDisabled'));
 
-            // Find any enabler / disabler listeners
-            $(roottbl).find('.vboxEnablerTrigger').trigger(this.checked ? 'enable' : 'disable');
+        // Find any enabler / disabler listeners
+        $(roottbl).find('.vboxEnablerTrigger').trigger(this.checked ? 'enable' : 'disable');
 
-            var vmrunning = vboxVMStates.isRunning(vboxChooser.getSingleSelected());
-            if (vmrunning == true) {
-                $(roottbl).find('tr:not(.vboxRunningEnabled)').find('span').addClass('disabled');
-                $(roottbl).find('tr:not(.vboxRunningEnabled)').find('input,select,textarea').addClass('disabled').prop('disabled',true);
-                $(roottbl).find('tr:not(.vboxRunningEnabled)').find('label.certfilename').addClass('vboxcertdisabled');
-            }
-
-
+        var vmrunning = vboxVMStates.isRunning(vboxChooser.getSingleSelected());
+        if (vmrunning == true) {
+            $(roottbl).find('tr:not(.vboxRunningEnabled)').find('span').addClass('disabled');
+            $(roottbl).find('tr:not(.vboxRunningEnabled)').find('input,select,textarea').addClass('disabled').prop('disabled',true);
+            $(roottbl).find('tr:not(.vboxRunningEnabled)').find('label.certfilename').addClass('vboxcertdisabled');
+        }
 
     });
 
@@ -879,8 +877,6 @@ function vboxProgress(prequest,callback,icon,title,target,blocking) {
         $.when(prequest, vboxAjaxRequest('progressGet',prequest,{'persist':persist})).done(vboxProgressUpdateModal);
     }
 
-
-
 }
 
 
@@ -934,7 +930,6 @@ function vboxProgressCreateDialog(prequest,icon,title,target,callback) {
         'vboxTitle' : title,
         'vboxTarget' : target
     }).dialog({'width':400,'height':'auto','closeOnEscape':false,'modal':true,'resizable':false,'draggable':true,'closeOnEscape':false,'buttons':{}});
-
 
 }
 
@@ -996,8 +991,6 @@ function vboxProgressCreateListElement(prequest,icon,title,target,callback) {
     } else {
         $('#vboxProgressOps').prepend(div);
     }
-
-
 }
 
 
@@ -1251,7 +1244,7 @@ function vboxParseCookies() {
 /**
  * General application failure
  * @param {String|Object} msg - Optional extra message appended to error
- *         or error object passed to vboxAlert
+ *     or error object passed to vboxAlert
  */
 function vboxwebmgrFailure(msg) {
     if($('#vboxPane').data('vboxFatalError')) return;
@@ -1407,16 +1400,16 @@ function strnatcasecmp(str1, str2) {
     // Returns the result of case-insensitive string comparison using 'natural' algorithm
     //
     // version: 1004.2314
-    // discuss at: http://phpjs.org/functions/strnatcasecmp    
+    // discuss at: http://phpjs.org/functions/strnatcasecmp
     // +      original by: Martin Pool
     // + reimplemented by: Pierre-Luc Paour
     // + reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
     // + reimplemented by: Brett Zamir (http://brett-zamir.me)
     // + bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-    // * example 1: strnatcasecmp(10, 1);
-    // * returns 1: 1
-    // * example 1: strnatcasecmp('1', '10');
-    // * returns 1: -1
+    // *   example 1: strnatcasecmp(10, 1);
+    // *   returns 1: 1
+    // *   example 1: strnatcasecmp('1', '10');
+    // *   returns 1: -1
     var a = (str1+'').toLowerCase();
     var b = (str2+'').toLowerCase();
 
@@ -1520,8 +1513,7 @@ function strnatcasecmp(str1, str2) {
  */
 if (!Array.prototype.filter)
 {
-    Array.prototype.filter = function(fun /*, thisp */)
-    {
+    Array.prototype.filter = function(fun /*, thisp */) {
         "use strict";
 
         if (this == null)
