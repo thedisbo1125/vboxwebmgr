@@ -153,3 +153,4 @@ function trans($msg,$context='vboxwebmgr') {
 	if(!is_object($GLOBALS['_vbox_language'])) $GLOBALS['_vbox_language'] = new __vbox_language();
 	return $GLOBALS['_vbox_language']->trans($msg,$context);
 }
+
