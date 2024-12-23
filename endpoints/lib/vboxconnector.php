@@ -1846,7 +1846,6 @@ class vboxconnector {
 				// skip this VM as it is not owned by the user we're logged in as
 				throw new Exception("Not authorized to modify this VM");
 			}
-
 		}
 
 		// Change OS type and update LongMode

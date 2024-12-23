@@ -93,6 +93,7 @@ if(!function_exists('hash')) {
      * @param unused $type
      * @param string $str string to hash
      */
+
     function hash($type,$str='') {
         return sha1(json_encode($str));
     }
