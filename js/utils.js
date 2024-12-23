@@ -472,8 +472,7 @@ function vboxFileBrowser(root,fn,foldersonly,title,icon,strictFiles,allowedexts)
     var buttons = { };
     buttons[trans('OK','QIMessageBox')] = function(f) {
 
-        if(strictFiles && $('#vboxBrowseFolderList').find('.vboxListItemSelected').first().parent().hasClass('directory')) {
-            $('#vboxBrowseFolderList').find('.vboxListItemSelected').first().trigger('dblclick');
+        if(strictFiles && $('#vboxBrowseFolderList').find('.vboxListItemSelected').first().parent().hasClass('folder')) {
             return;
         }
 
