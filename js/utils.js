@@ -3,7 +3,7 @@
  * @author Ian Moore (imoore76 at yahoo dot com)
  * @version $Id: utils.js 599 2015-07-27 10:40:37Z imoore76 $
  * @copyright Copyright (C) 2010-2015 Ian Moore (imoore76 at yahoo dot com)
- *         - unless otherwise noted in fuction
+ *     - unless otherwise noted in fuction
  */
 
 /**
@@ -483,6 +483,7 @@ function vboxFileBrowser(root,fn,foldersonly,title,icon,strictFiles,allowedexts)
         $('#vboxBrowseFolder').trigger('close').empty().remove();
         fn(f);
     };
+
     buttons[trans('Cancel','QIMessageBox')] = function() { fn(null); $('#vboxBrowseFolder').trigger('close').empty().remove(); };
 
     var d1 = $('<div />').attr({'id':'vboxBrowseFolder','class':'vboxDialogContent','style':'display:none'});
