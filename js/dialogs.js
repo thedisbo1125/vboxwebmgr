@@ -1655,6 +1655,7 @@ function vboxSettingsDialog(title,panes,data,pane,icon,langContext,presave) {
             if(presave) {
                 promise = presave();
             }
+
             var dlg = this;
             $.when(promise).done(function() {
                 results.resolve(true);
@@ -1662,6 +1663,7 @@ function vboxSettingsDialog(title,panes,data,pane,icon,langContext,presave) {
                 $(document).trigger('click');
             });
         };
+
         buttons[trans('Cancel','QIMessageBox')] = function() {
             results.reject();
             $(this).trigger('close').empty().remove();
