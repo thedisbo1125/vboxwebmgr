@@ -632,7 +632,11 @@ function vboxConfirm(q,buttons,cancelText,onCancel) {
 
     buttons[cancelText] = function() { $(this).remove(); if(onCancel) { onCancel(); }};
 
-    $(div).dialog({'closeOnEscape':false,'width':500,'height':'auto','buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});
+    $(div).dialog({'closeOnEscape':false,
+		'width':500,'height':'auto','minWidth':500, minHeight: 200,
+		'buttons':buttons,'modal':true,
+		'autoOpen':true,'dialogClass':'vboxDialogContent',
+		'title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});
 
     return $(div);
 }
