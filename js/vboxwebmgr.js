@@ -4587,6 +4587,9 @@ function vboxLoader(name) {
 		if(self.hideRoot)
 			$('#vboxPane').css('display', 'none');
 
+		// initialize the dialog
+		$(div).dialog({'autoOpen':false});
+
 		$(div).dialog({
 			'dialogClass': 'vboxLoaderDialog',
 			'width': 'auto',
@@ -4594,6 +4597,7 @@ function vboxLoader(name) {
 			'modal': true,
 			'resizable': false,
 			'draggable': false,
+			'autoOpen':true,
 			'closeOnEscape': false,
 			'buttons': {}
 		});
