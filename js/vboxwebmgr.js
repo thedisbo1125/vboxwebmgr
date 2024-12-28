@@ -186,7 +186,8 @@ var vboxHostDetailsSections = {
 				if(d['networkInterfaces'][i].IPAddress){
 
 					netRows[netRows.length] = {
-						title: trans('IPv4 Address','UIGlobalSettingsNetwork'),
+						title: 'IPv4 Address',
+						language_context: 'UIGlobalSettingsNetwork',
 						data: d['networkInterfaces'][i].IPAddress + ' / ' + d['networkInterfaces'][i].networkMask,
 						indented: true
 					};
@@ -197,7 +198,8 @@ var vboxHostDetailsSections = {
 				if(d['networkInterfaces'][i].IPV6Supported && d['networkInterfaces'][i].IPV6Address) {
 
 					netRows[netRows.length] = {
-						title: trans('IPv6 Address','UIGlobalSettingsNetwork'),
+						title: 'IPv6 Address',
+						language_context: 'UIGlobalSettingsNetwork',
 						data: d['networkInterfaces'][i].IPV6Address + ' / ' + d['networkInterfaces'][i].IPV6NetworkMaskPrefixLength,
 						indented: true
 					};
@@ -3950,14 +3952,18 @@ function vboxMediaMenu(type,callback,mediumPath) {
 			case 'HardDisk':
 
 				// create hard disk
-				menus[menus.length] = {'name':'createD','icon':'hd_new','label':trans('Create a new hard disk...','UIMachineSettingsStorage')};
+				menus[menus.length] = {'name':'createD','icon':'hd_new',
+					'label':'Create a new hard disk...',
+					language_context: 'UIMachineSettingsStorage'};
 
 				// choose hard disk
-				menus[menus.length] = {'name':'chooseD','icon':'select_file','label':trans('Choose a virtual hard disk file...','UIMachineSettingsStorage')};
+				menus[menus.length] = {'name':'chooseD','icon':'select_file',
+					'label':'Choose a virtual hard disk file...',language_context:'UIMachineSettingsStorage'};
 
 				// Add VMM?
 				if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
-					menus[menus.length] = {'name':'vmm','icon':'diskimage','label':trans('Virtual Media Manager...','UIActionPool')};
+					menus[menus.length] = {'name':'vmm','icon':'diskimage',
+					'label':'Virtual Media Manager...',language_context: 'UIActionPool'};
 				}
 
 				// recent list place holder
@@ -3981,8 +3987,10 @@ function vboxMediaMenu(type,callback,mediumPath) {
 
 				// Add remove drive
 				menus[menus.length] = {'name':'removeD','icon':'cd_unmount','cssClass':'vboxMediumRecentBefore',
-						'label':trans('Remove disk from virtual drive','UIMachineSettingsStorage'),'separator':true,
-						'enabled':function(){return self.removeEnabled;}};
+					'label':'Remove disk from virtual drive',
+					'language_context': 'UIMachineSettingsStorage',
+					'separator':true,
+					'enabled':function(){return self.removeEnabled;}};
 
 				break;
 
@@ -3990,11 +3998,15 @@ function vboxMediaMenu(type,callback,mediumPath) {
 			default:
 
 				// Choose disk image
-				menus[menus.length] = {'name':'chooseD','icon':'select_file','label':trans('Choose a virtual floppy disk file...','UIMachineSettingsStorage')};
+				menus[menus.length] = {'name':'chooseD','icon':'select_file',
+					'label':'Choose a virtual floppy disk file...',
+					'language_context': 'UIMachineSettingsStorage'};
 
 				// Add VMM?
 				if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
-					menus[menus.length] = {'name':'vmm','icon':'diskimage','label':trans('Virtual Media Manager...','UIActionPool')};
+					menus[menus.length] = {'name':'vmm','icon':'diskimage',
+					'label':'Virtual Media Manager...',
+					language_context: 'UIActionPool'};
 				}
 
 				// Add host drives
@@ -4002,8 +4014,10 @@ function vboxMediaMenu(type,callback,mediumPath) {
 
 				// Add remove drive
 				menus[menus.length] = {'name':'removeD','icon':'fd_unmount','cssClass':'vboxMediumRecentBefore',
-						'label':trans('Remove disk from virtual drive','UIMachineSettingsStorage'),'separator':true,
-						'enabled':function(){return self.removeEnabled;}};
+					'label':'Remove disk from virtual drive',
+					'separator':true,
+					'language_context': 'UIMachineSettingsStorage',
+					'enabled':function(){return self.removeEnabled;}};
 
 				break;
 
