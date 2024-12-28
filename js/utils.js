@@ -722,7 +722,7 @@ function vboxInitDisplay(root,context) {
             var max = $(this).slider('option','max');
             $(this).closest('table').find('.vboxSliderMin').html(function(i,h){return ' ' + trans(h,context,min,$(this).attr('title')).replace('%1',min);});
             $(this).closest('table').find('.vboxSliderMax').html(function(i,h){return ' ' + trans(h,context,max,$(this).attr('title')).replace('%1',max);});
-    }
+        }
     });
 
 
