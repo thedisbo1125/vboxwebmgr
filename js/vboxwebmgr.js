@@ -20,41 +20,41 @@ var vboxHostDetailsSections = {
 		title: 'General',
 		settingsLink: 'General',
 		rows: [
-		   {
-			   title: 'Name',
-			   callback: function() { return $('#vboxPane').data('vboxConfig').name; },
-			   condition: function() { return $('#vboxPane').data('vboxConfig').servers.length; }
-		   },{
-			   title: 'OS Type',
-			   callback: function(d) {
-				   return d['operatingSystem'] + ' (' + d['OSVersion'] +')';
-			   }
-		   },{
-			   title: 'VirtualBox',
+			{
+				title: 'Name',
+				callback: function() { return $('#vboxPane').data('vboxConfig').name; },
+				condition: function() { return $('#vboxPane').data('vboxConfig').servers.length; }
+			},{
+				title: 'OS Type',
+				callback: function(d) {
+					return d['operatingSystem'] + ' (' + d['OSVersion'] +')';
+				}
+			},{
+				title: 'VirtualBox',
 				language_context: 'IGNORE',
-			   callback: function() {
-				   return $('#vboxPane').data('vboxConfig').version.string+' ('+$('#vboxPane').data('vboxConfig').version.revision+')';
-			   }
-		   },{
-			   title: 'Base Memory',
-			   callback: function(d) {
-				   return trans('<nobr>%1 MB</nobr>').replace('%1',d['memorySize']);
-			   }
-		   },{
-			   title: '',
+				callback: function() {
+					return $('#vboxPane').data('vboxConfig').version.string+' ('+$('#vboxPane').data('vboxConfig').version.revision+')';
+				}
+			},{
+				title: 'Base Memory',
+				callback: function(d) {
+					return trans('<nobr>%1 MB</nobr>').replace('%1',d['memorySize']);
+				}
+			},{
+				title: '',
 				language_context: 'IGNORE',
-			   data: '<span id="vboxHostMemUsed"><div style="background-color:#a33" id="vboxHostMemUsedPct"><div style="background-color:#a93;float:right;" id="vboxHostMemResPct"></div></div><div style="width:100%;position:relative;top:-14px;left:0px;text-align:center;"><span id="vboxHostMemUsedLblPct" style="float:left" /><span id="vboxHostMemFreeLbl" style="float:right" /></div></span>'
-		   },{
-			   title: "Processor(s)",
-			   callback: function(d) {
-				   return d['cpus'][0] + ' (' + d['cpus'].length +')';
-			   }
-		   },{
-			   title: '',
+				data: '<span id="vboxHostMemUsed"><div style="background-color:#a33" id="vboxHostMemUsedPct"><div style="background-color:#a93;float:right;" id="vboxHostMemResPct"></div></div><div style="width:100%;position:relative;top:-14px;left:0px;text-align:center;"><span id="vboxHostMemUsedLblPct" style="float:left" /><span id="vboxHostMemFreeLbl" style="float:right" /></div></span>'
+			},{
+				title: "Processor(s)",
+				callback: function(d) {
+					return d['cpus'][0] + ' (' + d['cpus'].length +')';
+				}
+			},{
+				title: '',
 				language_context: 'IGNORE',
-			   callback: function(d) {
+				callback: function(d) {
 
-				   // Processor features?
+					// Processor features?
 					var cpuFeatures = new Array();
 					for(var f in d.cpuFeatures) {
 						if(!d.cpuFeatures[f]) continue;
@@ -62,15 +62,15 @@ var vboxHostDetailsSections = {
 					}
 					return cpuFeatures.join(', ');
 
-			   },
-			   condition: function(d) {
-				   if(!d.cpuFeatures) return false;
-				   for(var f in d.cpuFeatures) {
-					   if(!d.cpuFeatures[f]) continue;
-					   return true;
+				},
+				condition: function(d) {
+					if(!d.cpuFeatures) return false;
+					for(var f in d.cpuFeatures) {
+						if(!d.cpuFeatures[f]) continue;
+						return true;
 					}
 					return false;
-			   }
+				}
 		}],
 
 		onRender: function(d) {
@@ -278,26 +278,26 @@ var vboxVMDetailsSections = {
 		settingsLink: 'General',
 		multiSelectDetailsTable: true,
 		rows: [
-		   {
-			   title: 'Name', attrib: 'name'
-		   },{
-			   title: 'OS Type', attrib: 'OSTypeDesc'
-		   },{
-			   title: 'Guest Additions Version', attrib: 'guestAdditionsVersion'
-		   },{
-			   title: 'Groups',
-			   language_context: 'UIGDetails',
-			   condition: function(d){
-				   return (d.groups.length > 1 || (d.groups.length == 1 && d.groups[0] != '/'));
-			   },
-			   callback: function(d) {
-				   if(d.groups && d.groups.length > 0)
-					   return jQuery.map(d.groups,function(elm) {
-						   if(elm.length > 1) return elm.substring(1);
-						   return elm;
-					   }).join(', ');
-			   }
-		   }
+			{
+				title: 'Name', attrib: 'name'
+			},{
+				title: 'OS Type', attrib: 'OSTypeDesc'
+			},{
+				title: 'Guest Additions Version', attrib: 'guestAdditionsVersion'
+			},{
+				title: 'Groups',
+				language_context: 'UIGDetails',
+				condition: function(d){
+					return (d.groups.length > 1 || (d.groups.length == 1 && d.groups[0] != '/'));
+				},
+				callback: function(d) {
+					if(d.groups && d.groups.length > 0)
+						return jQuery.map(d.groups,function(elm) {
+							if(elm.length > 1) return elm.substring(1);
+							return elm;
+						}).join(', ');
+				}
+			}
 
 		]
 	},
@@ -312,52 +312,52 @@ var vboxVMDetailsSections = {
 		redrawMachineEvents: ['OnCPUExecutionCapChanged'],
 		multiSelectDetailsTable: true,
 		rows: [
-		   {
-			   title: 'Base Memory',
-			   language_context: 'UIDetails',
-			   callback: function(d) {
-				   return trans('<nobr>%1 MB</nobr>').replace('%1',d['memorySize']);
-			   }
-		   },{
-			   title: "Processor(s)",
-			   attrib: 'CPUCount',
-			   condition: function(d) { return d.CPUCount > 1; }
-		   },{
-			   title: "Execution Cap",
-			   callback: function(d) {
-				   return trans('<nobr>%1%</nobr>').replace('%1',parseInt(d['CPUExecutionCap']));
-			   },
-			   condition: function(d) { return d.CPUExecutionCap < 100; }
-		   },{
-			   title: "Boot Order",
-			   callback: function(d) {
+			{
+				title: 'Base Memory',
+				language_context: 'UIDetails',
+				callback: function(d) {
+					return trans('<nobr>%1 MB</nobr>').replace('%1',d['memorySize']);
+				}
+			},{
+				title: "Processor(s)",
+				attrib: 'CPUCount',
+				condition: function(d) { return d.CPUCount > 1; }
+			},{
+				title: "Execution Cap",
+				callback: function(d) {
+					return trans('<nobr>%1%</nobr>').replace('%1',parseInt(d['CPUExecutionCap']));
+				},
+				condition: function(d) { return d.CPUExecutionCap < 100; }
+			},{
+				title: "Boot Order",
+				callback: function(d) {
 					var bo = new Array();
 					for(var i = 0; i < d['bootOrder'].length; i++) {
 						bo[i] = trans(vboxDevice(d['bootOrder'][i]));
 					}
 					return bo.join(', ');
-			   }
-		   },{
-			   title: "Acceleration",
-			   language_context: 'UICommon',
-			   callback: function(d) {
-				   var acList = [];
-				   if(d['HWVirtExProperties'].Enabled) acList[acList.length] = trans('VT-x/AMD-V');
-				   if(d['HWVirtExProperties'].NestedPaging) acList[acList.length] = trans('Nested Paging','UICommon');
-				   if(d['CpuProperties']['PAE']) acList[acList.length] = trans('PAE/NX');
-				   if(d['CpuProperties']['HWVirt']) acList[acList.length] = trans('Nested Virtualization');
-				   if(d['EffectiveParavirtProvider'] != 'None')
-				       acList[acList.length] = trans(d['EffectiveParavirtProvider'] + ' Paravirtualization','UIDetails');
+				}
+			},{
+				title: "Acceleration",
+				language_context: 'UICommon',
+				callback: function(d) {
+					var acList = [];
+					if(d['HWVirtExProperties'].Enabled) acList[acList.length] = trans('VT-x/AMD-V');
+					if(d['HWVirtExProperties'].NestedPaging) acList[acList.length] = trans('Nested Paging','UICommon');
+					if(d['CpuProperties']['PAE']) acList[acList.length] = trans('PAE/NX');
+					if(d['CpuProperties']['HWVirt']) acList[acList.length] = trans('Nested Virtualization');
+					if(d['EffectiveParavirtProvider'] != 'None')
+						acList[acList.length] = trans(d['EffectiveParavirtProvider'] + ' Paravirtualization','UIDetails');
 
-				   if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
-					   if(d['HWVirtExProperties'].LargePages) acList[acList.length] = trans('Large Pages');
-					   if(d['HWVirtExProperties'].UnrestrictedExecution) acList[acList.length] = trans('VT-x unrestricted execution');
-					   if(d['HWVirtExProperties'].VPID) acList[acList.length] = trans('VT-x VPID');
-				   }
-				   return acList.join(', ');
-			   },
-		   	   condition: function(d) { return (d['HWVirtExProperties'].Enabled || d['CpuProperties']['PAE']); }
-		   }
+					if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
+						if(d['HWVirtExProperties'].LargePages) acList[acList.length] = trans('Large Pages');
+						if(d['HWVirtExProperties'].UnrestrictedExecution) acList[acList.length] = trans('VT-x unrestricted execution');
+						if(d['HWVirtExProperties'].VPID) acList[acList.length] = trans('VT-x VPID');
+					}
+					return acList.join(', ');
+				},
+				condition: function(d) { return (d['HWVirtExProperties'].Enabled || d['CpuProperties']['PAE']); }
+			}
 		]
 	},
 
@@ -908,72 +908,72 @@ var vboxVMDetailsSections = {
 		settingsLink: 'Display',
 		redrawMachineEvents: ['OnVRDEServerInfoChanged','OnVRDEServerChanged','OnMachineStateChanged'],
 		rows: [
-		   {
-			   title: "Video Memory",
-			   language_context: 'UIDetails',
-			   callback: function(d) {
-				   return trans('<nobr>%1 MB</nobr>').replace('%1',d['VRAMSize']);
-			   }
-		   },{
-			   title: 'Remote Desktop Server Port',
-			   language_context: 'UIDetails',
-			   callback: function(d) {
+			{
+				title: "Video Memory",
+				language_context: 'UIDetails',
+				callback: function(d) {
+					return trans('<nobr>%1 MB</nobr>').replace('%1',d['VRAMSize']);
+				}
+			},{
+				title: 'Remote Desktop Server Port',
+				language_context: 'UIDetails',
+				callback: function(d) {
 
-				   var chost = vboxGetVRDEHost(d);
+					var chost = vboxGetVRDEHost(d);
 
-				   // Get ports
-				   var rowStr = d['VRDEServer']['ports'];
+					// Get ports
+					var rowStr = d['VRDEServer']['ports'];
 
-				   // Just this for snapshots
-				   if(d._isSnapshot) return rowStr;
+					// Just this for snapshots
+					if(d._isSnapshot) return rowStr;
 
-				   // Display links?
-				   if((d['state'] == 'Running' || d['state'] == 'Paused') && d['VRDEServerInfo']) {
+					// Display links?
+					if((d['state'] == 'Running' || d['state'] == 'Paused') && d['VRDEServerInfo']) {
 
-					   if(d['VRDEServerInfo']['port'] <= 0) {
+						if(d['VRDEServerInfo']['port'] <= 0) {
 
-						   rowStr = '<span style="text-decoration: line-through; color: #f00;">' + rowStr + '</span>';
+							rowStr = '<span style="text-decoration: line-through; color: #f00;">' + rowStr + '</span>';
 
-					   // RDP
-					   } else if(d['VRDEServer']['VRDEExtPack'].indexOf("VNC") == -1) {
-						   rowStr = " <a href='" + vboxEndpointConfig.rdpGen + "?host=" + chost + '&port=' + d['VRDEServerInfo']['port'] + "&id=" + d['id'] + "&vm=" + encodeURIComponent(d['name']) + "'>" + d['VRDEServerInfo']['port'] + "</a>";
-						   rowStr += ' <img src="images/vbox/blank.gif" style="vspace:0px;hspace:0px;height2px;width:10px;" /> (' + chost + ':' + d['VRDEServerInfo']['port'] + ')';
-					   // VNC
-					   } else {
-						   rowStr = " <a href='vnc://" + chost + ':' + d['VRDEServerInfo']['port'] + "'>" + d['VRDEServerInfo']['port'] + "</a>";
-						   rowStr += ' <img src="images/vbox/blank.gif" style="vspace:0px;hspace:0px;height2px;width:10px;" /> (' + chost + ':' + d['VRDEServerInfo']['port'] + ')';
-					   }
-				   } else {
-					   rowStr += ' ('+chost+')';
-				   }
-				   return rowStr;
+						// RDP
+						} else if(d['VRDEServer']['VRDEExtPack'].indexOf("VNC") == -1) {
+							rowStr = " <a href='" + vboxEndpointConfig.rdpGen + "?host=" + chost + '&port=' + d['VRDEServerInfo']['port'] + "&id=" + d['id'] + "&vm=" + encodeURIComponent(d['name']) + "'>" + d['VRDEServerInfo']['port'] + "</a>";
+							rowStr += ' <img src="images/vbox/blank.gif" style="vspace:0px;hspace:0px;height2px;width:10px;" /> (' + chost + ':' + d['VRDEServerInfo']['port'] + ')';
+						// VNC
+						} else {
+							rowStr = " <a href='vnc://" + chost + ':' + d['VRDEServerInfo']['port'] + "'>" + d['VRDEServerInfo']['port'] + "</a>";
+							rowStr += ' <img src="images/vbox/blank.gif" style="vspace:0px;hspace:0px;height2px;width:10px;" /> (' + chost + ':' + d['VRDEServerInfo']['port'] + ')';
+						}
+					} else {
+						rowStr += ' ('+chost+')';
+					}
+					return rowStr;
 
 
-			   },
-			   html: true,
-			   condition: function(d) {
+				},
+				html: true,
+				condition: function(d) {
 
-				   // Running and paused states have real-time console info
-				   if(!d._isSnapshot && (d['state'] == 'Running' || d['state'] == 'Paused')) {
-					   return d.VRDEServer && (d.VRDEServer.enabled);
-				   }
-				   return (d['VRDEServer'] && (d._isSnapshot || d['VRDEServer']['VRDEExtPack']) && d['VRDEServer']['enabled'] && d['VRDEServer']['ports']);
-			   }
-		   },{
-			   title: "Remote Desktop Server",
-			   callback: function(d) {
-				   return trans('Disabled','VBoxGlobal',null,'details report (VRDE Server)');
-			   },
-			   condition: function(d) {
-				   return !(vboxVMDetailsSections.display.rows[1].condition(d));
-			   }
+					// Running and paused states have real-time console info
+					if(!d._isSnapshot && (d['state'] == 'Running' || d['state'] == 'Paused')) {
+						return d.VRDEServer && (d.VRDEServer.enabled);
+					}
+					return (d['VRDEServer'] && (d._isSnapshot || d['VRDEServer']['VRDEExtPack']) && d['VRDEServer']['enabled'] && d['VRDEServer']['ports']);
+				}
+			},{
+				title: "Remote Desktop Server",
+				callback: function(d) {
+					return trans('Disabled','VBoxGlobal',null,'details report (VRDE Server)');
+				},
+				condition: function(d) {
+					return !(vboxVMDetailsSections.display.rows[1].condition(d));
+				}
 			},{
 				title: "Graphics Controller",
 				language_context: 'UIDetails',
 				callback: function(d) {
 					return d['graphicsControllerType'];
 				}
-		   }
+			}
 		]
 	},
 
@@ -1069,7 +1069,7 @@ var vboxVMDetailsSections = {
 		icon: 'sound_16px.png',
 		settingsLink: 'Audio',
 		rows: [
-		    {
+			{
 			    title: "Disabled",
 			    language_context: ['VBoxGlobal', null, 'details report (audio)'],
 			    cssClass: 'vboxDetailsNone',
@@ -3110,12 +3110,14 @@ function vboxWizard() {
 		for(var i = 0; i < self.steps; i++) {
 			$('#'+self.name+'Step'+(i+1)).css({'display':'none'});
 		}
+
 		/* update buttons */
 		if(self.stepButtons) {
 			for(var i = 0; i < self.stepButtons.length; i++) {
 				$('#'+self.name+'Dialog').parent().find('.ui-dialog-buttonpane').find('span:contains("'+self.stepButtons[i].name+'")').parent().css({'display':((step == self.steps && self.stepButtons[i].steps[0]==-1) || jQuery.inArray(step,self.stepButtons[i].steps) > -1 ? '': 'none')});
 			}
 		}
+
 		if(step == 1 && step != self.steps) {
 			$('#'+self.name+'Dialog').parent().find('.ui-dialog-buttonpane').find('span:contains("'+self.backText+'")').parent().addClass('disabled').blur();
 			$('#'+self.name+'Dialog').parent().find('.ui-dialog-buttonpane').find('span:contains("'+self.finishText+'")').html($('<div />').text((self.steps > 1 ? self.nextText+' '+self.nextArrow: self.finishText)).html());
@@ -3129,6 +3131,7 @@ function vboxWizard() {
 				$('#'+self.name+'Dialog').parent().find('.ui-dialog-buttonpane').find('span:contains("'+self.finishText+'")').html($('<div />').text(self.nextText+' '+self.nextArrow).html());
 			}
 		}
+
 		$('#'+self.name+'Title').html(trans($('#'+self.name+'Step'+step).attr('title'),self.context));
 		$('#'+self.name+'Step'+step).css({'display':''});
 

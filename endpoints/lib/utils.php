@@ -73,9 +73,9 @@ function session_init($keepopen = false) {
 function clean_request() {
 
     if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
-       $json = json_decode(file_get_contents('php://input'), true);
-       if(!is_array($json))
-          $json = array();
+        $json = json_decode(file_get_contents('php://input'), true);
+        if(!is_array($json))
+            $json = array();
     } else {
         $json = array();
     }

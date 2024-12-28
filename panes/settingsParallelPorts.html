@@ -39,10 +39,10 @@
  *
  */
 if($('#vboxPane').data('vboxConfig').enableLPTConfig) {
-	
+
 	var vboxSettingsPPortTemplate = document.getElementById('vboxSettingsTabParallelPort');
 	var vboxSettingsPPortContainer = $(vboxSettingsPPortTemplate).parent();
-	
+
 	/* translated select values */
 	for(var i = 0; i < document.forms['frmVboxSettings'].vboxSettingsPPortNumber.options.length; i++) {
 		if($(document.forms['frmVboxSettings'].vboxSettingsPPortNumber.options[i]).hasClass('translate'))
