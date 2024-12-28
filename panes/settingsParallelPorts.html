@@ -152,6 +152,9 @@ if($('#vboxPane').data('vboxConfig').enableLPTConfig) {
 		}
 
 		if(!$('#vboxSettingsDialog').data('vboxFullEdit')) {
+			vboxSettingsPPortContainer.find('input.vboxEnablerCheckbox').each(function() {
+				$(this).triggerHandler('click');
+			});
 			vboxSettingsPPortContainer.find('input.vboxEnablerCheckbox').triggerHandler('click');
 			vboxSettingsPPortContainer.children(':not(ul)').find('span').addClass('disabled');
 			vboxSettingsPPortContainer.find('input,select,textarea').prop('disabled',true);
@@ -159,6 +162,9 @@ if($('#vboxPane').data('vboxConfig').enableLPTConfig) {
 			vboxSettingsPPortContainer.find('span').removeClass('disabled');
 			vboxSettingsPPortContainer.find('input,select,textarea').prop('disabled',false);
 			vboxSettingsPPortContainer.find('input.vboxEnablerCheckbox').triggerHandler('click');
+			vboxSettingsPPortContainer.find('input.vboxEnablerCheckbox').each(function() {
+				$(this).triggerHandler('click');
+			});
 		}
 	});
 }
