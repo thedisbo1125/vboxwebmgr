@@ -31,6 +31,7 @@ var vboxHostDetailsSections = {
 			   }
 		   },{
 			   title: 'VirtualBox',
+				language_context: 'IGNORE',
 			   callback: function() {
 				   return $('#vboxPane').data('vboxConfig').version.string+' ('+$('#vboxPane').data('vboxConfig').version.revision+')';
 			   }
@@ -41,6 +42,7 @@ var vboxHostDetailsSections = {
 			   }
 		   },{
 			   title: '',
+				language_context: 'IGNORE',
 			   data: '<span id="vboxHostMemUsed"><div style="background-color:#a33" id="vboxHostMemUsedPct"><div style="background-color:#a93;float:right;" id="vboxHostMemResPct"></div></div><div style="width:100%;position:relative;top:-14px;left:0px;text-align:center;"><span id="vboxHostMemUsedLblPct" style="float:left" /><span id="vboxHostMemFreeLbl" style="float:right" /></div></span>'
 		   },{
 			   title: "Processor(s)",
@@ -49,6 +51,7 @@ var vboxHostDetailsSections = {
 			   }
 		   },{
 			   title: '',
+				language_context: 'IGNORE',
 			   callback: function(d) {
 
 				   // Processor features?
@@ -174,6 +177,7 @@ var vboxHostDetailsSections = {
 				/* Interface Name */
 				netRows[netRows.length] = {
 					title: d['networkInterfaces'][i].name + ' (' + trans(d['networkInterfaces'][i].status) + ')',
+					language_context: 'IGNORE',
 					data: ''
 				};
 
@@ -202,6 +206,7 @@ var vboxHostDetailsSections = {
 				/* Physical info */
 				netRows[netRows.length] = {
 					title: '',
+					language_context: 'IGNORE',
 					data: trans(d['networkInterfaces'][i].mediumType) + (d['networkInterfaces'][i].hardwareAddress ? ' (' + d['networkInterfaces'][i].hardwareAddress + ')': ''),
 					indented: true
 				};
@@ -1006,6 +1011,7 @@ var vboxVMDetailsSections = {
 				// Controller name
 				rows[rows.length] = {
 						title: trans('Controller: %1','UIMachineSettingsStorage').replace('%1',$('<div />').text(con.name).html()),
+						language_context: 'IGNORE',
 						callback: function(){return'';}
 				};
 
@@ -1042,6 +1048,7 @@ var vboxVMDetailsSections = {
 
 					rows[rows.length] = {
 						title: portName,
+						language_context: 'IGNORE',
 						indented: true,
 						data: (d['storageControllers'][a]['mediumAttachments'][b].type == 'DVD' ? trans('[Optical Drive]','UIDetails') + ' ': '') + portDesc,
 						html: true
@@ -1146,6 +1153,7 @@ var vboxVMDetailsSections = {
 
 					rows[rows.length] = {
 						title: trans("Adapter %1").replace('%1',(i + 1)),
+						language_context: 'IGNORE',
 						data: trans(vboxNetworkAdapterType(nic.adapterType)).replace(/\(.*\)/,'') + ' (' + adp + ')'
 					};
 				}
@@ -1157,6 +1165,7 @@ var vboxVMDetailsSections = {
 
 				rows[rows.length] = {
 					title: trans('Disabled','VBoxGlobal',null,'details report (network)'),
+					language_context: 'IGNORE',
 					cssClass: 'vboxDetailsNone'
 				};
 
@@ -1165,6 +1174,7 @@ var vboxVMDetailsSections = {
 
 				rows[rows.length] = {
 					title: '',
+					language_context: 'IGNORE',
 					data: '<a href="javascript:vboxGuestNetworkAdaptersDialogInit(\''+d['id']+'\');">('+trans('Guest Network Adapters')+')</a>',
 					html: true
 				};
@@ -1205,6 +1215,7 @@ var vboxVMDetailsSections = {
 
 				rows.push({
 					title: trans("Port %1",'VBoxGlobal',null,'details report (serial ports)').replace('%1',(i + 1)),
+					language_context: 'IGNORE',
 					data: xtra,
 					html: true
 				});
@@ -1216,6 +1227,7 @@ var vboxVMDetailsSections = {
 			if(vboxDetailsTableSPorts == 0) {
 				rows.push({
 					title: trans('Disabled','VBoxGlobal',null,'details report (serial ports)'),
+					language_context: 'IGNORE',
 					cssClass: 'vboxDetailsNone'
 				});
 			}
@@ -1251,6 +1263,7 @@ var vboxVMDetailsSections = {
 
 				rows[rows.length] = {
 					title: trans("Port %1",'VBoxGlobal',null,'details report (parallel ports)').replace('%1',(i + 1)),
+					language_context: 'IGNORE',
 					data: xtra
 				};
 				vboxDetailsTableSPorts++;
@@ -1260,6 +1273,7 @@ var vboxVMDetailsSections = {
 			if(vboxDetailsTableSPorts == 0) {
 				rows[0] = {
 					title: trans('Disabled','VBoxGlobal',null,'details report (parallel ports)'),
+					language_context: 'IGNORE',
 					cssClass: 'vboxDetailsNone'
 				};
 			}
@@ -1305,6 +1319,7 @@ var vboxVMDetailsSections = {
 
                 rows.push({
                     title: trans("USB Controller", 'UIGDetails', null, 'details (usb)'),
+					language_context: 'IGNORE',
                     data: usbType
                 });
 
@@ -1317,6 +1332,7 @@ var vboxVMDetailsSections = {
 
                 rows.push({
                     title: trans("Device Filters", 'UIGDetails', null, 'details (usb)'),
+					language_context: 'IGNORE',
                     data: trans('%1 (%2 active)', 'UIGDetails', null, 'details (usb)').replace('%1',tot).replace('%2',act)
                 });
 
@@ -1324,6 +1340,7 @@ var vboxVMDetailsSections = {
 
                 rows.push({
                     title: trans("Disabled", 'UIGDetails', null, 'details report (USB)'),
+					language_context: 'IGNORE',
                     cssClass: 'vboxDetailsNone'
                 });
             }
@@ -1346,12 +1363,14 @@ var vboxVMDetailsSections = {
 			if(!d['sharedFolders'] || d['sharedFolders'].length < 1) {
 				return [{
 					title: trans('None',null,null,'details report (shared folders)'),
+					language_context: 'IGNORE',
 					cssClass: 'vboxDetailsNone'
 				}];
 			}
 
 			return [{
 					title: trans('Shared Folders', 'UIGDetails'),
+					language_context: 'IGNORE',
 					data: d['sharedFolders'].length
 				}];
 		}
@@ -1368,6 +1387,7 @@ var vboxVMDetailsSections = {
 		rows: function(d) {
 			return [{
 				title: '',
+				language_context: 'IGNORE',
 				data: $('<tr />').attr({'class':'vboxDetailRow'}).append(
 						$('<td />').attr({'class':'vboxDetailDescriptionCell','colspan':'2'})
 							.html(d.description.length ? $('<div />').text(d.description).html(): '<span class="vboxDetailsNone">'+trans("None",null,null,'details report (description)')+'</span>')

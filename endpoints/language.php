@@ -52,7 +52,12 @@ function trans(s,c,n,h) {
     }
 
     if(!c) c = 'VBoxGlobal';
-    var r = transreal(s,c,n,h);
+
+    if(c !== 'IGNORE') {
+        var r = transreal(s,c,n,h);
+    } else {
+        var r = s;
+    }
 
     if(typeof r != 'string') {
         // console.log('Could not translate ' + s + ' with ' + c);

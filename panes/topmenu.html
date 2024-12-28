@@ -114,6 +114,7 @@ if($('#vboxPane').data('vboxSession').user) {
 				'name' : 'fileLogout',
 				// Pre-translated title to append username
 				'label' : trans('Log out - %1','VBoxSelectorWnd').replace('%1',$('#vboxPane').data('vboxSession').user),
+				language_context : 'IGNORE',
 				'icon' : 'exit',
 				'click': function() {
 					
