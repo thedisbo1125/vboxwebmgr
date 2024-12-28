@@ -228,7 +228,6 @@ $(vboxSettingsNetContainer).append(ul);
 
 for(var i = 0; i < parseInt($('#vboxPane').data('vboxConfig').nicMax); i++) {
 
-	
 	/* tab */
 	$(ul).append($('<li />').html('<a href="#' + vboxSettingsNetTemplate.id + (i + 1) +'"><span>' + trans('Adapter %1','VBoxGlobal').replace('%1',(i + 1)) + '</span></a>'));
 
