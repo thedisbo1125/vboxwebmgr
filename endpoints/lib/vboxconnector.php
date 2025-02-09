@@ -1860,20 +1860,20 @@ class vboxconnector {
 
 		$m->CPUCount = $args['CPUCount'];
 		$m->memorySize = $args['memorySize'];
-		$m->getFirmwareSettings()->firmwareType = $args['firmwareType'];
+		$m->FirmwareSettings->firmwareType = $args['firmwareType'];
 		if($args['chipsetType']) $m->Platform->chipsetType = $args['chipsetType'];
 		if($m->snapshotFolder != $args['snapshotFolder']) $m->snapshotFolder = $args['snapshotFolder'];
 		$m->Platform->RTCUseUTC = ($args['RTCUseUTC'] ? 1 : 0);
 
-		$m->Platform->getX86()->setCpuProperty('PAE', ($args['CpuProperties']['PAE'] ? 1 : 0));
-		$m->Platform->getX86()->setCpuProperty('HWVirt', ($args['CpuProperties']['HWVirt'] ? 1 : 0));
-		$m->Platform->getX86()->setCPUProperty('LongMode', (strpos($args['OSTypeId'],'_64') > - 1 ? 1 : 0));
+		$m->Platform->X86->setCpuProperty('PAE', ($args['CpuProperties']['PAE'] ? 1 : 0));
+		$m->Platform->X86->setCpuProperty('HWVirt', ($args['CpuProperties']['HWVirt'] ? 1 : 0));
+		$m->Platform->X86->setCPUProperty('LongMode', (strpos($args['OSTypeId'],'_64') > - 1 ? 1 : 0));
 
 		// IOAPIC
-		$m->getFirmwareSettings()->ACPIEnabled = ($args['BIOSSettings']['ACPIEnabled'] ? 1 : 0);
-		$m->getFirmwareSettings()->IOAPICEnabled = ($args['BIOSSettings']['IOAPICEnabled'] ? 1 : 0);
-		$m->getFirmwareSettings()->timeOffset = ($args['BIOSSettings']['timeOffset']);
-		$m->getFirmwareSettings()->LogoDisplayTime = ($args['BIOSSettings']['LogoDisplayTime']);
+		$m->FirmwareSettings->ACPIEnabled = ($args['BIOSSettings']['ACPIEnabled'] ? 1 : 0);
+		$m->FirmwareSettings->IOAPICEnabled = ($args['BIOSSettings']['IOAPICEnabled'] ? 1 : 0);
+		$m->FirmwareSettings->timeOffset = ($args['BIOSSettings']['timeOffset']);
+		$m->FirmwareSettings->LogoDisplayTime = ($args['BIOSSettings']['LogoDisplayTime']);
 		$m->CPUExecutionCap = $args['CPUExecutionCap'];
 
 		$m->description = $args['description'];
@@ -1922,10 +1922,10 @@ class vboxconnector {
 				$m->pageFusionEnabled = $args['pageFusionEnabled'];
 			}
 
-			$m->Platform->getX86()->HPETEnabled = $args['HPETEnabled'];
-			$m->Platform->getX86()->setHWVirtExProperty('LargePages', $args['HWVirtExProperties']['LargePages']);
-			$m->Platform->getX86()->setHWVirtExProperty('UnrestrictedExecution', $args['HWVirtExProperties']['UnrestrictedExecution']);
-			$m->Platform->getX86()->setHWVirtExProperty('VPID', $args['HWVirtExProperties']['VPID']);
+			$m->Platform->X86->HPETEnabled = $args['HPETEnabled'];
+			$m->Platform->X86->setHWVirtExProperty('LargePages', $args['HWVirtExProperties']['LargePages']);
+			$m->Platform->X86->setHWVirtExProperty('UnrestrictedExecution', $args['HWVirtExProperties']['UnrestrictedExecution']);
+			$m->Platform->X86->setHWVirtExProperty('VPID', $args['HWVirtExProperties']['VPID']);
 
 		}
 
