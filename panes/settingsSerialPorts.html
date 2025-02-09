@@ -58,7 +58,7 @@
  * Setup data for serial port options
  *
  */
-  
+
 var vboxSettingsSPortTemplate = document.getElementById('vboxSettingsTabSerialPort');
 var vboxSettingsSPortContainer = $(vboxSettingsSPortTemplate).parent();
 
@@ -67,6 +67,7 @@ for(var i = 0; i < document.forms['frmVboxSettings'].vboxSettingsPortNumber.opti
 	if($(document.forms['frmVboxSettings'].vboxSettingsPortNumber.options[i]).hasClass('translate'))
 		$(document.forms['frmVboxSettings'].vboxSettingsPortNumber.options[i]).text(trans(document.forms['frmVboxSettings'].vboxSettingsPortNumber.options[i].text,'VBoxGlobal')).removeClass('translate');
 }
+
 for(var i = 0; i < document.forms['frmVboxSettings'].vboxSettingsPortMode.options.length; i++) {
 	document.forms['frmVboxSettings'].vboxSettingsPortMode.options[i].text = trans(vboxSerialMode(document.forms['frmVboxSettings'].vboxSettingsPortMode.options[i].text),'VBoxGlobal');
 }
@@ -234,3 +235,4 @@ $('#vboxSettingsDialog').on('save',function(){
 
 
 </script>
+
