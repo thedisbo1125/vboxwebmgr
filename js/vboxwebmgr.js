@@ -1063,37 +1063,37 @@ var vboxVMDetailsSections = {
 		}
 	},
 
-	/*
-	 * Audio
-	 */
-	audio: {
-		title: 'Audio',
-		icon: 'sound_16px.png',
-		settingsLink: 'Audio',
-		rows: [
-			{
-			    title: "Disabled",
-			    language_context: ['VBoxGlobal', null, 'details report (audio)'],
-			    cssClass: 'vboxDetailsNone',
-			    condition: function(d) { return !d['audioAdapter']['enabled']; },
-			    data: ''
-		    },{
-		    	title: "Host Driver",
-		    	language_context: 'UIDetails',
-		    	callback: function(d) {
-		    		return trans(vboxAudioDriver(d['audioAdapter']['audioDriver']),'VBoxGlobal');
-		    	},
-		    	condition: function(d) { return d['audioAdapter']['enabled']; }
-		    },{
-		    	title: "Controller",
-		    	language_context: 'UIDetails',
-		    	callback: function (d) {
-		    		return trans(vboxAudioController(d['audioAdapter']['audioController']),'VBoxGlobal');
-		    	},
-		    	condition: function(d) { return d['audioAdapter']['enabled']; }
-		    }
-		]
-	},
+    /*
+     * Audio
+     */
+    audio: {
+        title: 'Audio',
+        icon: 'sound_16px.png',
+        settingsLink: 'Audio',
+        rows: [
+            {
+                title: "Disabled",
+                language_context: ['VBoxGlobal', null, 'details report (audio)'],
+                cssClass: 'vboxDetailsNone',
+                condition: function(d) { return !d['audioAdapter']['enabled']; },
+                data: ''
+            },{
+                title: "Host Driver",
+                language_context: 'UIDetails',
+                callback: function(d) {
+                    return trans(vboxAudioDriver(d['audioAdapter']['audioDriver']),'VBoxGlobal');
+                },
+                condition: function(d) { return d['audioAdapter']['enabled']; }
+            },{
+                title: "Controller",
+                language_context: 'UIDetails',
+                callback: function (d) {
+                    return trans(vboxAudioController(d['audioAdapter']['audioController']),'VBoxGlobal');
+                },
+                condition: function(d) { return d['audioAdapter']['enabled']; }
+            }
+        ]
+    },
 
 	/*
 	 * Network adapters
