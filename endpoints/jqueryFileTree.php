@@ -64,6 +64,7 @@ if($localbrowser) {
  * Compose allowed file types list
  */
 $allowed_exts = array();
+
 if(($request['allowedexts']) && count($request['allowedexts']) > 0){
     $allowed_exts = array();
     foreach ($request['allowedexts'] as $key => $value) {
