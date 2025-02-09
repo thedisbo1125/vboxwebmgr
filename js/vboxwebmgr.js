@@ -3958,12 +3958,14 @@ function vboxMediaMenu(type,callback,mediumPath) {
 
 				// choose hard disk
 				menus[menus.length] = {'name':'chooseD','icon':'select_file',
-					'label':'Choose a virtual hard disk file...',language_context:'UIMachineSettingsStorage'};
+					'label':'Choose a virtual hard disk file...',
+					language_context:'UIMachineSettingsStorage'};
 
 				// Add VMM?
 				if($('#vboxPane').data('vboxConfig').enableAdvancedConfig) {
 					menus[menus.length] = {'name':'vmm','icon':'diskimage',
-					'label':'Virtual Media Manager...',language_context: 'UIActionPool'};
+					'label':'Virtual Media Manager...',
+					language_context: 'UIActionPool'};
 				}
 
 				// recent list place holder
