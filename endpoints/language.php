@@ -36,6 +36,7 @@ if(isset($_GET['debug']) && $_GET['debug']) {
  * Dump in JavaScript
  */
 echo('var __vboxLangData = ' . json_encode(__vbox_language::$langdata) .";\n\nvar __vboxLangName = '".constant('VBOXLANG')."';\n\n");
+echo('var __debugLangTrans = ' . json_encode(__vbox_language::$debugLangTrans) .";\n");
 
 
 ?>
@@ -114,10 +115,16 @@ function transreal(w,context,number,comment) {
             return __vboxLangData['contexts'][context]['messages'][w][0]['translation'];
 
         } else {
+            if (__debugLangTrans) {
+                console.log(w + ';;;;;;' + context);
+            }
             return w;
         }
 
     } catch(err) {
+        if (__debugLangTrans) {
+            console.log(w + ';;;;;;' + context);
+        }
         // console.log(w + ' - ' + context + ': ' + err);
         return w;
     }

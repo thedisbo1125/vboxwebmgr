@@ -222,6 +222,11 @@ LPT support may or may not work for you.
  */
 #var $eventListenerTimeout = 20;
 
+/*
+ * Enable console output when langauge script cannot locate a translation.
+ */
+#var $debugLangTrans = true;
+
 /* END SETTINGS  */
 
 

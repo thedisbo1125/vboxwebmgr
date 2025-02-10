@@ -39,6 +39,8 @@ class __vbox_language {
 	 */
 	static $langdata = null;
 
+    static $debugLangTrans = false;
+
 	/**
 	 *
 	 * Constructor parses language file and stores translations.
@@ -51,6 +53,9 @@ class __vbox_language {
 		self::$langdata = array();
 
 		$settings = new vboxwebmgrConfigClass();
+
+        self::$debugLangTrans = $settings->debugLangTrans;
+
 		$lang = strtolower($settings->language);
 
 		if(@$_COOKIE['vboxLanguage']) {
