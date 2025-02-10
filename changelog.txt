@@ -1,4 +1,16 @@
 -------------------------------------
+    7.1-007  2025-02-19
+-------------------------------------
+
+- cleanup code spacing
+- update images for snapshots
+- fix disabling of Parallel Port settings on 2nd tab
+- fix "this._trackingInstances()[0] is undefined" error on loading dialog
+- change menu items to use language_context, was translating items twice
+- update WSDL and vboxServiceWrappers.php to version 7.1.6
+- add ability do debug langauge translations, output to console when translation is missing, setting added to config.php
+
+-------------------------------------
     7.1-006  2024-12-22
 -------------------------------------
 
