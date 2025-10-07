@@ -3585,14 +3585,12 @@ function vboxToolbarSmall(options) {
 					function(){if(!$(this).prop('disabled')){$(this).addClass('vboxToolbarSmallButtonHover').removeClass('vboxToolbarSmallButton');}},
 					function(){$(this).addClass('vboxToolbarSmallButton').removeClass('vboxToolbarSmallButtonHover');}
 			);
-
 		}
 
 		// Check for button specific CSS
 		if(self.buttonCSS[b.name]) btn.css(self.buttonCSS[b.name]);
 
 		return btn;
-
 	};
 
 	/**
@@ -3626,12 +3624,10 @@ function vboxToolbarSmall(options) {
 		$(targetElm).attr({'name':self.name}).addClass('vboxToolbarSmall vboxEnablerTrigger vboxToolbarSmall'+self.size).on('disable',self.disable).on('enable',self.enable);
 
 		return this;
-
 	};
 
    if(renderTo)
         this.renderTo(renderTo);
-
 }
 
 /**

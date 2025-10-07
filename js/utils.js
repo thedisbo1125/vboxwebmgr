@@ -1109,7 +1109,6 @@ function vboxProgressUpdate(prequest,d,modal) {
 
     });
     window.setTimeout(def.resolve, 2000);
-
 }
 
 
