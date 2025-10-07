@@ -341,9 +341,9 @@ var sButtons = new Array(
 			while($('#vboxSettingsGlobalNATNetList').find('td:contains("'+netName+'")').length) {
 				netName = netNameTpl + number++;
 			}
-			vboxSettingsGlobalNATNetworksAddNet({'enabled':false,'networkName':netName,'portForwardRules4':[],'portForwardRules6':[]});
-			
-
+			vboxSettingsGlobalNATNetworksAddNet({'enabled':false,
+				'networkName':netName,
+				'portForwardRules4':[],'portForwardRules6':[]});
 		}
 	},
 
