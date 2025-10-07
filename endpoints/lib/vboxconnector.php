@@ -172,16 +172,18 @@ class vboxconnector {
 			$this->settings->setServer($this->persistentRequest['vboxServer']);
 		}
 
+		// create array to connect to web service
+		$connectarray = array(
+			'location' => @$this->settings->location,
+			'features' => (SOAP_USE_XSI_ARRAY_TYPE + SOAP_SINGLE_ELEMENT_ARRAYS),
+			'cache_wsdl' => WSDL_CACHE_BOTH,
+			'trace' => (@$this->settings->debugSoap),
+			'connection_timeout' => (@$this->settings->connectionTimeout ? $this->settings->connectionTimeout : 20)
+		);
+
 		//Connect to webservice
 		$pvbxver = substr(@constant('VBOXWEBMGR_VER'),0,(strpos(@constant('VBOXWEBMGR_VER'),'-')));
-		$this->client = new SoapClient(dirname(__FILE__)."/vboxwebService-".$pvbxver.".wsdl",
-		    array(
-		    	'features' => (SOAP_USE_XSI_ARRAY_TYPE + SOAP_SINGLE_ELEMENT_ARRAYS),
-		        'cache_wsdl' => WSDL_CACHE_BOTH,
-		        'trace' => (@$this->settings->debugSoap),
-				'connection_timeout' => (@$this->settings->connectionTimeout ? $this->settings->connectionTimeout : 20),
-		        'location' => @$this->settings->location
-		    ));
+		$this->client = new SoapClient(dirname(__FILE__)."/vboxwebService-".$pvbxver.".wsdl",$connectarray);
 
 
 		// Persistent handles?
