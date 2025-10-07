@@ -2275,7 +2275,6 @@ class vboxconnector {
 		}
 
 		// USB Controllers
-
 		$usbEx = array();
 		$usbNew = array();
 
@@ -2302,7 +2301,6 @@ class vboxconnector {
 		}
 
 		// USB Filters
-
 		$deviceFilters = $this->_machineGetUSBDeviceFilters($this->session->machine);
 		if(!is_array($args['USBDeviceFilters'])) $args['USBDeviceFilters'] = array();
 
@@ -2359,15 +2357,14 @@ class vboxconnector {
 		if($m->name != $args['name']) {
 			$m->name = $args['name'];
 		}
-		$this->session->machine->saveSettings();
 
+		$this->session->machine->saveSettings();
 
 		$this->session->unlockMachine();
 		unset($this->session);
 		$machine->releaseRemote();
 
 		return true;
-
 	}
 
 	/**
