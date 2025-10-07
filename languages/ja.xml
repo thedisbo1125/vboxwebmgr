@@ -87,7 +87,7 @@
 		</message>
 	</context>
 	<context>
-		<name>VBoxSelectorWnd</name>
+		<name>UISelectorWnd</name>
 		<message>
 			<source>Change Password</source>
 			<translation>パスワードの変更</translation>

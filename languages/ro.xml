@@ -101,7 +101,7 @@
 		</message>
 	</context>
 	<context>
-		<name>VBoxSelectorWnd</name>
+		<name>UISelectorWnd</name>
 		<message>
 			<source>Change Password</source>
 			<translation>Schimba parola</translation>

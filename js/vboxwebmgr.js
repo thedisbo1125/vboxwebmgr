@@ -2287,7 +2287,7 @@ var vboxVMActions = {
 	stop: {
 		name: 'stop',
 		label: 'Stop',
-		language_context: 'VBoxSelectorWnd',
+		language_context: 'UISelectorWnd',
 		icon: 'vm_shutdown',
 		menu: true,
 		click: function () { return true; /* handled by stop context menu */ },
