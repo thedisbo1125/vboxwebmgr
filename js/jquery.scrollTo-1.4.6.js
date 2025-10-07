@@ -1,13 +1,13 @@
 /*!
  * jQuery.ScrollTo
- * Copyright (c) 2007-2012 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
+ * Copyright (c) 2007-2013 Ariel Flesler - aflesler<a>gmail<d>com | http://flesler.blogspot.com
  * Dual licensed under MIT and GPL.
- * Date: 4/09/2012
+ * Date: 5/26/2013
  *
  * @projectDescription Easy element scrolling using jQuery.
  * http://flesler.blogspot.com/2007/10/jqueryscrollto.html
  * @author Ariel Flesler
- * @version 1.4.4
+ * @version 1.4.6
  *
  * @id jQuery.scrollTo
  * @id jQuery.fn.scrollTo
@@ -77,7 +77,7 @@
 			var elem = this,
 				isWin = !elem.nodeName || $.inArray( elem.nodeName.toLowerCase(), ['iframe','#document','html','body'] ) != -1;
 
-				if (!isWin)
+				if(!isWin)
 					return elem;
 
 			var doc = (elem.contentWindow || elem).document || elem.ownerDocument || elem;
@@ -89,14 +89,14 @@
 	};
 
 	$.fn.scrollTo = function( target, duration, settings ) {
-		if (typeof duration == 'object') {
+		if(typeof duration == 'object') {
 			settings = duration;
 			duration = 0;
 		}
-		if (typeof settings == 'function')
+		if(typeof settings == 'function')
 			settings = { onAfter:settings };
 
-		if (target == 'max')
+		if(target == 'max')
 			target = 9e9;
 
 		settings = $.extend( {}, $scrollTo.defaults, settings );
@@ -105,7 +105,7 @@
 		// Make sure the settings are given right
 		settings.queue = settings.queue && settings.axis.length > 1;
 
-		if (settings.queue)
+		if(settings.queue)
 			// Let's keep the overall duration
 			duration /= 2;
 		settings.offset = both( settings.offset );
@@ -113,28 +113,28 @@
 
 		return this._scrollable().each(function() {
 			// Null target yields nothing, just like jQuery does
-			if (target == null) return;
+			if(target == null) return;
 
 			var elem = this,
 				$elem = $(elem),
 				targ = target, toff, attr = {},
 				win = $elem.is('html,body');
 
-			switch (typeof targ) {
+			switch(typeof targ) {
 				// A number will pass the regex
 				case 'number':
 				case 'string':
-					if (/^([+-]=)?\d+(\.\d+)?(px|%)?$/.test(targ)) {
+					if(/^([+-]=?)?\d+(\.\d+)?(px|%)?$/.test(targ)) {
 						targ = both( targ );
 						// We are done
 						break;
 					}
 					// Relative selector, no break!
 					targ = $(targ,this);
-					if (!targ.length) return;
+					if(!targ.length) return;
 				case 'object':
 					// DOMElement / jQuery
-					if (targ.is || targ.style)
+					if(targ.is || targ.style)
 						// Get the real position of the target
 						toff = (targ = $(targ)).offset();
 			}
@@ -145,11 +145,12 @@
 					old = elem[key],
 					max = $scrollTo.max(elem, axis);
 
-				if (toff) {// jQuery / DOMElement
+				if(toff) {
+					// jQuery / DOMElement
 					attr[key] = toff[pos] + ( win ? 0 : old - $elem.offset()[pos] );
 
 					// If it's a dom element, reduce the margin
-					if (settings.margin) {
+					if(settings.margin) {
 						attr[key] -= parseInt(targ.css('margin'+Pos)) || 0;
 						attr[key] -= parseInt(targ.css('border'+Pos+'Width')) || 0;
 					}
@@ -168,14 +169,14 @@
 				}
 
 				// Number or 'number'
-				if (settings.limit && /^\d+$/.test(attr[key]))
+				if(settings.limit && /^\d+$/.test(attr[key]))
 					// Check the limits
 					attr[key] = attr[key] <= 0 ? 0 : Math.min( attr[key], max );
 
 				// Queueing axes
-				if (!i && settings.queue) {
+				if(!i && settings.queue) {
 					// Don't waste time animating, if there's no need.
-					if (old != attr[key])
+					if(old != attr[key])
 						// Intermediate animation
 						animate( settings.onAfterFirst );
 					// Don't animate this axis again in the next iteration.
@@ -187,7 +188,7 @@
 
 			function animate( callback ) {
 				$elem.animate( attr, duration, settings.easing, callback && function() {
-					callback.call(this, target, settings);
+					callback.call(this, targ, settings);
 				});
 			};
 
@@ -200,7 +201,7 @@
 		var Dim = axis == 'x' ? 'Width' : 'Height',
 			scroll = 'scroll'+Dim;
 
-		if (!$(elem).is('html,body'))
+		if(!$(elem).is('html,body'))
 			return elem[scroll] - $(elem)[Dim.toLowerCase()]();
 
 		var size = 'client' + Dim,
@@ -211,7 +212,7 @@
 			 - Math.min( html[size]  , body[size]   );
 	};
 
-	function both( val ) {
+	function both(val) {
 		return typeof val == 'object' ? val : { top:val, left:val };
 	};
 
