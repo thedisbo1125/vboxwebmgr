@@ -246,6 +246,7 @@ var vboxDefaultOSTypeId = 'Debian';
 
 var myOSType = $('#vboxSettingsDialog').data('vboxMachineData').OSTypeId;
 var dosfam = null; // holds defaultostype family id
+
 for(var i in vboxOSTypes) {
 
     // Only ostypes supported by this install
@@ -272,6 +273,7 @@ for(var i in vboxOSTypes) {
     vboxOSTypes[i].icon.src = "images/vbox/" + vboxGuestOSTypeIcon(vboxOSTypes[i].id);
 
 }
+
 // clear all options
 document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily.options.length = 0;
 $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily).children().remove();
