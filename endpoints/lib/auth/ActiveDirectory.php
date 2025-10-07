@@ -101,7 +101,7 @@ class vboxwebmgrAuthActiveDirectory implements vboxwebmgrAuth {
 				$this->config['container'] . ',DC=' . join(',DC=', explode('.', $this->config['domain'])),
 				$filter, array("memberof","useraccountcontrol"));
 
-		if(!result) throw new Exception ("Unable to search Active Directory server: " . ldap_error($auth));
+		if(!$result) throw new Exception ("Unable to search Active Directory server: " . ldap_error($auth));
 		@list($entries) = @ldap_get_entries($auth, $result);
 		@ldap_unbind($auth);
 		if(!$entries) {
