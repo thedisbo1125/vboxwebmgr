@@ -54,7 +54,7 @@
 	</tr>
 	<tr>
 		<th></th>
-		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsDisplay2d' /> <span class='translate'>Enable 2D Video Acceleration</span></label></td>
+		<td><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsDisplay2d' /> <span class='translate' id='vboxSettingsDisplay2dspanid'>Enable 2D Video Acceleration</span></label></td>
 	</tr>
 </table>
 </div>
@@ -396,8 +396,15 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 	$(document.forms['frmVboxSettings'].vboxSettingsGraphicsController).val($('#vboxSettingsDialog').data('vboxMachineData').graphicsControllerType);
 
 	document.forms['frmVboxSettings'].vboxSettingsDisplay3d.checked = ($('#vboxSettingsDialog').data('vboxMachineData').accelerate3DEnabled);
-	document.forms['frmVboxSettings'].vboxSettingsDisplay2d.checked = ($('#vboxSettingsDialog').data('vboxMachineData').accelerate2DVideoEnabled);
-	document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEVideoRedirectID.checked = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.videoredirenabled;
+
+	// accelerate2DVideoEnabled was removed in Virtualbox 7.2
+	if ($('#vboxSettingsDialog').data('vboxMachineData').vboxver < "07.02.00") {
+		document.forms['frmVboxSettings'].vboxSettingsDisplay2d.checked = ($('#vboxSettingsDialog').data('vboxMachineData').accelerate2DVideoEnabled);
+	} else {
+		document.forms['frmVboxSettings'].vboxSettingsDisplay2d.style.display = 'none';
+		document.getElementById("vboxSettingsDisplay2dspanid").style.display = 'none';
+	}
+
 	if($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.videoredirquality != '') {
 		document.forms['frmVboxSettings'].vboxSettingsDisplayRDPVRQualityID.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.videoredirquality;
 	}
@@ -419,12 +426,15 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 			$(document.forms['frmVboxSettings'].vboxSettingsDisplay3d).removeClass('disabled').prop('disabled', false)
 			 .parent().removeClass('disabled');
 		}
-		if(!$('#vboxSettingsDialog').data('vboxHostDetails').acceleration2DVideoAvailable) {
-			$(document.forms['frmVboxSettings'].vboxSettingsDisplay2d).addClass('disabled').prop('disabled', true)
-				.parent().addClass('disabled').prop('title', '2D Video acceleration not supported by hardware');
-		} else {
-			$(document.forms['frmVboxSettings'].vboxSettingsDisplay2d).removeClass('disabled').prop('disabled', false)
-				.parent().removeClass('disabled');
+
+		if ($('#vboxSettingsDialog').data('vboxMachineData').vboxver < "07.02.00") {
+			if(!$('#vboxSettingsDialog').data('vboxHostDetails').acceleration2DVideoAvailable) {
+				$(document.forms['frmVboxSettings'].vboxSettingsDisplay2d).addClass('disabled').prop('disabled', true)
+					.parent().addClass('disabled').prop('title', trans('2D Video acceleration not supported by hardware','UIMachineSettingsDisplay'));
+			} else {
+				$(document.forms['frmVboxSettings'].vboxSettingsDisplay2d).removeClass('disabled').prop('disabled', false)
+					.parent().removeClass('disabled');
+			}
 		}
 	}
 	
@@ -533,7 +543,9 @@ $('#vboxSettingsDialog').on('save',function(){
 	$('#vboxSettingsDialog').data('vboxMachineData').graphicsControllerType = $(document.forms['frmVboxSettings'].vboxSettingsGraphicsController).val();
 
 	$('#vboxSettingsDialog').data('vboxMachineData').accelerate3DEnabled = document.forms['frmVboxSettings'].vboxSettingsDisplay3d.checked;
-	$('#vboxSettingsDialog').data('vboxMachineData').accelerate2DVideoEnabled = document.forms['frmVboxSettings'].vboxSettingsDisplay2d.checked;
+	if ($('#vboxSettingsDialog').data('vboxMachineData').vboxver < "07.02.00") {
+		$('#vboxSettingsDialog').data('vboxMachineData').accelerate2DVideoEnabled = document.forms['frmVboxSettings'].vboxSettingsDisplay2d.checked;
+	}
 
 	if($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer && $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.VRDEExtPack) {
 		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.ports = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEPort.value;
