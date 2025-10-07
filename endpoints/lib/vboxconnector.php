@@ -258,6 +258,13 @@ class vboxconnector {
 				'revision' => (string)$this->vbox->revision,
 				'settingsFilePath' => $this->vbox->settingsFilePath
 			);
+
+			$compstr = str_pad($this->version['major'], 2, '0', STR_PAD_LEFT).'.'.
+				str_pad($this->version['minor'], 2, '0', STR_PAD_LEFT).'.'.
+				str_pad($this->version['sub'], 2, '0', STR_PAD_LEFT);
+
+			$this->version['compstring'] = $compstr;
+
 		}
 
 		return $this->version;
@@ -1836,6 +1843,9 @@ class vboxconnector {
 		/* @var $m IMachine */
 		$m = $this->session->machine;
 
+		$this->getVersion();
+		$version = $this->version['major'].'.'.$this->version['minor'];
+
 		// General machine settings
 		if (@$this->settings->enforceVMOwnership ) {
 
@@ -1919,7 +1929,10 @@ class vboxconnector {
 
 			if($this->vbox->host->getProcessorFeature('LongMode')) {
 
-				$m->pageFusionEnabled = $args['pageFusionEnabled'];
+				// Page Fusion not working in VirtualBox 7.2
+				if($version == "7.1") {
+					$m->pageFusionEnabled = $args['pageFusionEnabled'];
+				}
 			}
 
 			$m->Platform->X86->HPETEnabled = $args['HPETEnabled'];
@@ -1941,8 +1954,13 @@ class vboxconnector {
 		}
 
 		// Video
-		$m->GraphicsAdapter->setFeature(2,$args['accelerate3DEnabled']);
-		$m->GraphicsAdapter->setFeature(1,$args['accelerate2DVideoEnabled']);
+		//     "accelerate2DVideoEnabled" setting was removed in VirtualBox 7.2
+		if ($version == "7.1") {
+			$m->GraphicsAdapter->setFeature(1,$args['accelerate2DVideoEnabled']);
+			$m->GraphicsAdapter->setFeature(2,$args['accelerate3DEnabled']);
+		} else {
+			$m->GraphicsAdapter->setFeature(1,$args['accelerate3DEnabled']);
+		}
 
 		// VRDE settings
 		try {
@@ -4403,11 +4421,15 @@ class vboxconnector {
 
 		usort($groups, 'strnatcasecmp');
 
-		return array(
+		$this->getVersion();
+		$version = $this->version['major'].'.'.$this->version['minor'];
+
+		$response = array(
 			'name' => @$this->settings->enforceVMOwnership ? preg_replace('/^' . preg_quote($_SESSION['user']) . '_/', '', $m->name) : $m->name,
 			'description' => $m->description,
 			'groups' => $groups,
 			'id' => $m->id,
+			'vboxver' => $this->version['compstring'],
 			'autostopType' => ($this->settings->vboxAutostartConfig ? (string)$m->autostopType : ''),
 			'autostartEnabled' => ($this->settings->vboxAutostartConfig && $m->autostartEnabled),
 			'autostartDelay' => ($this->settings->vboxAutostartConfig ? intval($m->autostartDelay) : '0'),
@@ -4422,8 +4444,12 @@ class vboxconnector {
 			'graphicsControllerType' => (string)$m->GraphicsAdapter->graphicsControllerType,
 			'pointingHIDType' => (string)$m->pointingHIDType,
 			'keyboardHIDType' => (string)$m->keyboardHIDType,
-			'accelerate3DEnabled' => $m->GraphicsAdapter->isFeatureEnabled(2),
-			'accelerate2DVideoEnabled' => $m->GraphicsAdapter->isFeatureEnabled(1),
+
+			// # used for "accelerate3DEnabled" changed from 2 to 1 in version 7.2
+			'accelerate3DEnabled' => ($version == '7.1' ?
+				$m->GraphicsAdapter->isFeatureEnabled(2) :
+				$m->GraphicsAdapter->isFeatureEnabled(1)),
+
 			'BIOSSettings' => array(
 				'ACPIEnabled' => $m->getFirmwareSettings()->ACPIEnabled,
 				'IOAPICEnabled' => $m->getFirmwareSettings()->IOAPICEnabled,
@@ -4481,6 +4507,13 @@ class vboxconnector {
 			'CPUExecutionCap' => $m->CPUExecutionCap,
 			'defaultMachineFolder' => $this->vbox->systemProperties->defaultMachineFolder
 		);
+
+		// "accelerate2DVideoEnabled" setting was removed in version 7.2
+		if ($version == '7.1') {
+			$response['accelerate2DVideoEnabled'] = $m->GraphicsAdapter->isFeatureEnabled(1);
+		}
+
+		return $response;
 
 	}
 

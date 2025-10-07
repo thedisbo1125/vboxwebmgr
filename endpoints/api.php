@@ -86,6 +86,7 @@ try {
             $response['data']['responseData']['host'] = parse_url($response['data']['responseData']['location']);
             $response['data']['responseData']['host'] = $response['data']['responseData']['host']['host'];
             $response['data']['responseData']['vboxwebmgr'] = @constant('VBOXWEBMGR_VER');
+            $response['data']['responseData']['vboxsuppvers'] = array('vers'=>@constant('VIRTUALBOX_SUPPORTED_VERS'));
 
             // Session
             session_init();

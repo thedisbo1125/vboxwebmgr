@@ -18,6 +18,16 @@
  */
 define('VBOXWEBMGR_VER','7.1-0');
 
+/*
+ * Supported versions of Virtualbox
+ */
+
+define('VIRTUALBOX_SUPPORTED_VERS', array(
+    '7.1',
+    '7.2'
+));
+
+
 class vboxwebmgrConfigClass {
 
 	/* DEFAULTS */

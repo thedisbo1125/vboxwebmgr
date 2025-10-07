@@ -719,7 +719,8 @@ var vboxChooser = {
 				vboxChooser._versionChecked = true;
 				var vStr = $('#vboxPane').data('vboxConfig').vboxwebmgr.substring(0,$('#vboxPane').data('vboxConfig').vboxwebmgr.indexOf('-'));
 				var vers = $('#vboxPane').data('vboxConfig').version.string.replace('_OSE','').split('.');
-				if(vers[0]+'.'+vers[1] != vStr) {
+
+				if ($('#vboxPane').data('vboxConfig').vboxsuppvers.vers.includes(vers[0]+'.'+vers[1]) == false) {
 					vboxAlert('This version of VirtualBox Web Manager ('+$('#vboxPane').data('vboxConfig').vboxwebmgr+') is incompatible with VirtualBox ' + $('#vboxPane').data('vboxConfig').version.string + ". You probably need to <a href='https://github.com/thedisbo1125/vboxwebmgr/' target=_blank>download the latest vboxwebmgr " + vers[0]+'.'+vers[1] + "-x</a>.<p>See the Versioning section below the file list in the link for more information</p>",{'width':'auto'});
 				}
 			}
