@@ -268,7 +268,6 @@ class vboxconnector {
 		}
 
 		return $this->version;
-
 	}
 
 	/**
