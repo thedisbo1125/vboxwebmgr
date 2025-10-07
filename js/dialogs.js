@@ -257,6 +257,7 @@ function vboxWizardExportApplianceDialog() {
                     vboxExportApp(1);
                     $(this).empty().remove();
                 };
+
                 vboxConfirm(trans('A file named <b>%1</b> already exists. Are you sure you want to replace it?<br /><br />Replacing it will overwrite its contents.','UIMessageCenter').replace('%1',vboxBasename(loc)),buttons,trans('No','QIMessageBox'));
                 return;
             }
