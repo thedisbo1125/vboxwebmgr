@@ -624,16 +624,18 @@ function vboxAlert(e,xtraOpts) {
  * @return {HTMLNode}
  * @see jQuery.dialog()
  */
-function vboxConfirm(q,buttons,cancelText,onCancel) {
+function vboxConfirm(q,buttons,cancelText,onCancel,minWidth,minHeight) {
 
     var div = $('<div />').attr({'class':'vboxDialogContent','style':'display: none; width: 500px;'}).html('<img src="images/50px-Question_icon.svg.png" style="height: 50px; width: 50px; float: left; padding: 10px;" height="50" width="50" />'+q);
 
     if(!cancelText) cancelText = trans('Cancel','QIMessageBox');
+    if(!minWidth) minWidth = 500;
+    if(!minHeight) minHeight = 200;
 
     buttons[cancelText] = function() { $(this).remove(); if(onCancel) { onCancel(); }};
 
     $(div).dialog({'closeOnEscape':false,
-		'width':500,'height':'auto','minWidth':500, minHeight: 200,
+		'width':500,'height':'auto','minWidth':minWidth, minHeight: minHeight,
 		'buttons':buttons,'modal':true,
 		'autoOpen':true,'dialogClass':'vboxDialogContent',
 		'title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});
