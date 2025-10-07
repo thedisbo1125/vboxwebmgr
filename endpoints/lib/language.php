@@ -101,7 +101,7 @@ class __vbox_language {
 		       $lang['contexts'][$c['name']]['messages'][$s] = $m;
 	    	}
 		}
-		self::$langdata = array_merge_recursive(self::$langdata, $lang);
+		self::$langdata = array_replace_recursive(self::$langdata, $lang);
 	}
 
 	/**
