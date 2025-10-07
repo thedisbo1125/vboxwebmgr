@@ -19,7 +19,7 @@
 - additional changes to support jquery-ui version 1.12.1
 - adjust spacing of get directory buttons
 - switch from minimized jquery.scrollTo while working on upgrading version
-- add popup message to 2D acceleration checkboxe when not supported by hardware
+- add popup message to 2D acceleration checkbox when not supported by hardware
 - fix display of select elements
 - fix setting USB controller type
 - add ability to change PKI certificate used for RDP on VMs
