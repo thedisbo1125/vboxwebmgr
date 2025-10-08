@@ -1,4 +1,21 @@
 -------------------------------------
+    7.1-008  2025-10-07
+-------------------------------------
+
+- cleanup code spacing
+- separate array for web service connection from new SoapClient call
+- update jquery-ui.css
+- fix missing $ in variable, ActiveDirectory.php
+- add ability to set minimum width and height to confirmation dialog
+- fix issue of invalid settings when adding new NAT network
+- fix issue if translation was in both files, would be in array twice and not translate
+- fix code of jquery.tipped and upgrade version, project is archived on google code so expect no official future versions
+- update jquery.scrollTo to version 1.4.6
+- update jquery to version 1.11.3
+- update language tag
+- initial changes to support VirtualBox 7.2.x
+
+-------------------------------------
     7.1-007  2025-02-19
 -------------------------------------
 
