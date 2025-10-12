@@ -5067,7 +5067,10 @@ function vboxNetworkAdapterType(t) {
 		case 'WD8003': return 'WD EtherCard Plus (WD8013E)';
 		case 'ELNK2': return '3Com EtherLink II (3C503)';
 		case 'ELNK1': return '3Com EtherLink (3C501)';
+		case 'UsbNet': return 'Ethernet over USB (usbnet)';
+		case 'I82583V': return 'Intel 82583V Gigabit Network Connection [EXPERIMENTAL]';
 	}
+	return 'unknown';
 }
 
 /**
