@@ -38,9 +38,20 @@ function vboxWizardImportApplianceDialog() {
         }
     ];
 
+
+    /* Get VirtualBox Version NUmber */
+    var vers = $('#vboxPane').data('vboxConfig').version.string.replace('_OSE','').split('.');
+    var version = vers[0]+'.'+vers[1];
+    var subversion = vers[2];
+
     /* Data to be loaded */
     this.data = [
-        {'fn':'vboxGetEnumerationMap','args':{'class':'NetworkAdapterType'},'callback':function(d){$('#vboxPane').data('vboxNetworkAdapterTypes',d.responseData);}},
+        (version == '7.1' ? {'fn':'vboxGetEnumerationMap','args':{'class':'NetworkAdapterType71'},'callback':function(d){$('#vboxPane').data('vboxNetworkAdapterTypes',d.responseData);}} :
+            (subversion == '0' ?
+                {'fn':'vboxGetEnumerationMap','args':{'class':'NetworkAdapterType72'},'callback':function(d){$('#vboxPane').data('vboxNetworkAdapterTypes',d.responseData);}} :
+                {'fn':'vboxGetEnumerationMap','args':{'class':'NetworkAdapterType'},'callback':function(d){$('#vboxPane').data('vboxNetworkAdapterTypes',d.responseData);}}
+            )
+        ),
         {'fn':'vboxGetEnumerationMap','args':{'class':'AudioControllerType'},'callback':function(d){$('#vboxPane').data('vboxAudioControllerTypes',d.responseData);}},
     ];
 
@@ -1240,6 +1251,12 @@ function vboxVMsettingsDialog(vm,pane) {
 
     $.when(vboxVMDataMediator.getVMDataCombined(vm.id)).done(function(vmData) {
 
+        /*
+         * Get VirtualBox Version NUmber
+         */
+        var vers = $('#vboxPane').data('vboxConfig').version.string.replace('_OSE','').split('.');
+        var version = vers[0] + '.'+vers[1];
+        var subversion = vers[2];
 
         /*
          * Settings dialog data
@@ -1257,8 +1274,12 @@ function vboxVMsettingsDialog(vm,pane) {
             {'fn':'getNetworking','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworking',d.responseData);}},
             {'fn':'hostGetDetails','callback':function(d){$('#vboxSettingsDialog').data('vboxHostDetails',d.responseData);}},
             {'fn':'vboxNetworkInterfaceLimitsGet','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkLimits',d.responseData);}},
-            {'fn':'vboxGetEnumerationMap','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkAdapterTypes',d.responseData);},'args':{'class':'NetworkAdapterType'}},
-            {'fn':'vboxGetEnumerationMap','callback':function(d){$('#vboxSettingsDialog').data('vboxAudioControllerTypes',d.responseData);},'args':{'class':'AudioControllerType'}},
+            (version == '7.1' ? {'fn':'vboxGetEnumerationMap','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkAdapterTypes',d.responseData);},'args':{'class':'NetworkAdapterType71'}} :
+                (subversion == '0' ?
+                    {'fn':'vboxGetEnumerationMap','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkAdapterTypes',d.responseData);},'args':{'class':'NetworkAdapterType72'}} :
+                    {'fn':'vboxGetEnumerationMap','callback':function(d){$('#vboxSettingsDialog').data('vboxNetworkAdapterTypes',d.responseData);},'args':{'class':'NetworkAdapterType'}}
+                )
+            ),
             {'fn':'vboxRecentMediaGet','callback':function(d){$('#vboxPane').data('vboxRecentMedia',d.responseData);}},
             {'fn':'consoleGetSharedFolders','callback':function(d){$('#vboxSettingsDialog').data('vboxTransientSharedFolders',d.responseData);},'args':{'vm':vm.id}}
         );
