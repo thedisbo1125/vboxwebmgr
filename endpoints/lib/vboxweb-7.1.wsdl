@@ -43,6 +43,7 @@
             v1_18: 20 -
             v1_19: 21 -
             v1_20: 22 -
+            v1_21: 23 -
             Future: 99999 -
             -->
       <xsd:simpleType name="SettingsVersion">
@@ -70,6 +71,7 @@
           <xsd:enumeration value="v1_18"/>
           <xsd:enumeration value="v1_19"/>
           <xsd:enumeration value="v1_20"/>
+          <xsd:enumeration value="v1_21"/>
           <xsd:enumeration value="Future"/>
         </xsd:restriction>
       </xsd:simpleType>
@@ -1102,6 +1104,7 @@
             CloudImageFreeFormTags: 56 -
             HardDiskControllerVirtioSCSI: 60 -
             HardDiskControllerNVMe: 61 -
+            NVRAM: 0x8000 -
             -->
       <xsd:simpleType name="VirtualSystemDescriptionType">
         <xsd:restriction base="xsd:string">
@@ -1163,6 +1166,7 @@
           <xsd:enumeration value="CloudImageFreeFormTags"/>
           <xsd:enumeration value="HardDiskControllerVirtioSCSI"/>
           <xsd:enumeration value="HardDiskControllerNVMe"/>
+          <xsd:enumeration value="NVRAM"/>
         </xsd:restriction>
       </xsd:simpleType>
       <!-- enum: VirtualSystemDescriptionValueType -
@@ -2458,6 +2462,8 @@
             WD8003: 11 -
             ELNK2: 12 -
             ELNK1: 13 -
+            UsbNet: 14 -
+            I82583V: 15 -
             -->
       <xsd:simpleType name="NetworkAdapterType">
         <xsd:restriction base="xsd:string">
@@ -2475,6 +2481,8 @@
           <xsd:enumeration value="WD8003"/>
           <xsd:enumeration value="ELNK2"/>
           <xsd:enumeration value="ELNK1"/>
+          <xsd:enumeration value="UsbNet"/>
+          <xsd:enumeration value="I82583V"/>
         </xsd:restriction>
       </xsd:simpleType>
       <!-- enum: NetworkAdapterPromiscModePolicy -

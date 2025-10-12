@@ -22380,8 +22380,8 @@ class IMediumAttachmentCollection extends VBox_StructCollection
  */
 class SettingsVersion extends VBox_Enum
 {
-    public $NameMap = array(0 => 'Null', 1 => 'v1_0', 2 => 'v1_1', 3 => 'v1_2', 4 => 'v1_3pre', 5 => 'v1_3', 6 => 'v1_4', 7 => 'v1_5', 8 => 'v1_6', 9 => 'v1_7', 10 => 'v1_8', 11 => 'v1_9', 12 => 'v1_10', 13 => 'v1_11', 14 => 'v1_12', 15 => 'v1_13', 16 => 'v1_14', 17 => 'v1_15', 18 => 'v1_16', 19 => 'v1_17', 20 => 'v1_18', 21 => 'v1_19', 22 => 'v1_20', 99999 => 'Future');
-    public $ValueMap = array('Null' => 0, 'v1_0' => 1, 'v1_1' => 2, 'v1_2' => 3, 'v1_3pre' => 4, 'v1_3' => 5, 'v1_4' => 6, 'v1_5' => 7, 'v1_6' => 8, 'v1_7' => 9, 'v1_8' => 10, 'v1_9' => 11, 'v1_10' => 12, 'v1_11' => 13, 'v1_12' => 14, 'v1_13' => 15, 'v1_14' => 16, 'v1_15' => 17, 'v1_16' => 18, 'v1_17' => 19, 'v1_18' => 20, 'v1_19' => 21, 'v1_20' => 22, 'Future' => 99999);
+    public $NameMap = array(0 => 'Null', 1 => 'v1_0', 2 => 'v1_1', 3 => 'v1_2', 4 => 'v1_3pre', 5 => 'v1_3', 6 => 'v1_4', 7 => 'v1_5', 8 => 'v1_6', 9 => 'v1_7', 10 => 'v1_8', 11 => 'v1_9', 12 => 'v1_10', 13 => 'v1_11', 14 => 'v1_12', 15 => 'v1_13', 16 => 'v1_14', 17 => 'v1_15', 18 => 'v1_16', 19 => 'v1_17', 20 => 'v1_18', 21 => 'v1_19', 22 => 'v1_20', 23 => 'v1_21', 99999 => 'Future');
+    public $ValueMap = array('Null' => 0, 'v1_0' => 1, 'v1_1' => 2, 'v1_2' => 3, 'v1_3pre' => 4, 'v1_3' => 5, 'v1_4' => 6, 'v1_5' => 7, 'v1_6' => 8, 'v1_7' => 9, 'v1_8' => 10, 'v1_9' => 11, 'v1_10' => 12, 'v1_11' => 13, 'v1_12' => 14, 'v1_13' => 15, 'v1_14' => 16, 'v1_15' => 17, 'v1_16' => 18, 'v1_17' => 19, 'v1_18' => 20, 'v1_19' => 21, 'v1_20' => 22, 'v1_21' => 23, 'Future' => 99999);
 }
 
 /**
@@ -24282,10 +24282,44 @@ class NetworkAttachmentTypeCollection extends VBox_EnumCollection
 /**
  * Generated VBoxWebService ENUM
  */
-class NetworkAdapterType extends VBox_Enum
+class NetworkAdapterType71 extends VBox_Enum
 {
     public $NameMap = array(0 => 'Null', 1 => 'Am79C970A', 2 => 'Am79C973', 3 => 'I82540EM', 4 => 'I82543GC', 5 => 'I82545EM', 6 => 'Virtio', 7 => 'Am79C960', 8 => 'NE2000', 9 => 'NE1000', 10 => 'WD8013', 11 => 'WD8003', 12 => 'ELNK2', 13 => 'ELNK1');
     public $ValueMap = array('Null' => 0, 'Am79C970A' => 1, 'Am79C973' => 2, 'I82540EM' => 3, 'I82543GC' => 4, 'I82545EM' => 5, 'Virtio' => 6, 'Am79C960' => 7, 'NE2000' => 8, 'NE1000' => 9, 'WD8013' => 10, 'WD8003' => 11, 'ELNK2' => 12, 'ELNK1' => 13);
+}
+
+/**
+ * Generated VBoxWebService Enum Collection
+ */
+class NetworkAdapterTypeCollection71 extends VBox_EnumCollection
+{
+    protected $_interfaceName = "NetworkAdapterType71";
+}
+
+/**
+ * Generated VBoxWebService ENUM
+ */
+class NetworkAdapterType72 extends VBox_Enum
+{
+    public $NameMap = array(0 => 'Null', 1 => 'Am79C970A', 2 => 'Am79C973', 3 => 'I82540EM', 4 => 'I82543GC', 5 => 'I82545EM', 6 => 'Virtio', 7 => 'Am79C960', 8 => 'NE2000', 9 => 'NE1000', 10 => 'WD8013', 11 => 'WD8003', 12 => 'ELNK2', 13 => 'ELNK1', 14 => 'UsbNet');
+    public $ValueMap = array('Null' => 0, 'Am79C970A' => 1, 'Am79C973' => 2, 'I82540EM' => 3, 'I82543GC' => 4, 'I82545EM' => 5, 'Virtio' => 6, 'Am79C960' => 7, 'NE2000' => 8, 'NE1000' => 9, 'WD8013' => 10, 'WD8003' => 11, 'ELNK2' => 12, 'ELNK1' => 13, 'UsbNet' => 14);
+}
+
+/**
+ * Generated VBoxWebService Enum Collection
+ */
+class NetworkAdapterTypeCollection72 extends VBox_EnumCollection
+{
+    protected $_interfaceName = "NetworkAdapterType72";
+}
+
+/**
+ * Generated VBoxWebService ENUM
+ */
+class NetworkAdapterType extends VBox_Enum
+{
+    public $NameMap = array(0 => 'Null', 1 => 'Am79C970A', 2 => 'Am79C973', 3 => 'I82540EM', 4 => 'I82543GC', 5 => 'I82545EM', 6 => 'Virtio', 7 => 'Am79C960', 8 => 'NE2000', 9 => 'NE1000', 10 => 'WD8013', 11 => 'WD8003', 12 => 'ELNK2', 13 => 'ELNK1', 14 => 'UsbNet', 15 => 'I82583V');
+    public $ValueMap = array('Null' => 0, 'Am79C970A' => 1, 'Am79C973' => 2, 'I82540EM' => 3, 'I82543GC' => 4, 'I82545EM' => 5, 'Virtio' => 6, 'Am79C960' => 7, 'NE2000' => 8, 'NE1000' => 9, 'WD8013' => 10, 'WD8003' => 11, 'ELNK2' => 12, 'ELNK1' => 13, 'UsbNet' => 14, 'I82583V' => 15);
 }
 
 /**
