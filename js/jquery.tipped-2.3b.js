@@ -24,44 +24,48 @@
  *
  * Compatibility: Tested with jQuery 1.4.2+, though it should work with 1.3.x
  *
+ * v2.3b	- Fix issue where class used to track if tip should be shown when delayed (ui-state-hover) was causing problem
+			where tip didn't display and object messed up on hover images
+		- Fix issue where moving between two objects that were supposed to show tips would have tip from one not close and 
+			next object wouldn't show it's tip
  * v2.3a	- Fix issue where tip would jump around if mouse moved over object
  * v2.3		- Fixed issue where if tip display was delayed, would appear even if mouse moved off item that shows tip
- *			- Switched from .hover to .mouseenter and .mouseleave as .hover() is now deprecated in jquery
+ *		- Switched from .hover to .mouseenter and .mouseleave as .hover() is now deprecated in jquery
  * v2.2b	- Added delay functionality to _display().  That functionality must have been lost
- *				with v2
- * v2.1.1b  - Fixed a typing bug in the tip creation code that resulted in Firefox rendering an extra line.
+ *			with v2
+ * v2.1.1b	- Fixed a typing bug in the tip creation code that resulted in Firefox rendering an extra line.
  * v2.1b	- Fixed a bug which resulted in the last matched element becoming the $target for all custom param functions
- *			- Fixed an typing error in the html code for creation of the element
- *			- Added (or rather completed) functionality of hideDelay option.  If the Tip is now hovered within hideDelay milliseconds
- *				the automatic hiding is cancelled & the tip stays visible until the user hovers out of the tip
+ *		- Fixed an typing error in the html code for creation of the element
+ *		- Added (or rather completed) functionality of hideDelay option.  If the Tip is now hovered within hideDelay milliseconds
+ *			the automatic hiding is cancelled & the tip stays visible until the user hovers out of the tip
  * v2.0b	- Refactored code into a new Tip object that sits in the window space.  Cleaned up code layout & formatting
- *				- Having difficulty properly determining the width of the tip when sizing.  Consequently, tips
- *				  that are wider than the window, will appear a few pixels too wide the first time they are shown after
- *				  another tip is shown.
+ *		- Having difficulty properly determining the width of the tip when sizing.  Consequently, tips
+ *			  that are wider than the window, will appear a few pixels too wide the first time they are shown after
+ *			  another tip is shown.
  * v1.5.4	- Added "hideDelay" option to allow for the tip to persist after the target has been hovered out
  * v1.5.3	- Added logic to move the tip to the left of the trigger if it gets moved overtop of the mouse
  *			  This should stop flickering when the trigger is on the right or bottom of the screen
  * v1.5.2	- Fixed setting of width when tip is as wide as the window
  * v1.5.1	- Fixed implementation of 'position':'mouse' option
  * v1.5		- Fixed bug with 'title' attribute being added back after tip goes away
- *			- Added 'position' and 'posX', 'posY' options
- *			- Added 'delay' option
+ *		- Added 'position' and 'posX', 'posY' options
+ *		- Added 'delay' option
  * v1.4		- Added logic that resizes tips that are larger than the viewport, to fit inside the viewport
- *			- Added oversizeStick option
- * v1.3.4:  - Made themeroller compatible
- *			- Used removeAttr() to remove title attribute, rather than setting the attribute to blank
- *			- Thanks to Durval Agnelo for the advice/contribution
+ *		- Added oversizeStick option
+ * v1.3.4:	- Made themeroller compatible
+ *		- Used removeAttr() to remove title attribute, rather than setting the attribute to blank
+ *		- Thanks to Durval Agnelo for the advice/contribution
  * v1.3.3:	- Became a good jQuery citizen and return the jQuery object from tipped() so it supports chaining
- *			- Fixed a bug that emptied out the title stored in data(), if tipped() is called
+ *		- Fixed a bug that emptied out the title stored in data(), if tipped() is called
  *			  on an element twice
- * v1.3.2:	Fixed 'title' based tips that were trying to show the title from the attribute after it was emptied out
- * v1.3.1:	Did some stuff
- * v1.3:	Reposition tooltip at top left before width calculation for repositioning done.  This
+ * v1.3.2:	- Fixed 'title' based tips that were trying to show the title from the attribute after it was emptied out
+ * v1.3.1:	- Did some stuff
+ * v1.3:	- Reposition tooltip at top left before width calculation for repositioning done.  This
  *			prevents inline elements from being squished.
- * v1.2:	Fixed showing/hiding of the "Close" button if there are tips with both "hover" and "click" mode
+ * v1.2:	- Fixed showing/hiding of the "Close" button if there are tips with both "hover" and "click" mode
  * v1.1: 	- Added turning off of default tooltip that appears when an elelment has a title
- *			- #tipped element is now created explicitely as an window variable - fixes a problem with Safari
- * v1.0: 	Initial release
+ *		- #tipped element is now created explicitely as an window variable - fixes a problem with Safari
+ * v1.0: 	- Initial release
  */
 (function($) {
 	/******
@@ -73,6 +77,9 @@
 			
 			cache:		Whether or not to cache AJAX requests.  Cache is based on URL, not URL + data, so if 
 						you are making multiple requests to the same URL with different data, turn off cache
+				Default: false
+
+			closeonexit:	Whether or not to close tip immediately on exiting the triggering element.
 				Default: false
 			
 			closer:		The HTML to display when a tip is to be manually closed (ie: when triggered by a click).  
@@ -169,6 +176,7 @@
 	var defaults = {
 		ajaxType:'POST',
 		cache:false,
+		closeonexit:false,
 		cached:{},
 		closer:'Close',
 		delay:0,
@@ -210,7 +218,7 @@
 		//shortcut to the triggering element
 		$target: {},
 
-        mouseloc : { currx:0, curry:0, prevx:0, prevy:0 },
+		mouseloc : { currx:0, curry:0, prevx:0, prevy:0 },
 
 		value : '',
 		
@@ -226,16 +234,16 @@
 		init:function(){
 			if($("#tipped").length == 0) {
 
-            var $tr = $("<div>", {"id" : "tipped"}).
-                append($('<div>',{"id" : "tipped-content"}).append('<br />').
-                append($("<div>",{"id" : "tipped-closer-wrapper"}).append($('<span>',{"id" : "tipped-closer"}).append(this.settings.closer)))).
-                appendTo(document.body).data('showing',false);
+				var $tr = $("<div>", {"id" : "tipped"}).
+					append($('<div>',{"id" : "tipped-content"}).append('<br />').
+					append($("<div>",{"id" : "tipped-closer-wrapper"}).
+					append($('<span>',{"id" : "tipped-closer"}).append(this.settings.closer)))).
+					appendTo(document.body).data('showing',false);
 
 				this.$tip = $tr;
-
 			} else {
 				this.$tip = $("#tipped");
-            }
+			}
 			
 			this.$content = $("#tipped-content");
 		},
@@ -249,7 +257,7 @@
 			this.settings = settings;
 			this.$target = $target;
 			this.evt = evt;
-			this.hide(true);//hide immediately
+			this.hide(true);  //hide immediately
 			this._setupCloser();
 			this._setupThemeRollerCompat();
 			this._removeTitle();
@@ -258,18 +266,23 @@
 			clearTimeout(this.timer_hide);
 			clearTimeout(this.timer_show);
 
-			// add class to $target of tip so if displaying of tip on delay, if mouse moves off item before
+			// add class to $target of tip so if displaying tip on delay, if mouse moves off item before
 			// tip can be displayed, do not display
-			this.$target.on( "mouseover", function(event){
-				$(this).addClass('ui-state-hover');
+			this.$target.on( "mouseover", this, function(event){
+				$(this).addClass('ui-tip-hover');
 			})
-			.mouseleave(function(){
-				$(this).removeClass('ui-state-hover');
+			.on("mouseleave", this, function(event){
+				$(this).removeClass('ui-tip-hover');
 				clearTimeout(this.timer_show);
+
+				if(event.data.settings.closeonexit) {
+					event.data.hide(true);
+				}
 			})
 			.on("mousemove", this, function(event){
 				event.data.mouseloc.currx = event.pageX;
 				event.data.mouseloc.curry = event.pageY;
+
 				if((event.data.delay > 0) && (!event.data.$tip.is(':visible'))) {
 					event.data.hide(true);
 					event.data._display(event.data.value,false);
@@ -317,7 +330,7 @@
 				/* Once the user hovers out of the tip, hide it immediately */
 				this.$tip.mouseleave("mouseleave",function(){ Tip.hide(true); });
 				
-				this.timer_hide = setTimeout(function(){Tip.hide(true);},Tip.settings.hideDelay);
+				this.timer_hide = setTimeout(function(){Tip.hide(true);}, Tip.settings.hideDelay);
 			}
 		},
 		
@@ -448,7 +461,7 @@
 		 *
 		 * Manages the displaying of the tooltip
 		 */
-		_display:function(value,immediate){
+		_display:function(value, immediate){
 			
 			immediate = (immediate == undefined) ? false : immediate;
 
@@ -460,7 +473,7 @@
 				clearTimeout(this.timer_show);
 				this.timer_show = setTimeout('Tip._display("'+value+'",true)',1500);
 			} else {
-				if((this.$target.hasClass('ui-state-hover')) && (!this.$tip.is(':visible'))) {
+				if(((this.$target.hasClass('ui-tip-hover')) || (this.settings.delay == 0)) && (!this.$tip.is(':visible'))) {
 					this.$content.html(value);
 					this._setSize();
 					this._setPosition();

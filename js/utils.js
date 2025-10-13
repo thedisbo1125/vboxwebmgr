@@ -796,7 +796,7 @@ function vboxInitDisplay(root,context) {
     /*
      * Tooltips
      */
-    $(root).find('.vboxToolbarSmallButton').tipped({'source':'title','mode':'hover'});
+    $(root).find('.vboxToolbarSmallButton').tipped({'source':'title','mode':'hover','closeonexit':true});
 
 
     /*
