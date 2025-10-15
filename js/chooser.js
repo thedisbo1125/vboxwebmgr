@@ -979,7 +979,7 @@ var vboxChooser = {
 
 			// Dropped ON a vm?
 			dropTarget = $('#'+vboxChooser._anchorid).find('table.vboxHover:not(.ui-draggable-dragging)').first();
-			if($(dropTarget).data('vmid')) {
+			if(($(dropTarget).data('vmid')) && ($(dropTarget).attr('id') != 'vboxChooserVMHost')) {
 
 				// Create a group?
 				dropTarget = $('#'+vboxChooser._anchorid).find('table.vboxHover').first();
