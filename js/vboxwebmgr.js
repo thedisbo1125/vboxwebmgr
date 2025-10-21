@@ -2781,9 +2781,17 @@ function vboxWizard() {
 	this.width = 700;
 	this.height = 400;
 
+	/* min width and height for Simple mode */
+	this.minwidth = this.width;
+	this.minheight = this.height;
+
 	/* Width and height for expert mode */
 	this.widthAdvanced = 600;
 	this.heightAdvanced = 450;
+
+	/* min width and height for expert mode */
+	this.minwidthAdvanced = this.widthAdvanced;
+	this.minheightAdvanced = this.heightAdvanced;
 
 	/* Background image */
 	this.bg = null;
@@ -2914,6 +2922,8 @@ function vboxWizard() {
 							// resize dialog
 							$('#'+self.name+'Dialog').dialog('option', 'width', self.widthAdvanced)
 							.dialog('option', 'height', self.heightAdvanced)
+							.dialog('option', 'minWidth', self.minwidthAdvanced)
+							.dialog('option', 'minHeight', self.minheightAdvanced - 2)
 							.css({'background':'url('+self.bg+') ' + ((self.mode == 'advanced' ? self.widthAdvanced: self.width) - 360) +'px -60px no-repeat','background-color':'#fff'});
 
 
@@ -2960,6 +2970,8 @@ function vboxWizard() {
 							// resize dialog
 							$('#'+self.name+'Dialog').dialog('option', 'width', self.width)
 								.dialog('option', 'height', self.height)
+								.dialog('option', 'minWidth', self.minwidth)
+								.dialog('option', 'minHeight', self.minheight - 2)
 								.css({'background':'url('+self.bg+') ' + ((self.mode == 'advanced' ? self.widthAdvanced: self.width) - 360) +'px -60px no-repeat','background-color':'#fff'});
 
 
@@ -3031,6 +3043,8 @@ function vboxWizard() {
 				'closeOnEscape':true,
 				'width':(self.mode == 'advanced' ? self.widthAdvanced: self.width),
 				'height':(self.mode == 'advanced' ? self.heightAdvanced: self.height),
+				'minWidth':(self.mode == 'advanced' ? self.minwidthAdvanced: self.minwidth),
+				'minHeight':(self.mode == 'advanced' ? self.minheightAdvanced - 2: self.minheight - 2),
 				'buttons':buttons,
 				'modal':true,
 				'autoOpen':true,
