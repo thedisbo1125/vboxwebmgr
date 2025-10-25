@@ -8,12 +8,12 @@
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * Tipped is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License v2
  * along with Tipped.  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>
  *
@@ -24,9 +24,13 @@
  *
  * Compatibility: Tested with jQuery 1.4.2+, though it should work with 1.3.x
  *
+ * v2.3c	- Add ability to set font size of the tip in pixels
+		- Add ability to clear tip out from element
+		- Fix issue where x and y coordinates used to position tip didn't get updated correctly and tip appears over
+			last element that had tip to be displayed
  * v2.3b	- Fix issue where class used to track if tip should be shown when delayed (ui-state-hover) was causing problem
 			where tip didn't display and object messed up on hover images
-		- Fix issue where moving between two objects that were supposed to show tips would have tip from one not close and 
+		- Fix issue where moving between two objects that were supposed to show tips would have tip from one not close and
 			next object wouldn't show it's tip
  * v2.3a	- Fix issue where tip would jump around if mouse moved over object
  * v2.3		- Fixed issue where if tip display was delayed, would appear even if mouse moved off item that shows tip
@@ -70,116 +74,124 @@
 (function($) {
 	/******
 	/*	Options
-		
+
 			ajaxType:	The type of HTTP request to make.
 				Possible values: Anything $.ajax accepts (usually 'GET' or 'POST')
 				Default: 'POST'
-			
+
 			cache:		Whether or not to cache AJAX requests.  Cache is based on URL, not URL + data, so if 
 						you are making multiple requests to the same URL with different data, turn off cache
 				Default: false
 
+			clear:		Whether or not to stop showing the tip.
+				Default: false
+
 			closeonexit:	Whether or not to close tip immediately on exiting the triggering element.
 				Default: false
-			
+
 			closer:		The HTML to display when a tip is to be manually closed (ie: when triggered by a click).  
 						All text in 'closer' will be injected inside another element that has the close listener
 				Default: 'Close'
-			
+
 			delay:		The milliseconds to wait between when the trigger is hovered over, and the tip appears.
 						Ignored if "mode" is "click".
 				Default: 0
-				
+
+			fontsize:	Set the font size of the tip in pixels
+				Default: 11
+
 			hideDelay:	The milliseconds to wait between when the trigger is hovered out, and the tip disappears.
 				Default: 0
-				
+
 			marginX:	The pixels to the right of the element that the tip should appear.  This amount will be
 						overridden if necessary to ensure the entire tip shows on the screen.
 				Possible values: Any integer.  Negative numbers will position the tip to the left of the right
 								 edge of the triggering element
 				Default: '10'
-				
+
 			marginY:	The pixels to the bottom of the element that the tip should appear.  This amount will be
 						overridden if necessary to ensure the entire tip shows on the screen.
 				Possible values: Any integer.  Negative numbers will position the tip above of the bottom
 								 edge of the triggering element
 				Default: '10'
-				
+
 			mode:		The type of tip to make.  'Hover' shows and hides on hover, 'Click' is triggered with a
 						click and requires clicking of the closer to go away
 				Possible values: 'hover', 'click'
 				Default: 'hover'
-			
+
 			oversizeStick:	Whether to revert to "click" mode if the content is too large for the screen.  If the
 							content is too large, scrollbars appear.  Users can't use those scrollbars though, if
 							the tooltip disappears when they hover off the target.  This will remedy that problem.
-							
+
 							The 'closer' option will be used when necessary.
 				Possible values: true,false
 				Default: true
-				
+
 			params:		An object representing the parameters to send along with an AJAX request as 'data'
 				Possible values:
 					A callback: Data passed will be the object returned from this function.  Function will be passed
 								a jQuery object representing the triggering element
 					An object: Will be used as the data
 				Default: {}
-			
+
 			position:	The method Tipped will use to determine position.
 				Possible values:
-					'absolute': The position of the tip will be determined by the posX and posY parameters, 
-								with no application of the margins and no consideration for where the triggering 
+					'absolute': The position of the tip will be determined by the posX and posY parameters,
+								with no application of the margins and no consideration for where the triggering
 								element is
-					'mouse':	The position of the tip will be determined by the location of the mouse when the 
+					'mouse':	The position of the tip will be determined by the location of the mouse when the
 								tip is triggered. Margins will be applied.
-					'element':	The position of the tip will be determined by the bottom right corner of the 
+					'element':	The position of the tip will be determined by the bottom right corner of the
 								triggering element. Margins will be applied.
 				Default: 'element'
-			
-			posX:	The absolute position on the x-axis the tooltip will have when displayed.  Only used if the 
+
+			posX:	The absolute position on the x-axis the tooltip will have when displayed.  Only used if the
 					'position' option is "absolute"
 				Possible values:
-					A callback:  Function must return an integer.  Function will be passed a jQuery object 
+					A callback:  Function must return an integer.  Function will be passed a jQuery object
 								 representing the triggering element.
 					An integer
 				Default value: 0
-			
-			posY:	The absolute position on the y-axis the tooltip will have when displayed.  Only used if the 
+
+			posY:	The absolute position on the y-axis the tooltip will have when displayed.  Only used if the
 					'position' option is "absolute"
 				Possible values:
-					A callback:  Function must return an integer.  Function will be passed a jQuery object 
+					A callback:  Function must return an integer.  Function will be passed a jQuery object
 								 representing the triggering element
 					An integer
 				Default value: 0
-			
+
 			source:		The source of the value to display.
-				Possible values: 
+				Possible values:
 					'title':	Value to display will be pulled from the 'title' attribute of the triggering element
 					A callback: Value to display will be returned from the callback function.  Function will be passed
 								a jQuery object representing the triggering element
 					'url':		An AJAX request will be made to the address specified by the 'url' option
 					Any other string:	Will be displayed
 				Default: 'title'
-				
+
 			themeroller:	Whether or not to make Themeroller compatible
 				Possible values: true, false
 				Default: false
-				
+
 			throbber:	The URL to the image to display while the AJAX request is being sent.  If blank, no throbber
 						will be shown.
 				Default: false
-				
+
 			url:		The web address to make the AJAX request to.  Unused if 'source' is not 'url'
 	*/
-	
+
 	//default setting
 	var defaults = {
 		ajaxType:'POST',
 		cache:false,
+		clear:false,
 		closeonexit:false,
 		cached:{},
 		closer:'Close',
 		delay:0,
+		fontsize: 11,
 		hideDelay:0,
 		marginX:10,
 		marginY:10,
@@ -194,37 +206,49 @@
 		throbber:false,
 		url:''
 	};
-	
-	
-	
+
+
 	/**
 	 * Tip object
 	 */
 	window.Tip = {
-		
+
 		// shortcut to the #tipped element
 		$tip: {},
-		
+
 		//shortcut to the #tipped-content
 		$content: {},
-		
+
 		//timer for storing delay and hideDelay
 		timer_hide: undefined,
-		
+
 		timer_show: undefined,
 
 		settings: {},
-		
+
 		//shortcut to the triggering element
 		$target: {},
 
 		mouseloc : { currx:0, curry:0, prevx:0, prevy:0 },
 
 		value : '',
-		
+
 		//triggering event
 		evt: false,
-		
+
+		// events for showing/hiding tip, added as variables to allow removal of just these events from element
+		OnMouseOverSetup: null,
+
+		OnMouseLeaveSetup: null,
+
+		OnMouseMoveSetup: null,
+
+		OnMouseOverInit: null,
+
+		OnMouseLeaveInit: null,
+
+		OnMouseClickInit: null,
+
 		/*
  		 * init()
 		 *
@@ -244,16 +268,16 @@
 			} else {
 				this.$tip = $("#tipped");
 			}
-			
+
 			this.$content = $("#tipped-content");
 		},
-		
+
 		/*
 		 * setup()
 		 *
 		 * Configure the Tip object based on the passed settings
 		 */
-		setup:function($target,settings,evt){			
+		setup:function($target,settings,evt){
 			this.settings = settings;
 			this.$target = $target;
 			this.evt = evt;
@@ -261,25 +285,25 @@
 			this._setupCloser();
 			this._setupThemeRollerCompat();
 			this._removeTitle();
-						
+
 			//cancel any delay
 			clearTimeout(this.timer_hide);
 			clearTimeout(this.timer_show);
 
-			// add class to $target of tip so if displaying tip on delay, if mouse moves off item before
-			// tip can be displayed, do not display
-			this.$target.on( "mouseover", this, function(event){
+			this.OnMouseOverSetup = function(event){
 				$(this).addClass('ui-tip-hover');
-			})
-			.on("mouseleave", this, function(event){
+			}
+
+			this.OnMouseLeaveSetup = function(event){
 				$(this).removeClass('ui-tip-hover');
 				clearTimeout(this.timer_show);
 
 				if(event.data.settings.closeonexit) {
 					event.data.hide(true);
 				}
-			})
-			.on("mousemove", this, function(event){
+			}
+
+			this.OnMouseMoveSetup = function(event){
 				event.data.mouseloc.currx = event.pageX;
 				event.data.mouseloc.curry = event.pageY;
 
@@ -287,15 +311,22 @@
 					event.data.hide(true);
 					event.data._display(event.data.value,false);
 				}
-			});
+			}
+
+			// add class to $target of tip so if displaying tip on delay, if mouse moves off item before
+			// tip can be displayed, do not display
+			this.$target.on( "mouseover", this, this.OnMouseOverSetup)
+			.on("mouseleave", this, this.OnMouseLeaveSetup)
+			.on("mousemove", this, this.OnMouseMoveSetup);
 		},
-	
+
+
 		/*
 		 * show()
 		 *
 		 * Manages the showing of the tooltip
 		 */
-		show:function(){			
+		show:function(){
 			if(this.settings.source === 'url')
 				this._showURL();
 			else if(this.settings.source === 'title')
@@ -306,9 +337,9 @@
 				this._display(this.settings.source(this.$target));
 			else if(typeof settings.source == 'object')
 				this._display(this.settings.source.html());
-		},		
-	
-	
+		},
+
+
 		/*
 		 * hide()
 		 *
@@ -317,23 +348,36 @@
 		hide:function(immediate){
 			if(arguments.length == 0)
 				immediate = false;
-				
+
 			if(immediate){
 				this.$tip.data('showing',false).data('original','').hide();
 				this.$content.html('');
 			}
 			else{
 
-				/* Stop the delayed hiding if the user has hovered over the tip */								
+				/* Stop the delayed hiding if the user has hovered over the tip */
 				this.$tip.mouseenter(function(){ clearTimeout(Tip.timer_hide); });
 
 				/* Once the user hovers out of the tip, hide it immediately */
 				this.$tip.mouseleave("mouseleave",function(){ Tip.hide(true); });
-				
+
 				this.timer_hide = setTimeout(function(){Tip.hide(true);}, Tip.settings.hideDelay);
 			}
 		},
-		
+
+
+		/*
+		 * removetip()
+		 *
+		 * Removes event handlers configured in setup function
+		 */
+		removetip:function(){
+			this.$target.unbind( "mouseover", this.OnMouseOverSetup)
+			.unbind("mouseleave", this.OnMouseLeaveSetup)
+			.unbind("mousemove", this.OnMouseMoveSetup);
+		},
+
+
 		/*
 		* _setupCloser
 		*
@@ -342,21 +386,21 @@
 		_setupCloser:function(force){
 			if(arguments.length == 0)
 				force = false;
-			
+
 			$("#tipped-closer")
 				.html(this.settings.closer)
 				.click(function(){
 					Tip.hide(true);
 				});
-			
+
 			//hide closer if necessary
 			if(this.settings.mode != 'click' && !force)
 				$("#tipped-closer-wrapper").hide();
 			else
 				$("#tipped-closer-wrapper").show();
 		},
-		
-		
+
+
 		/*
 		 * _setupThemeRollerCompat()
 		 *
@@ -382,38 +426,38 @@
 			}
 			else{
 				this.$tip.removeClass('ui-helper-hidden ui-widget ui-dialog ui-corner-all');
-				$("#tipped-closer").removeClass('ui-button ui-state-hover ui-state-default');	
-			}			
+				$("#tipped-closer").removeClass('ui-button ui-state-hover ui-state-default');
+			}
 		},
-		
+
 		/*
 		 * removeTitle()
-		 * 
+		 *
 		 * Removes the title attribute from the target, and store that value in data
 		 * Title has to be removed regardless of the "source" - in order to quash the
 		 * default browser-based tooltip
 		 */
 		_removeTitle:function(){
-			var data = this.$target.data('tipped');			
-		
+			var data = this.$target.data('tipped');
+
 			if(data.title === undefined){
 				data.title = this.$target.attr('title');
 				this.$target.data('tipped',data);
 			}
-			
+
 			//IE doesn't respect removal of the attribute, so need to set it to blank.
 			this.$target.removeAttr('title').attr('title','');
 		},
-		
+
 		/*
 		 * _showURL
 		 *
 		 * Retrieves the value to display from a URL
 		 */
 		_showURL:function(){
-			
+
 			var cached = this.$tip.data('cache');
-			
+
 			//if we're not caching, retrieve the value
 			if(!this.settings.cache || cached === undefined || cached[this.settings.url] === undefined){
 				//set parameters
@@ -422,10 +466,10 @@
 					data = this.settings.params(this.$target);
 				else if(typeof this.settings.params == 'object')
 					data = this.settings.params;
-				
+
 				// import settings into local space because "this" in $.ajax doesn't refer to window.Tip
 				$this = this;
-				
+
 				$.ajax({
 					data:data,
 					type:$this.settings.ajaxType,
@@ -434,13 +478,13 @@
 						if($this.settings.throbber)
 							$this._display('<img src = '+$this.settings.throbber+' alt = "Loading..." />');
 					},
-					
+
 					error:function(){
 						$this._display('Unable to retrieve contents');
 					},
 					success:function(returned){
 						$this._display(returned);
-						
+
 						//cache results if necessary
 						if($this.settings.cache){
 							var newCache = new Object;
@@ -455,18 +499,18 @@
 			else
 				this._display(cached[this.settings.url]);
 		},// _displayURL()
-		
+
 		/*
 		 * _display()
 		 *
 		 * Manages the displaying of the tooltip
 		 */
 		_display:function(value, immediate){
-			
+
 			immediate = (immediate == undefined) ? false : immediate;
 
 			this.value = value;
-			
+
 			//If we're delaying display, call this function again after some milliseconds
 			if(this.settings.delay && !immediate)
 			{
@@ -482,41 +526,45 @@
 				}
 			}
 		},
-		
+
 		/*
 		 * _setSize()
 		 *
 		 * Resizes the tooltip if it's taller/wider than the window
 		 */
 		_setSize:function(){
-			//reset height & width settings - may not be needed
+
+			// set font size of the tip
+			this.$tip.css("font-size", this.settings.fontsize + "px");
+
+			// reset height & width settings - may not be needed
 			this.$content.css({height:'auto',width:'auto'});
 			this.$tip.css({height:'auto',width:'auto'});
-			
+
 			/* If tip is taller than window */
 			if(this.$tip.outerHeight() > $(window).height()){
-				
+
 				if(this.settings.oversizeStick){
 					this._setupCloser(true);//force the closer regardless of mode
 					this.$target.unbind('mouseout');
-				}		
+				}
 				var tipHeightDifference = this.$tip.outerHeight() - this.$tip.height();
-				
+
 				// _setPosition() will ensure a 5px margin around the outside of the window
 				// we need to account for that when setting the height
 				this.$tip.css('height',$(window).height() - tipHeightDifference-10);
-				
+
 				this.$content.css({
-					height:$(window).height()-tipHeightDifference-10,							  
+					height:$(window).height()-tipHeightDifference-10,
 					//+20 to account for the scrollbar. Browsers don't account for "auto" placed scrollbars in width calculations
 					//so the contents ends up getting squished
 					width:this.$tip.outerWidth()+20,
 					overflow:"auto"
 				});
 			}
-			
-			
-			
+
+
+
 			/* If tip is wider than window */
 			//+10 to account for 5px margin _setPosition() uses
 			if(this.$tip.outerWidth()+10 >= $(window).width()){
@@ -527,7 +575,7 @@
 				});
 			}
 		},// _setSize()
-		
+
 		/*
 		 * _resizeAfterShow
 		 *
@@ -543,13 +591,13 @@
 				this.$content.height(this.$tip.height() - closer_height);
 			}
 		},
-		
+
 		/*
 		 * setPosition()
-		 * 
+		 *
 		 * Sets the position of the tip.  This function is called after the content of the tip
 		 * is set, allowing the function to make a dynamic decision about the position of the tip
-		 *			
+		 *
 		 * The tip is always displayed fully on the screen & will be moved to ensure that.
 		 */
 		_setPosition:function(){
@@ -561,13 +609,13 @@
 			Pos = this._calcInitialPosition(Pos);
 			Pos = this._adjustPositionForWindow(Pos);
 			Pos = this._adjustPositionForMouse(Pos);
-					
-			this.$tip.css({ 
-				left: Pos.x, 
-				top: Pos.y 
+
+			this.$tip.css({
+				left: Pos.x,
+				top: Pos.y
 			});
 		},
-		
+
 		/*
 		 * calcInitialPosition()
 		 *
@@ -585,7 +633,7 @@
 						Pos.x = this.settings.posX($target);
 					else
 						Pos.x = this.settings.posX;
-					
+
 					if(typeof this.settings.posY == 'function')
 						Pos.y = this.settings.posY($target);
 					else
@@ -599,7 +647,7 @@
 			}
 			return Pos;
 		},
-		
+
 		/*
 		 * _adjustPositionForWindow()
 		 *
@@ -608,22 +656,22 @@
 		_adjustPositionForWindow:function(Pos){
 			var right = Pos.x + this.$tip.outerWidth();
 			var bottom = Pos.y + this.$tip.outerHeight();
-			
+
 			// - 5 to assure there is a 5 pixel "padding" around the edge of the window
 			var windowWidth = $(window).width() + $(window).scrollLeft()-5;
 			var windowHeight = $(window).height() + $(window).scrollTop()-5;
-			
+
 			Pos.x = (right > windowWidth) ? Pos.x - (right - windowWidth) : Pos.x;
 			Pos.y = (bottom > windowHeight) ? Pos.y - (bottom - windowHeight) : Pos.y;
-			
+
 			return Pos;
 		},
-		
-		
+
+
 		/*
 		 * _adjustPositionForMouse()
 		 *
-		 * Adjusts the position of the tip so it doesn't appear over the mouse 
+		 * Adjusts the position of the tip so it doesn't appear over the mouse
 		 * (resulting in flickering )
 		 */
 		_adjustPositionForMouse:function(Pos){
@@ -633,7 +681,7 @@
 				var mouseY = this.evt.pageY;
 				var tipWidth = this.$tip.outerWidth();
 				var tipHeight = this.$tip.outerHeight();
-				
+
 				if(Pos.x < mouseX && Pos.x + tipWidth > mouseX)
 					if(Pos.y < mouseY && Pos.y + tipHeight > mouseY)
 						if(this.settings.position == 'mouse')
@@ -653,43 +701,80 @@
 
 	$.fn.tipped = function(settings){
 		this.each(function(i){
-			
+
 			// shortcut
 			$target = $(this);
-			
-			//store the settings in the element
+
+			// store the settings in the element
 			settings = $.extend({},defaults,settings);
 			$target.data('tipped',settings);
-			
-									
-			//2 modes act differently
-			if(settings.mode == 'hover'){
-				$target
-					.mouseover(function(evt){
-						if(!Tip.$tip.is(':visible')) {
-							Tip.setup($(this),settings,evt);
-							Tip.show();
-						}
-					})
-					.mouseleave(function(){
-						Tip.hide();
-					});
-			}
-			else if(settings.mode == 'click'){		
-				$target.click(function(evt){ 
+
+			// check if clearing the tip out or not
+			if(!settings.clear){
+
+				// setup event listerer functions as variables.  This will facilicate easier
+				//   removal if tip gets cleard from element
+				var OnMouseOverInit = function(evt) {
+
+					// update current position of mouse cursor
+					Tip.mouseloc.prevx = Tip.mouseloc.currx;
+					Tip.mouseloc.prevy = Tip.mouseloc.curry;
+					Tip.mouseloc.currx = evt.clientX;
+					Tip.mouseloc.curry = evt.clientY;
+
+					if(!Tip.$tip.is(':visible')) {
+						Tip.setup($(this),settings,evt);
+						Tip.show();
+					}
+				}
+
+				var OnMouseLeaveInit = function() {
+					Tip.hide();
+				}
+
+				var OnMouseClickInit = function(evt) {
 					clickedSettings = $(this).data('tipped');
 					Tip.setup($(this),clickedSettings,evt);
 					Tip.show();
-				});
-			}	
+				}
+
+				Tip.OnMouseOverInit = OnMouseOverInit;
+				Tip.OnMouseLeaveInit = OnMouseLeaveInit;
+				Tip.OnMouseClickInit = OnMouseClickInit;
+
+				//2 modes act differently
+				if(settings.mode == 'hover'){
+					$target
+						.on('mouseover', Tip.OnMouseOverInit)
+						.on('mouseleave', Tip.OnMouseLeaveInit);
+				}
+				else if(settings.mode == 'click'){
+					$target.on('click', OnMouseClickInit);
+				}
+
+			} else {
+
+				// clear settings from element
+				$target.data('tipped','');
+
+				// remove event handlers setup when tip initialized
+				$target
+					.unbind('mouseover', Tip.OnMouseOverInit)
+//					.off('mouseover', OnMouseOver)
+					.unbind('mouseleave', Tip.OnMouseLeaveInit)
+					.unbind('click', Tip.OnMouseClickInit);
+
+				Tip.hide(true);
+				Tip.removetip();
+			}
 		});
-		
+
 		return this;
-	};	
-	
+	};
+
 	/*
 	 * Function: getTrigger()
-	 * Purpose: To provide access to the element that triggered the tip.  Useful for 
+	 * Purpose: To provide access to the element that triggered the tip.  Useful for
 	 *          clicked tips that need to know who triggered them
 	 *
 	 * Access with: $.getTrigger()
