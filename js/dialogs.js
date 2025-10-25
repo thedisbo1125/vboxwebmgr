@@ -1669,32 +1669,54 @@ function vboxSettingsDialog(title,panes,data,pane,icon,langContext,presave) {
         /* Tell dialog that data is loaded */
         $('#vboxSettingsDialog').trigger('dataLoaded');
 
-        var buttons = {};
+        var buttons = [];
 
-        buttons[trans('OK','QIMessageBox')] = function() {
-
-            $(this).trigger('save');
-
-            // Does some settings pane need to do some presave
-            // work? (ask questions, run wizard, some other asynch task)
-            var promise = true;
-            if(presave) {
-                promise = presave();
-            }
-
-            var dlg = this;
-            $.when(promise).done(function() {
-                results.resolve(true);
-                $(dlg).trigger('close').empty().remove();
+        btncancel = [{
+            id: 'cancelbuttonid',
+            text: trans('Cancel','QIMessageBox'),
+            'class': 'ui-button-cancel',
+            click: function () {
+                results.reject();
+                $(this).trigger('close').empty().remove();
                 $(document).trigger('click');
-            });
-        };
+            }
+        }];
 
-        buttons[trans('Cancel','QIMessageBox')] = function() {
-            results.reject();
-            $(this).trigger('close').empty().remove();
-            $(document).trigger('click');
-        };
+        btnok = [{
+            id: "okbuttonid",
+            text: trans('OK','QIMessageBox'),
+            'class': 'ui-button-ok',
+            click: function () {
+                $(this).trigger('save');
+
+                // Does some settings pane need to do some presave
+                // work? (ask questions, run wizard, some other asynch task)
+
+                var promise = true;
+                if(presave) {
+                    promise = presave();
+                }
+
+                var dlg = this;
+                $.when(promise).done(function() {
+                    results.resolve(true);
+                    $(dlg).trigger('close').empty().remove();
+                    $(document).trigger('click');
+                });
+            }
+        }];
+
+        // add buttons to array
+        if (title.includes('Settings')) {
+            btncancel[0].style = 'float: right; margin-right: 10px;';
+            btnok[0].style = 'float: right; margin-right: 10px;';
+            btnok[0].class = 'ui-button-ok settingsdialog',
+            buttons.push(btncancel[0]);
+            buttons.push(btnok[0]);
+        } else {
+            buttons.push(btnok[0]);
+            buttons.push(btncancel[0]);
+        }
 
         // Init with "nothing has changed yet"
         $('#vboxSettingsDialog').data('formDataChanged', false);
