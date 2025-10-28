@@ -443,7 +443,7 @@ function vboxMachineStateIcon(state)
         case "Stuck": strIcon = "state_stuck_16px.png"; break;
         case "LiveSnapshotting": strIcon = "snapshot_online_16px.png"; break;
         case "Saving": strIcon = "state_saving_16px.png"; break;
-        case "Restoring": strIcon = "state_restoring_16px"; break;
+        case "Restoring": strIcon = "state_restoring_16px.png"; break;
         case "RestoringSnapshot": strIcon = "discard_cur_state_16px.png"; break;
         case "DeletingSnapshot": strIcon = "state_discarding_16px.png"; break;
         case "Snapshotting": strIcon = "snapshot_offline_16px.png"; break;
