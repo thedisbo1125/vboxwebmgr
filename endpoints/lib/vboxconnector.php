@@ -2387,6 +2387,33 @@ class vboxconnector {
 	}
 
 	/**
+	 * Check if virtual machine already exists.
+	 *
+	 * @param string machine name to check for
+	 * @return boolean true if machine exists
+	 */
+	public function remote_machineExists($vm) {
+
+		$this->connect();
+
+		try {
+
+			/* @var $machine IMachine */
+			$machine = $this->vbox->findMachine($vm);
+
+			if(isset($machine)) {
+				$machine->releaseRemote();
+				return true;
+			}
+
+		} catch (Exception $e) {
+			// pass
+		}
+
+		return false;
+	}
+
+	/**
 	 * Add a virtual machine via its settings file.
 	 *
 	 * @param array $args array of arguments. See function body for details.
