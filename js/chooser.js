@@ -28,7 +28,7 @@ var vboxChooser = {
 	vms : {},
 
 	// VM tool tip
-	_vmToolTip : '<nobr>%1<br></nobr><nobr>%2 since %3</nobr><br><nobr>Session %4</nobr>',
+	_vmToolTip : '<nobr>%1</nobr><br><nobr>%2 since %3</nobr><br><nobr>Session %4</nobr>',
 
 	// Anchor element
 	_anchorid : null,
