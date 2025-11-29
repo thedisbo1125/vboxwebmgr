@@ -523,7 +523,8 @@ var vboxChooser = {
 				if($(elm).hasClass('vboxListItemSelected')) {
 					$(newHTML).addClass('vboxListItemSelected').removeClass('vboxHover');
 				}
-				$(elm).children().replaceWith(newHTML.children());
+
+				$(elm).replaceWith(newHTML);
 			});
 
 		}
