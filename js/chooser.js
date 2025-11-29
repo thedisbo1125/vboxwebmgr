@@ -692,7 +692,6 @@ var vboxChooser = {
 
 			$(td).append('<div class="vboxFitToContainer vboxVMName"><span class="vboxVMName">'+$('<span />').text(vmn.name).html()+'</span>'+ (vmn.currentSnapshotName ? '<span class="vboxVMChooserSnapshotName"> (' + $('<span />').text(vmn.currentSnapshotName).html() + ')</span>' : '')+'</div>');
 
-
 			// Table gets tool tips
 			tip = trans(vboxChooser._vmToolTip, 'UIVMListView').replace('%1',('<b>'+$('<span />')
 				.text(vmn.name).html()+'</b>'+(vmn.currentSnapshotName ? ' (' + $('<span />')
