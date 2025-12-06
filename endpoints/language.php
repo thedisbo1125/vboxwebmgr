@@ -52,7 +52,7 @@ function trans(s,c,n,h) {
         c = o;
     }
 
-    if(!c) c = 'VBoxGlobal';
+    if(!c) c = 'UICommon';
 
     if(c !== 'IGNORE') {
         var r = transreal(s,c,n,h);
