@@ -3953,6 +3953,7 @@ class vboxconnector {
 
 			$hds = array();
 			$delete = $machine->unregister('DetachAllReturnHardDisksOnly');
+
 			foreach($delete as $hd) {
 				$hds[] = $this->vbox->openMedium($hd->location,'HardDisk','ReadWrite',false)->handle;
 			}
