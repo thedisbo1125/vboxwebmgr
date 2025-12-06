@@ -469,7 +469,7 @@ function vboxMachineStateIcon(state)
 function vboxFileBrowser(root,fn,foldersonly,title,icon,strictFiles,allowedexts) {
 
     var buttons = { };
-    buttons[trans('OK','QIMessageBox')] = function(f) {
+    buttons[trans('OK','UIMessageCenter')] = function(f) {
 
         if(strictFiles && $('#vboxBrowseFolderList').find('.vboxListItemSelected').first().parent().hasClass('folder')) {
             return;
@@ -482,16 +482,16 @@ function vboxFileBrowser(root,fn,foldersonly,title,icon,strictFiles,allowedexts)
         fn(f);
     };
 
-    buttons[trans('Cancel','QIMessageBox')] = function() { fn(null); $('#vboxBrowseFolder').trigger('close').empty().remove(); };
+    buttons[trans('Cancel','UIMessageCenter')] = function() { fn(null); $('#vboxBrowseFolder').trigger('close').empty().remove(); };
 
     var d1 = $('<div />').attr({'id':'vboxBrowseFolder','class':'vboxDialogContent','style':'display:none'});
 
     $('<div />').attr({'id':'vboxBrowseFolderList'}).fileTree({ 'root': (root ? root : '/'),'dirsOnly':foldersonly,'allowedexts':allowedexts,'loadMessage':trans('Loading ...','UIVMDesktop'),'scrollTo':'#vboxBrowseFolder'},function(f){
-        buttons[trans('OK','QIMessageBox')](f);
+        buttons[trans('OK','UIMessageCenter')](f);
     }).appendTo(d1);
 
     $(d1).dialog({'closeOnEscape':true,'width':500,'minWidth':400,'height':600,'minHeight':400,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="'+(icon ? icon : 'images/jqueryFileTree/'+(foldersonly ? 'folder_open' : 'file')+'.png') + '" class="vboxDialogTitleIcon" /> ' + (title ? title : trans((foldersonly ? 'Select Folder' : 'Select File')))}).on("dialogbeforeclose",function(){
-        $(this).parent().find('span:contains("'+trans('Cancel','QIMessageBox')+'")').trigger('click');
+        $(this).parent().find('span:contains("'+trans('Cancel','UIMessageCenter')+'")').trigger('click');
     });
 }
 
@@ -514,7 +514,7 @@ function vboxBytesConvert(bytes) {
     var unitCount;
     for(unitCount=0; bytes >= 1024 && unitCount < ext.length; unitCount++) bytes = parseFloat(parseFloat(bytes)/1024);
 
-    return Math.round(parseFloat(bytes)*Math.pow(10,2))/Math.pow(10,2) + " " + trans(ext[unitCount], 'VBoxGlobal');
+    return Math.round(parseFloat(bytes)*Math.pow(10,2))/Math.pow(10,2) + " " + trans(ext[unitCount], 'UICommon');
 }
 
 
@@ -526,8 +526,8 @@ function vboxBytesConvert(bytes) {
 function vboxConvertMbytes(str) {
     str = str.replace('  ',' ');
     str = str.split(' ',2);
-    if(!str[1]) str[1] = trans('MB','VBoxGlobal');
-    var ext = new Array(trans('B','VBoxGlobal'),trans('KB','VBoxGlobal'),trans('MB','VBoxGlobal'),trans('GB','VBoxGlobal'),trans('TB','VBoxGlobal'));
+    if(!str[1]) str[1] = trans('MB','UICommon');
+    var ext = new Array(trans('B','UICommon'),trans('KB','UICommon'),trans('MB','UICommon'),trans('GB','UICommon'),trans('TB','UICommon'));
     var index = jQuery.inArray(str[1],ext);
     if(index == -1) index = 2;
     switch(index) {
@@ -577,7 +577,7 @@ function vboxAlert(e,xtraOpts) {
         e.details = $('<div />').html(e.details).text();
 
         var p = $('<p />').attr({'style':'text-align: center'});
-        $('<a />').attr({'href':'#'}).html(trans('Details','QIMessageBox')).click(function(){
+        $('<a />').attr({'href':'#'}).html(trans('Details','UIMessageCenter')).click(function(){
             $(this).parent().parent().dialog('option',{'height':400,'position':'center'});
             $(this).parent().siblings(".vboxAlert").css({"display":""});
             $(this).parent().css({'padding':'0px','margin':'0px'});
@@ -595,7 +595,7 @@ function vboxAlert(e,xtraOpts) {
 
 
     var buttons = { };
-    buttons[trans('OK','QIMessageBox')] = function(f) {
+    buttons[trans('OK','UIMessageCenter')] = function(f) {
         $(this).trigger('close').empty().remove();
         acknowledged.resolve();
     };
@@ -627,7 +627,7 @@ function vboxConfirm(q,buttons,cancelText,onCancel,minWidth,minHeight) {
 
     var div = $('<div />').attr({'class':'vboxDialogContent','style':'display: none; width: 500px;'}).html('<img src="images/50px-Question_icon.svg.png" style="height: 50px; width: 50px; float: left; padding: 10px;" height="50" width="50" />'+q);
 
-    if(!cancelText) cancelText = trans('Cancel','QIMessageBox');
+    if(!cancelText) cancelText = trans('Cancel','UIMessageCenter');
     if(!minWidth) minWidth = 500;
     if(!minHeight) minHeight = 200;
 
@@ -654,7 +654,7 @@ function vboxInfo(q) {
     var div = $('<div />').attr({'class':'vboxDialogContent','style':'display: none; width: 500px;'}).html('<img src="images/50px-information_icon.svg.png" style="height: 50px; width: 50px; float: left; padding: 10px;" height="50" width="50" />'+q);
 
     var buttons = {};
-    buttons[trans('OK','QIMessageBox')] = function() {
+    buttons[trans('OK','UIMessageCenter')] = function() {
         $(this).remove();
     }
 
@@ -682,7 +682,7 @@ function vboxInitDisplay(root,context) {
     $(root).find('div.slider').each(function(){
 
         if($(this).hasClass('translateglob')) {
-            $(this).closest('table').find(".translate").html(function(i,h){return trans($('<div />').html(h).text(),'VBoxGlobal');}).removeClass('translate');
+            $(this).closest('table').find(".translate").html(function(i,h){return trans($('<div />').html(h).text(),'UICommon');}).removeClass('translate');
         }
         var frm = $(this).data('form');
         if($(this).data('display')) {
@@ -843,6 +843,27 @@ function vboxDivOverflowHidden(p) {
 
 
 /**
+ * Translate the operation Description
+ * @param {Object} opinfo
+ * @return {String}
+ */
+function transOpDesc(opinfo) {
+    const opdescset = new Set(["Deleting", "Cloning Disk"]);
+
+    var opdesc = opinfo.operationDescription.substring(0,opinfo.operationDescription.indexOf("'") - 1);
+    var result = '';
+
+    if(opdescset.has(opdesc)) {
+        result = trans(opdesc,'UIActionPool') + opinfo.operationDescription.substring(opinfo.operationDescription.indexOf("'") - 1);
+    } else {
+        result = trans(opinfo.operationDescription,'UIActionPool');
+    }
+
+    return result;
+}
+
+
+/**
  * Show progress dialog and periodically poll the progress' status
  *
  * @param {String} prequest - request object passed to ajax
@@ -917,7 +938,7 @@ function vboxProgressCreateDialog(prequest,icon,title,target,callback) {
     // Cancel button
     $('<div />').attr({'id':'vboxProgressCancel'+pid}).css({'display':'none','padding':'8px'}).append(
 
-        $('<input />').attr('type','button').val(trans('Cancel','QIMessageBox')).data({'pid':pid}).click(function(){
+        $('<input />').attr('type','button').val(trans('Cancel','UIMessageCenter')).data({'pid':pid}).click(function(){
             this.disabled = 'disabled';
             vboxAjaxRequest('progressCancel',prequest);
         })
@@ -1090,9 +1111,12 @@ function vboxProgressUpdate(prequest,d,modal) {
         return;
     }
 
+    // translate operation Description
+    var opDesc = transOpDesc(d.responseData.info);
+
     // update percent
     $("#vboxProgressBar"+pid).progressbar({ value: d.responseData.info.percent });
-    $("#vboxProgressText"+pid).html(d.responseData.info.percent+'%'+(modal ? '<br />' : ' ') + d.responseData.info.operationDescription);
+    $("#vboxProgressText"+pid).html(d.responseData.info.percent+'%'+(modal ? '<br />' : ' ') + opDesc);
 
     // Cancelable?
     if(d.responseData.info.cancelable) {
