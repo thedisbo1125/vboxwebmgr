@@ -50,7 +50,7 @@ var sButtons = new Array(
 				$('#vboxUserEdit').trigger('setMode','addUser');
 				
 				var buttons = {};
-				buttons[trans('OK','QIMessageBox')] = function() {
+				buttons[trans('OK','UIMessageCenter')] = function() {
 					var u = $('#vboxUserEdit').find('input[name=username]').first().val();
 					var p1 = $('#vboxUserEdit').find('input[name=npass1]').first().val();
 					var p2 = $('#vboxUserEdit').find('input[name=npass2]').first().val();
@@ -80,7 +80,7 @@ var sButtons = new Array(
 					},{'u':u,'p':p1,'a':a});
 					chp.run();
 				};
-				buttons[trans('Cancel','QIMessageBox')] = function(){
+				buttons[trans('Cancel','UIMessageCenter')] = function(){
 					$(this).remove();
 				};
 				$('#vboxUserEdit').dialog({'closeOnEscape':false,'width':500,'height':220,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/vm_new_16px.png" class="vboxDialogTitleIcon" /> '+trans('Add User','UIUsers')});
@@ -98,7 +98,7 @@ var sButtons = new Array(
 		'enabled' : function (item) { return (item && $(item).data('username') && $(item).data('username') != $('#vboxPane').data('vboxSession').user); },
 		'click' : function () {
 			var buttons = {};
-			buttons[trans('OK','QIMessageBox')] = function() {
+			buttons[trans('OK','UIMessageCenter')] = function() {
 				var user = $('#vboxSettingsUserList').children('li.vboxListItemSelected').data();
 				var l = new vboxLoader();
 				l.add('delUser',function(d){
@@ -129,7 +129,7 @@ var sButtons = new Array(
 				$('#vboxUserEdit').trigger('setMode','changePassword');
 				
 				var buttons = {};
-				buttons[trans('OK','QIMessageBox')] = function() {
+				buttons[trans('OK','UIMessageCenter')] = function() {
 					var o = $('#vboxUserEdit').find('input[name=opass]').first().val();
 					var n1 = $('#vboxUserEdit').find('input[name=npass1]').first().val();
 					var n2 = $('#vboxUserEdit').find('input[name=npass2]').first().val();
@@ -158,7 +158,7 @@ var sButtons = new Array(
 					},{'old':o,'new':n1});
 					chp.run();
 				};
-				buttons[trans('Cancel','QIMessageBox')] = function(){
+				buttons[trans('Cancel','UIMessageCenter')] = function(){
 					$(this).remove();
 				};
 				$('#vboxUserEdit').dialog({'closeOnEscape':false,'width':400,'height':200,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/register_16px.png" class="vboxDialogTitleIcon" /> '+trans('Change Password','UIUsers')});
@@ -188,7 +188,7 @@ var sButtons = new Array(
 				$('#vboxUserEdit').find('input[name=admin]').first().prop('checked', (user.admin ? true : false));
 				
 				var buttons = {};
-				buttons[trans('OK','QIMessageBox')] = function() {
+				buttons[trans('OK','UIMessageCenter')] = function() {
 					
 					var p1 = $('#vboxUserEdit').find('input[name=npass1]').first().val();
 					var p2 = $('#vboxUserEdit').find('input[name=npass2]').first().val();
@@ -211,7 +211,7 @@ var sButtons = new Array(
 					},{'u':user.username,'p':p1,'a':a});
 					chp.run();
 				};
-				buttons[trans('Cancel','QIMessageBox')] = function(){
+				buttons[trans('Cancel','UIMessageCenter')] = function(){
 					$(this).remove();
 				};
 				$('#vboxUserEdit').dialog({'closeOnEscape':false,'width':500,'height':230,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/register_16px.png" class="vboxDialogTitleIcon" /> '+trans('Edit User','UIUsers')});

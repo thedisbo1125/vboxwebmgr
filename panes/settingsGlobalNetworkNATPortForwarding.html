@@ -69,14 +69,14 @@ var sButtons = new Array(
 	{
 		'name' : 'insportfwd',
 		'label' : 'Add New Rule',
-		'language_context': 'UIPortForwardingTable',
+		'language_context': 'UIMachineSettingsPortForwardingDlg',
 		'icon' : 'controller_add',
 		'click' : function (e) {
 			var listId = $(e.target).closest('div.vboxTabContent').find('tbody.vboxSettingsGlobalNetworkNatPortForwardingList').first().attr('id');
 			var rname = null;
 			var rules = $('#'+listId).children('tr');
 			for(var n = 1; n < 100; n++) {
-				rname = trans('Rule %1').replace('%1',n);
+				rname = trans('Rule %1','UIMachineSettingsPortForwardingDlg').replace('%1',n);
 				for(var i = 0; i < rules.length; i++) {
 					if($(rules[i]).data('vboxRule')[0] == rname) {
 						rname = null;
@@ -91,7 +91,7 @@ var sButtons = new Array(
 	{
 		'name' : 'delportfwd',
 		'label' : 'Remove Selected Rule',
-		'language_context': 'UIPortForwardingTable',
+		'language_context': 'UIMachineSettingsPortForwardingDlg',
 		'icon' : 'controller_remove',
 		'click' : function (e) {
 			var listId = $(e.target).closest('div.vboxTabContent').find('tbody.vboxSettingsGlobalNetworkNatPortForwardingList').first().attr('id');
@@ -103,8 +103,8 @@ var sButtons = new Array(
 );
 
 /* Translate column headers */
-$('#vboxSettingsGlobalNetworkNatPortForwardingListDivIPv4').find(".translate").text(function(i,h){return trans(h,'UIPortForwardingTable');}).removeClass('translate');
-$('#vboxSettingsGlobalNetworkNatPortForwardingIPv6').find(".translate").text(function(i,h){return trans(h,'UIPortForwardingTable');}).removeClass('translate');
+$('#vboxSettingsGlobalNetworkNatPortForwardingListDivIPv4').find(".translate").text(function(i,h){return trans(h,'UIMachineSettingsPortForwardingDlg');}).removeClass('translate');
+$('#vboxSettingsGlobalNetworkNatPortForwardingIPv6').find(".translate").text(function(i,h){return trans(h,'UIMachineSettingsPortForwardingDlg');}).removeClass('translate');
 
 
 var pfToolbarIPv4 = new vboxToolbarSmall({buttons: sButtons, language_context: 'UIMachineSettingsPortForwardingDlg'});
@@ -183,7 +183,7 @@ function vboxSettingsGlobalNetworkNatPortForwardingEditProto(td) {
 
 	$(td).parent().data('vboxRule')[1] = val;
 	
-	$(td).html(val == 'tcp' ? trans('TCP','VBoxGlobal') : trans('UDP','VBoxGlobal'));
+	$(td).html(val == 'tcp' ? trans('TCP','UICommon') : trans('UDP','UICommon'));
 	
 }
 /* Add forwarding rule */
@@ -218,7 +218,7 @@ function vboxSettingsGlobalNetworkNatPortForwardingAdd(r,listId) {
 		
 		$(this).closest('tbody.vboxSettingsGlobalNetworkNatPortForwardingList').trigger('select',$(this).parent());
 	
-	}).addClass('vboxProto vboxHoverMid').html(trans(rule[1] == 'tcp' ? 'TCP' : 'UDP','VBoxGlobal')).appendTo(tr);
+	}).addClass('vboxProto vboxHoverMid').html(trans(rule[1] == 'tcp' ? 'TCP' : 'UDP','UICommon')).appendTo(tr);
 	
 	for(var i = 2; i < rule.length; i++) {
 		$('<td />').css({'text-align':'center'}).data('vboxPane',i).click(function(){
