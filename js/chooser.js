@@ -693,7 +693,7 @@ var vboxChooser = {
 			$(td).append('<div class="vboxFitToContainer vboxVMName"><span class="vboxVMName">'+$('<span />').text(vmn.name).html()+'</span>'+ (vmn.currentSnapshotName ? '<span class="vboxVMChooserSnapshotName"> (' + $('<span />').text(vmn.currentSnapshotName).html() + ')</span>' : '')+'</div>');
 
 			// Table gets tool tips
-			tip = trans(vboxChooser._vmToolTip, 'UIVMListView').replace('%1',('<b>'+$('<span />')
+			tip = trans(vboxChooser._vmToolTip, 'UIMessageCenter').replace('%1',('<b>'+$('<span />')
 				.text(vmn.name).html()+'</b>'+(vmn.currentSnapshotName ? ' (' + $('<span />')
 						.text(vmn.currentSnapshotName).html() + ')' : '')))
 				.replace('%2',trans(vboxVMStates.convert(vmn.state),'UICommon'))
@@ -997,7 +997,7 @@ var vboxChooser = {
 				if(!p[0]) p = vboxChooser._anchor.children('div.vboxChooserGroupVMs');
 
 				// Determine group name
-				var gname = trans('New group','UIGChooserModel');
+				var gname = trans('New group','UICommon');
 				var tgname = gname;
 
 				var i = 2;
@@ -1123,7 +1123,7 @@ var vboxChooser = {
 		if(!$(target)[0]) return;
 
 		// Determine group name
-		var gname = trans('New group','UIGChooserModel');
+		var gname = trans('New group','UICommon');
 		var tgname = gname;
 
 		var i = 2;
@@ -1247,8 +1247,8 @@ var vboxChooser = {
 					.each(function(hidx,header) {
 
 						var staticTip = '<strong>'+$(header).siblings('div.vboxChooserGroupIdentifier').attr('title')+'</strong>'+
-							(gList.length ? ('<br />' + trans('%n group(s)','UIGChooserItemGroup',gList.length).replace('%n',gList.length)) : '') +
-							(vmList.length ? ('<br />' + trans('%n machine(s)','UIGChooserItemGroup',vmList.length).replace('%n',vmList.length)) : '');
+							(gList.length ? ('<br />' + trans('%n group(s)','UIChooserItemGroup',gList.length).replace('%n',gList.length)) : '') +
+							(vmList.length ? ('<br />' + trans('%n machine(s)','UIChooserItemGroup',vmList.length).replace('%n',vmList.length)) : '');
 
 						$(header).tipped({'source':function() {
 
@@ -1262,7 +1262,7 @@ var vboxChooser = {
 								});
 							}
 
-							return staticTip + (runningVMs > 0 ? ' ' + trans('(%n running)','UIGChooserItemGroup',runningVMs).replace('%n', runningVMs) : '');
+							return staticTip + (runningVMs > 0 ? ' ' + trans('(%n running)','UIChooserItemGroup',runningVMs).replace('%n', runningVMs) : '');
 						}
 							,'position':'mouse','delay':1500});
 					})
