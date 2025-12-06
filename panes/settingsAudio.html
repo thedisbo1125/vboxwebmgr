@@ -66,7 +66,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 	document.forms['frmVboxSettings'].vboxSettingsAudioController.options.length = 0;
 	
 	for(var i = 0; i < ad.length; i++) {
-		var opt = new Option(trans(vboxAudioController(ad[i]),'VBoxGlobal'),ad[i]);
+		var opt = new Option(trans(vboxAudioController(ad[i]),'UIMachineSettingsAudio'),ad[i]);
 		document.forms['frmVboxSettings'].vboxSettingsAudioController.options[document.forms['frmVboxSettings'].vboxSettingsAudioController.options.length] = opt;
 	}
 
@@ -84,7 +84,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 		ad[ad.length] = $('#vboxSettingsDialog').data('vboxMachineData').audioAdapter.audioDriver;
 
 	for(var i = 0; i < ad.length; i++) {
-		var opt = new Option(trans(vboxAudioDriver(ad[i]),'VBoxGlobal'),ad[i]);
+		var opt = new Option(trans(vboxAudioDriver(ad[i]),'UIMachineSettingsAudio'),ad[i]);
 		document.forms['frmVboxSettings'].vboxSettingsAudioDriver.options[document.forms['frmVboxSettings'].vboxSettingsAudioDriver.options.length] = opt;
 	}
 

@@ -88,7 +88,7 @@ function vboxVMNetAdaptersDisplay(d) {
 	for(var i = 0; i < data['Count']; i++) {
 
 		// Tab link
-		$(ul).append($('<li />').html('<a href="#vboxGuestNetAdapter' + (i + 1) +'"><span>' + trans('Adapter %1','VBoxGlobal').replace('%1',(i + 1)) + '</span></a>'));
+		$(ul).append($('<li />').html('<a href="#vboxGuestNetAdapter' + (i + 1) +'"><span>' + trans('Adapter %1','UICommon').replace('%1',(i + 1)) + '</span></a>'));
 
 		// Tab content
 		var tmpl = $("#vboxGuestNetAdapterTemplate").clone(true);

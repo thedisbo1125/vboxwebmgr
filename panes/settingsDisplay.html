@@ -205,7 +205,7 @@ function vboxSettingsBrowseVRDPCACert(btn, allowedexts) {
     var getfiletitle = ((btn.getAttribute("getfiletitle") === null) ? "" : (btn.getAttribute("getfiletitle")));
     vboxFileBrowser($('#vboxSettingsDialog').data('vboxMachineData').defaultMachineFolder,function(f){
         if(f) $(def).text(f);
-    },false,trans(getfiletitle,'UIGlobalSettingsGeneral').replace(':',''),'images/view_cert_16px.png',true,allowedexts);
+    },false,trans(getfiletitle,'UIMachineSettingsDisplay').replace(':',''),'images/view_cert_16px.png',true,allowedexts);
 }
 
 
@@ -222,7 +222,7 @@ function vboxSettingsVRDPCertSet(vrdpcertlabel, vrdpcertname) {
     var disableimage = "_disabled";
 
     if ((vrdpcertname  === undefined) || (vrdpcertname == "")) {
-        certlabeltext = "<Not Set>";
+        certlabeltext = '<' + trans('Not Set','UIMachineSettingsDisplay') + '>';
     } else {
         certlabeltext = vrdpcertname;
         disableimage = "";
@@ -380,7 +380,7 @@ rdpcheckbox.addEventListener("change", (event) => {
 
 
 /* auth method translations */
-$('#vboxSettingsDisplayVRDEAuthID').find('option').html(function(i,h){return trans(h,'UICommon');});
+$('#vboxSettingsDisplayVRDEAuthID').find('option').html(function(i,h){return trans(h,'UIMachineSettingsDisplay');});
 
 $('#vboxSettingsDisplayMemory').data('form','frmVboxSettings');
 $('#vboxSettingsDisplayMemory').slider({'min':parseInt($('#vboxPane').data('vboxSystemProperties').minGuestVRAM),'max':parseInt($('#vboxPane').data('vboxSystemProperties').maxGuestVRAM)});
@@ -511,11 +511,13 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 
 
 		// Add option to unset address
-		ipaddressselect.add(new Option("<address not set>"));
+		const addrnotset = "<" + trans("Address not set",'UIMachineSettingsDisplay') + ">";
+
+		ipaddressselect.add(new Option(addrnotset));
 
 		// Set IP Address on VRDE Address Select
 		if (($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress) == "") {
-			ipaddressselect.value = "<address not set>";
+			ipaddressselect.value = addrnotset;
 		}
 		else {
 	 		ipaddressselect.value = $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress;
@@ -538,6 +540,8 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
 /* Change settings onSave() */
 $('#vboxSettingsDialog').on('save',function(){
 
+	const addrnotset = "<" + trans("Address not set",'UIMachineSettingsDisplay') + ">";
+
 	$('#vboxSettingsDialog').data('vboxMachineData').VRAMSize = $(document.forms['frmVboxSettings'].vboxSettingsDisplayMemoryValue).val();
 
 	$('#vboxSettingsDialog').data('vboxMachineData').graphicsControllerType = $(document.forms['frmVboxSettings'].vboxSettingsGraphicsController).val();
@@ -550,8 +554,8 @@ $('#vboxSettingsDialog').on('save',function(){
 	if($('#vboxSettingsDialog').data('vboxMachineData').VRDEServer && $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.VRDEExtPack) {
 		$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.ports = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEPort.value;
 
-		if (document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAddr.value == "<address not set>") {
-	                $('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress = "";
+		if (document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAddr.value == addrnotset) {
+			$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress = "";
 		}
 		else {
 			$('#vboxSettingsDialog').data('vboxMachineData').VRDEServer.netAddress = document.forms['frmVboxSettings'].vboxSettingsDisplayVRDEAddr.value;
