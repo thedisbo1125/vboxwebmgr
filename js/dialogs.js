@@ -112,7 +112,7 @@ function vboxWizardImportApplianceDialog() {
                 }
             }
             if(lic) {
-                if(!vmname) vmname = trans('Virtual System %1','UIApplianceEditorWidget').replace('%1',a);
+                if(!vmname) vmname = trans('Virtual System %1','UIWizardImportApp').replace('%1',a);
                 licenses[licenses.length] = {'name':vmname,'license':lic};
             }
         }
@@ -120,7 +120,10 @@ function vboxWizardImportApplianceDialog() {
 
         if(licenses.length) {
 
-            var msg = trans('<b>The virtual system "%1" requires that you agree to the terms and conditions of the software license agreement shown below.</b><br /><br />Click <b>Agree</b> to continue or click <b>Disagree</b> to cancel the import.','UIImportLicenseViewer');
+            var msg = '<b>' + trans('The virtual system "%1" requires that you agree to the terms and conditions ' +
+                'of the software license agreement shown below.','UIImportLicenseViewer') + '</b><br /><br />' +
+                trans('Click <b>Agree</b> to continue or click <b>Disagree</b> to cancel the import.','UIImportLicenseViewer');
+
             var a = 0;
             var buttons = {};
             buttons[trans('Agree','UIImportLicenseViewer')] = function() {
@@ -264,12 +267,14 @@ function vboxWizardExportApplianceDialog() {
         fe.onLoad = function() {
             if(fileExists) {
                 var buttons = {};
-                buttons[trans('Yes','QIMessageBox')] = function() {
+                buttons[trans('Yes','UIMessageCenter')] = function() {
                     vboxExportApp(1);
                     $(this).empty().remove();
                 };
 
-                vboxConfirm(trans('A file named <b>%1</b> already exists. Are you sure you want to replace it?<br /><br />Replacing it will overwrite its contents.','UIMessageCenter').replace('%1',vboxBasename(loc)),buttons,trans('No','QIMessageBox'));
+                var confirmstr = trans('A file named <b>%1</b> already exists. Are you sure you want to replace it?','UIMessageCenter')
+                    .replace('%1',vboxBasename(loc)) + '<br /><br />' + trans('Replacing it will overwrite its contents.','UIMessageCenter');
+                vboxConfirm(confirmstr,buttons,trans('No','UIMessageCenter'));
                 return;
             }
             vboxExportApp(0);
@@ -303,7 +308,7 @@ function vboxMediumEncryptionPasswordsDialog(context, encIds, validIds) {
         }
 
         var buttons = {};
-        buttons[trans('OK','QIMessageBox')] = function(){
+        buttons[trans('OK','UIMessageCenter')] = function(){
             // Get passwords
             var pws = vboxMediumEncryptionPasswordsGet();
             if(pws === false)
@@ -313,13 +318,13 @@ function vboxMediumEncryptionPasswordsDialog(context, encIds, validIds) {
 
             results.resolve(pws);
         };
-        buttons[trans('Cancel','QIMessageBox')] = function(){
+        buttons[trans('Cancel','UIMessageCenter')] = function(){
             results.reject();
             $(this).trigger('close').empty().remove();
         };
 
         $('#vboxMediumEncryptionPasswords').dialog({'closeOnEscape':true,'width':600,'height':400,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' + dialogTitle}).on("dialogbeforeclose",function(){
-            $(this).parent().find('span:contains("'+trans('Cancel','QIMessageBox')+'")').trigger('click');
+            $(this).parent().find('span:contains("'+trans('Cancel','UIMessageCenter')+'")').trigger('click');
         });
 
     };
@@ -351,7 +356,7 @@ function vboxPortForwardConfigDialog(rules) {
         };
 
         var buttons = {};
-        buttons[trans('OK','QIMessageBox')] = function(){
+        buttons[trans('OK','UIMessageCenter')] = function(){
             // Get rules
             var rules = $('#vboxSettingsPortForwardingList').children('tr');
             var rulesToPass = new Array();
@@ -367,13 +372,13 @@ function vboxPortForwardConfigDialog(rules) {
 
             results.resolve(rulesToPass);
         };
-        buttons[trans('Cancel','QIMessageBox')] = function(){
+        buttons[trans('Cancel','UIMessageCenter')] = function(){
             results.reject();
             $(this).trigger('close').empty().remove();
         };
 
         $('#vboxSettingsPortForwarding').dialog({'closeOnEscape':true,'width':780,'height':400,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' + trans('Port Forwarding Rules','UIMachineSettingsPortForwardingDlg')}).on("dialogbeforeclose",function(){
-            $(this).parent().find('span:contains("'+trans('Cancel','QIMessageBox')+'")').trigger('click');
+            $(this).parent().find('span:contains("'+trans('Cancel','UIMessageCenter')+'")').trigger('click');
         }).on('dialogresizestop',resizeTable);
 
         resizeTable();
@@ -435,7 +440,10 @@ function vboxWizardNewVMDialog(vmgroup) {
             }).done(function(res){
 
                 if(res.responseData.exists) {
-                    vboxAlert(trans('<p>Cannot create the machine folder <b>%1</b> in the parent folder <nobr><b>%2</b>.</nobr></p><p>This folder already exists and possibly belongs to another machine.</p>','UIMessageCenter').replace('%1',vboxBasename(res.exists)).replace('%2',vboxDirname(res.exists)));
+                    vboxAlert('<p>' + trans('Cannot create the machine folder <b>%1</b> in the parent folder ' +
+                        '<nobr><b>%2</b>.</nobr>','UIMessageCenter')
+                        .replace('%1',vboxBasename(res.exists)).replace('%2',vboxDirname(res.exists)) +
+                        '</p><p>' + trans('This folder already exists and possibly belongs to another machine.','UIMessageCenter') + '</p>');
 
                 } else if(res.success) {
                     $(self.dialog).empty().remove();
@@ -475,7 +483,11 @@ function vboxWizardNewVMDialog(vmgroup) {
 
                 if(fileExists) {
 
-                    vboxAlert(trans('<p>Cannot create the machine folder <b>%1</b> in the parent folder <nobr><b>%2</b>.</nobr></p><p>This folder already exists and possibly belongs to another machine.</p>','UIMessageCenter').replace('%1',vboxBasename(loc)).replace('%2',vboxDirname(loc)));
+                    vboxAlert('<p>' + trans('Cannot create the machine folder <b>%1</b> in the parent folder ' +
+                        '<nobr><b>%2</b>.</nobr>','UIMessageCenter')
+                        .replace('%1',vboxBasename(loc)).replace('%2',vboxDirname(loc)) + '</p><p>' +
+                        trans('This folder already exists and possibly belongs to another machine.','UIMessageCenter') + '</p>');
+
                     // Go back
                     self.displayStep(1);
 
@@ -668,7 +680,7 @@ function vboxShowLogsDialogInit(vm) {
     l.addFileToDOM('panes/vmlogs.html',$('#vboxVMLogsDialog'));
     l.onLoad = function(){
         var buttons = {};
-        buttons[trans('Refresh','UIVMLogViewer')] = function() {
+        buttons[trans('Refresh','UIActionPool')] = function() {
             l = new vboxLoader();
             l.add('machineGetLogFilesList',function(r){
                 $('#vboxVMLogsDialog').data({'logs':r.responseData.logs,'logpath':r.responseData.path});
@@ -679,9 +691,10 @@ function vboxShowLogsDialogInit(vm) {
             };
             l.run();
         };
-        buttons[trans('Close','UIVMLogViewer')] = function(){$(this).trigger('close').empty().remove();};
+        buttons[trans('Close','UIActionPool')] = function(){$(this).trigger('close').empty().remove();};
+
         $('#vboxVMLogsDialog').dialog({'closeOnEscape':true,'width':800,'height':500,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/vm_show_logs_16px.png" class="vboxDialogTitleIcon" /> '+ trans('%1 - VirtualBox Log Viewer','UIVMLogViewer').replace('%1',vm.name)}).on("dialogbeforeclose",function(){
-            $(this).parent().find('span:contains("'+trans('Close','UIVMLogViewer')+'")').trigger('click');
+            $(this).parent().find('span:contains("'+trans('Close','UIActionPool')+'")').trigger('click');
         });
         vboxShowLogsInit(vm);
     };
@@ -711,7 +724,7 @@ function vboxVMMDialog(select,type,hideDiff,mPath) {
     l.onLoad = function() {
         var buttons = {};
         if(select) {
-            buttons[trans('Select','UIMediumManager')] = function() {
+            buttons[trans('Select','UIVirtualMediaManager')] = function() {
                 var sel = null;
                 switch($("#vboxVMMTabs").tabs('option','active')) {
                     case 0: /* HardDisks */
@@ -739,7 +752,7 @@ function vboxVMMDialog(select,type,hideDiff,mPath) {
             'buttons':buttons,'modal':true,'autoOpen':true,
             'dialogClass':'vboxDialogContent vboxVMMDialog',
             'title':'<img src="images/vbox/diskimage_16px.png" class="vboxDialogTitleIcon" /> '+
-            trans('Virtual Media Manager','UIMediumManager')}).on("dialogbeforeclose",function(){
+            trans('Virtual Media Manager','UIVirtualMediaManager')}).on("dialogbeforeclose",function(){
                 $(this).parent().find('span:contains("'+trans('Close','UIMessageCenter')+'")').trigger('click');
             });
 
@@ -818,7 +831,7 @@ function vboxWizardNewHDDialog(suggested) {
         // Fix size if we need to
         var mbytes = vboxConvertMbytes($(self.form).find('[name=wizardNewHDSizeValue]').val());
         $(self.form).find('[name=wizardNewHDSizeValue]').val(vboxMbytesConvert(mbytes));
-        $('#wizardNewHDSizeLabel').html(vboxMbytesConvert(mbytes) + ' ('+mbytes+' '+trans('MB','VBoxGlobal')+')');
+        $('#wizardNewHDSizeLabel').html(vboxMbytesConvert(mbytes) + ' ('+mbytes+' '+trans('MB','UICommon')+')');
 
         // Determine file location
         var file = $(self.form).find('[name=wizardNewHDLocation]').val();
@@ -873,11 +886,10 @@ function vboxWizardNewHDDialog(suggested) {
         },{'file':file});
         l.onLoad = function() {
             if(fileExists) {
-                vboxAlert(trans("<p>The hard disk storage unit at location <b>%1</b> already " +
-                           "exists. You cannot create a new virtual hard disk that uses this " +
-                           "location because it can be already used by another virtual hard " +
-                           "disk.</p>" +
-                           "<p>Please specify a different location.</p>",'UIMessageCenter').replace('%1',file));
+                vboxAlert('<p>' + trans('The hard disk storage unit at location <b>%1</b> already exists. ' +
+                    'You cannot create a new virtual hard disk that uses this location because ' +
+                    'it can be already used by another virtual hard disk.','UIMessageCenter').replace('%1',file) +
+                    '</p><p>' + trans('Please specify a different location.','UIMessageCenter') + '</p>');
                 return;
             }
             var fsplit = $(self.form).find('[name=newHardDiskSplit]').prop('checked');
@@ -930,13 +942,13 @@ function vboxWizardCopyHDDialog(suggested) {
 
     /* Common options */
     this.name = 'wizardCopyHD';
-    this.title = trans('Copy Virtual Hard Disk','UIWizardCloneVD');
+    this.title = trans('Copy Virtual Hard Disk','UIWizardCopyVD');
     this.bg = 'images/vbox/vmw_new_harddisk_bg.png';
     this.icon = 'hd';
     this.steps = 4;
     this.suggested = suggested;
-    this.context = 'UIWizardCloneVD';
-    this.finishText = trans('Copy','UIWizardCloneVD');
+    this.context = 'UIWizardCopyVD';
+    this.finishText = trans('Copy','UIWizardCopyVD');
     this.height = 450;
 
     this.data = [
@@ -1018,7 +1030,7 @@ function vboxWizardCopyHDDialog(suggested) {
                             self.completed.resolve(mid);
                         };
                         ml.run();
-                    },'progress_media_create_90px.png',trans('Copy Virtual Hard Disk','UIWizardCloneVD'),
+                    },'progress_media_create_90px.png',trans('Copy Virtual Hard Disk','UIWizardCopyVD'),
                         vboxBasename(vboxMedia.getMediumById(src).location) + ' > ' + vboxBasename(loc));
                 } else {
                     self.completed.reject();
@@ -1050,9 +1062,9 @@ function vboxGuestNetworkAdaptersDialogInit(vm) {
     l.onLoad = function(){
 
         var buttons = {};
-        buttons[trans('Close','UIVMLogViewer')] = function() {$('#vboxGuestNetworkDialog').trigger('close').empty().remove();};
-        $('#vboxGuestNetworkDialog').dialog({'closeOnEscape':true,'width':500,'height':250,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' + trans('Guest Network Adapters','VBoxGlobal')}).on("dialogbeforeclose",function(){
-            $(this).parent().find('span:contains("'+trans('Close','UIVMLogViewer')+'")').trigger('click');
+        buttons[trans('Close','UIActionPool')] = function() {$('#vboxGuestNetworkDialog').trigger('close').empty().remove();};
+        $('#vboxGuestNetworkDialog').dialog({'closeOnEscape':true,'width':500,'height':250,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/nw_16px.png" class="vboxDialogTitleIcon" /> ' + trans('Guest Network Adapters','UICommon')}).on("dialogbeforeclose",function(){
+            $(this).parent().find('span:contains("'+trans('Close','UIActionPool')+'")').trigger('click');
         });
 
         // defined in pane
@@ -1072,7 +1084,7 @@ function vboxGlobalPrefsDialog() {
         {'name':'GlobalGeneral','label':'General','icon':'machine','context':'UIGlobalSettingsGeneral'},
         {'name':'GlobalLanguage','label':'Language','icon':'site','context':'UIGlobalSettingsLanguage'},
         {'name':'GlobalNetwork','label':'Network','icon':'nw','context':'UIGlobalSettingsNetwork','tabbed':true},
-        {'name':'GlobalRDPSettings','label':'RDP Settings','icon':'machine-rdp','context':'UIGlobalSettingsDialogRDP','tabbed':true},
+        {'name':'GlobalRDPSettings','label':'RDP Settings','icon':'machine-rdp','context':'UIGlobalSettingsRDP','tabbed':true},
         {'name':'GlobalUsers','label':'Users','icon':'register','context':'UIUsers'}
     );
 
@@ -1093,7 +1105,7 @@ function vboxGlobalPrefsDialog() {
     }
 
     $.when(vboxSettingsDialog(trans('Preferences...','UIActionPool').replace(/\./g,''),
-            panes,data,null,'global_settings','UISettingsDialogGlobal'))
+            panes,data,null,'global_settings','UIGlobalSettingsDialog'))
         .done(function(){
 
             var l = new vboxLoader();
@@ -1179,7 +1191,7 @@ function vboxVMsettingsDialog(vm,pane) {
 
                     if(!eventList[i].machineId || eventList[i].machineId != vm.id || eventList[i].registered) break;
 
-                    $('#vboxSettingsDialog').parent().find('span:contains("'+trans('Cancel','QIMessageBox')+'")').trigger('click');
+                    $('#vboxSettingsDialog').parent().find('span:contains("'+trans('Cancel','UIMessageCenter')+'")').trigger('click');
                     break;
 
                 case 'OnMachineDataChanged':
@@ -1230,7 +1242,7 @@ function vboxVMsettingsDialog(vm,pane) {
 
                             /* Change title and tell dialog that data is loaded */
                             $('#vboxSettingsDialog').trigger('dataLoaded').dialog('option','title','<img src="images/vbox/vm_settings_16px.png" class="vboxDialogTitleIcon" /> ' +
-                                $('<div />').text($('#vboxSettingsDialog').data('vboxMachineData').name).text() + ' - ' + trans('Settings','UISettingsDialogMachine'));
+                                $('<div />').text($('#vboxSettingsDialog').data('vboxMachineData').name).text() + ' - ' + trans('Settings','UIMachineSettingsDialog'));
 
                             l.removeLoading();
                             reloadConfirmShowing = false;
@@ -1459,7 +1471,7 @@ function vboxVMsettingsDialog(vm,pane) {
             return encMediaSettings.promise();
         }
 
-        $.when(vboxSettingsDialog(vmData.name + ' - ' + trans('Settings','UISettingsDialogMachine'),panes,dataList,pane,'vm_settings','UISettingsDialogMachine', presaveCallback))
+        $.when(vboxSettingsDialog(vmData.name + ' - ' + trans('Settings','UIMachineSettingsDialog'),panes,dataList,pane,'vm_settings','UIMachineSettingsDialog', presaveCallback))
 
             // Always run this
             .always(function(){
@@ -1673,7 +1685,7 @@ function vboxSettingsDialog(title,panes,data,pane,icon,langContext,presave) {
 
         btncancel = [{
             id: 'cancelbuttonid',
-            text: trans('Cancel','QIMessageBox'),
+            text: trans('Cancel','UIMessageCenter'),
             'class': 'ui-button-cancel',
             click: function () {
                 results.reject();
@@ -1684,7 +1696,7 @@ function vboxSettingsDialog(title,panes,data,pane,icon,langContext,presave) {
 
         btnok = [{
             id: "okbuttonid",
-            text: trans('OK','QIMessageBox'),
+            text: trans('OK','UIMessageCenter'),
             'class': 'ui-button-ok',
             click: function () {
                 $(this).trigger('save');
@@ -1728,7 +1740,7 @@ function vboxSettingsDialog(title,panes,data,pane,icon,langContext,presave) {
             'buttons':buttons,'modal':true,'autoOpen':false,'dialogClass':'vboxSettingsDialog vboxDialogContent',
             'title':(icon ? '<img src="images/vbox/'+icon+'_16px.png" class="vboxDialogTitleIcon" /> ' : '') + title})
             .on("dialogbeforeclose",function(){
-            $(this).parent().find('span:contains("'+trans('Cancel','QIMessageBox')+'")').trigger('click');
+            $(this).parent().find('span:contains("'+trans('Cancel','UIMessageCenter')+'")').trigger('click');
         });
 
         // Show dialog
