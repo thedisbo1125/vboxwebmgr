@@ -31,7 +31,7 @@
 /*
  * Translate
  */
-$('#vboxSettingsPortForwarding').find('.translate').html(function(i,h){return trans(h,'UIPortForwardingTable');}).removeClass('translate');
+$('#vboxSettingsPortForwarding').find('.translate').html(function(i,h){return trans(h,'UIMachineSettingsPortForwardingDlg');}).removeClass('translate');
 
 /*
  * Init port forwarding buttons and toolbar
@@ -40,13 +40,13 @@ $('#vboxSettingsPortForwarding').find('.translate').html(function(i,h){return tr
 var sButtons = new Array(
 	{
 		'name' : 'insportfwd',
-		'label' : 'Insert new rule',
+		'label' : 'Add New Rule',
 		'icon' : 'controller_add',
 		'click' : function () {
 			var rname = null;
 			var rules = $('#vboxSettingsPortForwardingList').children('tr');
 			for(var n = 1; n < 100; n++) {
-				rname = trans('Rule %1').replace('%1',n);
+				rname = trans('Rule %1','UIMachineSettingsPortForwardingDlg').replace('%1',n);
 				for(var i = 0; i < rules.length; i++) {
 					if($(rules[i]).data('vboxRule')[0] == rname) {
 						rname = null;
@@ -60,7 +60,7 @@ var sButtons = new Array(
 	},
 	{
 		'name' : 'delportfwd',
-		'label' : 'Delete selected rule',
+		'label' : 'Remove Selected Rule',
 		'icon' : 'controller_remove',
 		'click' : function () {
 			$('#vboxSettingsPortForwardingList').children('tr.vboxListItemSelected').first().remove();
@@ -140,7 +140,7 @@ function vboxSettingsPortForwardingEditProto(td) {
 
 	$(td).parent().data('vboxRule')[1] = val;
 	
-	$(td).html(val == '1' ? trans('TCP','VBoxGlobal') : trans('UDP','VBoxGlobal'));
+	$(td).html(val == '1' ? trans('TCP','UICommon') : trans('UDP','UICommon'));
 	
 }
 /* Add forwarding rule */
@@ -165,7 +165,7 @@ function vboxSettingsPortForwardingAdd(r) {
 		}
 		$(this).parent().addClass('vboxListItemSelected').removeClass('vboxHover').siblings().removeClass('vboxListItemSelected');
 		$('#vboxSettingsPortForwardingList').trigger('select',$(this).parent());
-	}).addClass('vboxProto vboxHoverMid').html(trans(rule[1] == 1 ? 'TCP' : 'UDP','VBoxGlobal')).appendTo(tr);
+	}).addClass('vboxProto vboxHoverMid').html(trans(rule[1] == 1 ? 'TCP' : 'UDP','UICommon')).appendTo(tr);
 	
 	for(var i = 2; i < rule.length; i++) {
 		$('<td />').data('vboxPane',i).click(function(){

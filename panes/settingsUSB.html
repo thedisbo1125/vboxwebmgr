@@ -96,7 +96,7 @@
 
 					var dname = '';
 					if(!hostUSB[i].product)
-						dname = trans('Unknown device %1:%2','VBoxGlobal').replace('%1',hostUSB[i].vendorId).replace('%2',hostUSB[i].productId);
+						dname = trans('Unknown device %1:%2','UICommon').replace('%1',hostUSB[i].vendorId).replace('%2',hostUSB[i].productId);
 					else
 						dname = hostUSB[i].manufacturer + ' ' + hostUSB[i].product;
 					dname += ' [' + hostUSB[i].revision + ']';
@@ -166,7 +166,7 @@
 			$(d).append(tbl).appendTo($('#vboxPane'));
 			
 			var buttons = { };
-			buttons[trans('OK','QIMessageBox')] = function() {
+			buttons[trans('OK','UIMessageCenter')] = function() {
 
 				var item = $('#vboxSettingsUSBFilterList').find('.vboxListItemSelected').first();
 
@@ -178,7 +178,7 @@
 				$(item).find('span.vboxSettingsUSBFilterTitle').first().text($(item).data('filter').name);
 				$('#vboxSettingsUSBFilterEdit').remove();
 			};
-			buttons[trans('Cancel','QIMessageBox')] = function() { $('#vboxSettingsUSBFilterEdit').remove(); };
+			buttons[trans('Cancel','UIMessageCenter')] = function() { $('#vboxSettingsUSBFilterEdit').remove(); };
 
 			$('#vboxSettingsUSBFilterEdit').dialog({'buttons':buttons,'closeOnEscape':false,'width':400,'minWidth':350,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent vboxNonTabbed','title':'<img src="images/vbox/usb_16px.png" class="vboxDialogTitleIcon" /> '+trans('USB Filter Details','UIMachineSettingsUSBFilterDetails')});
 

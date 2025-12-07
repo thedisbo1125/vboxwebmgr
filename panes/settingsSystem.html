@@ -277,16 +277,16 @@ setInputFilter(document.getElementById("vboxSettingsSystemLogoDisplayTimeID"), f
 */
 
 /* Boot order devices */
-$('#vboxVMBootOrder').find("span.vboxBootOrderDevice").html(function(i,h){return trans(vboxDevice(h),'UICommon');});
+$('#vboxVMBootOrder').find("span.vboxBootOrderDevice").html(function(i,h){return trans(vboxDevice(h),'UIMachineSettingsSystem');});
 
 /* Chipsets */
-$('#vboxSettingsSystemChipsetRow').find('option').html(function(i,h){return trans(h,'VBoxGlobal');});
+$('#vboxSettingsSystemChipsetRow').find('option').html(function(i,h){return trans(h,'UIMachineSettingsSystem');});
 
 /* Paravirtualization providers */
-$(document.forms['frmVboxSettings'].vboxSettingsParavirtInterface).find('option').html(function(i,h){return trans(h,'UICommon', 'ParavirtProvider');});
+$(document.forms['frmVboxSettings'].vboxSettingsParavirtInterface).find('option').html(function(i,h){return trans(h,'UIMachineSettingsSystem', 'ParavirtProvider');});
 
 /* Translate None in TPM List */
-document.forms['frmVboxSettings'].vboxSettingsTPM.options[0].innerHTML = trans('None','UICommon', 'ParavirtProvider');
+document.forms['frmVboxSettings'].vboxSettingsTPM.options[0].innerHTML = trans('None','UIMachineSettingsSystem', 'ParavirtProvider');
 
 $('#vboxSettingsSystemMemory').data('form','frmVboxSettings');
 $('#vboxSettingsSystemProcessor').data('form','frmVboxSettings');

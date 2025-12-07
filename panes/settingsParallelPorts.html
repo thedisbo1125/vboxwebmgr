@@ -46,7 +46,7 @@ if($('#vboxPane').data('vboxConfig').enableLPTConfig) {
 	/* translated select values */
 	for(var i = 0; i < document.forms['frmVboxSettings'].vboxSettingsPPortNumber.options.length; i++) {
 		if($(document.forms['frmVboxSettings'].vboxSettingsPPortNumber.options[i]).hasClass('translate'))
-			$(document.forms['frmVboxSettings'].vboxSettingsPPortNumber.options[i]).text(trans(document.forms['frmVboxSettings'].vboxSettingsPPortNumber.options[i].text,'VBoxGlobal')).removeClass('translate');
+			$(document.forms['frmVboxSettings'].vboxSettingsPPortNumber.options[i]).text(trans(document.forms['frmVboxSettings'].vboxSettingsPPortNumber.options[i].text,'UICommon')).removeClass('translate');
 	}
 	
 	//Translations

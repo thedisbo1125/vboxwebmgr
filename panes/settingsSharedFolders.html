@@ -64,7 +64,7 @@ var sButtons = new Array(
 			$('#vboxSettingsSFPerm').prop('checked',false);
 			
 			var buttons = { };
-			buttons[trans('OK','QIMessageBox')] = function() {
+			buttons[trans('OK','UIMessageCenter')] = function() {
 				if($('#vboxSettingsSFName').val() && $('#vboxSettingsSFPath').val()) {
 					var f = {'name':$('#vboxSettingsSFName').val(),'hostPath':$('#vboxSettingsSFPath').val(),'autoMountPoint':$('#vboxSettingsSFAMPoint').val(),'autoMount':($('#vboxSettingsSFAM').prop('checked')),'writable':!($('#vboxSettingsSFRO').prop('checked'))};
 					if($('#vboxSettingsSFPerm').length) {
@@ -77,7 +77,7 @@ var sButtons = new Array(
 				}
 				$(dialog).empty().remove();
 			};
-			buttons[trans('Cancel','QIMessageBox')] = function() { $(dialog).empty().remove(); };
+			buttons[trans('Cancel','UIMessageCenter')] = function() { $(dialog).empty().remove(); };
 			$(dialog).dialog({'buttons':buttons,'title':'<img src="images/vbox/sf_16px.png" class="vboxDialogTitleIcon" /> '+trans('Add Share','UIMachineSettingsSFDetails')}).dialog('open');
 			
 		}
@@ -101,7 +101,7 @@ var sButtons = new Array(
 			$('#vboxSettingsSFPerm').prop('checked',($(def).data('type') == 'machine' ? true : false));
 
 			var buttons = { };
-			buttons[trans('OK','QIMessageBox')] = function() {
+			buttons[trans('OK','UIMessageCenter')] = function() {
 				if($('#vboxSettingsSFName').val() && $('#vboxSettingsSFPath').val()) {
 					var item = $('#vboxSettingsSharedFoldersList').find('tr.vboxListItemSelected').first();
 					$(item).data({
@@ -115,7 +115,7 @@ var sButtons = new Array(
 				}
 				$(dialog).empty().remove();
 			};
-			buttons[trans('Cancel','QIMessageBox')] = function() { $(dialog).empty().remove(); };
+			buttons[trans('Cancel','UIMessageCenter')] = function() { $(dialog).empty().remove(); };
 			$(dialog).dialog({'buttons':buttons}).dialog('open');
 		
 		}		
@@ -279,7 +279,7 @@ function vboxSettingsAddSharedFolder(f, noColor) {
 					 		$('#vboxSettingsSharedFoldersList').trigger('select',null);
 					 		$('#vboxSFTransientBody').children('tr.vboxSFTransient').css('display','');
 						}
-			 })).append($('<span />').html($('<div/>').text(trans(' Transient Folders','UIMachineSettingsSF')).html())).appendTo(tr);
+			 })).append($('<span />').html($('<div/>').text(trans('Transient Folders','UIMachineSettingsSF')).html())).appendTo(tr);
 	
 			 $(tr).append($('<td />').attr({'class':'vboxSettingsSFPathCell'})).append($('<td />').attr({'class':'vboxSettingsSFAMPointCell'})).append($('<td />').attr({'class':'vboxSettingsSFAMCell'})).append($('<td />').attr({'class':'vboxSettingsSFROCell'}));
 		 $(tb).append(tr).appendTo(sfh);

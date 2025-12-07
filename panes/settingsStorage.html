@@ -953,7 +953,7 @@ function vboxSettingsSelectController(tbl) {
 	document.forms['frmVboxSettings'].vboxSettingsStorageControllerType.options.length = 0;
 	$(document.forms['frmVboxSettings'].vboxSettingsStorageControllerType).children().remove();
 	for(var i = 0; i < vboxStorage[busType].types.length; i++) {
-		document.forms['frmVboxSettings'].vboxSettingsStorageControllerType.options[i] = new Option(trans(vboxStorageControllerType(vboxStorage[busType].types[i]),'VBoxGlobal'),vboxStorage[busType].types[i]);
+		document.forms['frmVboxSettings'].vboxSettingsStorageControllerType.options[i] = new Option(trans(vboxStorageControllerType(vboxStorage[busType].types[i]),'UIMachineSettingsStorage'),vboxStorage[busType].types[i]);
 	}
 
 	/* Set default type */
@@ -993,7 +993,7 @@ function vboxSettingsSelectController(tbl) {
  */
 function vboxSettingsMediumTip(m) {
 
-	if(!m || !m.id) return trans('Empty','UICommon');
+	if(!m || !m.id) return trans('Empty','UIMachineSettingsStorage');
 	if(m.hostDrive) return vboxMedia.getName(m);
 
 	// DVD / Floppy images
@@ -1010,9 +1010,9 @@ function vboxSettingsMediumTip(m) {
 	// Is this a medium that is attached indirectly
 	if(vboxSettingsStorageBusses.isAttachedIndirect(m) && m.base != m.id) {
 		var p = vboxSettingsStorageBusses.isAttached(m);
-		tip += '<hr />'+trans('This base hard disk is indirectly attached using the following differencing hard disk:','VBoxGlobal')+'<br /><b>'+p.location+'</b></p><p>'+trans('Type (Format):','UIMachineSettingsStorage')+' '+vboxMedia.getType(p) + ' (' + p.format + ')'+'</p><p>'+trans('Attached to:','UIMachineSettingsStorage')+' '+vboxMedia.attachedTo(p)+'</p>';
+		tip += '<hr />'+trans('This base hard disk is indirectly attached using the following differencing hard disk:','UIMachineSettingsStorage')+'<br /><b>'+p.location+'</b></p><p>'+trans('Type (Format):','UIMachineSettingsStorage')+' '+vboxMedia.getType(p) + ' (' + p.format + ')'+'</p><p>'+trans('Attached to:','UIMachineSettingsStorage')+' '+vboxMedia.attachedTo(p)+'</p>';
 	} else if(m.readOnly) {
-		tip += '<hr />'+trans('Attaching this hard disk will be performed indirectly using a newly created differencing hard disk.','VBoxGlobal');
+		tip += '<hr />'+trans('Attaching this hard disk will be performed indirectly using a newly created differencing hard disk.','UIMachineSettingsStorage');
 	}
 
 	return tip;
@@ -1131,7 +1131,7 @@ function vboxSettingsStorageAddMedium(conElm, type) {
 		
 	}
 	
-	buttons[trans('Cancel','QIMessageBox')] = function() {
+	buttons[trans('Cancel','UIMessageCenter')] = function() {
 		$(this).remove();
 	};
 	$('<div />').attr({'id':'vboxSettingsStorageUnavailable','style':'display: none'}).html(
@@ -1279,20 +1279,23 @@ function vboxSettingsAddController(con,list) {
 		if(dtypes[i] == 'dvd') {
 			b = {
 				'name' : con.bus+'addcd',
-				'label' : trans('Add Optical Drive','UIMachineSettingsStorage'),
+				'label' : 'Add Optical Drive',
+				'language_context' : 'UIMachineSettingsStorage',
 				'icon' : 'cd_add',
 				'click' : function () { vboxSettingsStorageAddMedium(li,'DVD'); }
 			};
 		} else if(dtypes[i] == 'disk') {
 			b = {
 				'name' : con.bus+'adddrive',
-				'label' : trans('Add Hard Disk','UIMachineSettingsStorage'),
+				'label' : 'Add Hard Disk',
+				'language_context' : 'UIMachineSettingsStorage',
 				'icon' : 'hd_add',
 				'click' : function (item) { vboxSettingsStorageAddMedium(li); }
 			};
 		} else if(dtypes[i] == 'floppy') {
 			b = {
-				'label':trans('Add Floppy Drive','UIMachineSettingsStorage'),
+				'label' : 'Add Floppy Drive',
+				'language_context' : 'UIMachineSettingsStorage',
 				'icon' : 'fd_add',
 				'click' : function (item) { vboxSettingsStorageAddMedium(li,'Floppy'); }
 			};
@@ -1525,7 +1528,7 @@ function vboxSettingsSelectAttachment(tbl) {
 		$('#vboxSettingsHDasize').html(vboxBytesConvert(disp.size));
 		$('#vboxSettingsHDDetails').html(vboxMedia.getHardDiskVariant(disp));
 		$('#vboxSettingsHDlocation').html(disp.location);
-		$('#vboxSettingsHDtype').html(trans(disp.type,'VBoxGlobal') + ' (' + disp.format + ')');
+		$('#vboxSettingsHDtype').html(trans(disp.type,'UIMachineSettingsStorage') + ' (' + disp.format + ')');
 		$('#vboxSettingsHDattached').html(vboxMedia.attachedTo(disp));
 		$('#vboxSettingsHDEncrypted').html(encSettings && encSettings.id ? encSettings.id : '--');
 
