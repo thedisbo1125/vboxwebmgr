@@ -634,7 +634,7 @@ function vboxConfirm(q,buttons,cancelText,onCancel,minWidth,minHeight) {
     buttons[cancelText] = function() { $(this).remove(); if(onCancel) { onCancel(); }};
 
     $(div).dialog({'closeOnEscape':false,
-		'width':500,'height':'auto','minWidth':minWidth, minHeight: minHeight,
+		'width':500,'height':'auto','minWidth':minWidth, 'minHeight': minHeight - 7,
 		'buttons':buttons,'modal':true,
 		'autoOpen':true,'dialogClass':'vboxDialogContent',
 		'title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});
