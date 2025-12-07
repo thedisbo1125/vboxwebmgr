@@ -780,19 +780,23 @@ function __vboxTabSnapshot(s, currentId) {
 
 	switch(ts) {
 		case 'days':
-			ts = trans('%n day(s)','VBoxGlobal', ago).replace('%n', ago);
+			(ago === 1) ? ts = trans('%n day ago','UISnapshotDetails', ago).replace('%n', ago) :
+				ts = trans('%n days ago','UISnapshotDetails', ago).replace('%n', ago);
 			break;
 		case 'hours':
-			ts = trans('%n hour(s)', 'VBoxGlobal', ago).replace('%n', ago);
+			(ago === 1) ? ts = trans('%n hour ago','UISnapshotDetails', ago).replace('%n', ago) :
+				ts = trans('%n hours ago','UISnapshotDetails', ago).replace('%n', ago);
 			break;				
 		case 'minutes':
-			ts = trans('%n minute(s)', 'VBoxGlobal', ago).replace('%n', ago);
+			(ago === 1) ? ts = trans('%n minute ago','UISnapshotDetails', ago).replace('%n', ago) :
+				ts = trans('%n minutes ago','UISnapshotDetails', ago).replace('%n', ago);
 			break;				
 		case 'seconds':
-			ts = trans('%n second(s)', 'VBoxGlobal', ago).replace('%n', ago);
+			(ago === 1) ? ts = trans('%n second ago','UISnapshotDetails', ago).replace('%n', ago) :
+				ts = trans('%n seconds ago','UISnapshotDetails', ago).replace('%n', ago);
 			break;				
 	}
-	ts = trans(' (%1 ago)','VBoxSnapshotsWgt').replace('%1', ts);
+	ts = (' (%1)').replace('%1', ts);
 	
 	$(li).append(' ').append(
 	
@@ -838,10 +842,10 @@ function __vboxTabSnapshot(s, currentId) {
 /* Current state list item */
 function __vboxTabSnapshotCurrent(vm) {
 
-	return $('<li />').data('vboxSnapshot',{'state':'current','name':trans((vm.currentStateModified ? 'Current State (changed)' : 'Current State'),'VBoxSnapshotsWgt')}).html(' ')
+	return $('<li />').data('vboxSnapshot',{'state':'current','name':trans((vm.currentStateModified ? 'Current State (changed)' : 'Current State'),'UISnapshotDetails')}).html(' ')
 		.addClass('last vboxSnapshotCurrent vboxSnapshotCurrentState')
 		.append(
-				$('<div />').attr({'class':'vboxListItem'}).html('<img src="images/vbox/'+vboxMachineStateIcon(vm.state)+'" height="16" width="16" /> ' + $('<div />').text(trans((vm.currentStateModified ? 'Current State (changed)' : 'Current State'),'VBoxSnapshotsWgt')).html())
+				$('<div />').attr({'class':'vboxListItem'}).html('<img src="images/vbox/'+vboxMachineStateIcon(vm.state)+'" height="16" width="16" /> ' + $('<div />').text(trans((vm.currentStateModified ? 'Current State (changed)' : 'Current State'),'UISnapshotDetails')).html())
 				.contextMenu({
 						menu: vboxSnapshotContextMenuCurrent.menuId(),
 						clickthrough : true
@@ -852,12 +856,12 @@ function __vboxTabSnapshotCurrent(vm) {
 					$('#vboxSnapshotList').trigger('select',$(this).parent());
 				})
 				.tipped({'position':'mouse','delay':1500,'source':'<strong>'+
-					trans((vm.currentStateModified ? 'Current State (changed)' : 'Current State'),'VBoxSnapshotsWgt') + '</strong><br />'+
-					trans('%1 since %2','VBoxSnapshotsWgt').replace('%1',trans(vboxVMStates.convert(vm.state),'VBoxGlobal'))
+					trans((vm.currentStateModified ? 'Current State (changed)' : 'Current State'),'UISnapshotDetails') + '</strong><br />'+
+					trans('%1 since %2','UISnapshotDetails').replace('%1',trans(vboxVMStates.convert(vm.state),'UICommon'))
 						.replace('%2',vboxDateTimeString(vm.lastStateChange))
 					+ (vm.snapshotCount > 0 ? '<hr />' + (vm.currentStateModified ?
-								trans('The current state differs from the state stored in the current snapshot','VBoxSnapshotsWgt')
-								: trans('The current state is identical to the state stored in the current snapshot','VBoxSnapshotsWgt'))
+								trans('The current state differs from the state stored in the current snapshot','UISnapshotDetails')
+								: trans('The current state is identical to the state stored in the current snapshot','UISnapshotDetails'))
 						: '')
 					})
 		);
