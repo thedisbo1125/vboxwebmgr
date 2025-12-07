@@ -331,7 +331,7 @@ if((!$('#vboxSettingsDialog').data('vboxHostDetails').cpuFeatures['Long Mode (64
 		// Page Fusion setting not working in VirtualBox 7.2.x
 		if ($('#vboxSettingsDialog').data('vboxMachineData').vboxver > "07.01.99") {
 				$(document.forms['frmVboxSettings'].vboxSettingsSystemPageFusion).parent()
-					.prop('title', trans('Page Fusion currently not supported by VirtualBox 7.2.x','UIMachineSettingsSystem'));
+					.tipped({'source':trans('Page Fusion currently not supported by VirtualBox 7.2.x','UIMachineSettingsSystem'),'mode':'hover','closeonexit':true});
 		}
 }
 
