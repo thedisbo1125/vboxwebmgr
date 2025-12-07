@@ -1917,7 +1917,10 @@ var vboxVMActions = {
 					}
 
 					vmNames = '<b>'+vmNames.join('</b>, <b>')+'</b>';
-					var q = trans('<p>You are about to remove following virtual machine items from the machine list:</p><p><b>%1</b></p><p>Do you wish to proceed?</p>','UIMessageCenter').replace('%1',vmNames);
+
+					var q = '<p>' + trans('You are about to remove the following virtual machine items from the machine ' +
+						'list:','UIMessageCenter') + ('</p><p><b>%1</b></p><p>').replace('%1',vmNames) +
+						trans('Do you wish to proceed?','UIMessageCenter') + '</p>';
 
 					vboxConfirm(q,buttons,undefined,function(){
 						rcDef.resolve();
@@ -1979,8 +1982,12 @@ var vboxVMActions = {
 				if(vmNames.length) {
 
 					vmNames = '<b>'+vmNames.join('</b>, <b>')+'</b>';
-					var q = trans('<p>You are about to remove following virtual machines from the machine list:</p><p>%1</p><p>Would you like to delete the files containing the virtual machine from your hard disk as well? Doing this will also remove the files containing the machine\'s virtual hard disks if they are not in use by another machine.</p>','UIMessageCenter').replace('%1',vmNames);
 
+					var q = '<p>' + trans('You are about to remove the following virtual machines from the machine ' +
+						'list:','UIMessageCenter') + ('</p><p>%1</p><p>').replace('%1',vmNames) + trans('Would you like to delete ' +
+						'the files containing the virtual machine from your hard disk as well?','UIMessageCenter') + ' ' +
+						trans('Doing this will also remove the files containing the machine\'s virtual hard disks if they are not in ' +
+						'use by another machine.','UIMessageCenter') + '</p>';
 					vboxConfirm(q,buttons);
 
 				}
@@ -2114,7 +2121,11 @@ var vboxVMActions = {
 						if(d.responseData.sources[0]) s1 = d.responseData.sources[0];
 						if(d.responseData.sources[1]) s2 = d.responseData.sources[1];
 					}
-					var q = trans('<p>Could not find the VirtualBox Guest Additions CD image file <nobr><b>%1</b></nobr> or <nobr><b>%2</b>.</nobr></p><p>Do you wish to download this CD image from the Internet?</p>','UIMessageCenter').replace('%1',s1).replace('%2',s2);
+
+					var q = '<p>' + trans('Could not find the VirtualBox Guest Additions CD image file <nobr><b>%1</b></nobr> or ' +
+						'<nobr><b>%2</b>.</nobr>','UIMessageCenter').replace('%1',s1).replace('%2',s2) + '</p><p>' +
+						trans('Do you wish to download this CD image from the Internet?','UIMessageCenter') + '</p>';
+
 					var b = {};
 					b[trans('Yes','UIMessageCenter')] = function() {
 						var url = 'http://download.virtualbox.org/virtualbox/%1/VBoxGuestAdditions_%2.iso';
@@ -2194,8 +2205,8 @@ var vboxVMActions = {
 
 				vmNames = '<b>'+vmNames.join('</b>, <b>')+'</b>';
 
-				vboxConfirm(trans("<p>Do you really want to send an ACPI shutdown signal " +
-					"to the following virtual machines?</p><p><b>%1</b></p>",'UIMessageCenter').replace('%1', vmNames),buttons);
+				vboxConfirm('<p>' + trans('Do you really want to send an ACPI shutdown signal to the following virtual ' +
+					'machines?','UIMessageCenter') + ('</p><p><b>%1</b></p>').replace('%1', vmNames),buttons);
 			}
 		}
 	},
@@ -2251,9 +2262,9 @@ var vboxVMActions = {
 
 				vmNames = '<b>'+vmNames.join('</b>, <b>')+'</b>';
 
-				vboxConfirm(trans("<p>Do you really want to power off the following virtual machines?</p>" +
-						"<p><b>%1</b></p><p>This will cause any unsaved data in applications " +
-						"running inside it to be lost.</p>", 'UIMessageCenter').replace('%1', vmNames), buttons);
+				vboxConfirm('<p>' + trans('Do you really want to power off the following virtual machines?','UIMessageCenter') +
+					('</p><p><b>%1</b></p><p>').replace('%1', vmNames) + trans('This will cause any unsaved data in applications ' +
+					'running inside it to be lost.','UIMessageCenter') + '</p>', buttons);
 			}
 
 		}
@@ -2291,8 +2302,9 @@ var vboxVMActions = {
 
 				vmNames = '<b>'+vmNames.join('</b>, <b>')+'</b>';
 
-				vboxConfirm(trans("<p>Do you really want to reset the following virtual machines?</p><p><b>%1</b></p><p>"+
-				            "This will cause any unsaved data in applications running inside it to be lost.</p>",'UIMessageCenter').replace('%1',vmNames),buttons);
+				vboxConfirm('<p>' + trans('Do you really want to reset the following virtual machines?','UIMessageCenter') +
+					('</p><p><b>%1</b></p><p>').replace('%1',vmNames) + trans('This will cause any unsaved data in applications running ' +
+					'inside it to be lost.','UIMessageCenter') + '</p>',buttons);
 			}
 		}
 	},

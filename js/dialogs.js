@@ -1012,11 +1012,11 @@ function vboxWizardCopyHDDialog(suggested) {
         },{'file':loc});
         fe.onLoad = function() {
             if(fileExists) {
-                vboxAlert(trans("<p>The hard disk storage unit at location <b>%1</b> already " +
-                    "exists. You cannot create a new virtual hard disk that uses this " +
-                    "location because it can be already used by another virtual hard " +
-                    "disk.</p>" +
-                    "<p>Please specify a different location.</p>",'UIMessageCenter').replace('%1',loc));
+                vboxAlert('<p>' + trans('The hard disk storage unit at location <b>%1</b> already ' +
+                    'exists. You cannot create a new virtual hard disk that uses this ' +
+                    'location because it can be already used by another virtual hard ' +
+                    'disk.','UIMessageCenter').replace('%1',loc) + '</p><p>' +
+                    trans('Please specify a different location.','UIMessageCenter') + '</p>');
                 return;
             }
             $(self.dialog).empty().remove();
@@ -1254,7 +1254,9 @@ function vboxVMsettingsDialog(vm,pane) {
 
                     reloadConfirmShowing = true;
 
-                    vboxConfirm(trans("<p>The machine settings were changed while you were editing them. You currently have unsaved setting changes.</p><p>Would you like to reload the changed settings or to keep your own changes?</p>",'UIMessageCenter'),
+                    vboxConfirm('<p>' + trans('The machine settings were changed while you were editing them.','UIMessageCenter') + ' ' +
+                        trans('You currently have unsaved setting changes.','UIMessageCenter') + '</p><p>' + trans('Would you like to ' +
+                        'reload the changed settings or to keep your own changes?','UIMessageCenter') + '</p>',
                         buttons,
                         trans('Keep changes', 'UIMessageCenter'), function(){
                             reloadConfirmShowing = false;
