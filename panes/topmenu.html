@@ -69,7 +69,7 @@ if($('#vboxPane').data('vboxSession').user) {
 					$('#vboxUserEdit').trigger('setMode','changePassword');
 					
 					var buttons = {};
-					buttons[trans('OK','QIMessageBox')] = function() {
+					buttons[trans('OK','UIMessageCenter')] = function() {
 						var o = $('#vboxUserEdit').find('input[name=opass]').first().val();
 						var n1 = $('#vboxUserEdit').find('input[name=npass1]').first().val();
 						var n2 = $('#vboxUserEdit').find('input[name=npass2]').first().val();
@@ -98,7 +98,7 @@ if($('#vboxPane').data('vboxSession').user) {
 						},{'old':o,'new':n1});
 						chp.run();
 					};
-					buttons[trans('Cancel','QIMessageBox')] = function(){
+					buttons[trans('Cancel','UIMessageCenter')] = function(){
 						$(this).remove();
 					};
 					$('#vboxUserEdit').dialog({'closeOnEscape':false,'width':400,'height':200,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/register_16px.png" class="vboxDialogTitleIcon" /> '+trans('Change Password','UIUsers')});
@@ -113,7 +113,7 @@ if($('#vboxPane').data('vboxSession').user) {
 		menu['menu'][menu['menu'].length] = {
 				'name' : 'fileLogout',
 				// Pre-translated title to append username
-				'label' : trans('Log out - %1','UISelectorWnd').replace('%1',$('#vboxPane').data('vboxSession').user),
+				'label' : trans('Log out - %1','UICommon').replace('%1',$('#vboxPane').data('vboxSession').user),
 				language_context : 'IGNORE',
 				'icon' : 'exit',
 				'click': function() {
@@ -156,7 +156,7 @@ if($('#vboxPane').data('vboxSession').user) {
 	{
 		menu['menu'][menu['menu'].length] = {
 			'name' : 'fileLogout',
-			'label' : trans('Logged in as %1','UISelectorWnd').replace('%1',$('#vboxPane').data('vboxSession').user),
+			'label' : trans('Logged in as %1','UICommon').replace('%1',$('#vboxPane').data('vboxSession').user),
 			'icon' : 'exit',
 			'click': function() {
 				return false;				
@@ -228,6 +228,7 @@ vboxTopMenuBar.addMenu({
 	{
 		'name':'helpvbox',
 		'label':'VirtualBox User Manual',
+		'language_context': 'UIHelpButton',
 		'icon':'site',
 		'click':function(){
 			window.open('http://www.virtualbox.org/manual/','manual');
@@ -236,7 +237,8 @@ vboxTopMenuBar.addMenu({
 
         {
 		'name':'helpAbout',
-		'label':trans('About','vboxwebmgr'),
+		'label':'About',
+		'language_context': 'UIHelpButton',
 		'icon':'help',
 		'click':function(){
 			$('#vboxPane').append($('<div />').attr({'id':'vboxAbout','class':'vboxDialogContent','style':'display: none; width: 500px;'}));
@@ -245,7 +247,7 @@ vboxTopMenuBar.addMenu({
 			l.addFileToDOM('panes/about.html',$('#vboxAbout'));
 			l.onLoad = function() {
 		        	var buttons = {};
-		        	buttons[trans('Close','UIVMLogViewer')] = function() { $(this).empty().remove(); };
+		        	buttons[trans('Close','UIMessageCenter')] = function() { $(this).empty().remove(); };
 
 				$('#vboxAbout').dialog({'closeOnEscape':false,'width':500,'height':'auto','buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/help_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager'});
 	        	};

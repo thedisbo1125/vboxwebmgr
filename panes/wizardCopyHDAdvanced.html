@@ -91,7 +91,7 @@ vboxHDTypesTbl.find('input[value='+$('#vboxPane').data('vboxSystemProperties').d
 new vboxToolbarSingle({button: {
 	'name' : 'mselecthdbtn',
 	'label' : 'Choose a virtual hard drive file to copy...',
-	'language_context': 'UIWizardCloneVD',
+	'language_context': 'UIWizardCopyVD',
 	'icon' : 'select_file',
 	'click' : function () {
 		vboxMedia.actions.choose(null,'HardDisk',function(med){
@@ -168,7 +168,7 @@ function wizardCopyHDUpdateName(sel) {
 	var n = $(sel).val();
 	var m = vboxMedia.getMediumById(n);
 	if(!m) return;
-	document.forms['frmwizardCopyHD'].elements.wizardCopyHDLocation.value = trans('%1_copy','UIWizardNewVD').replace('%1',m.name.replace(/\.[^\.]+?$/,''));
+	document.forms['frmwizardCopyHD'].elements.wizardCopyHDLocation.value = trans('%1_copy','UIWizardCopyVD').replace('%1',m.name.replace(/\.[^\.]+?$/,''));
 }
 
  /* Suggested Data exists */

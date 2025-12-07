@@ -63,7 +63,7 @@ new vboxToolbarSingle({button: {
 }}).renderTo('wizardImportApplianceLocationButton');
 
 $('#wizardImportApplianceStep2').find('span.translateglob').html(function(i,h){
-	return trans(h,'UIApplianceEditorWidget');
+	return trans(h,'UIWizardImportApp');
 });
 
 /*
@@ -105,7 +105,7 @@ var vboxApplianceImportProps = {
 			return Math.min($('#vboxPane').data('vboxSystemProperties').maxGuestCPUCount,Math.max($('#vboxPane').data('vboxSystemProperties').minGuestCPUCount,val));			
 		}},
 		'Memory' : {'label':'RAM','icon':'ram','edit':'text','display':function(val){
-			return Math.max(parseInt(val),0) + ' ' + trans('MB','VBoxGlobal');
+			return Math.max(parseInt(val),0) + ' ' + trans('MB','UICommon');
 		},'postEdit':function(val,old) {
 			val = parseInt(val);
 			if(isNaN(val)) return old;
@@ -296,7 +296,7 @@ function wizardImportApplianceParsed(d) {
 				$(this).parent().parent().parent().children('tr.vboxChildOf'+$(this).data('vboxOrder')).css('display','');
 			}
 		}).appendTo(td);
-		$(td).append(trans('Virtual System %1','UIApplianceEditorWidget').replace('%1',(vm+1))).appendTo(tr);
+		$(td).append(trans('Virtual System %1','UIWizardImportApp').replace('%1',(vm+1))).appendTo(tr);
 		$(tbl).append(tr);
 
 		// Hard Disks are handled differently
@@ -315,7 +315,7 @@ function wizardImportApplianceParsed(d) {
 				$(this).parent().trigger('selectProp',this);
 			});
 			
-			$('<td />').css({'white-space':'nowrap','width':'1%'}).attr({'class':'vbox'+d.descriptions[vm][0][i]}).html('<img src="images/vbox/blank.gif" class="vboxSpacer" style="height:2px;"/><img src="images/vbox/'+desc.icon+'_16px.png" style="height: 16px; width: 16px;"/> ' + trans(desc.label,'UIApplianceEditorWidget')).appendTo(tr);
+			$('<td />').css({'white-space':'nowrap','width':'1%'}).attr({'class':'vbox'+d.descriptions[vm][0][i]}).html('<img src="images/vbox/blank.gif" class="vboxSpacer" style="height:2px;"/><img src="images/vbox/'+desc.icon+'_16px.png" style="height: 16px; width: 16px;"/> ' + trans(desc.label,'UIWizardImportApp')).appendTo(tr);
 
 			var td = $('<td />').attr({'class':'vboxHideOverflow'}).css({'padding-left':'10px'});			
 			if(desc.checkbox) {
@@ -328,6 +328,7 @@ function wizardImportApplianceParsed(d) {
 					}
 				}).appendTo(td);
 			}
+
 			var sp = $('<span />').css({'display':'inline-block'}).attr({'class':'vboxImportAppProp'});
 			if(desc.display) {
 				$(sp).html(desc.display(d.descriptions[vm][3][i]));
@@ -391,7 +392,7 @@ function wizardImportApplianceParsed(d) {
 	if(d.warnings && d.warnings.length) {
 
 		var div = $('<div />');
-		$(div).append(trans('Warnings:','UIApplianceEditorWidget'));
+		$(div).append(trans('Warnings:','UIWizardImportApp'));
 		
 		var ul = $('<ul />');
 
@@ -400,7 +401,7 @@ function wizardImportApplianceParsed(d) {
 		}
 		$(div).append(ul);
 		var buttons = {};
-		buttons[trans('OK','QIMessageBox')] = function(){$(this).empty().remove();};
+		buttons[trans('OK','UIMessageCenter')] = function(){$(this).empty().remove();};
 		$(div).dialog({'height':300,'width':300,'closeOnEscape':false,'modal':true,'resizable':true,'draggable':true,'buttons':buttons,'title':trans('Warnings:')});
 		
 	}
@@ -484,12 +485,12 @@ function vboxImportAppliancePropEditDialog(td) {
 	$(d).append(frm);
 
 	var buttons = {};
-	buttons[trans('OK','QIMessageBox')] = function(){
+	buttons[trans('OK','UIMessageCenter')] = function(){
 		$(td).data('descValue',$('#vboxImportAppliancePropTextarea').val());
 		$(td).children('span.vboxImportAppProp').html($('<div />').text($('#vboxImportAppliancePropTextarea').val()).html());
 		$(this).empty().remove();
 	};
-	buttons[trans('Cancel','QIMessageBox')] = function(){$(this).empty().remove();};
+	buttons[trans('Cancel','UIMessageCenter')] = function(){$(this).empty().remove();};
 	$(d).dialog({'height':300,'width':300,'closeOnEscape':false,'modal':true,'resizable':true,'dialogClass':'vboxDialogContent','draggable':true,'buttons':buttons,'title':$(td).prev().html()});
 
 }

@@ -81,7 +81,7 @@ $('#wizardCloneVMStep1').on('show',function(e,wiz){
 	
 	$(document.forms['frmwizardCloneVM'].elements.machineCloneName).focus();
 
-	document.forms['frmwizardCloneVM'].elements.machineCloneName.value = trans('%1 Clone','UIWizardCloneVMPage1').replace('%1',wiz.args.vm.name);
+	document.forms['frmwizardCloneVM'].elements.machineCloneName.value = trans('%1 Clone','UIWizardCloneVM').replace('%1',wiz.args.vm.name);
 
 	var inputBox = $('#wizardCloneVMStep1').find('input.vboxText').select();
 	setTimeout(inputBox.focus.bind(inputBox),10);
