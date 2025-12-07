@@ -98,19 +98,19 @@ var vboxApplianceImportProps = {
 			return Math.min($('#vboxPane').data('vboxSystemProperties').maxGuestCPUCount,Math.max($('#vboxPane').data('vboxSystemProperties').minGuestCPUCount,val));			
 		}},
 		'Memory' : {'label':'RAM','icon':'ram','edit':'text','display':function(val){
-			return Math.max(parseInt(val),0) + ' ' + trans('MB','VBoxGlobal');
+			return Math.max(parseInt(val),0) + ' ' + trans('MB','UICommon');
 		},'postEdit':function(val,old) {
 			val = parseInt(val);
 			if(isNaN(val)) return old;
 			return Math.min($('#vboxPane').data('vboxSystemProperties').maxGuestRAM,Math.max($('#vboxPane').data('vboxSystemProperties').minGuestRAM,val));
 		}},
 		'SoundCard' : {'label':'Sound Card','icon':'sound','checkbox':true,'edit':'options','display':function(val){
-			return trans(vboxAudioController($('#vboxPane').data('vboxAudioControllerTypes')[val]),'VBoxGlobal');
+			return trans(vboxAudioController($('#vboxPane').data('vboxAudioControllerTypes')[val]),'UICommon');
 		}},
 		'CDROM' : {'label':'DVD','icon':'cd','checkbox':true,'edit':'checkbox'},
 		'USBController' : {'label':'USB Controller','icon':'usb','checkbox':true},
 		'NetworkAdapter' : {'label':'Network Adapter','icon':'nw','checkbox':true,'edit':'options','option_offset':-1,'display':function(val){
-			return trans(vboxNetworkAdapterType($('#vboxPane').data('vboxNetworkAdapterTypes')[val]),'VBoxGlobal');
+			return trans(vboxNetworkAdapterType($('#vboxPane').data('vboxNetworkAdapterTypes')[val]),'UICommon');
 		}},
 		'Floppy' : {'label':'Floppy','icon':'floppy','checkbox':true},
 		'HardDiskControllerIDE' : {'label':'Storage Controller (IDE)','icon':'ide','edit':''},
@@ -132,14 +132,14 @@ for(var i = 0; i < stTypes.length; i++) {
 	if(!vboxApplianceImportProps['HardDiskController'+stTypes[i]]) continue;
 
 	// Translate value
-	vboxApplianceImportProps['HardDiskController'+stTypes[i]]['display'] = function(val){return trans(vboxStorageControllerType(val),'VBoxGlobal');};
+	vboxApplianceImportProps['HardDiskController'+stTypes[i]]['display'] = function(val){return trans(vboxStorageControllerType(val),'UICommon');};
 
 	var ctypes = vboxStorage[stTypes[i]].types;
 	if(ctypes.length < 2) continue;
 	
 	var opts = {};
 	for(var a = 0; a < ctypes.length; a++) {
-		opts[ctypes[a]] = trans(vboxStorageControllerType(ctypes[a]),'VBoxGlobal');
+		opts[ctypes[a]] = trans(vboxStorageControllerType(ctypes[a]),'UICommon');
 	}
 	vboxApplianceImportProps['HardDiskController'+stTypes[i]]['edit'] = 'options';
 	vboxApplianceImportProps['HardDiskController'+stTypes[i]]['options'] = opts;
@@ -151,12 +151,12 @@ vboxApplianceImportProps['SoundCard']['options'] = [];
 // Network adapters
 var cs = $('#vboxPane').data('vboxNetworkAdapterTypes');
 for(var i = 1; i < cs.length; i++) {
-	vboxApplianceImportProps['NetworkAdapter']['options'][(i-1)] = trans(vboxNetworkAdapterType(cs[i]),'VBoxGlobal');
+	vboxApplianceImportProps['NetworkAdapter']['options'][(i-1)] = trans(vboxNetworkAdapterType(cs[i]),'UICommon');
 }
 // Sound cards
 var cs = $('#vboxPane').data('vboxAudioControllerTypes');
 for(var i = 0; i < cs.length; i++) {
-	vboxApplianceImportProps['SoundCard']['options'][i] = trans(vboxAudioController(cs[i]),'VBoxGlobal');
+	vboxApplianceImportProps['SoundCard']['options'][i] = trans(vboxAudioController(cs[i]),'UICommon');
 }
 
 
@@ -280,7 +280,7 @@ function wizardImportApplianceParsed(d) {
 				$(this).parent().parent().parent().children('tr.vboxChildOf'+$(this).data('vboxOrder')).css('display','');
 			}
 		}).appendTo(td);
-		$(td).append(trans('Virtual System %1','UIApplianceEditorWidget').replace('%1',(vm+1))).appendTo(tr);
+		$(td).append(trans('Virtual System %1','UIWizardImportApp').replace('%1',(vm+1))).appendTo(tr);
 		$(tbl).append(tr);
 
 		// Hard Disks are handled differently
@@ -299,7 +299,7 @@ function wizardImportApplianceParsed(d) {
 				$(this).parent().trigger('selectProp',this);
 			});
 			
-			$('<td />').css({'white-space':'nowrap','width':'1%'}).attr({'class':'vbox'+d.descriptions[vm][0][i]}).html('<img src="images/vbox/blank.gif" class="vboxSpacer" style="height:2px;"/><img src="images/vbox/'+desc.icon+'_16px.png" style="height: 16px; width: 16px;"/> ' + trans(desc.label,'UIApplianceEditorWidget')).appendTo(tr);
+			$('<td />').css({'white-space':'nowrap','width':'1%'}).attr({'class':'vbox'+d.descriptions[vm][0][i]}).html('<img src="images/vbox/blank.gif" class="vboxSpacer" style="height:2px;"/><img src="images/vbox/'+desc.icon+'_16px.png" style="height: 16px; width: 16px;"/> ' + trans(desc.label,'UIWizardImportApp')).appendTo(tr);
 
 			var td = $('<td />').attr({'class':'vboxHideOverflow'}).css({'padding-left':'10px'});			
 			if(desc.checkbox) {
@@ -375,7 +375,7 @@ function wizardImportApplianceParsed(d) {
 	if(d.warnings && d.warnings.length) {
 
 		var div = $('<div />');
-		$(div).append(trans('Warnings:','UIApplianceEditorWidget'));
+		$(div).append(trans('Warnings:','UIWizardImportApp'));
 		
 		var ul = $('<ul />');
 
@@ -384,7 +384,7 @@ function wizardImportApplianceParsed(d) {
 		}
 		$(div).append(ul);
 		var buttons = {};
-		buttons[trans('OK','QIMessageBox')] = function(){$(this).empty().remove();};
+		buttons[trans('OK','UIMessageCenter')] = function(){$(this).empty().remove();};
 		$(div).dialog({'height':300,'width':300,'closeOnEscape':false,'modal':true,'resizable':true,'draggable':true,'buttons':buttons,'title':trans('Warnings:')});
 		
 	}
@@ -468,12 +468,12 @@ function vboxImportAppliancePropEditDialog(td) {
 	$(d).append(frm);
 
 	var buttons = {};
-	buttons[trans('OK','QIMessageBox')] = function(){
+	buttons[trans('OK','UIMessageCenter')] = function(){
 		$(td).data('descValue',$('#vboxImportAppliancePropTextarea').val());
 		$(td).children('span.vboxImportAppProp').html($('<div />').text($('#vboxImportAppliancePropTextarea').val()).html());
 		$(this).empty().remove();
 	};
-	buttons[trans('Cancel','QIMessageBox')] = function(){$(this).empty().remove();};
+	buttons[trans('Cancel','UIMessageCenter')] = function(){$(this).empty().remove();};
 	$(d).dialog({'height':300,'width':300,'closeOnEscape':false,'modal':true,'resizable':true,'dialogClass':'vboxDialogContent','draggable':true,'buttons':buttons,'title':$(td).prev().html()});
 
 }

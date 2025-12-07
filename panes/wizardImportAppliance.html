@@ -112,12 +112,12 @@ var vboxApplianceImportProps = {
 			return Math.min($('#vboxPane').data('vboxSystemProperties').maxGuestRAM,Math.max($('#vboxPane').data('vboxSystemProperties').minGuestRAM,val));
 		}},
 		'SoundCard' : {'label':'Sound Card','icon':'sound','checkbox':true,'edit':'options','display':function(val){
-			return trans(vboxAudioController($('#vboxPane').data('vboxAudioControllerTypes')[val]),'VBoxGlobal');
+			return trans(vboxAudioController($('#vboxPane').data('vboxAudioControllerTypes')[val]),'UICommon');
 		}},
 		'CDROM' : {'label':'DVD','icon':'cd','checkbox':true,'edit':'checkbox'},
 		'USBController' : {'label':'USB Controller','icon':'usb','checkbox':true},
 		'NetworkAdapter' : {'label':'Network Adapter','icon':'nw','checkbox':true,'edit':'options','option_offset':-1,'display':function(val){
-			return trans(vboxNetworkAdapterType($('#vboxPane').data('vboxNetworkAdapterTypes')[val]),'VBoxGlobal');
+			return trans(vboxNetworkAdapterType($('#vboxPane').data('vboxNetworkAdapterTypes')[val]),'UICommon');
 		}},
 		'Floppy' : {'label':'Floppy','icon':'floppy','checkbox':true},
 		'HardDiskControllerIDE' : {'label':'Storage Controller (IDE)','icon':'ide','edit':''},
@@ -139,14 +139,14 @@ for(var i = 0; i < stTypes.length; i++) {
 	if(!vboxApplianceImportProps['HardDiskController'+stTypes[i]]) continue;
 
 	// Translate value
-	vboxApplianceImportProps['HardDiskController'+stTypes[i]]['display'] = function(val){return trans(vboxStorageControllerType(val),'VBoxGlobal');};
+	vboxApplianceImportProps['HardDiskController'+stTypes[i]]['display'] = function(val){return trans(vboxStorageControllerType(val),'UICommon');};
 
 	var ctypes = vboxStorage[stTypes[i]].types;
 	if(ctypes.length < 2) continue;
 	
 	var opts = {};
 	for(var a = 0; a < ctypes.length; a++) {
-		opts[ctypes[a]] = trans(vboxStorageControllerType(ctypes[a]),'VBoxGlobal');
+		opts[ctypes[a]] = trans(vboxStorageControllerType(ctypes[a]),'UICommon');
 	}
 	vboxApplianceImportProps['HardDiskController'+stTypes[i]]['edit'] = 'options';
 	vboxApplianceImportProps['HardDiskController'+stTypes[i]]['options'] = opts;
@@ -163,7 +163,7 @@ for(var i = 1; i < cs.length; i++) {
 // Sound cards
 var cs = $('#vboxPane').data('vboxAudioControllerTypes');
 for(var i = 0; i < cs.length; i++) {
-	vboxApplianceImportProps['SoundCard']['options'][i] = trans(vboxAudioController(cs[i]),'VBoxGlobal');
+	vboxApplianceImportProps['SoundCard']['options'][i] = trans(vboxAudioController(cs[i]),'UICommon');
 }
 
 
