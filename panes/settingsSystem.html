@@ -513,7 +513,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 
 /* Disable non-editable items when VM is running */
 $('#vboxSettingsDialog').one('show',function(){
-	
+
 	// Are virtualExtensions supported by the cpu?
 	if(!$('#vboxSettingsDialog').data('vboxHostDetails').cpuFeatures.HWVirtEx && !$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled) {
 	    
