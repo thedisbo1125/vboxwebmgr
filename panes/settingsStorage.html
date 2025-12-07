@@ -560,7 +560,8 @@ for(var i = 0; i < vboxStorageBusTypes.length; i++) {
 			case 'floppy':
 				b = {
 					'name' : btype + 'addfloppy',
-					'label':trans('Add Floppy Drive','UIMachineSettingsStorage'),
+					'label' : 'Add Floppy Drive',
+					'language_context' : 'UIMachineSettingsStorage',
 					'icon' : 'fd_add',
 					'click' : function (item) {
 						vboxSettingsStorageAddMedium($('#vboxSettingsStorageTree').find('table.vboxListItemSelected').first().parent(),'Floppy'); }
@@ -1079,7 +1080,9 @@ function vboxSettingsStorageAddMedium(conElm, type) {
 			});
 		};
 		
-		msg = trans('<p>You are about to add a virtual hard disk to controller <b>%1</b>.</p><p>Would you like to create a new, empty file to hold the disk contents or select an existing one?</p>','UIMessageCenter').replace('%1',controller);
+		msg = '<p>' + trans('You are about to add a virtual hard disk to controller <b>%1</b>.','UIMessageCenter')
+			.replace('%1',controller) + '</p><p>' + trans('Would you like to create a new, empty file to hold the ' +
+			'disk contents or select an existing one?','UIMessageCenter') + '</p>';
 	
 	// Floppy buttons
 	} else if(type == 'Floppy') {
@@ -1103,7 +1106,9 @@ function vboxSettingsStorageAddMedium(conElm, type) {
 			$(this).remove();
 		};
 		
-		msg = trans('<p>You are about to add a new floppy drive to controller <b>%1</b>.</p><p>Would you like to choose a virtual floppy disk to put in the drive or to leave it empty for now?</p>','UIMessageCenter').replace('%1',controller);
+		msg = '<p>' + trans('You are about to add a new floppy drive to controller <b>%1</b>.','UIMessageCenter')
+			.replace('%1',controller) + '</p><p>' + trans('Would you like to choose a virtual floppy disk to put in ' +
+			'the drive or to leave it empty for now?','UIMessageCenter') + '</p>';
 		
 	// CD/DVD buttons
 	} else {
@@ -1127,8 +1132,9 @@ function vboxSettingsStorageAddMedium(conElm, type) {
 			$(this).remove();
 		};
 		
-		msg = trans('<p>You are about to add a new CD/DVD drive to controller <b>%1</b>.</p><p>Would you like to choose a virtual CD/DVD disk to put in the drive or to leave it empty for now?</p>','UIMessageCenter').replace('%1',controller);
-		
+		msg = '<p>' + trans('You are about to add a new CD/DVD drive to controller <b>%1</b>.','UIMessageCenter')
+			.replace('%1',controller) + '</p><p>' + trans('Would you like to choose a virtual CD/DVD disk to put in ' +
+			'the drive or to leave it empty for now?','UIMessageCenter') + '</p>';
 	}
 	
 	buttons[trans('Cancel','UIMessageCenter')] = function() {

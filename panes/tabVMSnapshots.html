@@ -223,11 +223,13 @@ var vboxSnapshotButtons = [
 			// Check if the current state is modified
 			if(vm.currentStateModified) {
 
-				q = trans("<p>You are about to restore snapshot <nobr><b>%1</b></nobr>.</p>" +
-                        "<p>You can create a snapshot of the current state of the virtual machine first by checking the box below; " +
-                        "if you do not do this the current state will be permanently lost. Do you wish to proceed?</p>",'UIMessageCenter');
-				q += '<p><label><input type="checkbox" id="vboxRestoreSnapshotCreate" checked /> ' + trans('Create a snapshot of the current machine state','UIMessageCenter') + '</label></br>';
-				q += '<label><input type="checkbox" id="vboxRestoreSnapshotAutoStart" '+ (vboxVMStates.isRunning(vm)? 'checked' : '') + ' /> ' + trans('Automatically start the machine after restore','UIMessageCenter') + '</label></p>';
+				q = '<p>' + trans('You are about to restore snapshot <nobr><b>%1</b></nobr>.','UISnapshotDetails') + '</p><p>' +
+					trans('You can create a snapshot of the current state of the virtual machine first by checking the box ' +
+					'below.','UISnapshotDetails') + ' ' + trans('If you do not do this the current state will be permanently lost. ' +
+					'Do you wish to proceed?','UISnapshotDetails') + '</p>';
+
+				q += '<p><label><input type="checkbox" id="vboxRestoreSnapshotCreate" checked /> ' + trans('Create a snapshot of the current machine state','UISnapshotDetails') + '</label></br>';
+				q += '<label><input type="checkbox" id="vboxRestoreSnapshotAutoStart" '+ (vboxVMStates.isRunning(vm)? 'checked' : '') + ' /> ' + trans('Automatically start the machine after restore','UISnapshotDetails') + '</label></p>';
 				
 				buttons[trans('Restore','UIMessageCenter')] = function() {
 
@@ -319,7 +321,7 @@ var vboxSnapshotButtons = [
 
 			} else {
 				
-				q = trans('<p>Are you sure you want to restore snapshot <nobr><b>%1</b></nobr>?</p>','UISnapshotDetails');
+				q = '<p>' + trans('Are you sure you want to restore snapshot <nobr><b>%1</b></nobr>?','UISnapshotDetails') + '</p>';
 				
 				buttons[trans('Restore','UIMessageCenter')] = function() {
 		  	  		var l = new vboxLoader();
@@ -805,7 +807,7 @@ function __vboxTabSnapshot(s, currentId) {
 			.dblclick(vboxSnapshotButtons[4].click).disableSelection()
 			
 			// tool tip
-			.tipped({'position':'mouse','delay':1500,'source':'<p><strong>'+$('<div />').text(s.name).html()+'</strong> ('+trans((s.online ? 'online)' : 'offline)'),'VBoxSnapshotsWgt')+'</p>'+
+			.tipped({'position':'mouse','delay':1500,'source':'<p><strong>'+$('<div />').text(s.name).html()+'</strong> ('+trans((s.online ? 'online' : 'offline'),'UISnapshotDetails')+')</p>'+
 				'<p>'+ vboxDateTimeString(s.timeStamp, trans('Taken at %1','UISnapshotDetails'), trans('Taken on %1','UISnapshotDetails'))+'</p>' +
 							(s.description ? '<hr />' + $('<div />').text(s.description).html() : '')})
 			
