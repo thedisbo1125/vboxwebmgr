@@ -74,7 +74,7 @@
 			</tr>
 		</table>
 	</div>
-
+</div>
 
 
 <script type='text/javascript'>
@@ -83,7 +83,7 @@ vboxInitDisplay('vboxSnapshotNew','UISnapshotDetails');
 vboxInitDisplay('vboxSnapshotDetails','UISnapshotDetails');
 
 var vboxSnapshotButtons = [
-            	
+
   	{
   		'name' : 'take_snapshot',
   		'label' : 'Take Snapshot...',
@@ -609,7 +609,8 @@ $('#vboxPane').on('vmSelectionListChanged',function(){
 					
 					// Update title
 					$('#vboxTabVMSnapshotsTitle').html(trans('Snapshots','UIVMDesktop') +
-							(eventList[i].enrichmentData && eventList[i].enrichmentData.snapshotCount ? (' (%1)').replace('%1',eventList[i].enrichmentData.snapshotCount):''));
+						(eventList[i].enrichmentData && eventList[i].enrichmentData.snapshotCount ? (' (%1)')
+						.replace('%1',eventList[i].enrichmentData.snapshotCount):''));
 
 					// Redraw snapshots if this is shown
 					if($('#vboxTabVMSnapshots').data('lastVM') == eventList[i].machineId) {
@@ -723,7 +724,7 @@ function __vboxTabSnapshotsFill(response) {
 	
 			// Traverse snapshots
 			$(list).append(__vboxTabSnapshot(snapshotData.snapshot, snapshotData.currentSnapshotId));
-		
+
 			// Append current state to last snapshot
 			if(snapshotData.currentSnapshotId) {
 		
@@ -900,6 +901,7 @@ function __vboxTabSnapshotTimestamps() {
 				break;
 			}
 		}
+
 		switch(ts) {
 			case 'days':
 				ts = trans('%n day(s)', 'VBoxGlobal', ago).replace('%n', ago);
@@ -923,4 +925,4 @@ function __vboxTabSnapshotTimestamps() {
 
 
 </script>
-</div>
+
