@@ -375,10 +375,12 @@ var vboxSnapshotButtons = [
 
 				l.run();				
 			};
-			vboxConfirm(trans('<p>Deleting the snapshot will cause the state information saved in it to be lost, and '+
-			        'storage data spread over several image files that VirtualBox has created together with the snapshot '+
-			        'will be merged into one file. This can be a lengthy process, and the information in the snapshot cannot '+
-			        'be recovered.</p></p>Are you sure you want to delete the selected snapshot <b>%1</b>?</p>','UIMessageCenter').replace('%1',$('<div />').text(snapshot.name).html()),buttons);  	  		
+			vboxConfirm('<p>' + trans('Deleting the snapshot will cause the state information saved in it to be lost, and ' +
+				'storage data spread over several image files that VirtualBox has created together with the snapshot ' +
+				'will be merged into one file.','UISnapshotDetails') + ' ' + trans('This can be a lengthy process, and the ' +
+				'information in the snapshot cannot be recovered.','UISnapshotDetails') + '</p></p>' + trans('Are you sure you ' +
+				'want to delete the selected snapshot <b>%1</b>?','UISnapshotDetails')
+				.replace('%1',$('<div />').text(snapshot.name).html()) + '</p>',buttons);
   	  	}
   	},
   	{
@@ -549,7 +551,8 @@ $('#vboxPane').on('vmSelectionListChanged',function(){
 		$('#vboxTabVMSnapshots').parent().trigger('enableTab', ['vboxTabVMSnapshots']);		
 
 		$.when(vboxVMDataMediator.getVMDetails(vm.id)).done(function(vm) {
-			$('#vboxTabVMSnapshotsTitle').html(trans('Snapshots','UIVMDesktop') + (vm && vm.snapshotCount ? trans(' (%1)','VBoxSnapshotsWgt').replace('%1',vm.snapshotCount):''));
+			$('#vboxTabVMSnapshotsTitle').html(trans('Snapshots','UIVMDesktop') + (vm && vm.snapshotCount ? (' (%1)')
+				.replace('%1',vm.snapshotCount):''));
 		});
 		
 		// Unset last vm
@@ -605,9 +608,9 @@ $('#vboxPane').on('vmSelectionListChanged',function(){
 				if(vboxChooser.getSingleSelectedId() == eventList[i].machineId) {
 					
 					// Update title
-					$('#vboxTabVMSnapshotsTitle').html(trans('Snapshots','UIVMDesktop') + 
-							(eventList[i].enrichmentData && eventList[i].enrichmentData.snapshotCount ? trans(' (%1)','VBoxSnapshotsWgt').replace('%1',eventList[i].enrichmentData.snapshotCount):''));		
-				
+					$('#vboxTabVMSnapshotsTitle').html(trans('Snapshots','UIVMDesktop') +
+							(eventList[i].enrichmentData && eventList[i].enrichmentData.snapshotCount ? (' (%1)').replace('%1',eventList[i].enrichmentData.snapshotCount):''));
+
 					// Redraw snapshots if this is shown
 					if($('#vboxTabVMSnapshots').data('lastVM') == eventList[i].machineId) {
 						
