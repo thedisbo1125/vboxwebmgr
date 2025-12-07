@@ -172,7 +172,7 @@ function wizardExportApplianceBrowseLocation() {
 		var r = new RegExp('.*'+dsepRegEx);
 		file = $(document.forms['frmwizardExportAppliance'].elements.wizardExportApplianceLocation).val().replace(r,'');
 		document.forms['frmwizardExportAppliance'].elements.wizardExportApplianceLocation.value = f+($('#vboxPane').data('vboxConfig').DSEP)+file;
-	},true,trans('Select a file to export into','UIWizardExportApp'));
+	},true,trans('Select a directory to export into','UIWizardExportApp'));
 
 }
 
