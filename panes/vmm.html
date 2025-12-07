@@ -370,7 +370,8 @@ var vmmButtons = new Array(
 			var l = new vboxLoader();
 			l.addFileToDOM("panes/vmmISCSI.html",$(d));
 			l.onLoad = function() {
-				$(d).dialog({'width':400,'height':350,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':trans('Add iSCSI')});
+				$(d).dialog({'width':400,'height':350,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent',
+					'title':trans('Add iSCSI')});
 			};
 			l.run();
 		}
@@ -501,7 +502,8 @@ var vmmButtons = new Array(
 				var msg = trans('<p>You are about to change the settings of the disk image file <b>%1</b>.</p><p>Please choose one of the following modes and press <b>%2</b> to proceed or <b>%3</b> otherwise.</p>','UIMediumTypeChangeDialog');
 				var title = trans('Modify medium attributes','UIMediumTypeChangeDialog');
 
-				msg = msg.replace('%1',med.location).replace('%2',trans('OK','UIMessageCenter')).replace('%3',trans('Cancel','UIMessageCenter'));
+				msg = msg.replace('%1',med.location).replace('%2',trans('OK','UIMessageCenter'))
+					.replace('%3',trans('Cancel','UIMessageCenter'));
 				
 				dialogheight = 320;
 				dialogminheight = dialogheight - 7;
@@ -517,7 +519,8 @@ var vmmButtons = new Array(
 				
 				$('#vboxVMMModify').find(".translate").html(function(i,h){return trans(h,'UIVirtualMediaManager');}).removeClass('translate');
 
-				$('#vboxVMMModify').find('table.vboxOptions').find('span').html(function(i,h){return trans(h,'UIVirtualMediaManager', 'MediumType');});
+				$('#vboxVMMModify').find('table.vboxOptions').find('span').html(function(i,h){
+					return trans(h,'UIVirtualMediaManager', 'MediumType');});
 
 				// Set correct option
 				$('#vboxVMMModify').find('input').prop('checked',false);
@@ -800,6 +803,7 @@ vmmMenu.addMenu({
 	'label':'Actions',
 	'menu': vmmButtons
 });
+
 vmmMenu.renderTo('vboxMMMenu');
 
 /* Context menu for media */
@@ -843,7 +847,7 @@ function vboxVMMMediaInfo(med) {
 	
 	// UUID
 	$('#vboxVirtualMediaManager').find('.vmmMediumUUID').val(m ? m.id : '--');
-	
+
 	if(m && m.state == 'Inaccessible' && m.lastAccessError) {
 		$('#vboxVirtualMediaManager').find('tr.vmmAccessErr').css({'display':''}).children().html(m.lastAccessError);
 	} else {
