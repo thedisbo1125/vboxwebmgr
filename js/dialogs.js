@@ -693,8 +693,11 @@ function vboxShowLogsDialogInit(vm) {
         };
         buttons[trans('Close','UIActionPool')] = function(){$(this).trigger('close').empty().remove();};
 
-        $('#vboxVMLogsDialog').dialog({'closeOnEscape':true,'width':800,'height':500,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/vm_show_logs_16px.png" class="vboxDialogTitleIcon" /> '+ trans('%1 - VirtualBox Log Viewer','UIVMLogViewer').replace('%1',vm.name)}).on("dialogbeforeclose",function(){
-            $(this).parent().find('span:contains("'+trans('Close','UIActionPool')+'")').trigger('click');
+        $('#vboxVMLogsDialog').dialog({'closeOnEscape':true,'width':800,'height':500,
+            'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent',
+            'title':'<img src="images/vbox/vm_show_logs_16px.png" class="vboxDialogTitleIcon" /> ' +
+            trans('%1 - VirtualBox Log Viewer','UIVMLogViewer').replace('%1',vm.name)}).on("dialogbeforeclose",function(){
+                $(this).parent().find('span:contains("'+trans('Close','UIActionPool')+'")').trigger('click');
         });
         vboxShowLogsInit(vm);
     };
