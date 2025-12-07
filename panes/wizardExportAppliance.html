@@ -193,7 +193,7 @@ function wizardExportApplianceBrowseLocation() {
 		file = $(document.forms['frmwizardExportAppliance'].elements.wizardExportApplianceLocation).val().replace(r,'');
 		document.forms['frmwizardExportAppliance'].elements.wizardExportApplianceLocation.value = f+($('#vboxPane').data('vboxConfig').DSEP)+file;
 		$(document.forms['frmwizardExportAppliance'].elements.wizardExportApplianceLocation).data('vboxChanged', true);
-	},true,trans('Select a file to export into','UIWizardExportApp'));
+	},true,trans('Select a directory to export into','UIWizardExportApp'));
 
 }
 
