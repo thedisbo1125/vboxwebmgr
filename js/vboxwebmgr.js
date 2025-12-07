@@ -1044,7 +1044,8 @@ var vboxVMDetailsSections = {
 
 						if(!d._isSnapshot) {
 							portDesc = '<a href="javascript:vboxVMDetailsSections.storage._refreshVMMedia(\''+
-							d.id+"','"+d['storageControllers'][a]['mediumAttachments'][b].medium.id+"');\">"+trans('Refresh','UIActionPool')+"</a>";
+							d.id+"','"+d['storageControllers'][a]['mediumAttachments'][b].medium.id+"');\">" +
+								trans('Refresh','UIActionPool')+"</a>";
 
 						} else {
 							portDesc = trans('Refresh','UIActionPool');
@@ -2549,7 +2550,7 @@ var vboxMedia = {
 		case variants.Standard:
 	            return trans("Dynamically allocated storage", "UIMachineSettingsStorage", null, 'MediumVariant');
 	        case (variants.Standard | variants.Diff):
-	            return trans("Dynamically allocated differencing storage", "UIMachineSettingsStorage"), null, 'MediumVariant';
+	            return trans("Dynamically allocated differencing storage", "UIMachineSettingsStorage", null, 'MediumVariant');
 	        case (variants.Standard | variants.Fixed):
 	            return trans("Fixed size storage", "UIMachineSettingsStorage", null, 'MediumVariant');
 	        case (variants.Standard | variants.VmdkSplit2G):
