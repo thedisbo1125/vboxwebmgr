@@ -749,7 +749,11 @@ var vmmButtons = new Array(
 			
 			
 			var m = vboxMedia.getMediumById($(elm).find('tr.vboxListItemSelected').first().data('medium'));
-			var q = trans('<p>Are you sure you want to release the disk image file <nobr><b>%1</b></nobr>?</p><p>This will detach it from the following virtual machine(s): <b>%2</b>.</p>','UIMessageCenter');
+
+			var q = '<p>' + trans('Are you sure you want to release the disk image file:','UIVirtualMediaManager') +
+				'</p><p><b>%1</b>?</p><p>' +
+				trans('This will detach it from the following virtual machine(s): <b>%2</b>.','UIVirtualMediaManager') + '</p>';
+
 			q = q.replace('%1',m.location);
 			
 			var buttons = {};
