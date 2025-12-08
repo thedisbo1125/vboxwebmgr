@@ -2057,7 +2057,10 @@ var vboxVMActions = {
 
 				vmNames = '<b>'+vmNames.join('</b>, <b>')+'</b>';
 
-				vboxConfirm(trans('<p>Are you sure you want to discard the saved state of the following virtual machines?</p><p><b>%1</b></p><p>This operation is equivalent to resetting or powering off the machine without doing a proper shutdown of the guest OS.</p>','UIMessageCenter').replace('%1',vmNames),buttons);
+				vboxConfirm('<p>' + trans('Are you sure you want to discard the saved state of the following virtual ' +
+					'machines?','UIMessageCenter') + ('</p><p><b>%1</b></p><p>').replace('%1',vmNames) +
+					trans('This operation is equivalent to resetting or powering off the machine without doing a proper ' +
+					'shutdown of the guest OS.','UIMessageCenter') + '</p>',buttons);
 			}
 		},
 		enabled:function(){
