@@ -637,7 +637,8 @@ function vboxWizardCloneVMDialog(args) {
         if(cLink && !self.args.snapshot) {
 
             $.when(vboxAjaxRequest('snapshotTake',
-                    {'vm':src,'name':trans('Linked Base for %1 and %2','UIWizardCloneVM').replace('%1',self.args.vm.name).replace('%2',name),'description':''}))
+                {'vm':src,'name':trans('Linked Base for %1 and %2','UIWizardCloneVM')
+                .replace('%1',self.args.vm.name).replace('%2',name),'description':''}))
                 .done(function(d){
 
                     if(d.responseData.progress) {
