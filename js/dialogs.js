@@ -756,7 +756,7 @@ function vboxVMMDialog(select,type,hideDiff,mPath) {
             results.reject();
         };
 
-        $("#vboxVMMDialog").dialog({'closeOnEscape':true,'width':800,'height':500,
+        $("#vboxVMMDialog").dialog({'closeOnEscape':true,'width':800,'height':500,'minWidth':600,'minHeight':500,
             'buttons':buttons,'modal':true,'autoOpen':true,
             'dialogClass':'vboxDialogContent vboxVMMDialog',
             'title':'<img src="images/vbox/diskimage_16px.png" class="vboxDialogTitleIcon" /> '+
