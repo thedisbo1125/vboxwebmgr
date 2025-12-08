@@ -206,7 +206,7 @@ function newVMUpdateOS(ostype) {
 
 	ostype = newVMOSTypesObj[ostype];
 
-	$('#wizardNewVMSize').slider('value',ostype.recommendedRAM);	
+	$('#wizardNewVMSize').slider('value',ostype.recommendedRAM);
 	
 	$('#newVMSizeLabel').html(trans("<p>Select the amount of memory (RAM) in megabytes "+
             "to be allocated to the virtual machine.</p>"+
