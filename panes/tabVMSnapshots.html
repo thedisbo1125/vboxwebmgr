@@ -228,8 +228,11 @@ var vboxSnapshotButtons = [
 					'below.','UISnapshotDetails') + ' ' + trans('If you do not do this the current state will be permanently lost. ' +
 					'Do you wish to proceed?','UISnapshotDetails') + '</p>';
 
-				q += '<p><label><input type="checkbox" id="vboxRestoreSnapshotCreate" checked /> ' + trans('Create a snapshot of the current machine state','UISnapshotDetails') + '</label></br>';
-				q += '<label><input type="checkbox" id="vboxRestoreSnapshotAutoStart" '+ (vboxVMStates.isRunning(vm)? 'checked' : '') + ' /> ' + trans('Automatically start the machine after restore','UISnapshotDetails') + '</label></p>';
+				q += '<p><label><input type="checkbox" id="vboxRestoreSnapshotCreate" checked /> ' +
+					trans('Create a snapshot of the current machine state','UISnapshotDetails') + '</label></br>';
+				q += '<label><input type="checkbox" id="vboxRestoreSnapshotAutoStart" ' +
+					(vboxVMStates.isRunning(vm)? 'checked' : '') + ' /> ' +
+					trans('Automatically start the machine after restore','UISnapshotDetails') + '</label></p>';
 				
 				buttons[trans('Restore','UIMessageCenter')] = function() {
 
