@@ -896,7 +896,7 @@ function __vboxTabSnapshotTimestamps() {
 		// Check for max age.
 		if(Math.floor(t / 86400) > 30) {
 			var sdate = new Date(sts * 1000);
-			$(this).html(trans(' (%1)','VBoxSnapshotsWgt').replace('%1',sdate.toLocaleString()));
+			$(this).html((' (%1)').replace('%1',sdate.toLocaleString()));
 			return;
 		}
 		
@@ -913,19 +913,23 @@ function __vboxTabSnapshotTimestamps() {
 
 		switch(ts) {
 			case 'days':
-				ts = trans('%n day(s)', 'VBoxGlobal', ago).replace('%n', ago);
+				(ago === 1) ? ts = trans('%n day ago','UISnapshotDetails', ago).replace('%n', ago) :
+				ts = trans('%n days ago','UISnapshotDetails', ago).replace('%n', ago);
 				break;
 			case 'hours':
-				ts = trans('%n hour(s)', 'VBoxGlobal', ago).replace('%n', ago);
+				(ago === 1) ? ts = trans('%n hour ago','UISnapshotDetails', ago).replace('%n', ago) :
+				ts = trans('%n hours ago','UISnapshotDetails', ago).replace('%n', ago);
 				break;				
 			case 'minutes':
-				ts = trans('%n minute(s)', 'VBoxGlobal', ago).replace('%n', ago);
+				(ago === 1) ? ts = trans('%n minute ago','UISnapshotDetails', ago).replace('%n', ago) :
+				ts = trans('%n minutes ago','UISnapshotDetails', ago).replace('%n', ago);
 				break;				
 			case 'seconds':
-				ts = trans('%n second(s)', 'VBoxGlobal', ago).replace('%n', ago);
+				(ago === 1) ? ts = trans('%n second ago','UISnapshotDetails', ago).replace('%n', ago) :
+				ts = trans('%n seconds ago','UISnapshotDetails', ago).replace('%n', ago);
 				break;				
 		}
-		$(this).html(ts = trans(' (%1 ago)','VBoxSnapshotsWgt').replace('%1', ts));
+		$(this).html(ts = (' (%1)').replace('%1', ts));
 	});
 	
 	var timerSet = (minTs >= 60 ? 60 : 10);
