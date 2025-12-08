@@ -848,7 +848,9 @@ function __vboxTabSnapshotCurrent(vm) {
 	return $('<li />').data('vboxSnapshot',{'state':'current','name':trans((vm.currentStateModified ? 'Current State (changed)' : 'Current State'),'UISnapshotDetails')}).html(' ')
 		.addClass('last vboxSnapshotCurrent vboxSnapshotCurrentState')
 		.append(
-				$('<div />').attr({'class':'vboxListItem'}).html('<img src="images/vbox/'+vboxMachineStateIcon(vm.state)+'" height="16" width="16" /> ' + $('<div />').text(trans((vm.currentStateModified ? 'Current State (changed)' : 'Current State'),'UISnapshotDetails')).html())
+				$('<div />').attr({'class':'vboxListItem'}).html('<img src="images/vbox/'+vboxMachineStateIcon(vm.state) +
+					'" height="16" width="16" /> ' + $('<div />')
+					.text(trans((vm.currentStateModified ? 'Current State (changed)' : 'Current State'),'UISnapshotDetails')).html())
 				.contextMenu({
 						menu: vboxSnapshotContextMenuCurrent.menuId(),
 						clickthrough : true
