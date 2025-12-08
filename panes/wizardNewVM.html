@@ -207,17 +207,17 @@ function newVMUpdateOS(ostype) {
 	ostype = newVMOSTypesObj[ostype];
 
 	$('#wizardNewVMSize').slider('value',ostype.recommendedRAM);
+
+	$('#newVMSizeLabel').html('<p>' + trans('Select the amount of memory (RAM) in megabytes to be allocated to the virtual ' +
+		'machine.','UIWizardNewVM') + '</p><p>' + trans('The recommended memory size is <b>%1 MB</b>.','UIWizardNewVM')
+		.replace('%1',ostype.recommendedRAM) + '</p>');
 	
-	$('#newVMSizeLabel').html(trans("<p>Select the amount of memory (RAM) in megabytes "+
-            "to be allocated to the virtual machine.</p>"+
-            "<p>The recommended memory size is <b>%1</b> MB.</p>",'UIWizardNewVM').replace('%1',ostype.recommendedRAM));
-	
-	$('#newVMHDSizeLabel').html(trans("<p>If you wish you can add a virtual hard disk to the new machine. "+
-	        "You can either create a new hard disk file or select one from the list or from another location "+
-	        "using the folder icon.</p><p>If you need a more complex storage set-up you can skip this step "+
-	        "and make the changes to the machine settings once the machine is created.</p><p>The recommended "+
-	        "size of the hard disk is <b>%1</b>.</p>",'UIWizardNewVM').replace('%1',vboxMbytesConvert(ostype.recommendedHDD)));
-	
+	$('#newVMHDSizeLabel').html('<p>' + trans('If you wish you can add a virtual hard disk to the new machine.','UIWizardNewVM') + ' ' +
+		trans('You can either create a new hard disk file or select one from the list or from another location using the folder ' +
+		'icon.','UIWizardNewVM') + '</p><p>' + trans('If you need a more complex storage set-up you can skip this step and make the ' +
+		'changes to the machine settings once the machine is created.','UIWizardNewVM') + '</p><p>' + trans('The recommended size ' +
+		'of the hard disk is <b>%1</b>.','UIWizardNewVM').replace('%1',vboxMbytesConvert(ostype.recommendedHDD)) + '</p>');
+
 }
 
 var newVMOSTypes = new Array();
