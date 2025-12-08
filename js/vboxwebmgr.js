@@ -2210,7 +2210,7 @@ var vboxVMActions = {
 				vmNames = '<b>'+vmNames.join('</b>, <b>')+'</b>';
 
 				vboxConfirm('<p>' + trans('Do you really want to send an ACPI shutdown signal to the following virtual ' +
-					'machines?','UIMessageCenter') + ('</p><p><b>%1</b></p>').replace('%1', vmNames),buttons);
+					'machines?','UIMessageCenter') + ('</p><p><b>%1</b></p>').replace('%1', vmNames),buttons,null,null,500,180);
 			}
 		}
 	},
