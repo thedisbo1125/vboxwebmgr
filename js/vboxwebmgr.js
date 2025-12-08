@@ -1603,7 +1603,7 @@ var vboxVMActions = {
 		        }
 
 		        // Display runtime error
-		        var message = vboxVMDataMediator.getVMData(eventData.machineId).title + ' - ' +
+		        var message = vboxVMDataMediator.getVMData(eventData.machineId).name + ' - ' +
 		            trans(eventData.message,'UIMessageCenter');
 		        vboxAlert(message);
 
