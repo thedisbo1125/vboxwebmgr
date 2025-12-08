@@ -447,8 +447,8 @@ function vboxWizardNewVMDialog(vmgroup) {
                 if(res.responseData.exists) {
                     vboxAlert('<p>' + trans('Cannot create the machine folder <b>%1</b> in the parent folder ' +
                         '<nobr><b>%2</b>.</nobr>','UIMessageCenter')
-                        .replace('%1',vboxBasename(res.exists)).replace('%2',vboxDirname(res.exists)) +
-                        '</p><p>' + trans('This folder already exists and possibly belongs to another machine.','UIMessageCenter') + '</p>');
+                        .replace('%1',vboxBasename(res.exists)).replace('%2',vboxDirname(res.exists)) + '</p><p>' +
+                        trans('This folder already exists and possibly belongs to another machine.','UIMessageCenter') + '</p>');
 
                 } else if(res.success) {
                     $(self.dialog).empty().remove();

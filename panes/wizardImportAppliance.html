@@ -160,8 +160,9 @@ vboxApplianceImportProps['SoundCard']['options'] = [];
 // Network adapters
 var cs = $('#vboxPane').data('vboxNetworkAdapterTypes');
 for(var i = 1; i < cs.length; i++) {
-	vboxApplianceImportProps['NetworkAdapter']['options'][(i-1)] = trans(vboxNetworkAdapterType(cs[i]),'VBoxGlobal');
+	vboxApplianceImportProps['NetworkAdapter']['options'][(i-1)] = trans(vboxNetworkAdapterType(cs[i]),'UICommon');
 }
+
 // Sound cards
 var cs = $('#vboxPane').data('vboxAudioControllerTypes');
 for(var i = 0; i < cs.length; i++) {

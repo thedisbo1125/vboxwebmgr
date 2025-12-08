@@ -1171,7 +1171,7 @@ var vboxVMDetailsSections = {
 					rows[rows.length] = {
 						title: trans("Adapter %1").replace('%1',(i + 1)),
 						language_context: 'IGNORE',
-						data: trans(vboxNetworkAdapterType(nic.adapterType)).replace(/\(.*\)/,'') + ' (' + adp + ')'
+						data: trans(vboxNetworkAdapterType(nic.adapterType),'UICommon').replace(/\(.*\)/,'') + ' (' + adp + ')'
 					};
 				}
 
