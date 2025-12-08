@@ -381,6 +381,11 @@ function vboxPortForwardConfigDialog(rules) {
             $(this).parent().find('span:contains("'+trans('Cancel','UIMessageCenter')+'")').trigger('click');
         }).on('dialogresizestop',resizeTable);
 
+        /*
+         * Tooltips
+         */
+        $('#vboxSettingsPortForwarding').find('.vboxToolbarSmallButton').not('.notooltip').tipped({'source':'title','mode':'hover','closeonexit':true});
+
         resizeTable();
     };
     l.run();
