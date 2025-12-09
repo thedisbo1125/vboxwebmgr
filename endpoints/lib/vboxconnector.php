@@ -1866,7 +1866,7 @@ class vboxconnector {
 
 			$guestOS = $this->vbox->getGuestOSType($args['OSTypeId']);
 
-			$m->Platform->getX86()->setCPUProperty('LongMode', ($guestOS->is64Bit ? 1 : 0));
+			$m->Platform->X86->setCPUProperty('LongMode', ($guestOS->is64Bit ? 1 : 0));
 		}
 
 		$m->CPUCount = $args['CPUCount'];
