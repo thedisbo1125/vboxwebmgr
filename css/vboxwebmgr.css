@@ -62,6 +62,12 @@ table.vboxVertical input.vboxTextBox {
     box-sizing: border-box;
 }
 
+.stopmenudisabled-li {
+  opacity: 0.5; /* Makes it appear faded */
+  pointer-events: none; /* Prevents click events */
+  cursor: default; /* Changes cursor to default, not pointer */
+}
+
 table.vboxVertical input.vboxTextBox:disabled {
     background-color: #f7f7f7;
     border-color:#8f8f9d;
