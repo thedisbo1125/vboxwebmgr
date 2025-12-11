@@ -2226,8 +2226,11 @@ var vboxVMActions = {
 		click: function() {
 			var vms = vboxChooser.getSelectedVMsData();
 			for(var i = 0; i < vms.length; i++) {
-				if(vboxVMStates.isRunning(vms[i]))
+				if(vboxVMStates.isRunning(vms[i])) {
 					vboxVMActions.powerAction('pause','Suspend execution of selected virtual machines', vms[i]);
+				} else if(vboxVMStates.isPaused(vms[i])) {
+					vboxVMActions.start._startVM(vms[i]);
+				}
 			}
 		}
 	},
