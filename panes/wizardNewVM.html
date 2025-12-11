@@ -309,6 +309,7 @@ $('#wizardNewVMStep2').on('show',function(e,wiz){
 				vboxAlert('<p>' + trans('Cannot create the machine folder <b>%1</b> in the parent folder <nobr><b>%2</b>.' +
 					'</nobr>','UIMessageCenter').replace('%1',vboxBasename(loc)).replace('%2',vboxDirname(loc)) + '</p><p>' +
 					trans('This folder already exists and possibly belongs to another machine.','UIMessageCenter') + '</p>');
+
 				// Go back
 				wiz.displayStep(1);
 	
