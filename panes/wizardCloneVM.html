@@ -25,9 +25,11 @@
 <!-- Step 2 -->
 <div id='wizardCloneVMStep2' title='Clone type' style='display: none'>
 
-	<span class='translate'>&lt;p&gt;Please choose the type of clone you wish to create.&lt;/p&gt;&lt;p&gt;If you choose &lt;b&gt;Full clone&lt;/b&gt;, an exact copy (including all virtual hard disk files) of the original virtual machine will be created.&lt;/p&gt;&lt;p&gt;If you choose &lt;b&gt;Linked clone&lt;/b&gt;, a new machine will be created, but the virtual hard disk files will be tied to the virtual hard disk files of original machine and you will not be able to move the new virtual machine to a different computer without moving the original as well.&lt;/p&gt;</span>
+	<span><p class='translate'>Please choose the type of clone you wish to create.</p></span>
+	<span><p class='translate'>If you choose &lt;b&gt;Full clone&lt;/b&gt;, an exact copy (including all virtual hard disk files) of the original virtual machine will be created.</p></span>
+	<span><p class='translate'>If you choose &lt;b&gt;Linked clone&lt;/b&gt;, a new machine will be created, but the virtual hard disk files will be tied to the virtual hard disk files of original machine and you will not be able to move the new virtual machine to a different computer without moving the original as well.</p></span>
 	
-	<span class='translate' id='vboxCloneVMNewSnap'>&lt;p&gt;If you create a &lt;b&gt;Linked clone&lt;/b&gt; then a new snapshot will be created in the original virtual machine as part of the cloning process.&lt;/p&gt;</span>
+	<span id='vboxCloneVMNewSnap'><p class='translate'>If you create a &lt;b&gt;Linked clone&lt;/b&gt;, then a new snapshot will be created in the original virtual machine as part of the cloning process.</p></span>
 	
 	<div class='vboxOptions'>
 		<table>
@@ -44,11 +46,11 @@
 <!-- Step 3 -->
 <div id='wizardCloneVMStep3' title='Snapshots' style='display: none'>
 
-	<span class='translate'>&lt;p&gt;Please choose which parts of the snapshot tree should be cloned with the machine.&lt;/p&gt;</span>
+	<span><p class='translate'>Please choose which parts of the snapshot tree should be cloned with the machine.</p></span>
 	
-	<p><span class='translate'>&lt;p&gt;If you choose &lt;b&gt;Current machine state&lt;/b&gt;, the new machine will reflect the current state of the original machine and will have no snapshots.&lt;/p&gt;</span>
-		<span class='translate' id='wizardCloneVMCurrentAll' style='display: none;'>&lt;p&gt;If you choose &lt;b&gt;Current snapshot tree branch&lt;/b&gt;, the new machine will reflect the current state of the original machine and will have matching snapshots for all snapshots in the tree branch starting at the current state in the original machine.&lt;/p&gt;</span>
-		<span class='translate'>&lt;p&gt;If you choose &lt;b&gt;Everything&lt;/b&gt;, the new machine will reflect the current state of the original machine and will have matching snapshots for all snapshots in the original machine.&lt;/p&gt;</span>
+	<p><span><p class='translate'>If you choose &lt;b&gt;Current machine state&lt;/b&gt;, the new machine will reflect the current state of the original machine and will have no snapshots.</p></span>
+		<span id='wizardCloneVMCurrentAll' style='display: none;'><p class='translate'>If you choose &lt;b&gt;Current snapshot tree branch&lt;/b&gt;, the new machine will reflect the current state of the original machine and will have matching snapshots for all snapshots in the tree branch starting at the current state in the original machine.</p></span>
+		<span><p class='translate'>If you choose &lt;b&gt;Everything&lt;/b&gt;, the new machine will reflect the current state of the original machine and will have matching snapshots for all snapshots in the original machine.</p></span>
 		</p>
 	
 	<div class='vboxOptions'>
