@@ -89,8 +89,8 @@ $('#wizardCloneVMStep1').on('show',function(e,wiz){
 	if(wiz.args && wiz.args.snapshot)
 		$('#vboxCloneVMNewSnap').hide();
 	
-	$('#vboxWizCloneMessage1').html(trans('<p>Please choose a name for the new virtual machine. The new machine will be a clone of the machine <b>%1</b>.</p>','UIWizardCloneVM').replace('%1',wiz.args.vm.name));
-	
+	$('#vboxWizCloneMessage1').html('<p>' + trans('Please choose a name for the new virtual machine.','UIWizardCloneVM') + ' ' +
+		trans('The new machine will be a clone of the machine <b>%1</b>.','UIWizardCloneVM').replace('%1',wiz.args.vm.name) + '</p>');
 	
 	if((wiz.args.snapshot && wiz.args.snapshot.children && wiz.args.snapshot.children.length)) {
 		$('#wizardCloneVMCurrentAll').show();
