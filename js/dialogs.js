@@ -557,8 +557,16 @@ function vboxWizardCloneVMDialog(args) {
     this.icon = 'vm_clone';
     this.finishText = trans('Clone','UIWizardCloneVM');
     this.context = 'UIWizardCloneVM';
-    this.widthAdvanced = 450;
-    this.heightAdvanced = 350;
+
+    this.width = 640;
+    this.height = 380;
+    this.minwidth = this.width;
+    this.minheight = this.height;
+
+    this.widthAdvanced = 580;
+    this.heightAdvanced = 380;
+    this.minwidthAdvanced = this.widthAdvanced;
+    this.minheightAdvanced = this.heightAdvanced;
 
     /* Override run() because we need VM data */
     this.parentRun = this.run;
@@ -579,6 +587,46 @@ function vboxWizardCloneVMDialog(args) {
 
     };
 
+
+    /* Function to run when Clone HTML gets loaded by VBoxWizard function */
+    this.onLoadFunc = function() {
+
+        $('#machineCloneNameID').on('input',function() {
+            $('#machineCloneNameID').removeClass('vboxRequired');
+            $('#machineCloneNameID').tipped({'clear':true});
+        });
+    }
+
+    /* Function to run when Next button is clicked */
+    this.onNextCheck = async function() {
+
+        var vmname = jQuery.trim($(self.form).find('[name=machineCloneName]').val());
+
+        $('#wizardCloneVMStep1').data('result',false);
+
+        await $.when(vboxAjaxRequest('machineExists',vmname)).done(function(d) {
+            if(d.success){
+            } else {
+                $('#wizardCloneVMStep1').data('result',true);
+            }
+        });
+
+        if ($('#wizardCloneVMStep1').data('result') == false){
+            $('#machineCloneNameID').addClass('vboxRequired');
+
+            $('#machineCloneNameID').tipped({'source':'VM with name: <b>"' + vmname + '"</b> already exists.',
+            'mode':'hover',
+            'position':'mouse',
+            'fontsize':13,
+            'closeonexit':true});
+        }
+
+
+    
+        return $('#wizardCloneVMStep1').data('result');
+    }
+
+
     /* Function to run when finished */
     this.onFinish = function() {
 
@@ -586,7 +634,10 @@ function vboxWizardCloneVMDialog(args) {
         var name = jQuery.trim($(self.form).find('[name=machineCloneName]').val());
         var src = self.args.vm.id;
         var snapshot = self.args.snapshot;
-        var allNetcards = $(self.form).find('[name=vboxCloneReinitNetwork]').prop('checked');
+
+        var copyDiskNames = $(self.form).find('[name=vboxCloneDiskNames]').prop('checked');
+        var copyDiskUUIDs = $(self.form).find('[name=vboxCloneDiskUUIDs]').prop('checked');
+        var NetworkMACS = $(self.form).find('[name=vboxCloneMACAddressPolicy]').val();
 
         if(!name) {
             $(self.form).find('[name=machineCloneName]').addClass('vboxRequired');
@@ -607,7 +658,8 @@ function vboxWizardCloneVMDialog(args) {
         // wrap function
         var vbClone = function(sn) {
 
-            $.when(vboxAjaxRequest('machineClone', {'name':name,'vmState':vmState,'src':src,'snapshot':sn,'reinitNetwork':allNetcards,'link':cLink}))
+            $.when(vboxAjaxRequest('machineClone', {'name':name,'vmState':vmState,'src':src,'snapshot':sn,
+                'copyDiskNames':copyDiskNames,'copyDiskUUIDs':copyDiskUUIDs,'NetworkMACS':NetworkMACS,'link':cLink}))
                 .done(function(d){
                     if(d.responseData.progress) {
                         var registerVM = d.responseData.settingsFilePath;

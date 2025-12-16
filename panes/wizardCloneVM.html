@@ -10,15 +10,44 @@
 <div id='wizardCloneVMStep1' title='New machine name' style='display: none'>
 
 	<span id='vboxWizCloneMessage1'></span>
-	
-	<div class='vboxOptions' style='padding: 6px'>
-		<input type='text' class='vboxText' name='machineCloneName' style='width: 95%' />
-		
-		<p><label><input type='checkbox' class='vboxCheckbox' name='vboxCloneReinitNetwork' checked='checked' />
-			<span class='translate'>Reinitialize the MAC address of all network cards</span></label>
-		</p>
-	</div>
-	
+	<table class='vboxInvisible' style='border: 0px solid transparent; border-spacing: 4px;'>
+		<tr style='vertical-align: top'>
+			<td colspan="2">
+				<span class='vboxTableLabel translate'>Clone Options</span>
+				<div class='vboxOptions'>
+					<table style='margin-top: 8px;' class='vboxWizardCloneVMSnapshotOpts'>
+						<tr>
+							<th style='text-align: right; padding-top: 2px; padding-right: 6px; width: 170px'><span class='translate'>Cloned Machine Name:</span></th>
+							<td style='padding-left: 2px; '>
+								<input type='text' class='vboxText' name='machineCloneName' id='machineCloneNameID' style='width: 100%;' />
+							</td>
+							<td style='width: 6px'></td>
+						</tr>
+						<tr style='padding-top: 12px'>
+							<th style='text-align: right; padding-top: 10px; padding-right: 6px'><span class='translate'>MAC Address Policy:</span></th>
+							<td colspan="2" style='padding-left: 2px; padding-top: 8px;'><select class="vboxselectstdbackground" name='vboxCloneMACAddressPolicy' id='vboxCloneMACAddressPolicyID' style='width: 100%'>
+								<option value='AllMACs' class='translate'>Include all network adapter MAC addresses</option>
+								<option value='NATMACs' class='translate'>Include only NAT network adapter MAC addresses</option>
+								<option value='NoMACs' class='translate' selected>Generate new MAC addresses for all network adapters</option>
+							</select></td>
+						</tr>
+						<tr style='vertical-align: bottom; '>
+							<th></th>
+							<td style='padding-left: 0px; padding-top: 5px'>
+								<label><input type='checkbox' class='vboxCheckbox' name='vboxCloneDiskNames' /> <span class='translate'>Keep Disk Names</span></label>
+							</td>
+						</tr>
+						<tr style='vertical-align: bottom; '>
+							<th></th>
+							<td style='padding-left: 0px; padding-top: 5px'>
+								<label><input type='checkbox' class='vboxCheckbox' name='vboxCloneDiskUUIDs' id='vboxCloneDiskUUIDsID'/> <span class='translate'>Keep Hardware UUIDs</span></label>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+	</table>
 </div>
 
 
