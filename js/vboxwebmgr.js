@@ -1997,8 +1997,10 @@ var vboxVMActions = {
 
     	},
     	enabled: function () {
+			if(!vboxChooser.areSelectedInState('PoweredOff')) return false;
+			if(!vboxChooser.isSelectedInState('Inaccessible')) return false;
     		if(!vboxChooser._editable) return false;
-    		return (vboxChooser.isSelectedInState('PoweredOff') || vboxChooser.isSelectedInState('Inaccessible'));
+			return true;
     	}
     },
 
