@@ -4500,10 +4500,8 @@ function vboxMenu(options) {
 		mi.parent().removeClass('disabled');
 	};
 
-
 	// Just add menu items if there were passed
 	if(options.menuItems) self.addMenu(options.menuItems);
-
 }
 
 /**
