@@ -2868,6 +2868,12 @@ function vboxWizard() {
 	/* Deferred object resolved when complete */
 	this.completed = $.Deferred();
 
+	/* Function to be run when clicking next for screen checks */
+	this.onNextCheck = null;
+
+	/* Function to be run when the wizard html page gets loaded */
+	this.onLoadFunc = null;
+
 	/* Function to be run on cancel */
 	this.onCancel = null;
 
