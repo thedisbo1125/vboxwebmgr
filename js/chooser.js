@@ -163,6 +163,19 @@ var vboxChooser = {
 
  	},
 
+	/*
+	 * Return true if a selected VMs are in the given state
+	 */
+	areSelectedInState : function(state) {
+
+		 for(var i = 0; i < vboxChooser.selectedVMs.length; i++) {
+			 if(!vboxVMStates['is'+state](vboxVMDataMediator.getVMData(vboxChooser.selectedVMs[i])))
+				 return false;
+		 }
+		 return true;
+
+ 	},
+
  	/**
  	 * Return true if the passed VM is selected
  	 */
