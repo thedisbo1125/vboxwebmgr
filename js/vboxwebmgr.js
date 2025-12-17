@@ -4916,7 +4916,7 @@ var vboxStorage = {
 	            }];
 	            if($('#vboxPane').data('vboxConfig').enableHDFlushConfig) {
 	                opts.push({
-                        label: 'Ignore Flush Requests',
+                        label: trans('Ignore Flush Requests','UIMachineSettingsStorage'),
                         attrib: 'ignoreFlush',
                         runningEnabled: true,
 	                });
@@ -4924,7 +4924,7 @@ var vboxStorage = {
 	            if($('#vboxPane').data('vboxConfig').enableAdvancedConfig
 		        && vboxMedia.formatSupportsDiscard(ma.medium.format)) {
 	                opts[opts.length]={
-                        label: 'Support Discard (TRIM)',
+                        label: trans('Support Discard (TRIM)','UIMachineSettingsStorage'),
                         attrib: 'discard',
 	                };
 	            };
