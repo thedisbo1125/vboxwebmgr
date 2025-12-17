@@ -1382,8 +1382,23 @@ class vboxconnector {
 		$state = $cm->ValueMap[$args['vmState']];
 
 		$opts = array();
-		if(!$args['reinitNetwork']) $opts[] = 'KeepAllMACs';
+
+		switch ($args['NetworkMACS']) {
+			case 'AllMACs':
+				$opts[] = 'KeepAllMACs';
+				break;
+			case 'NATMACs':
+				$opts[] = 'KeepNATMACs';
+				break;
+		}
+
 		if($args['link']) $opts[] = 'Link';
+
+		/*  KeepDiskNames - Don’t change the disk names.
+		    KeepHwUUIDs - Don’t change UUID of the machine hardware.
+		*/
+		if($args['copyDiskNames']) $opts[] = 'KeepDiskNames';
+		if($args['copyDiskUUIDs']) $opts[] = 'KeepHwUUIDs';
 
 		/* @var $progress IProgress */
 		$progress = $src->cloneTo($m->handle,$args['vmState'],$opts);
