@@ -1537,6 +1537,22 @@ function strnatcasecmp(str1, str2) {
     }
 }
 
+/**
+ * Change the icon and text of Pause Button
+ * @param {jquery object} $PauseButton - Pause button to change text and image
+ * @param {boolean} IsRunning - Is vm Paused or Running
+ * @return None
+ */
+function setPauseResumetexticon($PauseButton, IsRunning) {
+	if(IsRunning) {
+		$PauseButton.text(trans('Pause','UIActionPool'));
+		$PauseButton.css("background-image", "url('images/vbox/vm_pause_16px.png')");
+	} else {
+		$PauseButton.text(trans('Resume','UIActionPool'));
+		$PauseButton.css("background-image", "url('images/vbox/vm_pause_on_16px.png')");
+	}
+}
+
 /** Filter prototype for older browsers
  * https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/filter
  */

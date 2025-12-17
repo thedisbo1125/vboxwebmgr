@@ -2223,7 +2223,18 @@ var vboxVMActions = {
 		icon: 'vm_pause',
 		name: 'vm_pause',
 		enabled: function(){
-			return vboxChooser.isSelectedInState('Running');
+			if(vboxChooser.isSelectedInState('Paused')) {
+				setPauseResumetexticon($('#stopContextMenuvm_pause'),false);
+				setPauseResumetexticon($('#vboxTopMachinevm_pause'),false);
+				setPauseResumetexticon($('#vboxChooserDivvmsvm_pause'),false);
+				return true;
+			} else if(vboxChooser.isSelectedInState('Running')) {
+				setPauseResumetexticon($('#stopContextMenuvm_pause'),true);
+				setPauseResumetexticon($('#vboxTopMachinevm_pause'),true);
+				setPauseResumetexticon($('#vboxChooserDivvmsvm_pause'),true);
+				return true;
+			}
+			return false;
 		},
 		click: function() {
 			var vms = vboxChooser.getSelectedVMsData();
@@ -4481,10 +4492,12 @@ function vboxMenu(options) {
 	 */
 	this.enableItem = function(i, mi) {
 		if(!mi) mi = $('#'+self.name+i);
-		if(self.menuItems[i].icon)
-			mi.css({'background-image':'url('+self.menuIcon(self.menuItems[i],false)+')'}).parent().removeClass('disabled');
-		else
-			mi.parent().removeClass('disabled');
+		if(self.menuItems[i].icon) {
+			if('Pause' != self.menuItems[i].label) {
+				mi.css({'background-image':'url('+self.menuIcon(self.menuItems[i],false)+')'});
+			}
+		}
+		mi.parent().removeClass('disabled');
 	};
 
 
