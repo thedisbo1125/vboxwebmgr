@@ -746,39 +746,46 @@ var vmmButtons = new Array(
 					mtype = 'hard disk';
 					break;
 			}
-			
-			
-			var m = vboxMedia.getMediumById($(elm).find('tr.vboxListItemSelected').first().data('medium'));
 
-			var q = '<p>' + trans('Are you sure you want to release the disk image file:','UIVirtualMediaManager') +
-				'</p><p><b>%1</b>?</p><p>' +
-				trans('This will detach it from the following virtual machine(s): <b>%2</b>.','UIVirtualMediaManager') + '</p>';
+			var isvmrunning = $('#vboxVirtualMediaManager').data('machinerunning');
 
-			q = q.replace('%1',m.location);
-			
-			var buttons = {};
-			buttons[trans('Release','UIMessageCenter')] = function(){
-				var b = this;
-				$.when(vboxAjaxRequest('mediumRelease',{'medium':m.location,'type':m.deviceType})).done(function(ret){
+			if ((isvmrunning == true) && (mtype == 'hard disk')) {
+				var q = '<p>' + trans('Medium is attached to a VM that is in state "Running", "Paused", or "Saved". ' +
+					'Unable to release medium.','UIVirtualMediaManager') + '</p>';
+				vboxAlert(q,{'width':'400px'});
+			} else {
+				var m = vboxMedia.getMediumById($(elm).find('tr.vboxListItemSelected').first().data('medium'));
 
-					var l = new vboxLoader();
-					l.add('vboxGetMedia',function(d){$('#vboxPane').data('vboxMedia',d.responseData);});
-					l.onLoad = function(){
-						vboxVMMFillMedia(m.id);
-					};
-					$(b).empty().remove();
-					l.run();
-				});
-			};
+				var q = '<p>' + trans('Are you sure you want to release the disk image file:','UIVirtualMediaManager') +
+					'</p><p><b>%1</b>?</p><p>' +
+					trans('This will detach it from the following virtual machine(s): <b>%2</b>.','UIVirtualMediaManager') + '</p>';
+
+				q = q.replace('%1',m.name);
+
+				var buttons = {};
+				buttons[trans('Release','UIMessageCenter')] = function(){
+					var b = this;
+					$.when(vboxAjaxRequest('mediumRelease',{'medium':m.location,'type':m.deviceType})).done(function(ret){
+
+						var l = new vboxLoader();
+						l.add('vboxGetMedia',function(d){$('#vboxPane').data('vboxMedia',d.responseData);});
+						l.onLoad = function(){
+							vboxVMMFillMedia(m.id);
+						};
+						$(b).empty().remove();
+						l.run();
+					});
+				};
 		
-			if(m.attachedTo.length) {
-				var machines = new Array();
-				for(var i = 0; i < m.attachedTo.length; i++) {
-					machines[machines.length] = m.attachedTo[i].machine;
-				}
-				q = q.replace('%2','<b>'+machines.join('</b>, <b>') + '</b>');
-			};
-			vboxConfirm(q,buttons);	
+				if(m.attachedTo.length) {
+					var machines = new Array();
+					for(var i = 0; i < m.attachedTo.length; i++) {
+						machines[machines.length] = m.attachedTo[i].machine;
+					}
+					q = q.replace('%2','<b>'+machines.join('</b>, <b>') + '</b>');
+				};
+				vboxConfirm(q,buttons);
+			}
 		}
 	},
 	
@@ -851,6 +858,16 @@ function vboxVMMMediaInfo(med) {
 			attchElm.css({'font-style':'italic'});
 		}
 		attchElm.val(attch);
+
+		var attachedmachinenames = new Array();
+		for(i=0;i<m.attachedTo.length;i++) {
+			attachedmachinenames.push(m.attachedTo[i].machine);
+		}
+		$.when(vboxAjaxRequest('vboxIsAttachedVmRunning',attachedmachinenames))
+            .done(function(res){
+				$('#vboxVirtualMediaManager').data('machinerunning',res.responseData);
+			});
+
 	} else {
 		attchElm.val('--');
 	}
