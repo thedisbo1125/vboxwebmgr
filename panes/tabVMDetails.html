@@ -374,7 +374,11 @@ function __vboxDetailAddRows(data, rows, table) {
 		if(rows[i].rawRow) {
 			$(table).append(rowData);
 		} else {
-		    var title = trans(rows[i].title, rows[i].language_context);
+			if (rows[i].language_context === 'IGNORE') {
+			    var title = rows[i].title;
+			} else {
+			    var title = trans(rows[i].title, rows[i].language_context);
+			}
 			$(table).append(__vboxDetailRow(
 			        title,
 			        rowData, 
