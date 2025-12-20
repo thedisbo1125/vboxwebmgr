@@ -3281,7 +3281,9 @@ class vboxconnector {
 			}
 			if($dhcp->handle) {
 				$dhcp->enabled = @$nics[$i]['dhcpServer']['enabled'];
-				$dhcp->setConfiguration($nics[$i]['dhcpServer']['IPAddress'],$nics[$i]['dhcpServer']['networkMask'],$nics[$i]['dhcpServer']['lowerIP'],$nics[$i]['dhcpServer']['upperIP']);
+				if(@$nics[$i]['dhcpServer']['enabled']) {
+					$dhcp->setConfiguration($nics[$i]['dhcpServer']['IPAddress'],$nics[$i]['dhcpServer']['networkMask'],$nics[$i]['dhcpServer']['lowerIP'],$nics[$i]['dhcpServer']['upperIP']);
+				}
 				$dhcp->releaseRemote();
 			}
 			$nic->releaseRemote();
