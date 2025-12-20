@@ -393,21 +393,33 @@ var vmmButtons = new Array(
 
 		},
 		'click' : function () {
-			var elm = null;
-			switch($("#vboxVMMTabs").tabs('option','active')) {
-				case 1:
-					elm = $('#vboxVMMCDList');
-					break;
-				case 2:
-					elm = $('#vboxVMMFDList');
-					break;
-				default:
-					elm = $('#vboxVMMHDList');
-					break;
+			var med = $('#vboxVMMHDList').find('tr.vboxListItemSelected').first();
+			deviceType = vboxMedia.getMediumById(med.data('medium')).deviceType;
+
+			var isvmrunning = $('#vboxVirtualMediaManager').data('machinerunning');
+			if ((isvmrunning == true) && (deviceType == 'HardDisk')) {
+				var q = '<p>' + trans('Medium is attached to a VM that is in state "Running", "Paused", or "Saved". ' +
+					'Unable to copy medium.','UIVirtualMediaManager') + '</p>';
+				vboxAlert(q,{'width':'400px'});
+			} else {
+				var elm = null;
+				switch($("#vboxVMMTabs").tabs('option','active')) {
+					case 1:
+						elm = $('#vboxVMMCDList');
+						break;
+					case 2:
+						elm = $('#vboxVMMFDList');
+						break;
+					default:
+						elm = $('#vboxVMMHDList');
+						break;
+				}
+				$.when(new vboxWizardCopyHDDialog({'medium':$(elm).find('tr.vboxListItemSelected').first().data('medium')}).run()).done(function(id){
+					vboxVMMFillMedia(id);
+				});
+
+
 			}
-			$.when(new vboxWizardCopyHDDialog({'medium':$(elm).find('tr.vboxListItemSelected').first().data('medium')}).run()).done(function(id){
-				vboxVMMFillMedia(id);
-			}); 
 		}
 	},	
 	{
