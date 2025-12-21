@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <language>
+	<comment>English</comment>
 	<context>
+        <name>UIActionPool</name>
+        <message>
+            <source>Blank_example</source>
+            <translation>Blank_example</translation>
+        </message>
 	</context>
 </language>
