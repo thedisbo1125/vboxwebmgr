@@ -1585,6 +1585,19 @@ if (!Array.prototype.filter)
     };
 }
 
+/**
+ * Open the RDP link in new tab or window to download file
+ * @param string rdpstr - relative path to rdp.php 
+ * @return None
+ *
+ * added to prevent failure error from happening, if link was clicked while a post operations was still in progress,
+ *    post would fail and display 'There was an error obtaining the list of registered virtual machines...' error which 
+ *    required reloading the page.
+ */
+function getrdpfile(rdpstr) {
+    window.open(rdpstr);
+}
+
 $(document).ready(function() {
 
     // Don't unload while progress operation is .. in progress
