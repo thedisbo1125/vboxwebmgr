@@ -1,4 +1,27 @@
 -------------------------------------
+    7.1/7.2-011  2025-12-30
+-------------------------------------
+
+- fix issue where dragging vm onto host caused host to disappear from view
+- fix issue when adding new host only network, attempted to save DHCP server settings when not enabled
+- add minimum width and height to wizard dialogs
+- add additional options to clone wizard
+- add check for VM already existing in Clone wizard
+- add check if VM is running, paused, or saved, alert user if trying to release or copy medium
+- add ability to set font size to jquery.tipped
+- add ability to clear tip on element to jquery.tipped
+- add ability to remove tip from element to jquery.tipped (version bump to 2.3c)
+- update jquery-ui to version 1.12.1
+- update jquery to version 1.12.4
+- fix issue where tooltip on vm's didn't get updated when status changed
+- change default translation section to UICommon
+- change RDP link to download file using new tab or window
+- rework language translations
+- add code to disable VM reset and ACPI Shutdown in Stop button menu when VM is paused
+- add icon for Windows Server 2025
+- code cleanup
+
+-------------------------------------
     7.1/7.2-010  2025-10-12
 -------------------------------------
 
