@@ -1,24 +1,70 @@
 
 $Id: languages.txt 582 2014-12-11 17:47:28Z imoore76 $
+$Id: languages.txt 2025-12-30 12:00:00Z thedisbo1125 $
 
 This outlines in-depth the process used by VirtualBox Web Manager's (vboxwebmgr) translation mechanisms and describes
 how a developer may add new translations. If the reader, as an end-user simply wishes to translate
 vboxwebmgr into a new language, see:
 <website under development>
 
-.. I) vboxwebmgr translation mechanism
+.. I) vboxwebmgr q & a on reworked translations
+
+.. II) vboxwebmgr translation mechanism
 ....... a) Contexts
 ....... b) Data structure
 ....... c) Runtime translations in JavaScript
 ....... d) Runtime translations in PHP
 
-.. II) Adding a new language
+.. III) Adding a new language
 ....... a) Creating vbpxwebmgr XML translation file
 ....... b) Converting QT .qm files
 ....... c) Updating language selection
 
+I. vboxwebmgr q & a on reworked translations
 
-I. vboxwebmgr translation mechanism
+I.a Why did you rework all the translations
+
+vboxwebmgr was forked from phpvirtualbox which uses the VirtualBox's QT language files from the thick client.
+One of the issues I encountered while working with them was some languages were better supported than others.
+For example, the French language file had the majority of translations complete.  The files for the Russian and
+Czech languages were missing quite a few translations.  This meant having to check every screen for every language
+looking for missing translations.  Another issue I ran into was if I updated the QT file from VirtualBox, translations
+would disappear.  The updated file might have moved the section the translation was in (for example, from vboxglobal 
+to uicommon) or just removed it altogether.  It was just too time consuming to keep checking for missing translations
+anytime the QT files were updated in every language and adding them back.
+
+I.b How did you rework the translations?
+
+I decided to start from scratch with a blank English file and have every missing translation get logged in the web 
+browser console.  I then used a program I wrote to create a file to use in place of the VirtualBox QT file.  I also
+changed the sections of the translations to better reflect what screen they are on and consolidate/update the sections.
+After I got the English file done, I blanked out the translations and used it as a starting point for all the other
+languages.
+
+
+I.c Why did you break apart the translations into multiple lines?
+
+I am using the Google translation website to get the translations.  I have a shell script I wrote that would paste the text
+to translate into the website, delay several seconds while the translation was done, select and copy the translation to the
+clipboard to be saved, and clear the text for the next translations.  A couple problems I encountered were depending the
+language, the HTML tags (for example <b>, <p>, etc) might not appear in the translation, or might get converted to 
+something else.   I also had issues with only the first sentence in a multiple sentence translation getting copied to the
+clipboard.  Since I was going to have 14 different languages to track down translations for, it seemed better in the long run
+to change as much of the text as possible to individual sentences and only have HTML tags for the lines that absolutely needed
+them.  These I manually did to ensure they actually looked corrct.
+
+I.d How can I add a new language to vboxwebmgr?
+
+The easiest way would be to open an issue on GitHub.  I will create a file and post the necessary code changes to use it.
+If you really want to work it yourself, I have included a blank file which has the almost all of what needs to be translated.
+I say almost as I expect I missed testing some small part of the software (for example an error for some condition I didn’t
+think about testing).  Also, you can still use the XML files to add missing translations or override the translations in the
+.DAT file.  The code that loads the XML files was changed to replace the translations in the .DAT file vice combining them.
+Conbining the files resulted in the translation not happening (I spent quite a bit of time in the past trying to figure out
+why the translation I add to the XML file didn't work).
+
+
+II. vboxwebmgr translation mechanism (outdated as of 30 Dec 2025)
 
 The translation mechanism in vboxwebmgr uses a combination of PHP serialized data along with
 runtime parsed XML files. 
@@ -45,14 +91,14 @@ lib/language.php contanis the __vbox_language class. Upon instantiation this cla
 	4) Merges language data into a single array structure allowing the XML translations to overwrite
 		serialized data translations (if such a scenario exists)
    
-I.a Contexts
+II.a Contexts
 
 Language contexts is a translational concept allowing one word (or phrase) to take on many meanings
 based on the context in which it is used. When text is being translated, the translation mechanism
 must also be passed a context. For instance the "Add" button to add a user may be translated
 differently than the "Add" button to add a VirtualMachine.
 
-I.b Data structure
+II.b Data structure
 
 The data structure of parsed languages is a multidimensional associative array / hash / dict that
 contains a hierarchy of contexts -> messages -> translation(s). Using PHP's print_r, the output of
@@ -81,17 +127,17 @@ Array
 
 ("array" refers to an associative array / hash / dict. They are all the same thing in PHP.)
 
-The context UINewHDWizardPageVariant is a key within the contexts array. It has a number of messages.
+The context UICommon is a key within the contexts array. It has a number of messages.
 Storage Details is a key in the messages array. It has a single item called translation that contains
 the translation of Storage Details.
 
-I.c Runtime translations in JavaScript
+II.c Runtime translations in JavaScript
 
 When vboxwebmgr is loaded, it loads js/language.php. This instantiates __vbox_language and dumps
 its language data as a JSON encoded object. It also contains the vboxwebmgr JavaScript trans()
 function which takes (at a minimum) a context and message, and returns the corresponding translation.
 
-I.d Runtime translations in PHP
+II.d Runtime translations in PHP
 
 lib/language.php contains a trans() function defined in PHP which takes (at a minimum) a context and
 message, and returns the corresponding translation using an instance of __vbox_language. Since
@@ -100,12 +146,12 @@ instantiation of the __vbox_language only occurs if trans() is called in PHP. Su
 trans() will of course use the existing instantiation. Translation inside PHP Is rare and restricted
 to error messages returned by vboxwebmgr.
 
-II. Adding a new language
+III. Adding a new language
 
 Adding a new language requires relatively little work. First, determine the 2 letter language code
 for the target language. See http://en.wikipedia.org/wiki/ISO_639-1
 
-II.a Creating vboxwebmgr XML translation file
+III.a Creating vboxwebmgr XML translation file
 
 Copy an existing XML file in vboxwebmgr's languages folder using the 2 letter language code
 described above.
@@ -151,7 +197,7 @@ Text within the <source> tag is the text that is to be translated. The translate
 WARNING: Do not change the text in the <source> tag. Even adding an extra line will break the
 translation.
 
-II.b Converting .ts files from official Virtualbox
+III.b Converting .ts files from official Virtualbox
  
 You will need a copy of VirtualBox installed and to navigate to your VirtualBox installation folder on your computer, then to the "nls" folder.
 Otherwise, you can navigate to the URL: "https://www.virtualbox.org/browser/vbox/trunk/src/VBox/Frontends/VirtualBox/nls".
@@ -168,7 +214,7 @@ php parse_vbox_lang.php VirtualBox_xx.ts > xx.dat (replace xx with the language 
 
 This will create a "xx.dat" file that should be readable by vboxwebmgr.
 
-II.c Updating language selection
+III.c Updating language selection
 
 Once translation files have been added to languages/ and languages/source/ the interface must be
 updated so that the new language is available for selection. Edit panes/settingsGlobalLanguage.html
