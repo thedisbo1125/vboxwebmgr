@@ -638,7 +638,7 @@ var vboxChooser = {
 
 
 		// VM Name
-		var td = $('<td />').attr({'class':'vboxVMTitle'});
+		var td = $('<td />').attr({'class':'vboxVMTitle'}).addClass('unselectable');
 
 		// Host will have HTML in name and unique id
 		if(vmn.id == 'host') {
@@ -725,7 +725,9 @@ var vboxChooser = {
 		// Add VirtualBox version if hosting
 		if(vmn.id == 'host') {
 
-			$(td).html("<div class='vboxFitToContainer vboxVMState'><img src='images/vbox/" + vboxMachineStateIcon(vmn.state) +"' /><span class='vboxVMState'>" + trans(vboxVMStates.convert(vmn.state),'UICommon') + ' - ' + $('#vboxPane').data('vboxConfig').version.string+'</span></div>');
+			$(td).html("<div class='vboxFitToContainer vboxVMState'><img src='images/vbox/" +
+				vboxMachineStateIcon(vmn.state) +"' /><span class='vboxVMState'>" + trans(vboxVMStates.convert(vmn.state),'UICommon') +
+				' - ' + $('#vboxPane').data('vboxConfig').version.string+'</span></div>').addClass('unselectable');
 
 			// Check for version mismatches?
 			if(!vboxChooser._versionChecked) {
