@@ -149,8 +149,8 @@ function vboxSettingsGlobalNetworkNatPortForwardingEdit(td,type) {
 		}
 		$(this).parent().parent().data('vboxRule')[$(this).data('vboxPane')] = ($(this).parent().hasClass('vboxIP') ? ('['+ $(this).val() + ']') : $(this).val());
 		var ex = $(this).val();
-		$(this).replaceWith($('<div />').html(ex).text());
-	}).css({'width':(w-8)+'px','padding':'0px','margin':'0px'}).on('keydown',function(event) {
+		$(this).replaceWith($('<div />').html(ex).text());})
+	.css({'width':(w-8)+'px','padding':'0px','margin':'0px'}).on('keydown',function(event) {
 		if(event.keyCode == 13) {
 			$(this).trigger('blur');
 			return;
@@ -171,8 +171,8 @@ function vboxSettingsGlobalNetworkNatPortForwardingEdit(td,type) {
 				return (vboxValidateCtrl(event.keyCode) || vboxValidateNum(event.keyCode));
 				break;
 		}
-		
-	}).appendTo(td).trigger('focus');
+	})
+	.appendTo(td).trigger('focus');
 }
 
 /* Edit protocol */

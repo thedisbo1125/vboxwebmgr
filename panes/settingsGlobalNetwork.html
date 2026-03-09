@@ -484,15 +484,14 @@ function vboxSettingsGlobalNATNetworksAddNet(net) {
 
 	$('<tr />').data({'NATNetwork':net}).hoverClass('vboxHover').addClass('vboxListItem').append(
 		$('<td />').append(
-				$('<input />').attr({'type':'checkbox'}).on('click',function() {
-					$(this).closest('tr').data('NATNetwork').enabled = this.checked;		
-					$(this).closest('tr').data('NATNetwork')._modified = true;
-					}).prop('checked', net.enabled)
-				
-			).on('click',function() {
-				$(this).parent().parent().children('tr.vboxListItemSelected').removeClass('vboxListItemSelected').addClass('vboxListItem');
-				$(this).parent().addClass('vboxListItemSelected').removeClass('vboxListItem');
-				$('#vboxSettingsGlobalNATNetList').trigger('select',this);
+			$('<input />').attr({'type':'checkbox'}).on('click',function() {
+				$(this).closest('tr').data('NATNetwork').enabled = this.checked;		
+				$(this).closest('tr').data('NATNetwork')._modified = true;
+			}).prop('checked', net.enabled)
+		).on('click',function() {
+			$(this).parent().parent().children('tr.vboxListItemSelected').removeClass('vboxListItemSelected').addClass('vboxListItem');
+			$(this).parent().addClass('vboxListItemSelected').removeClass('vboxListItem');
+			$('#vboxSettingsGlobalNATNetList').trigger('select',this);
 		})
 	).append(
 		$('<td />').html($('<div />').html(net.networkName).text()).on('click',function() {
