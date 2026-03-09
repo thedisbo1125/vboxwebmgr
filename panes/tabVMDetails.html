@@ -516,13 +516,11 @@ function __vboxDisplayDetailsData(data, multiSelect, targetDiv, skipTable) {
 			'style':'background: url(images/vbox/refresh_16px.png) 2px 2px no-repeat; padding: 2px 2px 2px 18px; border: 1px solid #000; background-color: #eee;'
 		}).on('click',{vmid:data.id},function(e) {
 
-			
 			var l = new vboxLoader();
 			l.showLoading();
 			$.when(vboxVMDataMediator.refreshVMData(e.data.vmid)).always(function() {
 				l.removeLoading();	
 			});
-			
 			
 		}).appendTo(d);
 
