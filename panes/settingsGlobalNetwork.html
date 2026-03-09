@@ -236,7 +236,7 @@ var sButtons = new Array(
 					vboxProgress({'progress':d.responseData.progress,'persist':d.persist},function(){
 						$('#vboxSettingsGlobalNetList').html('<li><img src="images/spinner.gif" /></li>');
 						setTimeout(refreshInterfaces,2000);
-					},null,trans('Add Host-only Network','UIGlobalSettingsNetwork'),'',true);
+					},'progress_network_interface_add_90px.png',trans('Add Host-only Network','UIGlobalSettingsNetwork'),'',true);
 				}
 				
 			});
@@ -273,7 +273,7 @@ var sButtons = new Array(
 								vboxVMDataMediator.refreshVMData('host');
 							};
 							l2.run();
-						},null,trans('Remove Host-only Network','UIGlobalSettingsNetwork'),'',true);
+						},'progress_network_interface_delete_90px.png',trans('Remove Host-only Network','UIGlobalSettingsNetwork'),'',true);
 					}
 					
 				},{'id':$(item).data('interface').id});
