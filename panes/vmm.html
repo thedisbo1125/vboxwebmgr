@@ -1082,7 +1082,7 @@ function vboxVMMFillMedia(sel) {
 	// Select medium?
 	if(sel) {
 		
-		$('#vboxVMMMedium'+sel).children().first().click();
+		$('#vboxVMMMedium'+sel).children().first().trigger('click');
 		
 	} else {
 		$('#vboxVirtualMediaManager').trigger('mediumselect',null);
