@@ -1663,7 +1663,7 @@ function vboxWizardFirstRunDialog(vm) {
  * @returns {Object} deferred promise
  * @see trans()
  */
-function vboxSettingsDialog(title,panes,data,pane,icon,langContext,presave) {
+function vboxSettingsDialog(title, panes, data, pane, icon, langContext, presave) {
 
     var results = $.Deferred();
 

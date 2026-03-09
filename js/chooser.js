@@ -1303,6 +1303,7 @@ var vboxChooser = {
 		// Save machine groups and trigger change
 		var vms = [];
 		var vmList = vboxVMDataMediator.getVMList();
+
 		for(var i = 0; i < vmList.length; i++) {
 
 			if(!vmList[i] || vmList[i].id == 'host') continue;
