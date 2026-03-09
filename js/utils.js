@@ -1555,13 +1555,13 @@ function strnatcasecmp(str1, str2) {
  * @return None
  */
 function setPauseResumetexticon($PauseButton, IsRunning) {
-	if(IsRunning) {
-		$PauseButton.text(trans('Pause','UIActionPool'));
-		$PauseButton.css("background-image", "url('images/vbox/vm_pause_16px.png')");
-	} else {
-		$PauseButton.text(trans('Resume','UIActionPool'));
-		$PauseButton.css("background-image", "url('images/vbox/vm_pause_on_16px.png')");
-	}
+    if(IsRunning) {
+        $PauseButton.text(trans('Pause','UIActionPool'));
+        $PauseButton.css("background-image", "url('images/vbox/vm_pause_16px.png')");
+    } else {
+        $PauseButton.text(trans('Resume','UIActionPool'));
+        $PauseButton.css("background-image", "url('images/vbox/vm_pause_on_16px.png')");
+    }
 }
 
 /** Filter prototype for older browsers
