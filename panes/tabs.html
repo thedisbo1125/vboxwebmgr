@@ -76,7 +76,7 @@ tabLoader.onLoad = function(){
 	}
 	
 	// Add "click" functionality to each tab
-	$('#tablistMain').children().click(function(){
+	$('#tablistMain').children().on('click',function() {
 		if(!$(this).hasClass('vboxDisabled')) {
 			tabsMain.showTab($(this).children().first().attr('href'));
 		}
@@ -84,10 +84,11 @@ tabLoader.onLoad = function(){
 		return false;
 		
 	// Mouseover
-	}).hover(function(){
+	}).on('mouseenter',function() {
 		if($(this).hasClass('vboxDisabled')) return false;
 		$(this).addClass('vboxHover');
-	},function(){
+	})
+	.on('mouseleave',function() {
 		$(this).removeClass('vboxHover');
 	});
 	
