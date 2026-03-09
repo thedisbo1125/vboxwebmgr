@@ -301,6 +301,9 @@ function vboxGuestOSTypeIcon(osTypeId) {
         case "Debian10_64":                strIcon = "os_debian_64.png"; break;
         case "Debian11":                   strIcon = "os_debian.png"; break;
         case "Debian11_64":                strIcon = "os_debian_64.png"; break;
+        case "Debian12":                   strIcon = "os_debian.png"; break;
+        case "Debian12_64":                strIcon = "os_debian_64.png"; break;
+        case "Debian13_64":                strIcon = "os_debian_64.png"; break;
         case "Fedora":                     strIcon = "os_fedora.png"; break;
         case "Fedora_64":                  strIcon = "os_fedora_64.png"; break;
         case "Gentoo":                     strIcon = "os_gentoo.png"; break;
@@ -324,6 +327,7 @@ function vboxGuestOSTypeIcon(osTypeId) {
         case "Oracle7_64":                 strIcon = "os_oracle_64.png"; break;
         case "Oracle8_64":                 strIcon = "os_oracle_64.png"; break;
         case "Oracle9_64":                 strIcon = "os_oracle_64.png"; break;
+        case "Oracle10_64":                strIcon = "os_oracle_64.png"; break;
         case "RedHat":                     strIcon = "os_redhat.png"; break;
         case "RedHat_64":                  strIcon = "os_redhat_64.png"; break;
         case "RedHat3":                    strIcon = "os_redhat.png"; break;
@@ -337,6 +341,7 @@ function vboxGuestOSTypeIcon(osTypeId) {
         case "RedHat7_64":                 strIcon = "os_redhat_64.png"; break;
         case "RedHat8_64":                 strIcon = "os_redhat_64.png"; break;
         case "RedHat9_64":                 strIcon = "os_redhat_64.png"; break;
+        case "RedHat10_64":                strIcon = "os_redhat_64.png"; break;
         case "OpenSUSE":                   strIcon = "os_opensuse.png"; break;
         case "OpenSUSE_64":                strIcon = "os_opensuse_64.png"; break;
         case "OpenSUSE_Leap_64":           strIcon = "os_opensuse_64.png"; break;
@@ -384,6 +389,12 @@ function vboxGuestOSTypeIcon(osTypeId) {
         case "Ubuntu20_64":                strIcon = "os_ubuntu_64.png"; break;
         case "Ubuntu21_64":                strIcon = "os_ubuntu_64.png"; break;
         case "Ubuntu22_LTS_64":            strIcon = "os_ubuntu_64.png"; break;
+        case "Ubuntu22_64":                strIcon = "os_ubuntu_64.png"; break;
+        case "Ubuntu23_64":                strIcon = "os_ubuntu_64.png"; break;
+        case "Ubuntu231_64":               strIcon = "os_ubuntu_64.png"; break;
+        case "Ubuntu24_LTS_64":            strIcon = "os_ubuntu_64.png"; break;
+        case "Ubuntu24_64":                strIcon = "os_ubuntu_64.png"; break;
+        case "Ubuntu25_64":                strIcon = "os_ubuntu_64.png"; break;
         case "Xubuntu":                    strIcon = "os_ubuntu.png"; break;
         case "Xubuntu_64":                 strIcon = "os_ubuntu_64.png"; break;
         case "Xandros":                    strIcon = "os_xandros.png"; break;
