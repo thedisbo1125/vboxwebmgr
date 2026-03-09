@@ -3840,7 +3840,9 @@ function vboxButtonMediaMenu(type,callback,mediumPath) {
 	 */
 	this.enableButton = function() {
 		var b = self.button;
-		this._buttonElement.css('background-image','url(images/vbox/' + b.icon + '_'+self.size+'px.png)').removeClass('vboxDisabled').html('<img src="images/downArrow.png" style="margin:0px;padding:0px;float:right;width:6px;height:6px;" />');
+		this._buttonElement.css('background-image','url(images/vbox/' + b.icon + '_'+self.size+'px.png)')
+		.removeClass('vboxDisabled').html('<img src="images/downArrow.png" style="margin:0px;padding:0px;float:' +
+		'right;width:6px;height:6px;" />');
 	};
 	/**
 	 * Disable this button
