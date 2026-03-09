@@ -59,10 +59,10 @@ useExistingOptions, val, value, valueIsEditable*/
 
                 keyRange: function (value) {
                     var min, max;
-                    if (typeof value === 'object' && !$.isArray(value)) {
+                    if (typeof value === 'object' && !Array.isArray(value)) {
                         min = value.min;
                         max = value.max;
-                    } else if ($.isArray(value) && value.length === 2) {
+                    } else if (Array.isArray(value) && value.length === 2) {
                         min = value[0];
                         max = value[1];
                     }
@@ -206,11 +206,11 @@ useExistingOptions, val, value, valueIsEditable*/
 
                     parseKeys = function (value) {
                         var keys = [];
-                        if ($.isArray(value)) {
+                        if (Array.isArray(value)) {
                             $.each(value, function (i, val) {
                                 var j, min, max;
                                 if (Validators.keyRange(val)) {
-                                    if ($.isArray(val)) {
+                                    if (Array.isArray(val)) {
                                         min = val[0];
                                         max = val[1];
                                     } else {
@@ -251,7 +251,7 @@ useExistingOptions, val, value, valueIsEditable*/
                                     value = [value];
                                 }
                                 var id = Combobox.getId(elem), opt = options[id];
-                                if (opt !== undefined && $.isArray(value)) {
+                                if (opt !== undefined && Array.isArray(value)) {
                                     opt[name] = value;
                                     return true;
                                 }
@@ -260,13 +260,13 @@ useExistingOptions, val, value, valueIsEditable*/
                             object: function (elem, name, value) {
                                 var id = Combobox.getId(elem), opt = options[id];
                                 if (opt !== undefined && value !== null &&
-                                    typeof value === 'object' && !$.isArray(value)) {
+                                    typeof value === 'object' && !Array.isArray(value)) {
                                     opt[name] = value;
                                 }
                             },
                             keys: function (elem, name, value) {
                                 var id = Combobox.getId(elem), opt = options[id];
-                                if (opt !== undefined && $.isArray(value)) {
+                                if (opt !== undefined && Array.isArray(value)) {
                                     opt[name] = parseKeys(value);
                                 }
                             }
@@ -564,7 +564,7 @@ useExistingOptions, val, value, valueIsEditable*/
                         Parameters.Set.ignoredKeys(elem, options[id].ignoredKeys);
                         Parameters.Set.acceptedKeys(elem, options[id].acceptedKeys);
 
-                        if (typeof settings === 'object' && !$.isArray(settings)) {
+                        if (typeof settings === 'object' && !Array.isArray(settings)) {
                             $.each(settings, function (key, val) {
                                 if (val !== undefined) {
                                     switch (key) {
@@ -626,11 +626,11 @@ useExistingOptions, val, value, valueIsEditable*/
                     select = $('<select>');
 
                     addOptions = function (elem, options) {
-                        if ($.isArray(options)) {
+                        if (Array.isArray(options)) {
                             $.each(options, function (i, val) {
                                 if ($.isPlainObject(val)) {
                                     $.each(val, function (key, value) {
-                                        if ($.isArray(value)) {
+                                        if (Array.isArray(value)) {
                                             var og = $('<optgroup>').attr('label', key);
                                             addOptions(og, value);
                                             og.appendTo(select);
