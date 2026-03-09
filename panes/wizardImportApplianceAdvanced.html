@@ -444,7 +444,8 @@ function vboxImportAppliancePropEditArea(elm) {
 	
 	$(elm).children().hide();	
 	
-	$('<input />').attr({'type':'button','class':'vboxbutton'}).css({'width':($(elm).innerWidth()-12)+'px','margin':'0px'}).val(trans('Edit text','VBoxTextEditor')).click(function(){
+	$('<input />').attr({'type':'button','class':'vboxbutton'}).css({'width':($(elm).innerWidth()-12)+'px','margin':'0px'})
+	.val(trans('Edit text','VBoxTextEditor')).click(function(){
 		vboxImportAppliancePropEditDialog(elm);
 		$('#vboxImportProps').trigger('selectProp');
 	}).appendTo(elm);
