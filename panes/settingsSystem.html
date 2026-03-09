@@ -352,7 +352,7 @@ $("#vboxVMBootOrder").find("input.imgMvUp").on('click',function() {
 			var mv = $(list[i]).detach();
 			$(list[(i-1)]).before(mv);
 			i = list.length;
-			mv.click();
+			mv.trigger('click');
 		}
 	}
 	
@@ -369,7 +369,7 @@ $("#vboxVMBootOrder").find("input.imgMvDn").on('click',function() {
 			var mv = $(list[i]).detach();
 			$(list[(i+1)]).after(mv);
 			i = list.length;
-			mv.click();
+			mv.trigger('click');
 		}
 	}
 	
