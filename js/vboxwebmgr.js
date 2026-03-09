@@ -957,7 +957,8 @@ var vboxVMDetailsSections = {
 								"&id=" + d['id'] + "&vm=" + encodeURIComponent(d['name']);
 							rowStr = '<a href="javascript:getrdpfile(' + "'" + passStr + "'" +  ');">' + d['VRDEServerInfo']['port'] + 
 								"</a>";
-							rowStr += ' <img src="images/vbox/blank.gif" style="vspace:0px;hspace:0px;height2px;width:10px;" /> (' + chost + ':' + d['VRDEServerInfo']['port'] + ')';
+							rowStr += ' <img src="images/vbox/blank.gif" style="vspace:0px;hspace:0px;height2px;width:10px;" /> (' +
+								chost + ':' + d['VRDEServerInfo']['port'] + ')';
 						// VNC
 						} else {
 							rowStr = " <a href='vnc://" + chost + ':' + d['VRDEServerInfo']['port'] + "'>" + d['VRDEServerInfo']['port'] + "</a>";
@@ -3548,7 +3549,7 @@ function vboxToolbar(options) {
 	 * @memberOf vboxToolbar
 	 * @param {String}
 	 *            btn - name of button
-	 * @return return value of .click() function performed on button
+	 * @return return value of .click function performed on button
 	 */
 	this.click = function(btn) {
 		var b = self.getButtonByName(btn);
@@ -3697,8 +3698,13 @@ function vboxToolbarSmall(options) {
 		}).click(b.click);
 
 		if(!self.noHover) {
-			$(btn).on('mouseenter',function(){if(!$(this).prop('disabled')){$(this).addClass('vboxToolbarSmallButtonHover').removeClass('vboxToolbarSmallButton');}}
-			.on('mouseleave',function(){$(this).addClass('vboxToolbarSmallButton').removeClass('vboxToolbarSmallButtonHover');});
+			$(btn).on('mouseenter',function() {
+				if(!$(this).prop('disabled')) {
+					$(this).addClass('vboxToolbarSmallButtonHover').removeClass('vboxToolbarSmallButton');
+				}})
+			.on('mouseleave',function() {
+				$(this).addClass('vboxToolbarSmallButton').removeClass('vboxToolbarSmallButtonHover');
+			});
 		}
 
 		// Check for button specific CSS
@@ -3903,11 +3909,12 @@ function vboxButtonMediaMenu(type,callback,mediumPath) {
 			$(document).one('mouseup',function(){
 				$(tbtn).removeClass('vboxButtonMenuButtonDown');
 			});
-		}).html('<img src="images/downArrow.png" style="margin:0px;padding:0px;float:right;width:6px;height:6px;" />').hover(
-					function(){if(!$(this).hasClass('vboxDisabled')){$(this).addClass('vboxToolbarSmallButtonHover');}},
-					function(){$(this).removeClass('vboxToolbarSmallButtonHover');}
-		);
-
+		}).html('<img src="images/downArrow.png" style="margin:0px;padding:0px;float:right;width:6px;height:6px;" />')
+		.on('mouseenter',function() {
+			if(!$(this).hasClass('vboxDisabled')) {
+				$(this).addClass('vboxToolbarSmallButtonHover');
+			}
+		}).on('mouseleave',function(){$(this).removeClass('vboxToolbarSmallButtonHover');});
 
 	};
 
@@ -4571,25 +4578,22 @@ function vboxMenuBar(options) {
 								});
 							}
 						},
-						self.menus[i].menuObj.menuClickCallback
-					).hover(
-						function(){
-							$(this).addClass('vboxBordered');
-							if($(this).parent().data('vboxMenubarActive')) {
+						self.menus[i].menuObj.menuClickCallback)
+					.on('mouseenter',function() {
+						$(this).addClass('vboxBordered');
+						if($(this).parent().data('vboxMenubarActive')) {
 
-								// Hide any showing menu
-								var e = jQuery.Event("mouseup", {button:0});
-								$(this).trigger(e);
-								var e = jQuery.Event("mousedown", {button:0});
-								$(this).trigger(e);
-								var e = jQuery.Event("mouseup", {button:0});
-								$(this).trigger(e);
-							}
-						},
-						function(){
-							$(this).removeClass('vboxBordered');
+							// Hide any showing menu
+							var e = jQuery.Event("mouseup", {button:0});
+							$(this).trigger(e);
+							var e = jQuery.Event("mousedown", {button:0});
+							$(this).trigger(e);
+							var e = jQuery.Event("mouseup", {button:0});
+							$(this).trigger(e);
 						}
-					).disableSelection()
+					}).on('mouseleave',function() {
+						$(this).removeClass('vboxBordered');
+					}).disableSelection()
 				);
 		}
 	};
