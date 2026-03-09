@@ -279,7 +279,7 @@ newVMUpdateOS(document.forms['frmwizardNewVM'].newVMOSType.options[document.form
  */
 
 $('#wizardNewVMStep1').on('show',function(e,wiz){
-	$(document.forms['frmwizardNewVM'].newVMName).focus();	 
+	$(document.forms['frmwizardNewVM'].newVMName).trigger('focus');
 });
  
 /* When going to step2, make sure a name is entered */
