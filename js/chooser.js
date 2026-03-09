@@ -319,13 +319,13 @@ var vboxChooser = {
 		vboxChooser._anchor.append(vboxChooser.groupHTML("/"));
 
 		// Enforce VM ownership
-        if($('#vboxPane').data('vboxConfig').enforceVMOwnership && !$('#vboxPane').data('vboxSession').admin) {
-        	vmlist = jQuery.grep(vmlist,function(vm,i){
-        		return (vm.owner == $('#vboxPane').data('vboxSession').user);
-        	});
+		if($('#vboxPane').data('vboxConfig').enforceVMOwnership && !$('#vboxPane').data('vboxSession').admin) {
+			vmlist = jQuery.grep(vmlist,function(vm,i){
+				return (vm.owner == $('#vboxPane').data('vboxSession').user);
+			});
 		}
 
-        var groups = [];
+		var groups = [];
 		// Each item in list
 		for(var i = 0; i < vmlist.length; i++) {
 			// Update
