@@ -942,22 +942,20 @@ function vboxVMMAddMedium(d,depth,hideDiff,topLevelParent) {
 	// Show / hide children button
 	if(d.children && d.children.length && !hideDiff) {
 
-		$('<input />').attr({'type':'button','class':'vboxImgButton vboxVMMMediaExpand','style':'background-image: url(images/vbox/arrow_right_10px.png)'}).click(function(){
+		$('<input />').attr({'type':'button','class':'vboxImgButton vboxVMMMediaExpand',
+		'style':'background-image: url(images/vbox/arrow_right_10px.png)'}).click(function(){
 			
-			if(!$(this).data('toggleClicked')) {
-				
+			if(!$(this).data('toggleClicked')) {				
 				$(this).data('toggleClicked', true);
 				$(this).css({'background-image':'url(images/vbox/arrow_down_10px.png)'});
-				$(this).closest('tr').toggleClass('collapsed').trigger('showChildren',true);
-				
+				$(this).closest('tr').toggleClass('collapsed').trigger('showChildren',true);				
 			} else {
 				$(this).data('toggleClicked', false);
 				$(this).css({'background-image':'url(images/vbox/arrow_right_10px.png)'});				
 				$(this).closest('tr').toggleClass('collapsed').trigger('hideChildren',true);
 			}
 			
-			return false;
-			
+			return false;			
 		}).appendTo(td);
 
 	} else if(depth) {
