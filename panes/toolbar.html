@@ -300,13 +300,13 @@ function vboxChooserToolbarUSBUpdate(menu) {
 			}).data({'usbDevice':hostUSB[i].id,'capt':capt});
 			
 			$(menu).append($('<li />').append(
-					$('<span />').addClass('vboxMenuAcceptClick')
-						.on('click',function() {
-							if(!$(this).parent().hasClass('disabled')) {
-								$(this).children('input').trigger('click');
-							}
-							return false;
-						}).append(cbox).append(' '+dname)
+				$('<span />').addClass('vboxMenuAcceptClick')
+				.on('click',function() {
+					if(!$(this).parent().hasClass('disabled')) {
+						$(this).children('input').trigger('click');
+					}
+					return false;
+				}).append(cbox).append(' '+dname)
 			).attr({'class':(avail ? '' : 'disabled')}));
 		}
 		
