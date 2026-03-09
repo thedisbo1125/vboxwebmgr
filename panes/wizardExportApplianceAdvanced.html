@@ -273,7 +273,7 @@ function vboxWizardExportApplianceUpdateList() {
 
 			$('<td />').attr({'class':'vboxHideOverflow vboxAppProp'+p}).css({'width':'100%','padding-left':'10px','padding-right':'2px'})
 			.html('<div>'+$('<div />').text(($(trparent).data('vm')[p]||'')).html()+'</div>')
-			.dblclick((vboxApplianceProps[p].textarea ? vboxExportAppliancePropEditArea : vboxExportAppliancePropEdit ))
+			.on('dblclick',(vboxApplianceProps[p].textarea ? vboxExportAppliancePropEditArea : vboxExportAppliancePropEdit ))
 			.appendTo(tr);
 			
 			$(tbl).append(tr);
