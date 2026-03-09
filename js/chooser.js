@@ -84,13 +84,13 @@ var vboxChooser = {
 
 		vboxChooser._anchor.html("<div id='vboxChooserSpinner' style='text-align: center'><div><img src='images/spinner.gif' /></div></div>");
 
-		vboxChooser._anchor.hover(function(){
+		vboxChooser._anchor.on('mouseenter',function() {
 			$(this).addClass('vboxChooserDropTargetHoverRoot');
-		},function() {
+		}).on('mouseleave',function() {
 			$(this).removeClass('vboxChooserDropTargetHoverRoot');
 		});
 
-		$(window).resize(function(){
+		$(window).on('resize',function() {
 
 			// Get anchor id and add / remove class
 			var w = parseInt($(vboxChooser._anchor).innerWidth());
@@ -616,10 +616,10 @@ var vboxChooser = {
 		/////////////////////////////////////////////
 		var td = $('<td />').attr({'colspan':'2'}).addClass('vboxChooserDropTarget vboxDropTargetTop');
 		if(vmn.id != 'host') {
-			td.hover(function(){
+			td.on('mouseenter',function() {
 				if(vboxChooser._dragging && vboxChooser._dragging != vmn.id)
 					$(this).addClass('vboxChooserDropTargetHover');
-			},function(){
+			}).on('mouseleave',function() {
 				$(this).removeClass('vboxChooserDropTargetHover');
 			}
 			);
@@ -748,10 +748,10 @@ var vboxChooser = {
 		// Droppable targets
 		var td = $('<td />').attr({'colspan':'2'}).addClass('vboxChooserDropTarget vboxDropTargetBottom');
 		if(vmn.id != 'host') {
-			td.hover(function(){
+			td.on('mouseenter',function() {
 				if(vboxChooser._dragging && vboxChooser._dragging != vmn.id)
 					$(this).addClass('vboxChooserDropTargetHover');
-				},function(){
+				}).on('mouseleave',function() {
 					$(this).removeClass('vboxChooserDropTargetHover');
 				}
 			);
@@ -772,7 +772,7 @@ var vboxChooser = {
 			});
 
 			// Open settings on dblclick
-			$(tbl).dblclick(function(){
+			$(tbl).on('dblclick',function() {
 				if(vboxChooser._vmContextMenuObj.menuItems['settings'].enabled())
 					vboxChooser._vmContextMenuObj.menuItems['settings'].click();
 			});
@@ -1611,7 +1611,8 @@ var vboxChooser = {
 			)
 
 		);
-		$(el).children('div.vboxChooserGroupHeader').children('form').children('input').focus().select().blur(renameGroup);
+		$(el).children('div.vboxChooserGroupHeader').children('form').children('input')
+		.trigger('focus').trigger('select').on('blur',renameGroup);
 
 	},
 
@@ -1903,7 +1904,7 @@ var vboxChooser = {
 			).append(
 			$('<div />').addClass('vboxChooserGroupHeader').css({'display':(first ? 'none' : '')})
 				.attr({'title':gname})
-				.dblclick(function() {
+				.on('dblclick',function() {
 
 					// Already collapsed?
 					var collapsed = $(this).closest('div.vboxChooserGroup').hasClass('vboxVMGroupCollapsed');
@@ -1958,28 +1959,29 @@ var vboxChooser = {
 
 				})
 				.append(
-						$('<div />').addClass('vboxChooserDropTarget')
-							.addClass('vboxDropTargetTop').hover(function(){
-							if(vboxChooser._draggingGroup)
-								$(this).addClass('vboxChooserDropTargetHover' + (first ? 'ignore' : ''));
-						}, function(){
+					$('<div />').addClass('vboxChooserDropTarget')
+					.addClass('vboxDropTargetTop')
+					.on('mouseenter',function() {
+						if(vboxChooser._draggingGroup) {
+							$(this).addClass('vboxChooserDropTargetHover' + (first ? 'ignore' : ''));
+						}
+					}).on('mouseleave',function() {
 							$(this).removeClass('vboxChooserDropTargetHover');
 						})
 				)
 				.append(
-						$('<span />').addClass('vboxChooserGroupNameArrowLeft vboxChooserGroupNameArrowCollapse vboxArrowImage')
-								.mousedown(function(e){
-									e.stopPropagation();
-									e.preventDefault();
-									return false;
-								}).mouseup(function(){
-									$(this).closest('div.vboxChooserGroupHeader').trigger('dblclick');
-								})
-
-				).append(
-
+					$('<span />').addClass('vboxChooserGroupNameArrowLeft vboxChooserGroupNameArrowCollapse vboxArrowImage')
+					.on('mousedown',function(e) {
+						e.stopPropagation();
+						e.preventDefault();
+						return false;
+					}).on('mouseup',function() {
+						$(this).closest('div.vboxChooserGroupHeader').trigger('dblclick');
+					})
+				)
+				.append(
 					$('<span />').addClass('vboxChooserGroupNameArrowLeft vboxChooserGroupShowOnlyBack vboxArrowImage')
-						.click(function(e) {
+						.on('click',function(e) {
 							e.stopPropagation();
 							e.preventDefault();
 							vboxChooser.showOnlyGroupElm();
@@ -1992,24 +1994,24 @@ var vboxChooser = {
 						"<span class='vboxChooserGroupCounts' />"
 						).append(
 							$('<span />').addClass('vboxChooserGroupShowOnly vboxArrowImage')
-								.click(function(e){
-									e.stopPropagation();
-									e.preventDefault();
-									vboxChooser.showOnlyGroupElm($(this).closest('div.vboxChooserGroup'));
-									return false;
-								})
-
-						))
+							.on('click',function(e) {
+								e.stopPropagation();
+								e.preventDefault();
+								vboxChooser.showOnlyGroupElm($(this).closest('div.vboxChooserGroup'));
+								return false;
+							})
+						)
+				)
 				.append($('<span />').html(gname).addClass('vboxChooserGroupName vboxFitToContainer'))
 				.append(
 					$('<div />').addClass('vboxChooserDropTarget vboxChooserDropTargetBottom')
-						.hover(function(){
-							if(vboxChooser._draggingGroup)
-								$(this).addClass('vboxChooserDropTargetHover' + (first ? 'ignore' : ''));
-						}, function(){
-							$(this).removeClass('vboxChooserDropTargetHover');
+					.on('mouseenter',function() {
+						if(vboxChooser._draggingGroup) {
+							$(this).addClass('vboxChooserDropTargetHover' + (first ? 'ignore' : ''));
+						}
+					}).on('mouseleave',function() {
+						$(this).removeClass('vboxChooserDropTargetHover');
 					})
-
 				)
 				.hover(function(){
 

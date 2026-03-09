@@ -12,7 +12,7 @@
  *
  */
 $(document).ready(function(){
-    $(window).keydown(function(i){if(i.keyCode&&i.keyCode===27){
+    $(window).on('keydown',function(i){if(i.keyCode&&i.keyCode===27){
         i.preventDefault();
         try {
             var flash = RDPWebClient.getFlashById("FlashRDP");
@@ -22,7 +22,7 @@ $(document).ready(function(){
         }
     }});
 
-    $(document).keydown(function(i){if(i.keyCode&&i.keyCode===27){
+    $(document).on('keydown',function(i){if(i.keyCode&&i.keyCode===27){
         i.preventDefault();
         try {
             var flash = RDPWebClient.getFlashById("FlashRDP");
@@ -578,7 +578,7 @@ function vboxAlert(e,xtraOpts) {
         e.details = $('<div />').html(e.details).text();
 
         var p = $('<p />').attr({'style':'text-align: center'});
-        $('<a />').attr({'href':'#'}).html(trans('Details','UIMessageCenter')).click(function(){
+        $('<a />').attr({'href':'#'}).html(trans('Details','UIMessageCenter')).on('click',function() {
             $(this).parent().parent().dialog('option',{'height':400,'position':'center'});
             $(this).parent().siblings(".vboxAlert").css({"display":""});
             $(this).parent().css({'padding':'0px','margin':'0px'});
@@ -939,7 +939,7 @@ function vboxProgressCreateDialog(prequest,icon,title,target,callback) {
     // Cancel button
     $('<div />').attr({'id':'vboxProgressCancel'+pid}).css({'display':'none','padding':'8px'}).append(
 
-        $('<input />').attr('type','button').val(trans('Cancel','UIMessageCenter')).data({'pid':pid}).click(function(){
+        $('<input />').attr('type','button').val(trans('Cancel','UIMessageCenter')).data({'pid':pid}).on('click',function() {
             this.disabled = 'disabled';
             vboxAjaxRequest('progressCancel',prequest);
         })
@@ -1004,7 +1004,7 @@ function vboxProgressCreateListElement(prequest,icon,title,target,callback) {
     // Cancel button
     $('<div />').addClass('vboxProgressOpCancel').append(
             $('<input />').attr({'id':'vboxProgressCancel'+pid,'type':'button'}).val(trans('Cancel','UIProgressDialog')).data({'pid':pid})
-                .click(function(){
+                .on('click',function() {
                     this.disabled = 'disabled';
                     vboxAjaxRequest('progressCancel',prequest);
                 })

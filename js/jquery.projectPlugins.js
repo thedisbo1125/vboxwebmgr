@@ -203,7 +203,7 @@ if ( !jQuery.vboxbrowser ) {
 
 				// Insert hitarea
 				var d = document.createElement('div');
-				$(d).addClass('hitarea').addClass((classadd ? classadd + '-hitarea' : '')).click(function(){
+				$(d).addClass('hitarea').addClass((classadd ? classadd + '-hitarea' : '')).on('click',function() {
 
 					if(!$(this).data('toggleClicked')) {
 
@@ -259,7 +259,7 @@ if ( !jQuery.vboxbrowser ) {
 
 		/* Public access to select medium */
 		if(options.selectMedium) {
-			$('#'+$(this).attr('id')+'-mediumselect-'+options.selectMedium).click();
+			$('#'+$(this).attr('id')+'-mediumselect-'+options.selectMedium).trigger('click');
 			return;
 		}
 
@@ -319,7 +319,7 @@ if ( !jQuery.vboxbrowser ) {
 			$(d).data('label',m.label);
 			$(d).data('id',m.attachedId);
 
-			$(d).click(function(){_selectmedium(this,sel);});
+			$(d).on('click',function(){_selectmedium(this,sel);});
 
 			$(li).append(d);
 
@@ -374,7 +374,7 @@ if ( !jQuery.vboxbrowser ) {
 				var img = document.createElement('div');
 				img.setAttribute('id',$(this).attr('id')+'-mediumselectimg');
 				img.setAttribute('class','vboxMediumSelectImg');
-				$(img).click(function(e){
+				$(img).on('click',function(e){
 					$(e.target).closest('table').find('div.vboxMediumSelect').trigger('click');
 					return false;
 				});
@@ -682,7 +682,7 @@ if(jQuery)( function() {
 				var menu = $('#'+o.menu);
 
 				// Simulate a true click
-				$(this).mousedown( function(e) {
+				$(this).on('mousedown',function(e) {
 
 					if( $(el).hasClass('disabled') ) return true;
 
@@ -691,7 +691,7 @@ if(jQuery)( function() {
 					var evt = e;
 					evt.stopPropagation();
 
-					$(this).mouseup( function(e) {
+					$(this).on('mouseup',function(e) {
 
 						if( $(this).hasClass('disabled') ) return true;
 
@@ -741,7 +741,7 @@ if(jQuery)( function() {
 							if($(aElm)[0]) {
 								callback( aElm.attr('href').substr(1), $(srcElement), null, aElm);
 							} else {
-								$(this).children('.vboxMenuAcceptClick').click();
+								$(this).children('.vboxMenuAcceptClick').trigger('click');
 							}
 						}
 
