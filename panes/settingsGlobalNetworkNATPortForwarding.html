@@ -235,10 +235,10 @@ function vboxSettingsGlobalNetworkNatPortForwardingAdd(r,listId) {
 		}).addClass('vboxHover' + (i == (rule.length-1) ? 'Last' : 'Mid'))
 			.html($('<div />').html(rule[i].replace('[','').replace(']','')).text()).addClass((i%2 ? 'vboxPort' : 'vboxIP')).appendTo(tr);
 	}
-	$(tr).data({'vboxRule':rule}).hover(function(){
+	$(tr).data({'vboxRule':rule}).on('mouseenter',function() {
 		if(!$(this).hasClass('vboxListItemSelected'))
 			$(this).addClass('vboxHover');
-	},function(){
+	}).on('mouseleave',function() {
 		$(this).removeClass('vboxHover');
 	}).appendTo($('#'+listId));
 	

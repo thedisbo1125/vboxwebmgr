@@ -3460,10 +3460,9 @@ function vboxToolbar(options) {
 		}).data(b);
 
 		if(!self.noHover) {
-			$(td).hover(
-					function(){if($(this).hasClass('vboxEnabled')){$(this).addClass('vboxToolbarButtonHover');}},
-					function(){$(this).removeClass('vboxToolbarButtonHover');}
-			).mousedown(function(e){
+			$(td).on('mouseenter',function(){if($(this).hasClass('vboxEnabled')){$(this).addClass('vboxToolbarButtonHover');}})
+			.on('mouseleave',function(){$(this).removeClass('vboxToolbarButtonHover');})
+			.on('mousedown',function(e) {
 				if($.vboxbrowser.msie && e.button == 1) e.button = 0;
 				if(e.button != 0 || $(this).hasClass('vboxDisabled')) return true;
 				$(this).addClass('vboxToolbarButtonDown');
@@ -3698,10 +3697,8 @@ function vboxToolbarSmall(options) {
 		}).click(b.click);
 
 		if(!self.noHover) {
-			$(btn).hover(
-					function(){if(!$(this).prop('disabled')){$(this).addClass('vboxToolbarSmallButtonHover').removeClass('vboxToolbarSmallButton');}},
-					function(){$(this).addClass('vboxToolbarSmallButton').removeClass('vboxToolbarSmallButtonHover');}
-			);
+			$(btn).on('mouseenter',function(){if(!$(this).prop('disabled')){$(this).addClass('vboxToolbarSmallButtonHover').removeClass('vboxToolbarSmallButton');}}
+			.on('mouseleave',function(){$(this).addClass('vboxToolbarSmallButton').removeClass('vboxToolbarSmallButtonHover');});
 		}
 
 		// Check for button specific CSS
