@@ -2014,7 +2014,7 @@ var vboxChooser = {
 						$(this).removeClass('vboxChooserDropTargetHover');
 					})
 				)
-				.hover(function(){
+				.on('mouseenter',function() {
 
 					if(vboxChooser._compact) return;
 
@@ -2032,7 +2032,7 @@ var vboxChooser = {
 					}
 
 
-				},function(){
+				}).on('mouseleave',function() {
 
 					// Resize title and remove hover class
 					$(this).removeClass('vboxHover');
@@ -2068,16 +2068,18 @@ var vboxChooser = {
 
 		// Bottom drop target
 		if(!first) {
-			gHTML.hover(function(){
-				$(this).addClass('vboxGroupHover'); }, function() {
-					$(this).removeClass('vboxGroupHover');
+			gHTML.on('mouseenter',function() {
+				$(this).addClass('vboxGroupHover');
+			}).on('mouseleave',function() {
+				$(this).removeClass('vboxGroupHover');
 			}).append(
 				$('<div />').addClass('vboxChooserDropTarget vboxChooserDropTargetBottom')
-					.hover(function(){
-						if(vboxChooser._draggingGroup)
-							$(this).addClass('vboxChooserDropTargetHover');
-					}, function(){
-						$(this).removeClass('vboxChooserDropTargetHover');
+				.on('mouseenter',function() {
+					if(vboxChooser._draggingGroup) {
+						$(this).addClass('vboxChooserDropTargetHover');
+					}
+				}).on('mouseleave',function() {
+					$(this).removeClass('vboxChooserDropTargetHover');
 				})
 			);
 		}
