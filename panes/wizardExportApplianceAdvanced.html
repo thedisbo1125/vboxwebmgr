@@ -271,7 +271,10 @@ function vboxWizardExportApplianceUpdateList() {
 				.html('<img src="images/vbox/'+vboxApplianceProps[p].icon+'_16px.png" /> ' +
 				trans(vboxApplianceProps[p].label,'UIWizardExportApp')).appendTo(tr);
 
-			$('<td />').attr({'class':'vboxHideOverflow vboxAppProp'+p}).css({'width':'100%','padding-left':'10px','padding-right':'2px'}).html('<div>'+$('<div />').text(($(trparent).data('vm')[p]||'')).html()+'</div>').dblclick((vboxApplianceProps[p].textarea ? vboxExportAppliancePropEditArea : vboxExportAppliancePropEdit )).appendTo(tr);
+			$('<td />').attr({'class':'vboxHideOverflow vboxAppProp'+p}).css({'width':'100%','padding-left':'10px','padding-right':'2px'})
+			.html('<div>'+$('<div />').text(($(trparent).data('vm')[p]||'')).html()+'</div>')
+			.dblclick((vboxApplianceProps[p].textarea ? vboxExportAppliancePropEditArea : vboxExportAppliancePropEdit ))
+			.appendTo(tr);
 			
 			$(tbl).append(tr);
 		}
