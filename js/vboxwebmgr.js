@@ -447,7 +447,7 @@ var vboxVMDetailsSections = {
 			/* Menu List */
 			var ul = $('<ul />')
 				.attr({'class':'contextMenu contextMenuNoBG','style':'display: none','id':'vboxDetailsPreviewMenu'})
-				.click(function(){$(this).hide();})
+				.on('click',function(){$(this).hide();})
 				.on('contextmenu', function() { return false; })
 
 				// Menu setup for "open in new window"
@@ -474,7 +474,7 @@ var vboxVMDetailsSections = {
 
 						$('<input />')
 							.attr({'class':'vboxRadio','type':'radio','name':'vboxPreviewRadio','value':0})
-							.click(function(){
+							.on('click',function() {
 								vboxSetLocalDataItem('previewUpdateInterval','0');
 								vboxVMDetailsSections.preview._updateInterval = 0;
 							})
@@ -508,7 +508,8 @@ var vboxVMDetailsSections = {
 
 				if(i==0) $(li).attr('class','separator');
 
-				var radio = $('<input />').attr({'class':'vboxRadio','type':'radio','name':'vboxPreviewRadio','value':ints[i]}).click(function(){
+				var radio = $('<input />').attr({'class':'vboxRadio','type':'radio','name':'vboxPreviewRadio','value':ints[i]})
+				.on('click',function() {
 
 					var lastIntervalNone = (parseInt(vboxVMDetailsSections.preview._updateInterval) == 0);
 
@@ -542,7 +543,7 @@ var vboxVMDetailsSections = {
 			/* Append "Open in new window" */
 			$('<li />')
 				.attr({'id':'vboxDetailsViewSavedSS','class':'separator','style':'display:none;text-align: center;'})
-				.click(function(){
+				.on('click',function() {
 					window.open(vboxEndpointConfig.screen+'?vm='+$(this).data('vmid')+'&full=1','vboxSC','toolbar=1,menubar=0,location=0,directories=0,status=true,resize=true');
 				}).append(
 					$('<span />')
@@ -553,7 +554,7 @@ var vboxVMDetailsSections = {
 			$(ul).children().hoverClass('vboxHover');
 
 
-			$(document).click(function(e){if(e.button!=2)$(ul).hide();});
+			$(document).on('click',function(e){if(e.button!=2)$(ul).hide();});
 
 			$('#vboxTabVMDetails').append(ul);
 
@@ -3016,7 +3017,7 @@ function vboxWizard() {
 								// Go to last step
 								self.displayStep(1);
 
-								$('#WizardNextButtonId_' + self.name).focus();
+								$('#WizardNextButtonId_' + self.name).trigger('focus');
 
 								if (typeof self.onLoadFunc === 'function') {
 									self.onLoadFunc();
@@ -3064,7 +3065,7 @@ function vboxWizard() {
 
 								self.displayStep(1);
 
-								$('#WizardNextButtonId_' + self.name).focus();
+								$('#WizardNextButtonId_' + self.name).trigger('focus');
 
 								if (typeof self.onLoadFunc === 'function') {
 									self.onLoadFunc();
@@ -3140,7 +3141,8 @@ function vboxWizard() {
 				'stack':true,
 				'dialogClass':'vboxDialogContent vboxWizard',
 				'open': function() {
-					$('#'+self.name+'Dialog').parent().find('.ui-dialog-buttonpane').find('button:contains("'+self.nextArrow+'")').focus();
+					$('#'+self.name+'Dialog').parent().find('.ui-dialog-buttonpane').find('button:contains("'+self.nextArrow+'")')
+					.trigger('focus');
 				},
 				'title':(self.icon ? '<img src="images/vbox/'+self.icon+ ( (self.icon.indexOf('.png') == -1) ? '_16px.png': '') +'" class="vboxDialogTitleIcon" /> ': '') + self.title
 
@@ -3227,7 +3229,7 @@ function vboxWizard() {
 		}
 
 		if(step == 1 && step != self.steps) {
-			$('#WizardBackButtonId_' + self.name).addClass('disabled').blur();
+			$('#WizardBackButtonId_' + self.name).addClass('disabled').trigger('blur');
 			$('#WizardNextButtonId_' + self.name).html($('<div />').text((self.steps > 1 ? self.nextText +
 				' '+self.nextArrow: self.finishText)).html());
 		} else {
@@ -3895,7 +3897,7 @@ function vboxButtonMediaMenu(type,callback,mediumPath) {
 			'class': 'vboxImgButton vboxToolbarSmallButton vboxButtonMenuButton ui-corner-all',
 			'title': label,
 			'style': self.buttonStyle+' background-image: url(images/vbox/' + b.icon + '_'+self.size+'px.png);text-align:right;vertical-align:bottom;'
-		}).click(function(e){
+		}).on('click',function(e) {
 			if($(this).hasClass('vboxDisabled')) return;
 			$(this).addClass('vboxButtonMenuButtonDown');
 			var tbtn = $(this);

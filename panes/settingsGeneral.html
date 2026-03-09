@@ -210,7 +210,7 @@ if($('#vboxPane').data('vboxConfig').enableCustomIcons) {
 
     $('#vboxSettingsRowVMIcon').css('display','');
 
-    $(document.forms['frmVboxSettings'].vboxSettingsGeneralIcon).blur(function(){
+    $(document.forms['frmVboxSettings'].vboxSettingsGeneralIcon).on('blur',function() {
         $('#vboxSettingsGeneralIconImg').attr('src',(this.value ? this.value : 'images/vbox/blank.gif'));
     });
 }
@@ -295,9 +295,9 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
     /* Defaults from machine */
     document.forms['frmVboxSettings'].vboxSettingsGeneralName.value = $('#vboxSettingsDialog').data('vboxMachineData').name;
     document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily.value = vboxSettingsOSTypesObj[$('#vboxSettingsDialog').data('vboxMachineData').OSTypeId].familyId;
-    $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily).change();
+    $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily).trigger('change');
     document.forms['frmVboxSettings'].vboxSettingsGeneralOSType.value = $('#vboxSettingsDialog').data('vboxMachineData').OSTypeId;
-    $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSType).change();
+    $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSType).trigger('change');
     document.forms['frmVboxSettings'].vboxSettingsGeneralSnapshotFolder.value = $('#vboxSettingsDialog').data('vboxMachineData').snapshotFolder;
     document.forms['frmVboxSettings'].vboxSettingsGeneralDescription.innerHTML = $('#vboxSettingsDialog').data('vboxMachineData').description;
 
