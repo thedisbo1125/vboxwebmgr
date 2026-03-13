@@ -358,6 +358,8 @@ class vboxconnector {
 			} catch (Exception $e) {
 				// pass
 			}
+
+			$this->session->releaseRemote();
 			unset($this->session);
 		}
 
@@ -483,6 +485,7 @@ class vboxconnector {
 
 						$this->session->unlockMachine();
 						$machine->releaseRemote();
+						$this->session->releaseRemote();
 
 					} catch (Exception $e) {
 						$eventlist[$k]['enrichmentData'] = array($e->getMessage());
@@ -527,6 +530,7 @@ class vboxconnector {
 
 						$this->session->unlockMachine();
 						$machine->releaseRemote();
+						$this->session->releaseRemote();
 
 					} catch (Exception $e) {
 						$eventlist[$k]['enrichmentData'] = array($e->getMessage());
@@ -560,6 +564,7 @@ class vboxconnector {
 
 						$this->session->unlockMachine();
 						$machine->releaseRemote();
+						$this->session->releaseRemote();
 
 					} catch (Exception $e) {
 						$eventlist[$k]['enrichmentData'] = array($e->getMessage());
@@ -1231,6 +1236,7 @@ class vboxconnector {
 
 		$this->session->unlockMachine();
 		unset($this->session);
+        $this->session->releaseRemote();
 		$machine->releaseRemote();
 
 		return true;
@@ -1255,6 +1261,7 @@ class vboxconnector {
 		$this->session->console->detachUSBDevice($args['id']);
 
 		$this->session->unlockMachine();
+        $this->session->releaseRemote();
 		unset($this->session);
 		$machine->releaseRemote();
 
@@ -1331,6 +1338,8 @@ class vboxconnector {
 
 				try {
 				    $this->session->unlockMachine();
+					$this->session->releaseRemote();
+
 				    unset($this->session);
 				} catch (Exception $e) {
 				    // pass
@@ -1447,6 +1456,8 @@ class vboxconnector {
 		$this->session->machine->VRDEServer->enabled = intval($args['enabled']);
 
 		$this->session->unlockMachine();
+		$this->session->releaseRemote();
+
 		unset($this->session);
 
 		$m->releaseRemote();
@@ -3576,6 +3587,7 @@ class vboxconnector {
 		if(!$progress->handle) {
 			$this->session->console->releaseRemote();
 			$this->session->unlockMachine();
+            $this->session->releaseRemote();
 			unset($this->session);
 		}
 
@@ -3950,6 +3962,7 @@ class vboxconnector {
 
 			// Close session and unlock machine
 			$this->session->unlockMachine();
+            $this->session->releaseRemote();
 			unset($this->session);
 
 		}
@@ -4710,6 +4723,7 @@ class vboxconnector {
 	    }
 
 		$this->session->unlockMachine();
+        $this->session->releaseRemote();
 		unset($this->session);
 		$machine->releaseRemote();
 
@@ -4757,6 +4771,7 @@ class vboxconnector {
 		}
 
 		$this->session->unlockMachine();
+        $this->session->releaseRemote();
 		unset($this->session);
 		$machine->releaseRemote();
 
@@ -5555,6 +5570,7 @@ class vboxconnector {
 			$this->session->machine->saveSettings();
 			$this->session->machine->releaseRemote();
 			$this->session->unlockMachine();
+            $this->session->releaseRemote();
 			unset($this->session);
 			$mach->releaseRemote();
 
@@ -5759,6 +5775,7 @@ class vboxconnector {
 
 		$this->session->unlockMachine();
 		$machine->releaseRemote();
+        $this->session->releaseRemote();
 		unset($this->session);
 
 		return true;
