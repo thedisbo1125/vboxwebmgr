@@ -29,11 +29,11 @@
 	<tr class='vboxRunningEnabled'>
 		<th class='vboxSettingsNetAdapterNamedLabel'><span class='translate'>Name:</span></th>
 		<td>
-			<select class="vboxSettingsNetAdapterNamed vboxselectstdbackground" name='vboxSettingsNetName' id='vboxSettingsNetNameId' style='width: 100%'>
+			<select class="vboxSettingsNetAdapterNamed vboxselectstdbackground" name='vboxSettingsNetName' style='width: 100%'>
 				<option value=''></option>
 			</select>
-			<input type='text' name='vboxSettingsNetNameText' id='vboxSettingsNetNameTextId' list='vboxNetNameListId' style='width: calc(100% - 8px);'/>
-			<datalist id='vboxNetNameListId'>
+			<input type='text' name='vboxSettingsNetNameText' style='width: calc(100% - 8px);'/>
+			<datalist name='vboxNetNameList'>
 			</datalist>
 		</td>
 	</tr>
@@ -260,6 +260,8 @@ netDnAdvImg.src = 'images/downArrow.png';
  */
 function vboxSettingsUpdateNetworkOptions(sel) {
 
+	var a = sel.name.slice(-1);
+
 	var ptable = $(sel).closest('table');
 	var th = $(ptable).find('th.vboxSettingsNetAdapterNamedLabel').first();
 	var nsel = $(ptable).find('.vboxSettingsNetAdapterNamed').first();
@@ -301,7 +303,9 @@ function vboxSettingsUpdateNetworkOptions(sel) {
 		if(sel.value == 'NAT' && $('#vboxPane').data('vboxConfig').enableAdvancedConfig) ptable.find('tr.vboxSettingsAdvancedNat').css('display','');
 		else ptable.find('tr.vboxSettingsAdvancedNat').css('display','none');
 
-		
+		$(document.getElementsByName('vboxSettingsNetName'+a)).show();
+		$(document.getElementsByName('vboxSettingsNetNameText'+a)).hide();
+
 	} else {
 
 		ptable.find('tr.vboxSettingsAdvancedNat').css('display','none');
@@ -344,22 +348,22 @@ function vboxSettingsUpdateNetworkOptions(sel) {
 		}
 		
 		if((sel.value !== 'Internal') && (sel.value !== 'Generic')) {
-			$('#vboxSettingsNetNameId').show();
-			$('#vboxSettingsNetNameTextId').hide();
+			$(document.getElementsByName('vboxSettingsNetName'+a)).show();
+			$(document.getElementsByName('vboxSettingsNetNameText'+a)).hide();
 
 			for(var i = 0; i < src.length; i++) {
 				var hSrc = $('<div />').text(src[i]).html();
 				$(nsel).append('<option ' + (src[i] == defaultSel ? ' selected ' : '') + ' value="' + hSrc + '">' + hSrc + '</option>');
 			}
 		} else {
-			$('#vboxSettingsNetNameId').hide();
-			$('#vboxNetNameListId').empty();
-			$('#vboxSettingsNetNameTextId').val('');
+			$(document.getElementsByName('vboxSettingsNetName'+a)).hide();
+			$(document.getElementsByName('vboxNetNameList'+a)).empty();
+			$(document.getElementsByName('vboxSettingsNetNameText'+a)).val('');
 			for(var i = 0; i < src.length; i++) {
-				$('<option>').attr('value',src[i]).appendTo($('#vboxNetNameListId'));
-				if(defaultSel == src[i]) $('#vboxSettingsNetNameTextId').val(defaultSel);
+				$('<option>').attr('value',src[i]).appendTo($(document.getElementsByName('vboxNetNameList'+a)));
+				if(defaultSel == src[i]) $(document.getElementsByName('vboxSettingsNetNameText'+a)).val(defaultSel);
 			}
-			$('#vboxSettingsNetNameTextId').show();
+			$(document.getElementsByName('vboxSettingsNetNameText'+a)).show();
 		}
 	}
 
@@ -372,13 +376,12 @@ function vboxSettingsUpdateNetworkOptions(sel) {
 
 /* Change settings onShow() when VM is running */
 $('#vboxSettingsDialog').on('dataLoaded',function(){
-	
-	
+
 	/* Net values */
 	var vboxVDEFound = false; // check for VDE attachments
 	for(var i = 0; i < parseInt($('#vboxPane').data('vboxConfig').nicMax); i++) {
 
-		var a = (i + 1); 
+		var a = (i + 1);
 
 		// attached to
 		$(document.forms['frmVboxSettings'].elements['vboxSettingsNetAttachedTo'+a]).val($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].attachmentType).trigger('change');
@@ -450,6 +453,9 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 			$(document.forms['frmVboxSettings'].elements['vboxSettingsNetBindIp'+a]).val($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.hostIP);
 		}
 
+		// Set Datalist ID and attach to text input
+		$(document.getElementsByName('vboxNetNameList'+a)).prop('id','vboxNetNameListId'+a);
+		$(document.getElementsByName('vboxSettingsNetNameText'+a)).attr('list','vboxNetNameListId'+a);
 
 	}
 	/* Disable VDE selection? */
@@ -506,6 +512,21 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 
 		// Enable mac address generation
 		$('#vboxSettingsDialog').find('input.vboxSettingsNetMacGen').prop('disabled',false);
+	}
+
+	// Show text input box for 'Internal' and 'Generic' adapter types
+	for(var i = 0; i < parseInt($('#vboxPane').data('vboxConfig').nicMax); i++) {
+		var a = (i + 1);
+		switch($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].attachmentType) {
+			case 'Internal':
+				$(document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a]).hide();
+				$(document.forms['frmVboxSettings'].elements['vboxSettingsNetNameText'+a]).show();
+				break;
+			case 'Generic':
+				$(document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a]).hide();
+				$(document.forms['frmVboxSettings'].elements['vboxSettingsNetNameText'+a]).show();
+				break;
+		}
 
 	}
 	
@@ -528,10 +549,10 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].hostOnlyInterface = document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a].value;;
 				break;
 			case 'Generic':
-				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].genericDriver = $('#vboxSettingsNetNameTextId').val();
+				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].genericDriver = document.forms['frmVboxSettings'].elements['vboxSettingsNetNameText'+a].value;
 				break;				
 			case 'Internal':
-				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].internalNetwork = $('#vboxSettingsNetNameTextId').val();
+				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].internalNetwork = document.forms['frmVboxSettings'].elements['vboxSettingsNetNameText'+a].value;
 				break;
 			case 'NATNetwork':
 				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATNetwork = document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a].value;
