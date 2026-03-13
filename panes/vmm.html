@@ -1253,7 +1253,8 @@ function vboxVMMInit(hideDiff,vmPath) {
 			if($(this).data('sorted')) return;
 			$(this).children('img').css({'visibility':'hidden'});
 			
-		}).addClass('vboxVMMSortImgFaded').append(' ').append($('<img />').attr({'src':'images/upArrow.png','style':'visibility:hidden;cursor:pointer'}).on('click',function(e,sortDefault) {
+		}).addClass('vboxVMMSortImgFaded').append(' ').append($('<img />').attr({'src':'images/upArrow.png',
+		'style':'visibility:hidden;cursor:pointer'}).on('click',function(e,sortDefault) {
 			
 			var p = $(this).parent();
 			
