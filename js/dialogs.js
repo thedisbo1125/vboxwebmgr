@@ -1536,7 +1536,8 @@ function vboxVMsettingsDialog(vm,pane) {
             return encMediaSettings.promise();
         }
 
-        $.when(vboxSettingsDialog(vmData.name + ' - ' + trans('Settings','UIMachineSettingsDialog'),panes,dataList,pane,'vm_settings','UIMachineSettingsDialog', presaveCallback))
+        $.when(vboxSettingsDialog(vmData.name + ' - ' + trans('Settings','UIMachineSettingsDialog'),panes,dataList,
+		pane,'vm_settings','UIMachineSettingsDialog', presaveCallback))
 
             // Always run this
             .always(function(){
