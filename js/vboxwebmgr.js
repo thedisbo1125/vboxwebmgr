@@ -4648,7 +4648,7 @@ function vboxMenuBar(options) {
 }
 
 /**
- * Loads data, scripts, and HTML files and optionally displays "Loading ..."
+ * Loads data, scripts, and HTML files and optionally displays "Loading..."
  * screen until all items have completed loading
  *
  * @param {String} name - unique name for this loader. used to generate id of "Loading..." div
