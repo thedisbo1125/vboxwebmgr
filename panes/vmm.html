@@ -238,7 +238,7 @@ $('div.vmmTableBody table').on('click',function(){$(this).trigger('focus');}).on
 	
 		// up
 		case 38:			
-			$(this).find('tr.vboxListItemSelected').prevAll('tr:not([class~="vboxHidden"]):first').children().first().click();
+			$(this).find('tr.vboxListItemSelected').prevAll('tr:not([class~="vboxHidden"]):first').children().first().trigger('click');
 			break;
 			
 		// right / expand
@@ -1247,13 +1247,13 @@ function vboxVMMInit(hideDiff,vmPath) {
 		// Skip last column header. It is just kept for spacing
 		if($(this).children('img').length) return true;
 		
-		$(this).hover(function(){
+		$(this).on('mouseenter',function() {
 			$(this).children('img').css({'visibility':'visible'});
-		},function(){
+		}).on('mouseleave',function() {
 			if($(this).data('sorted')) return;
 			$(this).children('img').css({'visibility':'hidden'});
 			
-		}).addClass('vboxVMMSortImgFaded').append(' ').append($('<img />').attr({'src':'images/upArrow.png','style':'visibility:hidden;cursor:pointer'}).click(function(e,sortDefault){
+		}).addClass('vboxVMMSortImgFaded').append(' ').append($('<img />').attr({'src':'images/upArrow.png','style':'visibility:hidden;cursor:pointer'}).on('click',function(e,sortDefault) {
 			
 			var p = $(this).parent();
 			
