@@ -1967,8 +1967,8 @@ var vboxChooser = {
 							$(this).addClass('vboxChooserDropTargetHover' + (first ? 'ignore' : ''));
 						}
 					}).on('mouseleave',function() {
-							$(this).removeClass('vboxChooserDropTargetHover');
-						})
+						$(this).removeClass('vboxChooserDropTargetHover');
+					})
 				)
 				.append(
 					$('<span />').addClass('vboxChooserGroupNameArrowLeft vboxChooserGroupNameArrowCollapse vboxArrowImage')
@@ -1982,14 +1982,12 @@ var vboxChooser = {
 				)
 				.append(
 					$('<span />').addClass('vboxChooserGroupNameArrowLeft vboxChooserGroupShowOnlyBack vboxArrowImage')
-						.on('click',function(e) {
-							e.stopPropagation();
-							e.preventDefault();
-							vboxChooser.showOnlyGroupElm();
-							return false;
-
-						})
-
+					.on('click',function(e) {
+						e.stopPropagation();
+						e.preventDefault();
+						vboxChooser.showOnlyGroupElm();
+						return false;
+					})
 				)
 				.append($('<span />').addClass('vboxChooserGroupInfo').html(
 						"<span class='vboxChooserGroupCounts' />"
@@ -2028,10 +2026,7 @@ var vboxChooser = {
 						var pWidth = $(this).width();
 
 						$(this).children('span.vboxChooserGroupName').css({'max-width':(pWidth-infoWidth-20)+'px'});
-
 					}
-
-
 				}).on('mouseleave',function() {
 
 					// Resize title and remove hover class
