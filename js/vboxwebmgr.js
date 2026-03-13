@@ -4460,6 +4460,15 @@ function vboxMenu(options) {
 
 			var mi = $('#'+self.name+i);
 
+			// Visible
+			if (self.menuItems[i].visible !== undefined) {
+				if (self.menuItems[i].visible() == false) {
+					mi.parent().hide();
+				} else {
+					mi.parent().show();
+				}
+			}
+
 			// Disabled
 			if(!self.menuItems[i].enabled(testObj)) {
 
