@@ -4651,14 +4651,15 @@ function vboxMenuBar(options) {
  * Loads data, scripts, and HTML files and optionally displays "Loading ..."
  * screen until all items have completed loading
  *
- * @param {String} name - unique name for this loader. used to generate id
- * 		of "Loading..." div
+ * @param {String} name - unique name for this loader. used to generate id of "Loading..." div
+ * @param {String} text - text to show while loader is visible
  * @constructor
  * @class vboxLoader
  */
-function vboxLoader(name) {
+function vboxLoader(name, text) {
 
 	if(!name) name = '';
+	if(!text) text = 'Loading...';
 	var self = this;
 	this._load = [];
 	this.onLoad = null;
@@ -4666,6 +4667,7 @@ function vboxLoader(name) {
 	this.hideRoot = false;
 	this.noLoadingScreen = false;
 	this.name = name;
+    this.text = text;
 
 	this._data = [];
 	this._files = [];
@@ -4732,7 +4734,7 @@ function vboxLoader(name) {
 
 		$('<td />').attr('class', 'vboxLoaderSpinner').html('<img src="images/spinner.gif" width="36" height="39" />').appendTo(tr);
 
-		$('<td />').attr('class','vboxLoaderText').html(trans('Loading ...','UIVMDesktop')).appendTo(tr);
+		$('<td />').attr('class','vboxLoaderText').html(trans(this.text,'UIVMDesktop')).appendTo(tr);
 
 		$(tbl).append(tr).appendTo(div);
 
