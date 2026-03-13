@@ -4094,7 +4094,8 @@ function vboxMediaMenu(type,callback,mediumPath) {
 				}
 
 				// recent list place holder
-				menus[menus.length] = {'name':'vboxMediumRecentBefore','cssClass':'vboxMediumRecentBefore','enabled':function(){return false;},'hide_on_disabled':true};
+				menus[menus.length] = {'name':'vboxMediumRecentBefore','cssClass':'vboxMediumRecentBefore',
+				'enabled':function(){return false;},'hide_on_disabled':true};
 
 				break;
 
