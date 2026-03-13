@@ -1732,7 +1732,7 @@ var vboxChooser = {
 				selectedList = [{
 					type: 'vm',
 					id: $(item).data('vmid'),
-					groupPath: $(item).parent().data('vmGroupPath')
+					groupPath: $(item).parent().parent().data('vmGroupPath')
 				}];
 
 			// Already selected, and ctrl key
@@ -1755,7 +1755,7 @@ var vboxChooser = {
 				selectedList[selectedList.length] = {
 					type: 'vm',
 					id: $(item).data('vmid'),
-					groupPath: $(item).parent().data('vmGroupPath')
+					groupPath: $(item).parent().parent().data('vmGroupPath')
 				};
 
 			}
