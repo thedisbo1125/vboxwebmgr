@@ -2723,8 +2723,21 @@ class vboxconnector {
 			$a++;
 		}
 
+		$opts = array();
+
+		switch ($args['NetworkMACS']) {
+			case 'AllMACs':
+				$opts[] = 'KeepAllMACs';
+				break;
+			case 'NATMACs':
+				$opts[] = 'KeepNATMACs';
+				break;
+		}
+
+		if($args['DisksToVDI']) array_push($opts,'ImportToVDI');
+
 		/* @var $progress IProgress */
-		$progress = $app->importMachines(array($args['reinitNetwork'] ? 'KeepNATMACs' : 'KeepAllMACs'));
+		$progress = $app->importMachines($opts);
 
 		$app->releaseRemote();
 

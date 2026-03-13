@@ -60,7 +60,8 @@ function vboxWizardImportApplianceDialog() {
 
         var file = $(self.form).find('[name=wizardImportApplianceLocation]').val();
         var descriptions = $('#vboxImportProps').data('descriptions');
-        var reinitNetwork = $(self.form).find('[name=vboxImportReinitNetwork]').prop('checked');
+        var NetworkMACS = $(self.form).find('[name=vboxImportMACAddressPolicy]').val();
+        var DisksToVDI = $(self.form).find('[name=vboxImportDisksToVDI]').prop('checked');
 
         // Check for descriptions
         if(!descriptions) {
@@ -88,7 +89,7 @@ function vboxWizardImportApplianceDialog() {
                 } else {
                     self.completed.reject();
                 }
-            },{'descriptions':descriptions,'file':file,'reinitNetwork':reinitNetwork});
+            },{'descriptions':descriptions,'file':file,'NetworkMACS':NetworkMACS,'DisksToVDI':DisksToVDI});
             l.run();
         };
 

@@ -46,8 +46,25 @@
 			</tbody>
 		</table>
 	</div>
-	<div style='margin:2px;margin-top:4px;padding:0px;'><label><input type='checkbox' class='vboxCheckbox' name='vboxImportReinitNetwork' />
-		<span class='translateglob'>Reinitialize the MAC address of all network cards</span></label>
+	<div style='margin:2px;margin-top:4px;padding:0px;'>
+		<table style='width: 100%;'>
+			<tr style='padding-top: 12px'>
+				<th style='text-align: right; padding-top: 10px; padding-right: 6px'><span class='translate'>MAC Address Policy:</span></th>
+				<td style='padding-left: 2px; padding-top: 8px;'>
+					<select class="vboxselectstdbackground" name='vboxImportMACAddressPolicy' style='width: 100%'>
+						<option value='AllMACs' class='translate'>Include all network adapter MAC addresses</option>
+						<option value='NATMACs' class='translate'>Include only NAT network adapter MAC addresses</option>
+						<option value='NoMACs' class='translate' selected>Generate new MAC addresses for all network adapters</option>
+					</select>
+				</td>
+			</tr>
+			<tr style='padding-top: 12px'>
+				<th style='text-align: right; padding-top: 5px; padding-right: 6px'><span class='translate'>Additional Options:</span></th>
+				<td style='padding-left: 0px; padding-top: 5px'>
+					<label><input type='checkbox' class='vboxCheckbox' name='vboxImportDisksToVDI' /> <span class='translate'>Import Hard Drives as VDI</span></label>
+				</td>
+			</tr>
+		</table>
 	</div>
 	
 </div>
@@ -389,7 +406,9 @@ function wizardImportApplianceParsed(d) {
 	} // </ foreach vm >
 
 	vboxColorRows(tbl,false,'vboxApplianceHeaderRow');
-	
+
+	$(document.getElementsByName('vboxImportMACAddressPolicy')).val('NoMACs');
+	$(document.getElementsByName('vboxImportDisksToVDI')).prop('checked', true);
 	
 	
 	$('#vboxImportProps').disableSelection();
