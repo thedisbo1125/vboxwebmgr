@@ -3051,6 +3051,12 @@ function vboxWizard() {
 								// Change this button text
 								$('#WizardModeButtonId_' + self.name).html(trans('Expert Mode', 'UIWizard'));
 
+								for(var i = 0; i < self.stepButtons.length; i++) {
+									if(self.stepButtons[i].name == trans('Guided Mode', 'UIWizard')) {
+										self.stepButtons[i].name = trans('Expert Mode', 'UIWizard');
+									}
+								}
+
 								// Translations
 								vboxInitDisplay(self.name+'Content',self.context);
 
