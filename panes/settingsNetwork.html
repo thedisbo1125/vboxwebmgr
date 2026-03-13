@@ -29,9 +29,12 @@
 	<tr class='vboxRunningEnabled'>
 		<th class='vboxSettingsNetAdapterNamedLabel'><span class='translate'>Name:</span></th>
 		<td>
-			<select class="vboxSettingsNetAdapterNamed vboxselectstdbackground" name='vboxSettingsNetName' style='width: 100%'>
+			<select class="vboxSettingsNetAdapterNamed vboxselectstdbackground" name='vboxSettingsNetName' id='vboxSettingsNetNameId' style='width: 100%'>
 				<option value=''></option>
 			</select>
+			<input type='text' name='vboxSettingsNetNameText' id='vboxSettingsNetNameTextId' list='vboxNetNameListId' style='width: calc(100% - 8px);'/>
+			<datalist id='vboxNetNameListId'>
+			</datalist>
 		</td>
 	</tr>
 	
@@ -340,9 +343,23 @@ function vboxSettingsUpdateNetworkOptions(sel) {
 				vboxAlert('Unknown network binding type: ' + sel.value);
 		}
 		
-		for(var i = 0; i < src.length; i++) {
-			var hSrc = $('<div />').text(src[i]).html();
-			$(nsel).append('<option ' + (src[i] == defaultSel ? ' selected ' : '') + ' value="' + hSrc + '">' + hSrc + '</option>');
+		if((sel.value !== 'Internal') && (sel.value !== 'Generic')) {
+			$('#vboxSettingsNetNameId').show();
+			$('#vboxSettingsNetNameTextId').hide();
+
+			for(var i = 0; i < src.length; i++) {
+				var hSrc = $('<div />').text(src[i]).html();
+				$(nsel).append('<option ' + (src[i] == defaultSel ? ' selected ' : '') + ' value="' + hSrc + '">' + hSrc + '</option>');
+			}
+		} else {
+			$('#vboxSettingsNetNameId').hide();
+			$('#vboxNetNameListId').empty();
+			$('#vboxSettingsNetNameTextId').val('');
+			for(var i = 0; i < src.length; i++) {
+				$('<option>').attr('value',src[i]).appendTo($('#vboxNetNameListId'));
+				if(defaultSel == src[i]) $('#vboxSettingsNetNameTextId').val(defaultSel);
+			}
+			$('#vboxSettingsNetNameTextId').show();
 		}
 	}
 
@@ -511,10 +528,10 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].hostOnlyInterface = document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a].value;;
 				break;
 			case 'Generic':
-				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].genericDriver = document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a].value;
+				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].genericDriver = $('#vboxSettingsNetNameTextId').val();
 				break;				
 			case 'Internal':
-				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].internalNetwork = document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a].value;
+				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].internalNetwork = $('#vboxSettingsNetNameTextId').val();
 				break;
 			case 'NATNetwork':
 				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATNetwork = document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a].value;
