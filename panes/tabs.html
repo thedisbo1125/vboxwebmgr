@@ -55,7 +55,7 @@ for(var i = 0; i < tabs.length; i++) {
 
 	// Tab link
 	$('<li />').attr({'class':'ui-corner-all','id':'tabsMain-' + tabs[i].name}).html('<a href="#' + tabs[i].name +
-		'"><span><img src="images/vbox/' + tabs[i].icon + '_16px.png" border="0" /><span id="' + tabs[i].name +
+		'"><span><img src="images/vbox/' + tabs[i].icon + '_18px.png" border="0" /><span id="' + tabs[i].name +
 		'Title">'+trans(tabs[i].label, 'UIVMDesktop')+'</span></span></a>').appendTo('#tablistMain');
 	
 	tabLoader.addFileToDOM('panes/'+tabs[i].content+'.html',$('#tabMainContent'));
@@ -168,12 +168,12 @@ function vboxTabs(id) {
 		if(self.tabSelected == '#'+tab.name)
 			self.showTab('#'+self.tabs[0].name);
 
-		$('#tabsMain-'+tab.name).addClass('vboxDisabled').find('img').attr('src','images/vbox/'+(tab.disabled_icon ? tab.disabled_icon : tab.icon+'_disabled')+'_16px.png');
+		$('#tabsMain-'+tab.name).addClass('vboxDisabled').find('img').attr('src','images/vbox/'+(tab.disabled_icon ? tab.disabled_icon : tab.icon+'_disabled')+'_18px.png');
 	};
 	
 	// Enable a tab
 	this.enableTab = function(tab) {
-		$('#tabsMain-'+tab.name).removeClass('vboxDisabled').find('img').attr('src','images/vbox/'+tab.icon+'_16px.png');
+		$('#tabsMain-'+tab.name).removeClass('vboxDisabled').find('img').attr('src','images/vbox/'+tab.icon+'_18px.png');
 	};
 
 }
