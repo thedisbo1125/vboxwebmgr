@@ -2941,8 +2941,22 @@ class vboxconnector {
 			$m->releaseRemote();
 		}
 
+		$opts = [];
+
+		switch ($args['NetworkMACs']) {
+			case 'NoMACs':
+				$opts[] = 'StripAllMACs';
+				break;
+			case 'NATMACs':
+				$opts[] = 'StripAllNonNATMACs';
+				break;
+		}
+
+		if($args['IncISOs']) array_push($opts,'ExportDVDImages');
+		if($args['manifest']) array_push($opts,'CreateManifest');
+
 		/* @var $progress IProgress */
-		$progress = $app->write($args['format'],($args['manifest'] ? array('CreateManifest') : array()),$args['file']);
+		$progress = $app->write($args['format'],($opts),$args['file']);
 		$app->releaseRemote();
 
 		// Does an exception exist?

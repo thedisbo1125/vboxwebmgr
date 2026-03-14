@@ -16,7 +16,7 @@
 				<span class='translate vboxTableLabel'>Virtual machines to export</span>
 				<hr style='width: 100%; margin: 0px; margin-bottom: 6px; display: block' class='vboxSeparatorLine'/>
 				
-				<div id='vboxExportAppVMListContainer' style='overflow:auto;padding:0px;margin:0px;' class='vboxBordered'>
+				<div id='vboxExportAppVMListContainer' style='overflow:auto; margin:0px;' class='vboxBordered'>
 					<ul style='width: 100%;margin:0px;' id='vboxExportAppVMList' class='vboxList'>
 						<li><img src='images/spinner.gif' /></li>
 					</ul>
@@ -42,14 +42,14 @@
 				<table style='width: 100%;' class='vboxOptions'>
 					<tr>
 						<th width='1%'><span class='translate'>File:</span></th>
-						<td class='vboxFileFolderInput'>
+						<td class='vboxFileFolderInput'  style='padding-left: 6px'>
 							<input type='text' class='vboxText' name='wizardExportApplianceLocation' />
 							<input type="button" class="vboxImgButton" style="background-image: url(images/vbox/select_file_16px.png)" onClick="wizardExportApplianceBrowseLocation()" />
 						</td>
 					</tr>
 					<tr>
 						<th width='1%'><span class='translate'>Format:</span></th>
-						<td>
+						<td style='padding-left: 6px'>
 							<select class="vboxselectstdbackground" name='wizardExportApplianceFormat'>
 								<option value="ovf-0.9">OVF 0.9</option>
 								<option value="ovf-1.0" selected>OVF 1.0</option>
@@ -58,9 +58,27 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan='2'>
+						<th width='1%'><span class='translate'>MAC Address Policy:</span></th>
+						<td style='padding-left: 6px; padding-top: 5px;'>
+							<select class="vboxselectstdbackground" name='wizardExportMACAddressPolicy' style='width: calc(95% + 8px);'>
+								<option value='AllMACs' class='translate'>Include all network adapter MAC addresses</option>
+								<option value='NATMACs' class='translate'>Include only NAT network adapter MAC addresses</option>
+								<option value='NoMACs' class='translate' selected>Strip all network adapter MAC addresses</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th width='1%'><span class='translate'>Additional Settings:</span></th>
+						<td style='padding-top: 5px'>
 							<label><input type='checkbox' class='vboxCheckbox' name='wizardExportApplianceManifest'/>
 								<span class='translate'>Write Manifest file</span></label>	
+						</td>
+					</tr>
+					<tr>
+						<th width='1%'><span></span></th>
+						<td>
+							<label><input type='checkbox' class='vboxCheckbox' name='wizardExportApplianceIncISOs'/>
+							<span class='translate'>Include ISO image files</span></label>
 						</td>
 					</tr>
 				</table>
@@ -124,8 +142,7 @@ function wizardExportApplianceStepResizeList() {
 	
 	$('#wizardExportApplianceStep1').css({'height':($('#wizardExportApplianceStep1').parent().height()-8)+'px'}).show();
 	$('#vboxExportAppVMListContainer').css({'height':($('#vboxExportAppVMListContainer').parent().height()-16)+'px'}).show();
-	$('#vboxExportPropsContainer').css({'height':$('#vboxExportAppVMListContainer').css('height'),
-		'width':$('#vboxExportAppVMListContainer').parent().width()}).show();
+	$('#vboxExportPropsContainer').css({'height':$('#vboxExportAppVMListContainer').css('height')}).show();
 	
 }
 

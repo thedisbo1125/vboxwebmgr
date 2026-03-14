@@ -224,6 +224,8 @@ function vboxWizardExportApplianceDialog() {
             var file = $(self.form).find('[name=wizardExportApplianceLocation]').val();
             var format = $(self.form).find('[name=wizardExportApplianceFormat]').val();
             var manifest = $(self.form).find('[name=wizardExportApplianceManifest]').prop('checked');
+            var IncISOs = $(self.form).find('[name=wizardExportApplianceIncISOs]').prop('checked');
+            var NetworkMACs = $(self.form).find('[name=wizardExportMACAddressPolicy]').val();
             var overwrite = force;
 
             var l = new vboxLoader();
@@ -237,7 +239,7 @@ function vboxWizardExportApplianceDialog() {
                 } else {
                     self.completed.reject();
                 }
-            },{'format':format,'file':file,'vms':vms,'manifest':manifest,'overwrite':overwrite});
+            },{'format':format,'file':file,'vms':vms,'manifest':manifest,'IncISOs':IncISOs,'NetworkMACs':NetworkMACs,'overwrite':overwrite});
             l.run();
 
             $(self.dialog).empty().remove();
