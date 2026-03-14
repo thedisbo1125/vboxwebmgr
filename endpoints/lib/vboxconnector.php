@@ -1684,6 +1684,8 @@ class vboxconnector {
 					$n->NATEngine->DNSProxy = $args['networkAdapters'][$i]['NATEngine']['DNSProxy'];
 					$n->NATEngine->DNSPassDomain = $args['networkAdapters'][$i]['NATEngine']['DNSPassDomain'];
 					$n->NATEngine->DNSUseHostResolver = $args['networkAdapters'][$i]['NATEngine']['DNSUseHostResolver'];
+					$n->NATEngine->localhostReachable = $args['networkAdapters'][$i]['NATEngine']['LocalhostReachable'];
+					$n->NATEngine->forwardBroadcast = $args['networkAdapters'][$i]['NATEngine']['ForwardBroadcast'];
 					$n->NATEngine->hostIP = $args['networkAdapters'][$i]['NATEngine']['hostIP'];
 				}
 
@@ -2237,6 +2239,8 @@ class vboxconnector {
 					$n->NATEngine->DNSProxy = $args['networkAdapters'][$i]['NATEngine']['DNSProxy'];
 					$n->NATEngine->DNSPassDomain = $args['networkAdapters'][$i]['NATEngine']['DNSPassDomain'];
 					$n->NATEngine->DNSUseHostResolver = $args['networkAdapters'][$i]['NATEngine']['DNSUseHostResolver'];
+					$n->NATEngine->localhostReachable = $args['networkAdapters'][$i]['NATEngine']['LocalhostReachable'];
+					$n->NATEngine->forwardBroadcast = $args['networkAdapters'][$i]['NATEngine']['ForwardBroadcast'];
 					$n->NATEngine->hostIP = $args['networkAdapters'][$i]['NATEngine']['hostIP'];
 				}
 
@@ -4278,8 +4282,11 @@ class vboxconnector {
 				'VDENetwork' => ($this->settings->enableVDE ? $n->VDENetwork : ''),
 				'cableConnected' => $n->cableConnected,
 				'NATEngine' => ($at == 'NAT' ?
-					array('aliasMode' => intval($nd->aliasMode),'DNSPassDomain' => $nd->DNSPassDomain, 'DNSProxy' => $nd->DNSProxy, 'DNSUseHostResolver' => $nd->DNSUseHostResolver, 'hostIP' => $nd->hostIP)
-					: array('aliasMode' => 0,'DNSPassDomain' => 0, 'DNSProxy' => 0, 'DNSUseHostResolver' => 0, 'hostIP' => '')),
+					array('aliasMode' => intval($nd->aliasMode),'DNSPassDomain' => $nd->DNSPassDomain,
+					'DNSProxy' => $nd->DNSProxy, 'DNSUseHostResolver' => $nd->DNSUseHostResolver, 'LocalhostReachable' => $nd->localhostReachable,
+					'ForwardBroadcast' => $nd->forwardBroadcast, 'hostIP' => $nd->hostIP)
+					: array('aliasMode' => 0,'DNSPassDomain' => 0, 'DNSProxy' => 0, 'DNSUseHostResolver' => 0, 'LocalhostReachable' => 0,
+					'ForwardBroadcast' => 0, 'hostIP' => '')),
 				'lineSpeed' => $n->lineSpeed,
 				'redirects' => (
 					$at == 'NAT' ?

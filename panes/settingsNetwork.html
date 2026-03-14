@@ -52,6 +52,8 @@
 			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetPassDNSDomain' /> <span class='translate vboxEnablerListen'>Pass DNS Domain</span></label><br class='spaceUnder' />
 			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetDNSProxy' /> <span class='translate vboxEnablerListen'>DNS Proxy</span></label><br  class='spaceUnder' />
 			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetUseHostResolver' /> <span class='translate vboxEnablerListen'>Use Host Resolver</span></label><br  class='spaceUnder' />
+			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetLocalhostReachable' /> <span class='translate vboxEnablerListen'>Localhost Reachable</span></label><br  class='spaceUnder' />
+			<label><input type='checkbox' class='vboxCheckbox' class='vboxEnablerListen' name='vboxSettingsNetForwardBroadcast' /> <span class='translate vboxEnablerListen'>Forward Broadcast Packets</span></label><br  class='spaceUnder' />
 			<span class='translate vboxEnablerListen'>Bind to IP</span> <input type='text' class='vboxTextbox' class='vboxEnablerListen' name='vboxSettingsNetBindIp' size='16'/>
 		</td>
 	</tr>
@@ -450,6 +452,8 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 			document.forms['frmVboxSettings'].elements['vboxSettingsNetPassDNSDomain'+a].checked = ($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.DNSPassDomain ? true : false);
 			document.forms['frmVboxSettings'].elements['vboxSettingsNetDNSProxy'+a].checked = ($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.DNSProxy ? true : false);
 			document.forms['frmVboxSettings'].elements['vboxSettingsNetUseHostResolver'+a].checked = ($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.DNSUseHostResolver ? true : false);
+			document.forms['frmVboxSettings'].elements['vboxSettingsNetLocalhostReachable'+a].checked = ($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.LocalhostReachable ? true : false);
+			document.forms['frmVboxSettings'].elements['vboxSettingsNetForwardBroadcast'+a].checked = ($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.ForwardBroadcast ? true : false);
 			$(document.forms['frmVboxSettings'].elements['vboxSettingsNetBindIp'+a]).val($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.hostIP);
 		}
 
@@ -575,6 +579,8 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 			$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.DNSPassDomain = document.forms['frmVboxSettings'].elements['vboxSettingsNetPassDNSDomain'+a].checked;
 			$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.DNSProxy = document.forms['frmVboxSettings'].elements['vboxSettingsNetDNSProxy'+a].checked;
 			$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.DNSUseHostResolver = document.forms['frmVboxSettings'].elements['vboxSettingsNetUseHostResolver'+a].checked;
+			$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.LocalhostReachable = document.forms['frmVboxSettings'].elements['vboxSettingsNetLocalhostReachable'+a].checked;
+			$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.ForwardBroadcast = document.forms['frmVboxSettings'].elements['vboxSettingsNetForwardBroadcast'+a].checked;
 			$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].NATEngine.hostIP = $(document.forms['frmVboxSettings'].elements['vboxSettingsNetBindIp'+a]).val();
 		}
 		
