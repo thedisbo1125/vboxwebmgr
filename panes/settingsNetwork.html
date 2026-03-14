@@ -548,9 +548,9 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 		// Device or network name, depending on what 'attached to' is
 		switch($('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].attachmentType) {
 			case 'Bridged':
-				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].bridgedInterface = document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a].value;;
+				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].bridgedInterface = document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a].value;
 			case 'HostOnly':
-				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].hostOnlyInterface = document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a].value;;
+				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].hostOnlyInterface = document.forms['frmVboxSettings'].elements['vboxSettingsNetName'+a].value;
 				break;
 			case 'Generic':
 				$('#vboxSettingsDialog').data('vboxMachineData').networkAdapters[i].genericDriver = document.forms['frmVboxSettings'].elements['vboxSettingsNetNameText'+a].value;
