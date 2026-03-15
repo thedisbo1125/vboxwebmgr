@@ -43,7 +43,7 @@
 	<div style='margin:2px;margin-top:4px;padding:0px;'>
 		<table style='width: 100%;'>
 			<tr style='padding-top: 12px'>
-				<th style='text-align: right; padding-top: 10px; padding-right: 6px'><span class='translate'>MAC Address Policy:</span></th>
+				<th style='text-align: right; padding-top: 10px; padding-right: 6px'><span class='translate'>MAC Address Policy</span>:</th>
 				<td style='padding-left: 2px; padding-top: 8px;'>
 					<select class="vboxselectstdbackground" name='vboxImportMACAddressPolicy' style='width: 100%'>
 						<option value='AllMACs' class='translate'>Include all network adapter MAC addresses</option>
@@ -53,7 +53,7 @@
 				</td>
 			</tr>
 			<tr style='padding-top: 12px'>
-				<th style='text-align: right; padding-top: 5px; padding-right: 6px'><span class='translate'>Additional Options:</span></th>
+				<th style='text-align: right; padding-top: 5px; padding-right: 6px'><span class='translate'>Additional Options</span>:</th>
 				<td style='padding-left: 0px; padding-top: 5px'>
 					<label><input type='checkbox' class='vboxCheckbox' name='vboxImportDisksToVDI' /> <span class='translate'>Import Hard Drives as VDI</span></label>
 				</td>
@@ -170,6 +170,7 @@ var cs = $('#vboxPane').data('vboxNetworkAdapterTypes');
 for(var i = 1; i < cs.length; i++) {
 	vboxApplianceImportProps['NetworkAdapter']['options'][(i-1)] = trans(vboxNetworkAdapterType(cs[i]),'UICommon');
 }
+
 // Sound cards
 var cs = $('#vboxPane').data('vboxAudioControllerTypes');
 for(var i = 0; i < cs.length; i++) {
@@ -309,14 +310,14 @@ function wizardImportApplianceParsed(d) {
 			var desc = vboxApplianceImportProps[d.descriptions[vm][0][i]];
 			if(desc == undefined) continue;
 			
-			var tr = $('<tr />').data({'descType':d.descriptions[vm][0][i],'descOrder':i}).addClass('vboxChildOf' +
-				vm, ' vboxListItem').attr({'id':'vboxVM-'+vm+'-item-'+i}).on('click',function() {
-					$('#vboxImportProps').find('input').trigger('blur');
-					if($(this).hasClass('vboxListItemSelected')) return;
-					$(this).siblings('tr.vboxListItemSelected').removeClass('vboxListItemSelected');
-					$(this).addClass('vboxListItemSelected');
-					$(this).parent().trigger('selectProp',this);
-				});
+			var tr = $('<tr />').data({'descType':d.descriptions[vm][0][i],'descOrder':i}).addClass('vboxChildOf' + vm, ' vboxListItem')
+			.attr({'id':'vboxVM-'+vm+'-item-'+i}).on('click',function() {
+				$('#vboxImportProps').find('input').trigger('blur');
+				if($(this).hasClass('vboxListItemSelected')) return;
+				$(this).siblings('tr.vboxListItemSelected').removeClass('vboxListItemSelected');
+				$(this).addClass('vboxListItemSelected');
+				$(this).parent().trigger('selectProp',this);
+			});
 			
 			$('<td />').css({'white-space':'nowrap','width':'1%'}).attr({'class':'vbox'+d.descriptions[vm][0][i]}).html('<img src="images/vbox/blank.gif" class="vboxSpacer" style="height:2px;"/><img src="images/vbox/'+desc.icon+'_16px.png" style="height: 16px; width: 16px;"/> ' + trans(desc.label,'UIWizardImportApp')).appendTo(tr);
 
@@ -332,6 +333,7 @@ function wizardImportApplianceParsed(d) {
 					}
 				}).appendTo(td);
 			}
+
 			var sp = $('<span />').css({'display':'inline-block'}).attr({'class':'vboxImportAppProp'});
 			if(desc.display) {
 				$(sp).html(desc.display(d.descriptions[vm][3][i]));
@@ -407,10 +409,7 @@ function wizardImportApplianceParsed(d) {
 		var buttons = {};
 		buttons[trans('OK','UIMessageCenter')] = function(){$(this).empty().remove();};
 		$(div).dialog({'height':300,'width':300,'closeOnEscape':false,'modal':true,'resizable':true,'draggable':true,'buttons':buttons,'title':trans('Warnings:')});
-		
 	}
-	
-
 };
 
 
