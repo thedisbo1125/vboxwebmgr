@@ -1,4 +1,26 @@
 -------------------------------------
+    7.1/7.2-012  2026-03-16
+-------------------------------------
+
+- add ability to set new "Internal Network" and "Generic Driver" like VirtualBox GUI
+- add additional options to import virtual appliance wizard
+- add additional options to export virtual appliance wizard
+- add two additional NAT options, localhostReachable and forwardBroadcast, to Network adapter pages
+- additional changes/corrections to jquery.tipped (version bump to 2.3d)
+- switch deprecated event handlers to .on( and trigger( in jquery.tipped (version bump to 2.4)
+- upgrade jquery.scrollTo to 1.4.11
+- upgrade jquery-ui to version 1.13.3
+- upgrade jquery to version 2.2.4
+- switch deprecated event handlers to .on( and .trigger(
+- fix incorrect icons for newer OS's
+- add ability to change text of vboxLoader
+- add ability to hide menu options
+- add images for adding/removing host only networks
+- fix issue where "Expert Mode" button didn't get hidden when not on first page of Guided Wizards
+- add missing translations
+- code cleanup
+
+-------------------------------------
     7.1/7.2-011  2025-12-30
 -------------------------------------
 
