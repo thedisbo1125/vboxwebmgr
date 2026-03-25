@@ -499,7 +499,7 @@ function vboxFileBrowser(root,fn,foldersonly,title,icon,strictFiles,allowedexts)
     var d1 = $('<div />').attr({'id':'vboxBrowseFolder','class':'vboxDialogContent','style':'display:none'});
 
     $('<div />').attr({'id':'vboxBrowseFolderList'}).fileTree({ 'root': (root ? root : '/'),'dirsOnly':foldersonly,
-	'allowedexts':allowedexts,'loadMessage':trans('Loading...','UIVMDesktop'),'scrollTo':'#vboxBrowseFolder'},function(f) {
+    'allowedexts':allowedexts,'loadMessage':trans('Loading...','UIVMDesktop'),'scrollTo':'#vboxBrowseFolder'},function(f) {
         buttons[trans('OK','UIMessageCenter')](f);
     }).appendTo(d1);
 
