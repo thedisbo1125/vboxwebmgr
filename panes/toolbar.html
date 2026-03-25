@@ -305,8 +305,8 @@ function vboxChooserToolbarUSBUpdate(menu) {
 					if(!$(this).parent().hasClass('disabled')) {
 						$(this).children('input').trigger('click');
 					}
-					return false;
-				}).append(cbox).append(' '+dname)
+					return false;})
+				.append(cbox).append(' '+dname)
 			).attr({'class':(avail ? '' : 'disabled')}));
 		}
 		
