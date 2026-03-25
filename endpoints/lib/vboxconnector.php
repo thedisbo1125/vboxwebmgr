@@ -4379,6 +4379,7 @@ class vboxconnector {
 					'currentSnapshotName' => ($machine->currentSnapshot->handle ? $machine->currentSnapshot->name : ''),
 					'customIcon' => (@$this->settings->enableCustomIcons ? $machine->getExtraData('phpvb/icon') : '')
 				);
+
 				if($machine->currentSnapshot->handle) $machine->currentSnapshot->releaseRemote();
 
 
