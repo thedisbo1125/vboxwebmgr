@@ -542,7 +542,7 @@ var vboxVMDetailsSections = {
 
 			/* Append "Open in new window" */
 			$('<li />')
-				.attr({'id':'vboxDetailsViewSavedSS','class':'separator','style':'display:none;text-align: center;'})
+				.attr({'id':'vboxDetailsViewSavedSS','class':'separator','style':'display:none; text-align: center;'})
 				.on('click',function() {
 					window.open(vboxEndpointConfig.screen+'?vm='+$(this).data('vmid')+'&full=1','vboxSC','toolbar=1,menubar=0,location=0,directories=0,status=true,resize=true');
 				}).append(
@@ -3083,7 +3083,6 @@ function vboxWizard() {
 
 						vboxSetLocalDataItem('vboxWizardMode'+self.name, (self.mode == 'advanced' ? 'a': ''));
 
-
 					},
 					steps: [1]
 				}], self.stepButtons);
@@ -3115,7 +3114,6 @@ function vboxWizard() {
 
 				buttons.push(btntemp[0]);
 			}
-
 
 			btntemp = [{
 				id: 'WizardNextButtonId_' + self.name,
@@ -4667,7 +4665,7 @@ function vboxLoader(name, text) {
 	this.hideRoot = false;
 	this.noLoadingScreen = false;
 	this.name = name;
-    this.text = text;
+	this.text = text;
 
 	this._data = [];
 	this._files = [];
