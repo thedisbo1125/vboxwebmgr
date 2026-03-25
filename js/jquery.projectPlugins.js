@@ -339,14 +339,19 @@ if ( !jQuery.vboxbrowser ) {
 		function showList(sel) {
 
 			var list = $('#'+$(sel).attr('id')+'-list');
-			var sTop = $(sel).offset().top + $(sel).outerHeight();
-			var sLeft = $(sel).offset().left;
-			var sWidth = $(sel).outerWidth() + $(sel).closest('table').find('.vboxMediumSelectImg').outerWidth();
 
-			// Hide menu when clicking anywhere else
-			$(document).one('click',function(){$(list).hide();});
+			if($(list).is(':visible')) {
+				$(list).css({'left':sLeft+'px','top':sTop+'px','min-width':sWidth}).hide();
+			} else {
+				var sTop = $(sel).offset().top + $(sel).outerHeight();
+				var sLeft = $(sel).offset().left - 2;
+				var sWidth = $('#copyHDDiskSelectId-table').width() - 4;
 
-			$(list).css({'left':sLeft+'px','top':sTop+'px','min-width':sWidth}).show();
+				// Hide menu when clicking anywhere else
+				$(document).one('click',function(){$(list).hide();});
+
+				$(list).css({'left':sLeft+'px','top':sTop+'px','min-width':sWidth}).show();
+			}
 
 			return false;
 
