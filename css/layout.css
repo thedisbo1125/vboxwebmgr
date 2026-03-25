@@ -221,6 +221,12 @@ table.vboxVertical input.vboxText, table.vboxVertical select { width: 100%; }
 table.vboxInvisible, table.vboxInvisible td { padding: 0px; margin: 0px; border: 0px; border-spacing: 0px; }
 .vboxOddRow { background-color: #efefef; }
 
+table.vboxVerticalTable { border: 0px; border-spacing: 0 2px; width: 100%; white-space: nowrap; border-collapse: separate;}
+table.vboxVerticalTable th { white-space: nowrap; text-align: right; font-weight: bold; }
+table.vboxVerticalTable td { width: 100%; white-space: nowrap; }
+
+table.vboxAccTab td { padding-left: 6px }
+
 
 /* File / Folder select tables */
 table tr td.vboxFileFolderInput { white-space: nowrap; }
