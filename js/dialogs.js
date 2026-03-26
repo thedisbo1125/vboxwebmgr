@@ -145,7 +145,10 @@ function vboxWizardImportApplianceDialog() {
                 $(this).empty().remove();
             };
 
-            var dlg = $('<div />').dialog({'closeOnEscape':false,'width':600,'height':500,'buttons':buttons,'modal':true,'autoOpen':false,'dialogClass':'vboxDialogContent vboxWizard','title':'<img src="images/vbox/os_type_16px.png" class="vboxDialogTitleIcon" /> ' + trans('Software License Agreement','UIImportLicenseViewer')});
+            var dlg = $('<div />').dialog({'closeOnEscape':false,'width':600,'height':500,'buttons':buttons,'modal':true,
+            'autoOpen':false,'dialogClass':'vboxDialogContent vboxWizard',
+            'title':'<img src="images/vbox/os_type_16px.png" class="vboxDialogTitleIcon" /> ' +
+            trans('Software License Agreement','UIImportLicenseViewer')});
 
             $(dlg).html('<p id="vboxImportWizLicTitle" /><textarea rows="20" spellcheck="false" wrap="off" readonly="true"id="vboxImportWizLicContent" style="width:100%; margin:2px; padding:2px;"></textarea>');
             $('#vboxImportWizLicTitle').html(msg.replace('%1',licenses[a]['name']));
@@ -1539,7 +1542,7 @@ function vboxVMsettingsDialog(vm,pane) {
         }
 
         $.when(vboxSettingsDialog(vmData.name + ' - ' + trans('Settings','UIMachineSettingsDialog'),panes,dataList,
-		pane,'vm_settings','UIMachineSettingsDialog', presaveCallback))
+        pane,'vm_settings','UIMachineSettingsDialog', presaveCallback))
 
             // Always run this
             .always(function(){
@@ -1716,7 +1719,7 @@ function vboxSettingsDialog(title, panes, data, pane, icon, langContext, presave
 
         // Menu item
         $('<li />').html('<div><img src="images/vbox/'+panes[i].icon+'_16px.png" /></div> <div>'+trans(panes[i].label,langContext)+'</div>')
-		.data(panes[i]).on('click',function() {
+        .data(panes[i]).on('click',function() {
 
             $('#vboxSettingsTitle').html(trans($(this).data('label'),langContext));
 
