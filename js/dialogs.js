@@ -1784,6 +1784,7 @@ function vboxSettingsDialog(title, panes, data, pane, icon, langContext, presave
                 var dlg = this;
                 $.when(promise).done(function() {
                     results.resolve(true);
+                }).then(() => {
                     $(dlg).trigger('close').empty().remove();
                     $(document).trigger('click');
                 });
