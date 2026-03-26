@@ -17,7 +17,7 @@
 		<table style='width: 100%;' class='vboxOptions'>
 			<tr>
 				<td style='width: 100%; white-space: nowrap' class='vboxFileFolderInput'>
-					<input type='text' class='vboxText' name='wizardImportApplianceLocation' style='width: 100%'/>
+					<input type='text' class='vboxText' name='wizardImportApplianceLocation' style='width: calc(100% - 8px)'/>
 				</td>
 				<td style='width:1%' id='wizardImportApplianceLocationButton'></td>
 			</tr>
@@ -286,7 +286,7 @@ function wizardImportAppResize(){
 	$('#vboxImportPropsContainer').siblings().each(function(){
 		h -= $(this).outerHeight(true);
 	});
-	$('#vboxImportPropsContainer').width($('#vboxImportPropsContainer').parent().innerWidth()).height(h-4).show();
+	$('#vboxImportPropsContainer').height(h-4).show();
 	
 }
 $('#wizardImportApplianceDialog').on('dialogresizestop',wizardImportAppResize);

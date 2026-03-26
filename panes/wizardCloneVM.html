@@ -13,19 +13,19 @@
 	<table class='vboxInvisible' style='border: 0px solid transparent; border-spacing: 4px;'>
 		<tr style='vertical-align: top'>
 			<td colspan="2">
-				<span class='vboxTableLabel translate'>Clone Options</span>
+				<div style='padding-bottom: 2px'><span class='vboxTableLabel translate'>Clone Options</span></div>
 				<div class='vboxOptions'>
 					<table style='margin-top: 8px;' class='vboxWizardCloneVMSnapshotOpts'>
 						<tr>
 							<th style='text-align: right; padding-top: 2px; padding-right: 6px; width: 170px'><span class='translate'>Cloned Machine Name:</span></th>
-							<td style='padding-left: 2px; '>
-								<input type='text' class='vboxText' name='machineCloneName' id='machineCloneNameID' style='width: 100%;' />
+							<td style='padding-left: 2px; width: 100%'>
+								<input type='text' class='vboxText' name='machineCloneName' id='machineCloneNameID' style='width: calc(100% - 14px);' />
 							</td>
 							<td style='width: 6px'></td>
 						</tr>
 						<tr style='padding-top: 12px'>
 							<th style='text-align: right; padding-top: 10px; padding-right: 6px'><span class='translate'>MAC Address Policy:</span></th>
-							<td colspan="2" style='padding-left: 2px; padding-top: 8px;'><select class="vboxselectstdbackground" name='vboxCloneMACAddressPolicy' id='vboxCloneMACAddressPolicyID' style='width: 100%'>
+							<td colspan="2" style='padding-left: 2px; padding-top: 8px;'><select class="vboxselectstdbackground" name='vboxCloneMACAddressPolicy' id='vboxCloneMACAddressPolicyID' style='width: calc(100% - 8px)'>
 								<option value='AllMACs' class='translate'>Include all network adapter MAC addresses</option>
 								<option value='NATMACs' class='translate'>Include only NAT network adapter MAC addresses</option>
 								<option value='NoMACs' class='translate' selected>Generate new MAC addresses for all network adapters</option>

@@ -43,7 +43,7 @@
 			<tr>
 				<th width='1%'><span class='translate'>File:</span></th>
 				<td class='vboxFileFolderInput' style='padding-left: 6px;'>
-					<input type='text' class='vboxText' name='wizardExportApplianceLocation' />
+					<input type='text' class='vboxText' name='wizardExportApplianceLocation' style='width: calc(100% - 32px)'/>
 					<input type="button" class="vboxImgButton" style="background-image: url(images/vbox/select_file_16px.png)" onClick="wizardExportApplianceBrowseLocation()" />
 				</td>
 			</tr>
@@ -60,7 +60,7 @@
 			<tr>
 				<th width='1%'><span class='translate'>MAC Address Policy:</span></th>
 				<td style='padding-left: 6px; padding-top: 5px;'>
-					<select class="vboxselectstdbackground" name='wizardExportMACAddressPolicy' style='width: calc(95% + 8px);'>
+					<select class="vboxselectstdbackground" name='wizardExportMACAddressPolicy' style='width: calc(100% - 24px);'>
 						<option value='AllMACs' class='translate'>Include all network adapter MAC addresses</option>
 						<option value='NATMACs' class='translate'>Include only NAT network adapter MAC addresses</option>
 						<option value='NoMACs' class='translate' selected>Strip all network adapter MAC addresses</option>
