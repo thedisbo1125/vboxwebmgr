@@ -57,10 +57,10 @@ input.vboxRadio, input.vboxCheckbox { padding: 0px; margin: 1px 1px 3px 2px; dis
 
 /* jQuery UI Components */
 .ui-widget-content div.vboxDialogContent, div.ui-dialog div.ui-dialog-content, div.ui-dialog div.ui-dialog-buttonpane { background: #fff; } 
-div.ui-dialog div.ui-dialog-buttonpane { padding: 4px; margin: 0px; text-align: center; border-width: 0px; }
+div.ui-dialog div.ui-dialog-buttonpane { padding: 4px; margin: 0px; text-align: right; border-width: 0px; }
 div.ui-dialog div.ui-dialog-buttonpane .ui-dialog-buttonset { float: none; }
 div.ui-dialog div.ui-dialog-titlebar { color: #fff; background: #369; }
-div.ui-dialog div.ui-dialog-titlebar img { height: 16px; width: 16px; }
+div.ui-dialog div.ui-dialog-titlebar img { height: 16px; width: 16px; vertical-align: middle; padding-top: 0px }
 div.ui-dialog .ui-dialog-titlebar-close { display: none; }
 div.ui-dialog .ui-button { background: #e9e9e9; color: #000; }
 div.ui-dialog .disabled { color: #aaa; }
@@ -78,10 +78,19 @@ div.ui-dialog div.ui-dialog-buttonpane button {
 	-webkit-box-shadow: inset 0 1px 3px #fff, inset 0 -15px #e9e9e9, 0 0 3px #a9a9a9;
 	-moz-box-shadow: inset 0 1px 3px #fff, inset 0 -15px #e9e9e9, 0 0 3px #a9a9a9;
 }
+
+div.ui-dialog div.ui-dialog-buttonpane {
+    background-color: #e9e9e9;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #aaaaaa;
+}
+
 div.ui-dialog div.ui-dialog-buttonpane button.disabled {
 	border-color: #fff;
 	cursor: default;
 }
+
 div.ui-dialog div.ui-dialog-buttonpane .ui-state-hover {
 	border-color: #a9a9a9;
 }
@@ -93,6 +102,10 @@ div.ui-dialog div.vboxDialogContent td { width: 100%; white-space: nowrap; text-
 div.ui-progressbar div.ui-progressbar-value { background: #00CD00 }
 div.ui-widget-overlay { padding: 0px; margin: 0px; border: 0px; width: 100%; height: 100%; position:fixed ;top:0px;left:0px;}
 div.ui-dialog .vboxDialogTitleIcon { height: 16px; width: 16px; }
+
+
+/* Login Dialog */
+div.vboxLoginDialog div.ui-dialog-buttonpane {  text-align: center; background-color: #ffffff; border-top-width: 0px; }
 
 /* Tabs */
 div.ui-tabs { border: 0px; }
@@ -393,7 +406,7 @@ div.vboxVMMDialog div.ui-dialog-buttonpane {
 }
 
 /* Wizards */
-table.vboxWizard { margin: 0px; padding: 4px; border-spacing: 0px; }
+table.vboxWizard { margin: 0px; padding: 4px; border-spacing: 0px; width: 100% }
 div.vboxWizard table.vboxWizard tr { vertical-align: top; }
 div.vboxWizard td.vboxWizardContent { padding: 0px 8px 0px 8px; }
 div.vboxWizard td.vboxWizardContent div.vboxOptions {
@@ -406,7 +419,14 @@ div.vboxWizard td.vboxWizardContent div.vboxOptions {
 div.vboxWizard { border: 0px; padding: 0px; margin: 0px; }
 div.vboxWizard h3 { margin: 2px 0px 18px 0px; font-size: 16px; }
 div.vboxWizard table.vboxOptions th { text-align: right; }
-div.vboxWizard table.vboxOptions { margin-top: 4px; }
+div.vboxWizard table.vboxOptions { 
+    margin-top: 4px;
+    border: 0px;
+    border-spacing: 0 2px;
+    width: 100%;
+    white-space: nowrap;
+    border-collapse: separate;
+}
 div.vboxWizard table.vboxOptions tr { vertical-align:middle; }
 div.vboxWizard table.vboxOptions td { padding: 4px; }
 div.vboxWizard div.ui-dialog-buttonpane { background: #e9e9e9; border-top: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa; text-align: right; padding-right: 20px; }
@@ -1038,7 +1058,7 @@ div.vboxSettingsDialog div.ui-dialog-buttonpane {
 
 /* Settings menu list (left hand list of sections) */
 #vboxSettingsMenu { text-align: left; background: #fff; width: auto; white-space: nowrap; border: 1px solid #000; }
-#vboxSettingsMenu img { margin: 0px; padding: 0px; }
+#vboxSettingsMenu img { margin: 0px; padding: 0px; display:inline; vertical-align: middle;}
 #vboxSettingsMenu ul { list-style: none; padding: 0px; margin: 0px; white-space: nowrap;}
 #vboxSettingsMenu li { white-space: nowrap; padding: 4px 10px 4px 2px; margin: 0px; cursor: pointer;}
 #vboxSettingsMenu div { white-space: nowrap; display: inline; padding: 0px; margin: 0px; }
