@@ -1247,12 +1247,11 @@ function vboxVMMInit(hideDiff,vmPath) {
 		if($(this).children('img').length) return true;
 		
 		$(this).on('mouseenter',function() {
-			$(this).children('img').css({'visibility':'visible'});
-		}).on('mouseleave',function() {
+			$(this).children('img').css({'visibility':'visible'});})
+		.on('mouseleave',function() {
 			if($(this).data('sorted')) return;
-			$(this).children('img').css({'visibility':'hidden'});
-			
-		}).addClass('vboxVMMSortImgFaded').append(' ').append($('<img />').attr({'src':'images/upArrow.png',
+			$(this).children('img').css({'visibility':'hidden'});})
+		.addClass('vboxVMMSortImgFaded').append(' ').append($('<img />').attr({'src':'images/upArrow.png',
 		'style':'visibility:hidden;cursor:pointer'}).on('click',function(e,sortDefault) {
 			
 			var p = $(this).parent();
