@@ -382,7 +382,7 @@ var vmmButtons = new Array(
 		 */
 		'name' : 'vmmcopy',
 		'label' : 'Copy...',
-		'icon' : 'vdm_add',
+		'icon' : 'hd_copy',
 		'separator' : $('#vboxPane').data('vboxConfig').enableAdvancedConfig,
 		'enabled' : function (item) {
 			if(!item) return false;
@@ -428,7 +428,7 @@ var vmmButtons = new Array(
 		 */
 		'name' : 'vmmmodify',
 		'label' : 'Modify...',
-		'icon' : 'vdm_new',
+		'icon' : 'hd_modify',
 		'enabled' : function (item) { 
 			if(!item) return false;
 			if($("#vboxVMMTabs").tabs('option','active')) return false;
@@ -823,6 +823,7 @@ var vmmButtons = new Array(
 /* Toolbar */
 var vmmToolbar = new vboxToolbar({buttons: vmmButtons,
     language_context: 'UIVirtualMediaManager',
+    size: 24,
     renderTo: 'vboxMMToolbar'});
 
 /* Actions Menu */
