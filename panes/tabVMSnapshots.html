@@ -267,7 +267,7 @@ var vboxSnapshotButtons = [
 						// Don't do anything if taking a snapshot failed
 						if(takeSnapshot && !takeSnapshot.success) {
 							if (takeSnapshot.uicancel)
-								vboxSnapshotButtons[1].trigger('click');
+								vboxSnapshotButtons[1].click();
 							return;
 						}
 						
