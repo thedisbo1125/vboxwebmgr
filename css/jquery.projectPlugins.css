@@ -107,11 +107,16 @@ table.vboxMediumSelect:hover {
     border-color: #e9e9ed;
 }
 
-table.vboxDisabled td.vboxMediumSelectTableLeft {
+table.vboxMediumSelect.vboxDisabled td.vboxMediumSelectTableLeft {
+	border-color: #8f8f9d;
+    border-right-color: transparent;
+	background-color: #efefef;
 }
 
-table.vboxDisabled td.vboxMediumSelectTableRight {
-/*	border-color: #aaa;*/
+table.vboxMediumSelect.vboxDisabled td.vboxMediumSelectTableRight {
+	border-color: #8f8f9d;
+    border-left-color: transparent;
+	background-color: #efefef;
 }
 
 ul.vboxMediumSelect {
