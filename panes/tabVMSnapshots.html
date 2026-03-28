@@ -234,6 +234,9 @@ var vboxSnapshotButtons = [
 					(vboxVMStates.isRunning(vm)? 'checked' : '') + ' /> ' +
 					trans('Automatically start the machine after restore','UISnapshotDetails') + '</label></p>';
 				
+				minWidth = 540;
+				minHeight = 255;
+
 				buttons[trans('Restore','UIMessageCenter')] = function() {
 
 					var self = this;
@@ -325,7 +328,10 @@ var vboxSnapshotButtons = [
 			} else {
 				
 				q = '<p>' + trans('Are you sure you want to restore snapshot <nobr><b>%1</b></nobr>?','UISnapshotDetails') + '</p>';
-				
+
+				minWidth = 250;
+				minHeight = 175;
+
 				buttons[trans('Restore','UIMessageCenter')] = function() {
 		  	  		var l = new vboxLoader();
 		  	  		l.add('snapshotRestore',function(d){
@@ -347,7 +353,7 @@ var vboxSnapshotButtons = [
 				};
 			}
 
-			vboxConfirm(q.replace('%1',$('<div />').text(snapshot.name).html()),buttons);
+			vboxConfirm(q.replace('%1',$('<div />').text(snapshot.name).html()),buttons,null,null,minWidth,minHeight);
   	  	},
   	  'separator' : true
   	},
