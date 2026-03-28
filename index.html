@@ -414,6 +414,7 @@
 				else heightadd = 0;
 				$('#vboxLogin').dialog({'closeOnEscape':false,'width':300,'height':'auto','buttons':buttons,'modal':true,'autoOpen':false,'dialogClass':'vboxDialogContent','title':'<img src="images/vbox/OSE/about_16px.png" class="vboxDialogTitleIcon" /> VirtualBox Web Manager :: ' + trans('Log in','UIUsers')});
 				$('#vboxLogin').find('input[name=username]').first().trigger('focus');
+				$('#vboxLogin').parent().addClass('vboxLoginDialog');
 				
 				// Trick loader into not showing root pane again
 				loader.hideRoot = false;
