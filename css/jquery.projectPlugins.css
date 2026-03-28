@@ -15,7 +15,7 @@ div.vboxMediumSelect {
     border-style: solid;
 	border-top-left-radius: 3px;
 	border-bottom-left-radius: 3px;
-	color: #000;
+	color: #000000;
 	padding: 2px;
 	height: 16px;
 	cursor: pointer;
@@ -56,12 +56,21 @@ div.vboxMediumSelectImg:hover {
     border-color: #e9e9ed;
 }
 
-table.vboxDisabled div.vboxMediumSelect, table.vboxDisabled div.vboxMediumSelectImg {
-	background-color: #efefef;
-	border-color: #aaa;
-	color: #aaa;
+table.vboxDisabled div.vboxMediumSelect {
+	background-color: transparent;
+	border-color: transparent;
+	border-right-color: transparent;
+	color: #7e7e7e;
 	background-position: -20px -20px;
 	cursor: default;
+}
+
+table.vboxDisabled div.vboxMediumSelectImg {
+	background-color: transparent;
+	border-color: transparent;
+	border-right-color: transparent;
+	cursor: default;
+	opacity: 0.5;
 }
 
 table.vboxMediumSelect {
@@ -98,8 +107,11 @@ table.vboxMediumSelect:hover {
     border-color: #e9e9ed;
 }
 
-table.vboxDisabled td.vboxMediumSelectTableLeft, table.vboxDisabled td.vboxMediumSelectTableRight {
-	border-color: #aaa;
+table.vboxDisabled td.vboxMediumSelectTableLeft {
+}
+
+table.vboxDisabled td.vboxMediumSelectTableRight {
+/*	border-color: #aaa;*/
 }
 
 ul.vboxMediumSelect {

@@ -345,7 +345,7 @@ if ( !jQuery.vboxbrowser ) {
 			} else {
 				var sTop = $(sel).offset().top + $(sel).outerHeight();
 				var sLeft = $(sel).offset().left - 2;
-				var sWidth = $('#copyHDDiskSelectId-table').width() - 4;
+				var sWidth = $(sel).parent().parent().parent().width() - 4;
 
 				// Hide menu when clicking anywhere else
 				$(document).one('click',function(){$(list).hide();});
