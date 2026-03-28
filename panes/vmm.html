@@ -911,13 +911,11 @@ function vboxVMMAddMedium(d,depth,hideDiff,topLevelParent) {
 	
 	var tr = $('<tr />').data({'medium':d.id,'mediumname':d.name,'mediumsize':d.size,'mediumlogicalSize':d.logicalSize})
 		.attr({'id':'vboxVMMMedium'+(d.id),'class':'vboxListItem collapsed','title':d.id})
-		.hover(function(){
+		.on('mouseenter',function() {
 				if(!$(this).hasClass('vboxListItemSelected'))
-					$(this).addClass('vboxHover');
-			},function(){
-				$(this).removeClass('vboxHover');
-			}
-		)
+					$(this).addClass('vboxHover');})
+		.on('mouseleave',function() {
+				$(this).removeClass('vboxHover');})
 		.addClass('vboxVMMTopLevel'+(topLevelParent ? topLevelParent : '0')+' vboxVMMChildOf'+(d.parent ? d.parent : '0') +' vboxVMMChildDepth'+depth)
 		.contextMenu({
 				menu: vmmCMenu.menuId(),
