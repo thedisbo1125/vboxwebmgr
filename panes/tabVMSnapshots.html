@@ -197,7 +197,10 @@ var vboxSnapshotButtons = [
   			
   			$('#vboxSnapshotNewName').off('keypress').on('keypress',function(e) { if (e.keyCode == 13) OKBtn.apply($('#vboxSnapshotNew')); });
   			
-			$('#vboxSnapshotNew').dialog({'closeOnEscape':false,'width':'400px','height':'auto',
+			minWidth =  400;
+			minHeight = 312;
+
+			$('#vboxSnapshotNew').dialog({'closeOnEscape':false,'width':'400px','height':'auto','minWidth':minWidth,'minHeight':minHeight,
 				'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent',
 				'title':'<img src="images/vbox/snapshot_take_16px.png" class="vboxDialogTitleIcon" height="16" width="16" /> ' +
 				trans('Take Snapshot of Virtual Machine','UISnapshotDetails')});
