@@ -445,13 +445,7 @@ var vmmButtons = new Array(
 			var buttons = {};
 			buttons[trans('OK','UIMessageCenter')] = function() {
 
-				var mtype = document.forms.vboxVMMModifyForm.vmmMType;
-				for(var i = 0; i < mtype.length; i++) {
-					if(mtype[i].checked) {
-						mtype = mtype[i].value;
-						break;
-					}
-				}
+				mtype = $("#vmmMediaTypeSelectId option:selected" ).val();
 
 				if(med.type != mtype) {
 					$.when(vboxAjaxRequest('mediumSetType',{'medium':med.location,'type':mtype})).done(function(ret){
@@ -520,7 +514,7 @@ var vmmButtons = new Array(
 				msg = msg.replace('%1',med.location).replace('%2',trans('OK','UIMessageCenter'))
 					.replace('%3',trans('Cancel','UIMessageCenter'));
 				
-				dialogheight = 320;
+				dialogheight = 324;
 				dialogminheight = dialogheight - 7;
 				dialogwidth =  480;
 				dialogminwidth = dialogwidth - 17;
@@ -534,19 +528,15 @@ var vmmButtons = new Array(
 				
 				$('#vboxVMMModify').find(".translate").html(function(i,h){return trans(h,'UIVirtualMediaManager');}).removeClass('translate');
 
-				$('#vboxVMMModify').find('table.vboxOptions').find('span').html(function(i,h){
-					return trans(h,'UIVirtualMediaManager', 'MediumType');});
-
 				// Set correct option
-				$('#vboxVMMModify').find('input').prop('checked',false);
-				$('#vboxVMMModify').find('input[value='+med.type+']').prop('checked',true);
+				$("#vmmMediaTypeSelectId").val(med.type).trigger('change');
 				
 				var isvmrunning = $('#vboxVirtualMediaManager').data('machinerunning');
 
-				var radiowarningsarray = new Array();
+				var mediatypewarningsarray = new Array();
 
-				var radiowarnings = "";
-				var radiowarningsspan = "";
+				var mediatypewarnings = "";
+				var mediatypewarningsspan = "";
 
 				var tablehtmlradio = "";
 				var tablehtmlsize ="";
@@ -554,47 +544,50 @@ var vmmButtons = new Array(
 
 				if (med.attachedTo.length > 0) {
 
-					// Disable radio inputs when drive attached to VM
+					// Disable select options when drive attached to VM
 					$('#vboxVMMModify').find('span.disattached').addClass('disabled');
 					$('#vboxVMMModify').find('input.disattached').prop('disabled',true);
+					$('#vboxVMMModify').find('option.disattached').prop('disabled',true);
 
-					radiowarningsarray.push(trans('Hard drive is attached to a VM, <b>Immutable</b> and <b>Multi-attach</b> not available','UIVirtualMediaManager'));
+					mediatypewarningsarray.push(trans('Hard drive is attached to a VM, <b>Immutable</b> and <b>Multi-attach</b> not available','UIVirtualMediaManager'));
 				}
 
 				if (med.children.length > 0) {
 
-					// Disable radio inputs when drive has children
+					// Disable select options when drive has children
 					$('#vboxVMMModify').find('span.dischild').addClass('disabled');
 					$('#vboxVMMModify').find('input.dischild').prop('disabled',true);
+					$('#vboxVMMModify').find('option.dischild').prop('disabled',true);
 
-					radiowarningsarray.push(trans('Hard drive has children, <b>Writethrough</b> and <b>Shareable</b> not available','UIVirtualMediaManager'));
+					mediatypewarningsarray.push(trans('Hard drive has children, <b>Writethrough</b> and <b>Shareable</b> not available','UIVirtualMediaManager'));
 				}
 
 				if (med.variant < 65535) {
 
-					// Disable radio inputs when drive is dynamic
+					// Disable select options when drive is dynamic
 					$('#vboxVMMModify').find('span.disdyn').addClass('disabled');
 					$('#vboxVMMModify').find('input.disdyn').prop('disabled',true);
+					$('#vboxVMMModify').find('option.disdyn').prop('disabled',true);
 
-					radiowarningsarray.push(trans('Hard drive is dynamic, <b>Shareable</b> not available','UIVirtualMediaManager'));
+					mediatypewarningsarray.push(trans('Hard drive is dynamic, <b>Shareable</b> not available','UIVirtualMediaManager'));
 				}
 
-				if(radiowarningsarray.length > 0) {
+				if(mediatypewarningsarray.length > 0) {
 
 					adddialogheight = 6;
-					if(radiowarningsarray.length == 1) {
-						radiowarningsspan = '<b>' + trans('Warning','UIVirtualMediaManager') + ':</b>';
+					if(mediatypewarningsarray.length == 1) {
+						mediatypewarningsspan = '<b>' + trans('Warning','UIVirtualMediaManager') + ':</b>';
 					} else {
-						radiowarningsspan = '<b>' + trans('Warnings','UIVirtualMediaManager') + ':</b>';
+						mediatypewarningsspan = '<b>' + trans('Warnings','UIVirtualMediaManager') + ':</b>';
 					}
-					warnwidth = gettextwidth(radiowarningsspan);
+					warnwidth = gettextwidth(mediatypewarningsspan);
 
-					radiowarningsarray.forEach((element, index, array) => {
-						tablehtmlradio += '<tr><td nowrap style="text-align:left; vertical-align:top; width:12%">';
-						tablehtmlradio += '<span style="margin-left: 6px;">' + radiowarningsspan;
-						tablehtmlradio += '</span></td><td style="text-align:left;"><span>';
+					mediatypewarningsarray.forEach((element, index, array) => {
+						tablehtmlradio += '<tr><th nowrap style="text-align:left; vertical-align:top; width:40px">';
+						tablehtmlradio += '<span style="margin-left: 6px; margin-right: 6px">' + mediatypewarningsspan;
+						tablehtmlradio += '</span></th><td style="text-align:left;"><span>';
 						tablehtmlradio += array[index] + '</span></td></tr>';
-						radiowarningsspan = "";
+						mediatypewarningsspan = "";
 						dialogwidth = getdialogwidth(dialogwidth,warnwidth,array[index]);
 						dialogminwidth = dialogwidth - 13;
 						adddialogheight += 18;
@@ -612,16 +605,17 @@ var vmmButtons = new Array(
 						tablehtmlradio += '</span></td></tr>';
 						tablehtmlradio += "<tr><td></td><td></td></tr>";
 
-						// Disable all radio inputs when server is running
+						// Disable all select options when server is running
 						$('#vboxVMMModify').find('span.disrun').addClass('disabled');
 						$('#vboxVMMModify').find('input.disrun').prop('disabled',true);
+						$('#vboxVMMModify').find('option.disrun').prop('disabled',true);
 						adddialogheight = 24;
 
 					}
 
 				}
 
-				$('#vboxVMMModify').find('table[id=tableradiowarnings]').html(tablehtmlradio);
+				$('#vboxVMMModify').find('table[id=tablemediatypewarnings]').html(tablehtmlradio);
 
 				dialogheight += adddialogheight;
 				dialogminheight = dialogheight - 7;

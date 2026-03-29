@@ -6,34 +6,66 @@
     
  -->
 
+<style>
+  td.attrlabel {
+    text-align:right;
+    vertical-align:top;
+    padding-right: 3px;
+  }
+</style>
+
 <div id='vboxVMMModify'>
 
     <div id='vboxVMMModifyInstructions'></div>
     <span id='calctextwidth' style='width: auto; position: absolute; white-space: nowrap;'></span>
 
-    <span class='vboxTableLabel translate'>Choose medium type:</span>
-    <div class='vboxBordered'>
-        <form name='vboxVMMModifyForm' style='width:100%;'>
-            <table class='vboxOptions' style='margin-top: 6px;'>
+    <div style='padding-bottom: 4px'><span class='vboxTableLabel translate'>Medium attributes:</span></div>
+    <form name='vboxVMMModifyForm' style='width:100%;'>
+        <div class='vboxBordered'>
+            <table style='margin-top: 2px; width:100%'>
                 <tr>
-                    <td><label><input type='radio' class='vboxRadio disrun' name='vmmMType' value='Normal' id='vbRadioNormal'/> <span id='spanidnormal' class='disrun'>Normal</span></label></td>
+                    <td colspan="1">
+                        <div id='vboxVMMModifyInstructions'></div>
+                        <span id='calctextwidth' style='width: auto; position: absolute; white-space: nowrap;'></span>
+                    </td>
                 </tr>
                 <tr>
-                    <td><label><input type='radio' class='vboxRadio disrun disattached' name='vmmMType' value='Immutable' id='vbRadioImmutable'/> <span id='spanidimmutable' class='disrun disattached'>Immutable</span></label></td>
-                </tr>
-                <tr>
-                    <td><label><input type='radio' class='vboxRadio disrun dischild' name='vmmMType' value='Writethrough' id='vbRadioWritethrough'/> <span id='spanidwritethrough' class='disrun dischild'>Writethrough</span></label></td>
-                </tr>
-                <tr>
-                    <td><label><input type='radio' class='vboxRadio disrun dischild disdyn' name='vmmMType' value='Shareable' id='vbRadioShareable'/> <span id='spanidshareable' class='disrun dischild disdyn'>Shareable</span></label></td>
-                </tr>
-                <tr>
-                    <td><label><input type='radio' class='vboxRadio disrun disattached' name='vmmMType' value='MultiAttach' id='vbRadioMultiAttach'/> <span id='spanidmulti' class='disrun disattached'>Multi-Attach</span></label></td>
+                    <td>
+                        <table style="width:100%" id='vmmMTableId'>
+                            <tr>
+                                <td colspan='1' width='120px'></td><td colspan='1'></td><td colspan='1'></td><td colspan='1' width='58px'></td><td colspan='1' width='30px'></td>
+                            </tr>
+                            <tr>
+                                <td colspan='1' nowrap class='attrlabel'>  <!-- width='120px'>  -->
+                                    <span class='translate'>Choose medium type:</span>
+                                </td>
+                                <td colspan='3' align="left">
+                                    <select name='vmmMediaTypeSelect' id='vmmMediaTypeSelectId' class='vmmMType disrun'>
+                                        <option value='Normal' id='NormalId' class='vmmMtype disrun translate'>Normal</option>
+                                        <option value='Immutable' id='ImmutableId' class='vmmMtype disrun disattached translate'>Immutable</option>
+                                        <option value='Writethrough' id='WritethroughId' class='vmmMtype disrun dischild translate'>Writethrough</option>
+                                        <option value='Shareable' id='ShareableId' class='vmmMtype disrun dischild disdyn translate'>Shareable</option>
+                                        <option value='MultiAttach' id='MultiAttachId' class='vmmMtype disrun disattached translate'>Multi-Attach</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr><tr/>
+                            <tr>
+                                <td colspan="1" nowrap class='attrlabel'>
+                                    <span class='translate'>Description:</span>
+                                </td>
+                                <td colspan="4" align="left">
+                                    <textarea  class='vboxBordered disrun' name='vmmMediumDesc' id='vmmIdMediumDesc' style='width:99%; resize: none;' rows='4' cols='25'></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </table>
-            <table class='vboxOptions' id='tableradiowarnings' style="width:100%">
-            </table>
-        </form>
-    </div>
+        </div>
+        <br>
+        <table class='vboxOptions' id='tablemediatypewarnings' style="width:100%">
+        </table>
+    </form>
 </div>
 
