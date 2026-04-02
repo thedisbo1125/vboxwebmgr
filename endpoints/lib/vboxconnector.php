@@ -1093,8 +1093,48 @@ class vboxconnector {
 
 
 		return count($exists);
-
 	}
+
+
+	/**
+	 * Uses VirtualBox's vfsexplorer to check if a file exists
+	 *
+	 * @param array $args array of arguments. See function body for details.
+	 * @return boolean true if file exists
+	 */
+	public function remote_fileExistsVfs($args) {
+
+		$this->connect();
+
+		$dsep = $this->getDsep();
+
+		$path = str_replace($dsep.$dsep,$dsep,$args['file']);
+		$dir = dirname($path);
+		$file = basename($path);
+
+		if(substr($dir,-1) != $dsep) $dir .= $dsep;
+
+		/* @var $appl IAppliance */
+		$appl = $this->vbox->createAppliance();
+
+
+		/* @var $vfs IVFSExplorer */
+		$vfs = $appl->createVFSExplorer('file://'.$dir);
+
+		/* @var $progress IProgress */
+		$progress = $vfs->update();
+		$progress->waitForCompletion(-1);
+		$progress->releaseRemote();
+
+		$exists = $vfs->exists(array($file));
+
+		$vfs->releaseRemote();
+		$appl->releaseRemote();
+
+
+		return count($exists);
+	}
+
 
 	/**
 	 * Install guest additions
@@ -1900,6 +1940,19 @@ class vboxconnector {
 		$m->CPUCount = $args['CPUCount'];
 		$m->memorySize = $args['memorySize'];
 		$m->FirmwareSettings->firmwareType = $args['firmwareType'];
+
+		// Check if NVRamStore file exists, and it doesn't, initialize file if enabling secure boot
+		if($this->remote_fileExistsVfs(array('file'=>(string)$m->getNonVolatileStore()->nonVolatileStorageFile))) {
+			$m->getNonVolatileStore()->getUefiVariableStore()->SecureBootEnabled = $args['secureboot'];
+		} else {
+			if($args['secureboot']) {
+				$tempargs = array('machineobj'=>$m);
+				$this->vboxMachineSecureBootResetKeys($tempargs);
+				unset($tempargs);
+				$m->getNonVolatileStore()->getUefiVariableStore()->SecureBootEnabled = $args['secureboot'];
+			}
+		}
+
 		if($args['chipsetType']) $m->Platform->chipsetType = $args['chipsetType'];
 		if($m->snapshotFolder != $args['snapshotFolder']) $m->snapshotFolder = $args['snapshotFolder'];
 		$m->Platform->RTCUseUTC = ($args['RTCUseUTC'] ? 1 : 0);
@@ -4299,7 +4352,58 @@ class vboxconnector {
 		}
 
 		return $adapters;
+	}
 
+
+	/**
+	 * Reset the Secure Boot Keys on a VM
+	 *
+	 * @param array $args array of arguments. See function body for details.
+	 * @return
+	 */
+	private function vboxMachineSecureBootResetKeys($args) {
+
+		$m = $args['machineobj'];
+		$m->getNonVolatileStore()->initUefiVariableStore(0);
+		$m->getNonVolatileStore()->getUefiVariableStore()->enrollOraclePlatformKey();
+		$m->getNonVolatileStore()->getUefiVariableStore()->enrollDefaultMsSignatures();
+	}
+
+
+	/**
+	 * Reset the Secure Boot Keys on a VM
+	 *
+	 * @param array $args array of arguments. See function body for details.
+	 * @return
+	 */
+	public function remote_vboxMachineSecureBootResetKeys($args) {
+
+		$this->connect();
+		$machine = $this->vbox->findMachine($args['vmname']);
+
+		if(isset($machine)) {
+			$vmState = (string)$machine->state;
+			$vmRunning = ($vmState == 'Running' || $vmState == 'Paused' || $vmState == 'Saved');
+
+			// Switch to machineSaveRunning()?
+			if(!$vmRunning) {
+				$this->session = $this->websessionManager->getSessionObject($this->vbox->handle);
+				$machine->lockMachine($this->session->handle, 'Write');
+
+				$m = $this->session->machine;
+
+				$tempargs = array('machineobj'=>$m);
+				$this->vboxMachineSecureBootResetKeys($tempargs);
+				unset($tempargs);
+
+				$this->session->unlockMachine();
+			}
+
+			$machine->releaseRemote();
+			$this->session->releaseRemote();
+
+			unset($this->session);
+		}
 	}
 
 
@@ -4518,6 +4622,13 @@ class vboxconnector {
 		$this->getVersion();
 		$version = $this->version['major'].'.'.$this->version['minor'];
 
+		// Check if NVRamStore file exists and set secure boot to false if it doesn't
+		$secbootenabled = false;
+		$NVRamStoreExists = $this->remote_fileExistsVfs(array('file'=>(string)$m->getNonVolatileStore()->nonVolatileStorageFile));
+		if($this->remote_fileExistsVfs(array('file'=>(string)$m->getNonVolatileStore()->nonVolatileStorageFile))) {
+			$secbootenabled = $m->getNonVolatileStore()->getUefiVariableStore()->SecureBootEnabled;
+		}
+
 		$response = array(
 			'name' => @$this->settings->enforceVMOwnership ? preg_replace('/^' . preg_quote($_SESSION['user']) . '_/', '', $m->name) : $m->name,
 			'description' => $m->description,
@@ -4551,6 +4662,7 @@ class vboxconnector {
 				'LogoDisplayTime' => $m->getFirmwareSettings()->LogoDisplayTime
 				),
 			'firmwareType' => (string)$m->getFirmwareSettings()->firmwareType,
+			'secureboot' => $secbootenabled,
 
 			'TPM' => (string)$m->trustedPlatformModule->type,
 			'snapshotFolder' => $m->snapshotFolder,
