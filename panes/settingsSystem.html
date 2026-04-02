@@ -426,7 +426,7 @@ function vboxBootOrderEnableDisable(bootenable) {
 				}
 			});
 		}).addClass('vboxListItem').first().addClass('vboxListItemSelected').removeClass('vboxListItem');
-        $('#vboxSettingsTabSystemMotherboard').find('span.vboxBootOrder').removeClass('disabled');
+		$('#vboxSettingsTabSystemMotherboard').find('span.vboxBootOrder').removeClass('disabled');
 		$('#vboxSettingsTabSystemMotherboard').find('input.imgMvDn')
 			.css('background-image', 'url(images/vbox/list_movedown_16px.png)').prop('disabled', false);
 		$("#vboxVMBootOrderList").removeClass('disabled');
@@ -443,7 +443,7 @@ function vboxBootOrderEnableDisable(bootenable) {
 				}
 			});
 		});
-        $('#vboxSettingsTabSystemMotherboard').find('span.vboxBootOrder').addClass('disabled');
+		$('#vboxSettingsTabSystemMotherboard').find('span.vboxBootOrder').addClass('disabled');
 		$('#vboxSettingsTabSystemMotherboard').find('input.imgMvUp')
 			.css('background-image', 'url(images/vbox/list_moveup_disabled_16px.png)').prop('disabled', true);
 		$('#vboxSettingsTabSystemMotherboard').find('input.imgMvDn')
@@ -598,7 +598,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 
 	// Trusted Platform Module
 	$(document.forms['frmVboxSettings'].vboxSettingsTPM).val($('#vboxSettingsDialog').data('vboxMachineData').TPM);
-	
+
 	// Full editing not enabled
 	var p = $('#vboxSettingsTabSystemMotherboard').parent().children('div'); 
 	var t = $('#vboxVMBootOrder');
@@ -643,7 +643,6 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
         $('#vboxSettingsTabSystemMotherboard').find('input[name="vboxSettingsSystemEFI"]').trigger('change');
 
 	}
-	
 });
 
 /* Disable non-editable items when VM is running */
@@ -651,12 +650,9 @@ $('#vboxSettingsDialog').one('show',function(){
 
 	// Are virtualExtensions supported by the cpu?
 	if(!$('#vboxSettingsDialog').data('vboxHostDetails').cpuFeatures.HWVirtEx && !$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled) {
-	    
 	    $('#vboxSettingsTabSystemAcceleration').find('input.vboxSettingsAccelRequired').prop('disabled', true);
 	    $('#vboxSettingsTabSystemAcceleration').find('.vboxSettingsAccelRequired').addClass('vboxDisabled');
 	}
-
-
 });
 
 
@@ -677,7 +673,7 @@ $('#vboxSettingsDialog').on('save',function(){
 
 	/* check if Display time is blank and set to 0 if it is */
 	if (document.forms['frmVboxSettings'].vboxSettingsSystemLogoDisplayTime.value == "") {
-        	document.forms['frmVboxSettings'].vboxSettingsSystemLogoDisplayTime.value = '0';
+		document.forms['frmVboxSettings'].vboxSettingsSystemLogoDisplayTime.value = '0';
 	}
 	$('#vboxSettingsDialog').data('vboxMachineData').BIOSSettings.LogoDisplayTime = parseInt(document.forms['frmVboxSettings'].vboxSettingsSystemLogoDisplayTime.value);
 
