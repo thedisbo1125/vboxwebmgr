@@ -4661,6 +4661,7 @@ function vboxLoader(name, text) {
 	var self = this;
 	this._load = [];
 	this.onLoad = null;
+	this.onClose = null;
 	this._loadStarted = {};
 	this.hideRoot = false;
 	this.noLoadingScreen = false;
@@ -4819,6 +4820,8 @@ function vboxLoader(name, text) {
 		if(self.hideRoot) $('#vboxPane').css('display', '');
 
 		if(self.onShow) self.onShow();
+
+		if(self.onClose) self.onClose();
 	};
 
 }
