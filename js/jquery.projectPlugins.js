@@ -799,11 +799,7 @@ if(jQuery)( function() {
 						menuItems($(this), srcElement, ++level);
 
 						$(this).detach().appendTo($('#vboxPane'));
-
-
 					});
-
-
 				};
 
 
@@ -907,8 +903,6 @@ if(jQuery)( function() {
 
 					// Menu  show
 					$(menu).css({ top: y, left: x}).show();//.fadeIn(o.inSpeed);
-
-
 				};
 
 				// Setup menu
