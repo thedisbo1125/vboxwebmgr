@@ -208,7 +208,7 @@ ul.contextMenu li.vboxMenuItemChecked > a {
 	position: absolute;
 	top: 0px;
 }
-.contextMenu LI input {
+.contextMenu li input {
 	padding-left: 2px;
 }
 .contextMenu a, .contextMenu SPAN {
@@ -242,29 +242,29 @@ ul.contextMenuNoBG A {
 	padding-left: 2px;
 }
 
-ul.contextMenu LI.vboxHover {
+ul.contextMenu li.vboxHover {
 	background-color: #f0f8ff;
 	border: 1px solid #aaaaaa;
 }
  
-.contextMenu LI.disabled img {
+.contextMenu li.disabled img {
 	display: none;
 }
 
-.contextMenu LI.vboxHover.disabled, .contextMenu LI.disabled A, .contextMenu LI.disabled SPAN {
+.contextMenu li.vboxHover.disabled, .contextMenu li.disabled A, .contextMenu li.disabled SPAN {
 	color: #AAA;
 	cursor: default;
 }
 
-.contextMenu LI.vboxHover.disabled, .contextMenu LI.vboxHover.disabled A {
+.contextMenu li.vboxHover.disabled, .contextMenu li.vboxHover.disabled A {
 	background-color: transparent;
 }
 
-.contextMenu LI.separator {
+.contextMenu li.separator {
 	border-top: 1px solid #CCC;
 }
 
-.contextMenu LI:first {
+.contextMenu li:first {
 	border-top: 1px solid transparent;
 }
 
@@ -282,7 +282,7 @@ ul.jqueryFileTree {
 	display: block;
 }
 
-UL.jqueryFileTree LI {
+UL.jqueryFileTree li {
 	list-style: none;
 	padding: 0px;
 	padding-left: 20px;
@@ -299,18 +299,18 @@ UL.jqueryFileTree A {
 
 
 /* Core Styles */
-.jqueryFileTree LI.folder { background: url("../images/jqueryFileTree/directory.png") left top no-repeat; }
-.jqueryFileTree LI.expanded { background: url("../images/jqueryFileTree/folder_open.png") left top no-repeat; }
-.jqueryFileTree LI.file { background: url("../images/jqueryFileTree/file.png") left top no-repeat; }
-.jqueryFileTree LI.wait { background: url("../images/jqueryFileTree/spinner.gif") left top no-repeat; }
-.jqueryFileTree LI.file_vmdk { background: url("../images/vbox/virtualbox-vmdk.png") 0px 1px no-repeat; }
-.jqueryFileTree LI.file_vdi  { background: url("../images/vbox/virtualbox-vdi.png") 0px 1px no-repeat; }
-.jqueryFileTree LI.file_vhd  { background: url("../images/vbox/virtualbox-vhd.png") 0px 1px no-repeat; }
-.jqueryFileTree LI.file_hdd { background: url("../images/vbox/virtualbox-hdd.png") 0px 1px no-repeat; }
-.jqueryFileTree LI.file_ovf { background: url("../images/vbox/virtualbox-ovf.png") 0px 1px no-repeat; }
-.jqueryFileTree LI.file_ova { background: url("../images/vbox/virtualbox-ova.png") 0px 1px no-repeat; }
-.jqueryFileTree LI.file_pem, .jqueryFileTree LI.file_cer, .jqueryFileTree LI.file_crt { background: url("../images/view_cert_16px.png") 0px 1px no-repeat; }
-.jqueryFileTree LI.file_iso, .jqueryFileTree LI.file_cdr, .jqueryFileTree LI.file_dmg { background: url("../images/vbox/cd_16px.png") 0px 1px no-repeat; }
-.jqueryFileTree LI.file_img, .jqueryFileTree LI.file_ima, .jqueryFileTree LI.file_dsk, .jqueryFileTree LI.file_vfd { background: url("../images/vbox/fd_16px.png") 0px 1px no-repeat; }
-.jqueryFileTree LI.file_vbox, .jqueryFileTree LI.file_xml { background: url("../images/vbox/virtualbox-vbox.png") 0px 1px no-repeat; }
+.jqueryFileTree li.folder { background: url("../images/jqueryFileTree/directory.png") left top no-repeat; }
+.jqueryFileTree li.expanded { background: url("../images/jqueryFileTree/folder_open.png") left top no-repeat; }
+.jqueryFileTree li.file { background: url("../images/jqueryFileTree/file.png") left top no-repeat; }
+.jqueryFileTree li.wait { background: url("../images/jqueryFileTree/spinner.gif") left top no-repeat; }
+.jqueryFileTree li.file_vmdk { background: url("../images/vbox/virtualbox-vmdk.png") 0px 1px no-repeat; }
+.jqueryFileTree li.file_vdi  { background: url("../images/vbox/virtualbox-vdi.png") 0px 1px no-repeat; }
+.jqueryFileTree li.file_vhd  { background: url("../images/vbox/virtualbox-vhd.png") 0px 1px no-repeat; }
+.jqueryFileTree li.file_hdd { background: url("../images/vbox/virtualbox-hdd.png") 0px 1px no-repeat; }
+.jqueryFileTree li.file_ovf { background: url("../images/vbox/virtualbox-ovf.png") 0px 1px no-repeat; }
+.jqueryFileTree li.file_ova { background: url("../images/vbox/virtualbox-ova.png") 0px 1px no-repeat; }
+.jqueryFileTree li.file_pem, .jqueryFileTree li.file_cer, .jqueryFileTree li.file_crt { background: url("../images/view_cert_16px.png") 0px 1px no-repeat; }
+.jqueryFileTree li.file_iso, .jqueryFileTree li.file_cdr, .jqueryFileTree li.file_dmg { background: url("../images/vbox/cd_16px.png") 0px 1px no-repeat; }
+.jqueryFileTree li.file_img, .jqueryFileTree li.file_ima, .jqueryFileTree li.file_dsk, .jqueryFileTree li.file_vfd { background: url("../images/vbox/fd_16px.png") 0px 1px no-repeat; }
+.jqueryFileTree li.file_vbox, .jqueryFileTree li.file_xml { background: url("../images/vbox/virtualbox-vbox.png") 0px 1px no-repeat; }
 
