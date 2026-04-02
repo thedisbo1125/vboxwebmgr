@@ -1006,6 +1006,7 @@ var vboxVMDetailsSections = {
 		icon: 'hd_16px.png',
 		settingsLink: 'Storage',
 		timeoutisset: false,
+		reloadmedium: false,
 		redrawMachineEvents: ['OnMediumChanged', 'OnMachineStateChanged'],
 		_refreshVMMedia: function(vmid, mid) {
 
@@ -1037,13 +1038,14 @@ var vboxVMDetailsSections = {
 						$('#vboxPane').data('vboxMedia',d.responseData);
 					}
 					vboxVMDetailsSections.storage.timeoutisset = false;
-				}).always(function(){
+				}).always(function() {
 					$('#vboxPane').trigger('vboxEvents', [[{eventType:'OnMachineDataChanged',machineId:vmidloc}]]);
 				});
 			}
 		},
 		rows: function(d) {
 
+			vboxVMDetailsSections.storage.reloadmedium = false;
 			var rows = new Array();
 
 			for(var a = 0; a < d['storageControllers'].length; a++) {
@@ -1060,7 +1062,6 @@ var vboxVMDetailsSections = {
 				// Each attachment.
 				for(var b = 0; b < d['storageControllers'][a]['mediumAttachments'].length; b++) {
 
-					var reloadmedium = false;
 					var portName = vboxStorage[d['storageControllers'][a].bus].slotName(d['storageControllers'][a]['mediumAttachments'][b].port, d['storageControllers'][a]['mediumAttachments'][b].device);
 
 					// Medium / host device info
@@ -1074,7 +1075,7 @@ var vboxVMDetailsSections = {
 							d.id+"','"+d['storageControllers'][a]['mediumAttachments'][b].medium.id+"');\">" +
 								trans('Refresh','UIActionPool')+"</a>";
 
-							reloadmedium = true;
+							vboxVMDetailsSections.storage.reloadmedium = true;
 							var d1 = d.id;
 							var d2 = d['storageControllers'][a]['mediumAttachments'][b].medium.id;
 						} else {
@@ -1107,10 +1108,10 @@ var vboxVMDetailsSections = {
 					vboxVMDetailsSections.storage._refreshVMMediaNoLoader(vmid, mid);
 				}
 
-				if(reloadmedium && vboxVMDetailsSections.storage.timeoutisset == false) {
+				if(vboxVMDetailsSections.storage.reloadmedium && vboxVMDetailsSections.storage.timeoutisset == false) {
 					vboxVMDetailsSections.storage.timeoutisset = true;
 
-					reloadmedium = false;
+					vboxVMDetailsSections.storage.reloadmedium = false;
 					setTimeout(refreshmedium(d1,d2), 50);
 
 				}
