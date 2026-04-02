@@ -119,16 +119,18 @@ for(var i in vboxChooserSettingsMenu) {
 	
 	// add name
 	vboxChooserSettingsMenu[i].name = i;
-	var label = trans(vboxChooserSettingsMenu[i].label, 'UIActionPool'); 
+	var label = trans(vboxChooserSettingsMenu[i].label, 'UIActionPool');
+
 	var li = $('<li />').html("<span class='vboxMenuItemChecked' /><a href='#" + vboxChooserSettingsMenu[i].name + "' style='background-image: url(images/vbox/" + vboxChooserSettingsMenu[i].icon +"_16px.png);' >"+(label ? label : ' ')+"</a>");
 	if(i == 'storage') { $(li).attr({'style':'display:none','id':'vboxVMSettingsToolbarStorageHolder'}); }
 	if(i == 'USB') {
 		/* 'USB' menu */
 		$('<ul />').attr({'class':'vboxSettingsUSBAttachmentsMenu contextMenuNoBG','style':'display: none','id':'vboxVMSettingsUSBMenu'}).data({'callback':'vboxChooserToolbarUSBUpdate'}).appendTo(li);		
 	}
+
 	if(vboxChooserSettingsMenu[i].separator) $(li).addClass('separator');
 	$(ul).append(li);
-	
+
 }
 
 /* Append 'Settings' button Menu */
@@ -234,6 +236,8 @@ $('#vboxPane').on('hostChanged',function(){
 	vboxToolbarMediaMenuDVD = new vboxMediaMenu('DVD',vboxChooserToolbarMediumMount,''); 
 	vboxToolbarMediaMenuFD = new vboxMediaMenu('Floppy',vboxChooserToolbarMediumMount,'');	
 });
+
+
 /*
  * Update USB device list
  */
@@ -343,6 +347,7 @@ function vboxUpdateSettingsMenu(vm) {
 			}
 		}
 	}
+
 	if(usbEnabled) {
 		$('ul.vboxSettingsUSBAttachmentsMenu').children().remove();
 		$('#vboxVMSettingsMenu').find('a[href="#USB"]').closest('li').css('display','');
@@ -360,6 +365,7 @@ function vboxUpdateSettingsMenu(vm) {
 			}
 		}
 	}
+
 	if(enabledS) {
 		$('#vboxVMSettingsMenu').find('a[href="#Network"]').closest('li').css('display','');
 	} else {
@@ -411,6 +417,7 @@ function vboxUpdateSettingsMenu(vm) {
 				enabledS = true;
 			}
 		}
+
 		if(dvdDevices.length) {
 			var ul = null;
 			var li = $('<li />').html("<a href='#dvdDevices' style='background-image:url(images/vbox/cd_16px.png);'>"+trans('Optical Drives','UIActionPool')+'</a>').addClass('vboxVMSettingsStorage');
@@ -440,6 +447,7 @@ function vboxUpdateSettingsMenu(vm) {
 		}
 		
 	}
+
 	if(enabledS) {
 		$('#vboxVMSettingsMenu').find('a[href="#Network"]').parent().addClass('separator');
 	} else {
