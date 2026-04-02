@@ -52,12 +52,12 @@
 		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemPageFusion' /> <span class='translate'>Enable Page Fusion</span></label></td>
 	</tr>
 	<tr style='vertical-align: top'>
-		<th style='text-align:right'><span class='translate'>Boot Order:</span></th>
+		<th style='text-align:right'><span class='translate vboxBootOrder'>Boot Order:</span></th>
 		<td>
 			<table id='vboxVMBootOrder'>
 				<tr style='vertical-align: top'>
 					<td style='width: auto; padding-left: 3px'>
-						<ul class='vboxList vboxHover vboxBordered' id='vboxVMBootOrderList' style='margin: 0px; padding: 2px; white-space: nowrap; width: 200px'>
+						<ul class='vboxList vboxHover vboxBordered vboxBootOrder' id='vboxVMBootOrderList' style='margin: 0px; padding: 2px; white-space: nowrap; width: 200px'>
 							<li id='HardDisk'><input type='checkbox' class='vboxCheckbox' name='vboxSettingsBootHardDisk' /> <img src="images/vbox/hd_16px.png" /> <span class='vboxBootOrderDevice'>HardDisk</span></li>
 							<li id='DVD'><input type='checkbox' class='vboxCheckbox' name='vboxSettingsBootDVD' /> <img src="images/vbox/cd_16px.png" /> <span class='vboxBootOrderDevice'>DVD</span></li>
 							<li id='Floppy'><input type='checkbox' class='vboxCheckbox' name='vboxSettingsBootFloppy' /> <img src="images/vbox/fd_16px.png" /> <span class='vboxBootOrderDevice'>Floppy</span></li>
@@ -65,9 +65,9 @@
 						</ul>
 					</td>
 					<td style='text-align: left; width: 100%'>
-						<input disabled='disabled' class="imgMvUp vboxImgButton" style='background: url(images/vbox/list_moveup_disabled_16px.png) 1px 1px no-repeat; width: 18px; height: 18px; vertical-align:bottom' type="button" value="" />
+						<input disabled='disabled' class="imgMvUp vboxImgButton vboxBootOrder" style='background: url(images/vbox/list_moveup_disabled_16px.png) 1px 1px no-repeat; width: 18px; height: 18px; vertical-align:bottom' type="button" value="" />
 						<br />
-						<input disabled='disabled' class="imgMvDn vboxImgButton" style='background: url(images/vbox/list_movedown_disabled_16px.png) 1px 1px no-repeat; width: 18px; height: 18px; vertical-align:bottom' type="button" value="" />
+						<input disabled='disabled' class="imgMvDn vboxImgButton vboxBootOrder" style='background: url(images/vbox/list_movedown_disabled_16px.png) 1px 1px no-repeat; width: 18px; height: 18px; vertical-align:bottom' type="button" value="" />
 					</td>
 				</tr>
 			</table>
@@ -103,11 +103,7 @@
 	</tr>
 	<tr>
 		<th></th>
-		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemEFI' /> <span class='translate'>Enable EFI (special OSes only)</span></label></td>
-	</tr>
-	<tr>
-		<th></th>
-		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemRTCUseUTC' /> <span class='translate'>Hardware Clock in UTC Time</span></label></td>
+		<td style='padding-left: 4px; padding-bottom: 2px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemRTCUseUTC' /> <span class='translate'>Hardware Clock in UTC Time</span></label></td>
 	</tr>
 	<tr>
 		<th></th>
@@ -117,7 +113,24 @@
 		<th></th>
 		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemHPET' /> <span class='translate'>HPET (high precision event timer)</span></label></td>
 	</tr>
-
+	<tr>
+		<th></th>
+		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemEFI' onchange="vboxUEFIOnChange(event)"/> <span class='translate'>Enable EFI (special OSes only)</span></label></td>
+	</tr>
+	<tr>
+		<th></th>
+		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemSecureBoot' onchange="vboxSecureBootOnChange(event)"/> <span class='translate'>Secure Boot</span></label></td>
+	</tr>
+	<tr>
+		<th></th>
+		<td style='padding-left: 4px'>
+			<button type='button' onClick='vboxSecureBootResetKeys(event)' name='vboxSettingsSystemSecBootResetKeys' style='height: 26px'>
+				<div style='display: flex; align-items: center;'>
+					<img src="images/vbox/vm_reset_16px.png" alt="icon"/><span class='translate' style='padding-left: 4px;'>Reset Secure Boot Keys</span>
+				</div>
+			</button>
+		</td>
+	</tr>
 </table>
 </div>
 
@@ -348,7 +361,7 @@ $("#vboxVMBootOrder").find("input.imgMvUp").on('click',function() {
 	var list = $('#vboxVMBootOrderList').children('li');
 
 	for(var i = 0; i < list.length; i++ ) {
-		if(list[i].className == 'vboxListItemSelected') {
+		if($(list[i]).hasClass('vboxListItemSelected')) {
 			if(i == 0) return;
 			var mv = $(list[i]).detach();
 			$(list[(i-1)]).before(mv);
@@ -365,7 +378,7 @@ $("#vboxVMBootOrder").find("input.imgMvDn").on('click',function() {
 
 	for(var i = 0; i < list.length; i++ ) {
 
-		if(list[i].className == 'vboxListItemSelected') {
+		if($(list[i]).hasClass('vboxListItemSelected')) {
 			if(i == (list.length - 1)) return;
 			var mv = $(list[i]).detach();
 			$(list[(i+1)]).after(mv);
@@ -383,6 +396,134 @@ var b = new Image();
 b.src = "images/vbox/list_moveup_16px.png";
 
 
+// On Click event for Boot Order li's
+function vboxBootOrderClick(element) {
+	// Update class
+	$(element).siblings().addClass('vboxListItem').removeClass('vboxListItemSelected');
+	$(element).addClass('vboxListItemSelected').removeClass('vboxListItem');
+
+	var isFirst = ($(element).parent().children().first().attr('id') == $(element).attr('id'));
+	var isLast = ($(element).parent().children().last().attr('id') == $(element).attr('id'));
+			
+	// update buttons
+	$(element).closest("table").find('input.imgMvUp').css('background-image', 'url(images/vbox/list_moveup' + (isFirst ? '_disabled' : '') + '_16px.png)').prop('disabled', isFirst);
+	$(element).closest("table").find('input.imgMvDn').css('background-image', 'url(images/vbox/list_movedown' + (isLast ? '_disabled' : '') + '_16px.png)').prop('disabled', isLast);
+}
+
+
+/* Disable/Enable Boot Order */
+function vboxBootOrderEnableDisable(bootenable) {
+	if(bootenable) {
+		$("#vboxVMBootOrderList").children("li").on('click',function() { vboxBootOrderClick(this); }).removeClass('disabled')
+		.addClass('vboxListItem').each(function(index, element) {
+			$(element).children().each(function(index, element) {
+				if($(element).is('span')) {
+					$(element).removeClass('disabled');
+				} else if($(element).is('input')) {
+					$(element).prop('disabled', false);
+				} else if($(element).is('img')) {
+					$(element).attr('src',$(element).attr('src').replace("_disabled_16px", "_16px"));
+				}
+			});
+		}).addClass('vboxListItem').first().addClass('vboxListItemSelected').removeClass('vboxListItem');
+        $('#vboxSettingsTabSystemMotherboard').find('span.vboxBootOrder').removeClass('disabled');
+		$('#vboxSettingsTabSystemMotherboard').find('input.imgMvDn')
+			.css('background-image', 'url(images/vbox/list_movedown_16px.png)').prop('disabled', false);
+		$("#vboxVMBootOrderList").removeClass('disabled');
+	} else {
+		$("#vboxVMBootOrderList").children("li").off('click').addClass('disabled').removeClass('vboxListItemSelected')
+		.removeClass('vboxListItem').each(function(index, element) {
+			$(element).children().each(function(index, element) {
+				if($(element).is('span')) {
+					$(element).addClass('disabled');
+				} else if($(element).is('input')) {
+					$(element).prop('disabled', true);
+				} else if($(element).is('img')) {
+					$(element).attr('src',$(element).attr('src').replace("_16px", "_disabled_16px"));
+				}
+			});
+		});
+        $('#vboxSettingsTabSystemMotherboard').find('span.vboxBootOrder').addClass('disabled');
+		$('#vboxSettingsTabSystemMotherboard').find('input.imgMvUp')
+			.css('background-image', 'url(images/vbox/list_moveup_disabled_16px.png)').prop('disabled', true);
+		$('#vboxSettingsTabSystemMotherboard').find('input.imgMvDn')
+			.css('background-image', 'url(images/vbox/list_movedown_disabled_16px.png)').prop('disabled', true);
+		$("#vboxVMBootOrderList").addClass('disabled');
+	}
+}
+
+
+/* UEFI */
+function vboxUEFIOnChange(event) {
+
+    if($(event.target).is(':checked')) {
+        $('#vboxSettingsTabSystemMotherboard').find('input[name="vboxSettingsSystemSecureBoot"]').prop('disabled',false)
+        .trigger('change').parent().removeClass('disabled');
+		vboxBootOrderEnableDisable(false);
+    } else {
+        $('#vboxSettingsTabSystemMotherboard').find('input[name="vboxSettingsSystemSecureBoot"]').prop('disabled',true)
+		.trigger('change').parent().addClass('disabled');
+        $('#vboxSettingsTabSystemMotherboard').find('button[name="vboxSettingsSystemSecBootResetKeys"]').prop('disabled',true)
+        .children('div').addClass('disabled').children('img').attr('src','images/vbox/vm_reset_disabled_16px.png');
+		vboxBootOrderEnableDisable(true);
+    }
+}
+
+
+/* Secure Boot change */
+function vboxSecureBootOnChange(event) {
+	if($('#vboxSettingsDialog').data('vboxMachineData').firmwareType == 'EFI') {
+	    if($(event.target).is(':checked')) {
+    	    $('#vboxSettingsTabSystemMotherboard').find('button[name="vboxSettingsSystemSecBootResetKeys"]').prop('disabled',false)
+    		    .children('div').removeClass('disabled').children('img').attr('src','images/vbox/vm_reset_16px.png');
+	    } else {
+    	    $('#vboxSettingsTabSystemMotherboard').find('button[name="vboxSettingsSystemSecBootResetKeys"]').prop('disabled',true)
+    		    .children('div').addClass('disabled').children('img').attr('src','images/vbox/vm_reset_disabled_16px.png');
+		}
+    } else {
+		$('#vboxSettingsTabSystemMotherboard').find('button[name="vboxSettingsSystemSecBootResetKeys"]')
+		.tipped({'source':'Firmware type must be set to EFI to Reset Secure Boot Keys','position':'mouse','mode':'hover','closeonexit':true});
+	}
+}
+
+
+/* Secure Boot Reset Keys */
+function vboxSecureBootResetKeys(event) {
+
+    var buttons = [];
+
+    btncancel = [{
+        id: 'cancelbuttonid',
+        text: trans('Cancel','UIMessageCenter'),
+        'class': 'ui-button-cancel',
+        click: function () {
+            $(this).empty().remove();
+        }
+    }];
+
+    btnok = [{
+        id: 'okbuttonid',
+        text: trans('Ok','UIMessageCenter'),
+        'class': 'ui-button-ok',
+        click: function () {
+			confirmdialog = this;
+			$.when(vboxAjaxRequest('vboxMachineSecureBootResetKeys',{'vmname':$('#vboxSettingsDialog').data('vboxMachineData').name}))
+			.done(function(d){
+	            $(confirmdialog).empty().remove();
+			});
+        }
+    }];
+
+    buttons.push(btnok[0]);
+    buttons.push(btncancel[0]);
+
+    var confirmstr = '<p>' + trans('You are going to restore default secure boot keys.','UIMessageCenter') +
+    '</p><p>' + trans('If you proceed your current keys will be rewritten.' +
+    ' You may not be able to boot this VM anymore.','UIMessageCenter') + '<p>';
+    vboxConfirm(confirmstr, buttons, trans('Restore Default Keys','UIMessageCenter'));
+}
+
+
 /* Update values when data is loaded */
 $('#vboxSettingsDialog').on('dataLoaded',function(){
 	
@@ -390,6 +531,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 	$('#vboxSettingsSystemMemory').slider('value', parseInt($('#vboxSettingsDialog').data('vboxMachineData').memorySize));
 	document.forms['frmVboxSettings'].vboxSettingsSystemIOAPIC.checked = $('#vboxSettingsDialog').data('vboxMachineData').BIOSSettings.IOAPICEnabled;
 	document.forms['frmVboxSettings'].vboxSettingsSystemEFI.checked = ($('#vboxSettingsDialog').data('vboxMachineData').firmwareType == 'EFI');
+	document.forms['frmVboxSettings'].vboxSettingsSystemSecureBoot.checked = $('#vboxSettingsDialog').data('vboxMachineData').secureboot;
 	document.forms['frmVboxSettings'].vboxSettingsSystemRTCUseUTC.checked = ($('#vboxSettingsDialog').data('vboxMachineData').RTCUseUTC);
 	$('#vboxSettingsSystemProcessor').slider('value',parseInt($('#vboxSettingsDialog').data('vboxMachineData').CPUCount));
 	$('#vboxSettingsSystemProcessorCap').slider('value',parseInt($('#vboxSettingsDialog').data('vboxMachineData').CPUExecutionCap));
@@ -474,7 +616,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 			$(this).prop('src',$(this).prop('src').replace('_16','_disabled_16'));
 		});
 		
-		$("#vboxVMBootOrderList").children("li").unbind('click');
+		$("#vboxVMBootOrderList").addClass('disabled').children("li").unbind('click').addClass('disabled');
 		
 	} else {
 		
@@ -493,21 +635,13 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 			$(this).prop('src',$(this).prop('src').replace('_disabled_16','_16'));
 		});
 
-		$("#vboxVMBootOrderList").children("li").on('click',function() {
-
-			// Update class
-			$(this).siblings().prop('className','vboxListItem');
-			$(this).prop('className','vboxListItemSelected');
-
-			var isFirst = ($(this).parent().children().first().attr('id') == $(this).attr('id'));
-			var isLast = ($(this).parent().children().last().attr('id') == $(this).attr('id'));
-			
-			// update buttons
-			$(this).closest("table").find('input.imgMvUp').css('background-image', 'url(images/vbox/list_moveup' + (isFirst ? '_disabled' : '') + '_16px.png)').prop('disabled', isFirst);
-			$(this).closest("table").find('input.imgMvDn').css('background-image', 'url(images/vbox/list_movedown' + (isLast ? '_disabled' : '') + '_16px.png)').prop('disabled', isLast);
-							
+		$("#vboxVMBootOrderList").removeClass('disabled').children("li").removeClass('disabled').on('click',function() {
+			vboxBootOrderClick(this);
 		}).first().trigger('click');
 		
+        // Trigger On Change event to enable/disable secure boot and boot order
+        $('#vboxSettingsTabSystemMotherboard').find('input[name="vboxSettingsSystemEFI"]').trigger('change');
+
 	}
 	
 });
@@ -532,6 +666,7 @@ $('#vboxSettingsDialog').on('save',function(){
 	$('#vboxSettingsDialog').data('vboxMachineData').memorySize = parseInt(document.forms['frmVboxSettings'].vboxSettingsSystemMemoryValue.value);
 	$('#vboxSettingsDialog').data('vboxMachineData').BIOSSettings.IOAPICEnabled = document.forms['frmVboxSettings'].vboxSettingsSystemIOAPIC.checked;
 	$('#vboxSettingsDialog').data('vboxMachineData').firmwareType = (document.forms['frmVboxSettings'].vboxSettingsSystemEFI.checked ? 'EFI' : 'BIOS');
+	$('#vboxSettingsDialog').data('vboxMachineData').secureboot = document.forms['frmVboxSettings'].vboxSettingsSystemSecureBoot.checked;
 	$('#vboxSettingsDialog').data('vboxMachineData').CPUCount = parseInt($('#vboxSettingsSystemProcessor').slider('value'));
 	$('#vboxSettingsDialog').data('vboxMachineData').CPUExecutionCap = parseInt($('#vboxSettingsSystemProcessorCap').slider('value'));
 	$('#vboxSettingsDialog').data('vboxMachineData').CpuProperties.PAE = document.forms['frmVboxSettings'].vboxSettingsSystemPAE.checked;
