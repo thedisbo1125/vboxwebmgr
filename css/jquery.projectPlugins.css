@@ -189,6 +189,34 @@ ul.contextMenu li {
 	position: relative;
 }
 
+ul.contextMenu li.vboxSettingsMenu {
+	cursor: pointer;
+}
+
+ul.contextMenu li span.vboxSettingsMenu {
+    align: left;
+    padding-left: 6px;
+    vertical-align: center;
+}
+
+ul.contextMenu li span.vboxVRDPStarted {
+    padding-left: 3px;
+}
+
+ul.contextMenu li img.vboxSettingsMenu {
+    object-fit: none;
+    width: 16px;
+    margin-left: 6px;
+}
+
+ul.contextMenu li img.vboxVRDPStarted {
+	background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../images/rdp_background.png');
+    width: 22px;
+    margin-left: 3px;
+}
+
 ul.contextMenu li a.vboxCheckMark {
 	padding-left: 12px;
 }
