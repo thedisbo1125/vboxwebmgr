@@ -368,7 +368,7 @@ if ( !jQuery.vboxbrowser ) {
 				var sel = document.createElement('div');
 				$(sel).data('origId', $(this).attr('id'));
 				$(sel).attr('id',$(this).attr('id')+'-mediumselect');
-				$(sel).attr('class','vboxMediumSelect');
+				$(sel).addClass('vboxMediumSelect');
 				$(sel).on('click',function(){
 					if($('#'+$(this).data('origId')+'-table').hasClass('vboxDisabled')) return;
 					return showList(this);
@@ -378,7 +378,7 @@ if ( !jQuery.vboxbrowser ) {
 
 				var img = document.createElement('div');
 				img.setAttribute('id',$(this).attr('id')+'-mediumselectimg');
-				img.setAttribute('class','vboxMediumSelectImg');
+				$(img).addClass('vboxMediumSelectImg');
 				$(img).on('click',function(e){
 					$(e.target).closest('table').find('div.vboxMediumSelect').trigger('click');
 					return false;
@@ -386,15 +386,15 @@ if ( !jQuery.vboxbrowser ) {
 
 				var tbl = document.createElement('table');
 				$(tbl).attr('id',$(this).attr('id')+'-table');
-				$(tbl).attr('class','vboxMediumSelect');
+				$(tbl).addClass('vboxMediumSelect');
 				$(tbl).css({'padding':'0px','margin':'0px','border':'0px','width':'100%','border-spacing':'0px'});
 				var tr = document.createElement('tr');
 				var td = document.createElement('td');
-				$(td).attr({'class':'vboxMediumSelectTableLeft'}).css({'padding':'0px','margin':'0px','width':'100%'});
+				$(td).addClass('vboxMediumSelectTableLeft').css({'padding':'0px','margin':'0px','width':'100%'});
 				$(td).append(sel);
 				$(tr).append(td);
 				var td = document.createElement('td');
-				$(td).attr({'class':'vboxMediumSelectTableRight'}).css({'padding':'0px','margin':'0px','width':'auto'});
+				$(td).addClass('vboxMediumSelectTableRight').css({'padding':'0px','margin':'0px','width':'auto'});
 				$(td).append(img);
 				$(tr).append(td);
 				$(tbl).append(tr);
@@ -411,7 +411,7 @@ if ( !jQuery.vboxbrowser ) {
 
 				var list = document.createElement('ul');
 				$(list).attr('id',$(this).attr('id')+'-mediumselect-list');
-				$(list).attr('class', 'vboxMediumSelect');
+				$(list).addClass('vboxMediumSelect');
 				$(list).css({'display':'none'});
 
 				$('#vboxPane').append(list);
