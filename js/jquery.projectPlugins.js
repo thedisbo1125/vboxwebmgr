@@ -779,14 +779,28 @@ if(jQuery)( function() {
 
 						var plink = $(this).siblings('a').first();
 						var subId = $(this).attr('id');
+
+						if (plink.length == 0) {
+							spanlink = $(this).siblings('span').first();
+						}
+
 						if(!subId) {
-							var href = plink.attr('href').replace('#','');
+							if (plink.length == 0) {
+								var href = spanlink.attr('elementtitle');
+							} else {
+								var href = plink.attr('href').replace('#','');
+							}
 							subId = href + '-Submenu';
 							$(this).attr('id', subId);
 						}
-						$(this).addClass('contextMenu contextSubMenu').data({'level':level+1}).parent().addClass('contextMenuParent').data({'subId':subId,'level':level});
-						var html = plink.html();
-						plink.html('<table class="vboxInvisible" style="width:100%"><tr><td style="text-align:left">'+html+'</td><td style="text-align:right; width: 22px;"><img src="images/rightArrow.png" /></td></tr></table>');
+
+						$(this).addClass('contextMenu contextSubMenu').data({'level':level+1}).parent().addClass('contextMenuParent')
+							.data({'subId':subId,'level':level});
+
+						if (plink.length != 0) {
+							var html = plink.html();
+							plink.html('<table class="vboxInvisible" style="width:100%"><tr><td style="text-align:left">'+html+'</td><td style="text-align:right; width: 22px;"><img src="images/rightArrow.png" /></td></tr></table>');
+						}
 
 						// Hide menus trigger
 						var smenu = this;
