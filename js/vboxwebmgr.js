@@ -1005,6 +1005,8 @@ var vboxVMDetailsSections = {
 		title: 'Storage',
 		icon: 'hd_16px.png',
 		settingsLink: 'Storage',
+		timerId: undefined,
+		timeoutisset: false,
 		redrawMachineEvents: ['OnMediumChanged', 'OnMachineStateChanged'],
 		_refreshVMMedia: function(vmid, mid) {
 
@@ -1021,8 +1023,29 @@ var vboxVMDetailsSections = {
 				l.removeLoading();
 			});
 		},
+		_refreshVMMediaNoLoader: function(vmid, mid) {
+
+			if(vmid !== undefined) {
+
+				// See if medium is there
+				var mRefresh = true;
+				var vmidloc = structuredClone(vmid);
+				if(!vboxMedia.getMediumById(mid)) {
+					mRefresh = vboxAjaxRequest('vboxGetMedia');
+				}
+				$.when(mRefresh, vboxVMDataMediator.refreshVMData(vmid)).done(function(d){
+					if(d && d.responseData) {
+						$('#vboxPane').data('vboxMedia',d.responseData);
+					}
+					vboxVMDetailsSections.storage.timeoutisset = false;
+				}).always(function() {
+					$('#vboxPane').trigger('vboxEvents', [[{eventType:'OnMachineDataChanged',machineId:vmidloc}]]);
+				});
+			}
+		},
 		rows: function(d) {
 
+			var reloadmedium = false;
 			var rows = new Array();
 
 			for(var a = 0; a < d['storageControllers'].length; a++) {
@@ -1052,6 +1075,9 @@ var vboxVMDetailsSections = {
 							d.id+"','"+d['storageControllers'][a]['mediumAttachments'][b].medium.id+"');\">" +
 								trans('Refresh','UIActionPool')+"</a>";
 
+							reloadmedium = true;
+							var d1 = d.id;
+							var d2 = d['storageControllers'][a]['mediumAttachments'][b].medium.id;
 						} else {
 							portDesc = trans('Refresh','UIActionPool');
 						}
@@ -1075,6 +1101,18 @@ var vboxVMDetailsSections = {
 						data: (d['storageControllers'][a]['mediumAttachments'][b].type == 'DVD' ? trans('[Optical Drive]','UIDetails') + ' ': '') + portDesc,
 						html: true
 					};
+
+				}
+
+				var refreshmedium = function(vmid, mid){
+					vboxVMDetailsSections.storage._refreshVMMediaNoLoader(vmid, mid);
+				}
+
+				if(reloadmedium && vboxVMDetailsSections.storage.timeoutisset == false) {
+					vboxVMDetailsSections.storage.timeoutisset = true;
+
+					reloadmedium = false;
+					vboxVMDetailsSections.storage.timerId = setTimeout(refreshmedium(d1,d2), 500);
 
 				}
 
