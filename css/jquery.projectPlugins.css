@@ -211,7 +211,7 @@ ul.contextMenu li.vboxMenuItemChecked > a {
 .contextMenu li input {
 	padding-left: 2px;
 }
-.contextMenu a, .contextMenu SPAN {
+.contextMenu a, .contextMenu span {
 	color: #333;
 	text-decoration: none;
 	display: block;
@@ -234,7 +234,7 @@ ul.contextMenuNoBG li {
 ul.contextMenuNoBG li.disabled {
 	cursor: default;
 }
-ul.contextMenuNoBG SPAN {
+ul.contextMenuNoBG span {
 	display: inline;
 	padding-left: 2px;
 }
@@ -251,7 +251,7 @@ ul.contextMenu li.vboxHover {
 	display: none;
 }
 
-.contextMenu li.vboxHover.disabled, .contextMenu li.disabled A, .contextMenu li.disabled SPAN {
+.contextMenu li.vboxHover.disabled, .contextMenu li.disabled A, .contextMenu li.disabled span {
 	color: #AAA;
 	cursor: default;
 }
