@@ -197,6 +197,15 @@ ul.vboxHover li.vboxHover, ul.vboxHover li table.vboxHover {
 ul.vboxHover li table {
 	border: 1px solid transparent;
 }
+
+span.disabled { cursor: default; }
+
+ul.vboxBootOrder.vboxList.disabled { background: #eeeeee; }
+ul.vboxBootOrder li.disabled.vboxHover {
+    background: #eeeeee;
+    border-color: transparent;
+}
+
 tbody.vboxHover td {
 	border: 1px solid transparent;
 }
