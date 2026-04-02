@@ -121,11 +121,27 @@ for(var i in vboxChooserSettingsMenu) {
 	vboxChooserSettingsMenu[i].name = i;
 	var label = trans(vboxChooserSettingsMenu[i].label, 'UIActionPool');
 
-	var li = $('<li />').html("<span class='vboxMenuItemChecked' /><a href='#" + vboxChooserSettingsMenu[i].name + "' style='background-image: url(images/vbox/" + vboxChooserSettingsMenu[i].icon +"_16px.png);' >"+(label ? label : ' ')+"</a>");
-	if(i == 'storage') { $(li).attr({'style':'display:none','id':'vboxVMSettingsToolbarStorageHolder'}); }
-	if(i == 'USB') {
-		/* 'USB' menu */
-		$('<ul />').attr({'class':'vboxSettingsUSBAttachmentsMenu contextMenuNoBG','style':'display: none','id':'vboxVMSettingsUSBMenu'}).data({'callback':'vboxChooserToolbarUSBUpdate'}).appendTo(li);		
+	var li = $('<li />').css({'display':'flex','text-align':'left','height':'22px'})
+	.append($('<img />').attr('src','images/vbox/' + vboxChooserSettingsMenu[i].icon + '_16px.png').addClass('vboxSettingsMenu')
+		.on('click',function() {$(this).parent().trigger('click')}))
+	.append($('<span />').text(vboxChooserSettingsMenu[i].label).addClass('vboxSettingsMenu')).addClass('vboxSettingsMenu')
+	.on('mouseenter', function() {
+	    if($(this).children('span').attr('elementtitle') != 'USB') {
+			$('#vboxVMSettingsUSBMenu').hide();
+		}}).attr('elementtitle', vboxChooserSettingsMenu[i].name).on('click',function() {   //$(this).children('span').trigger('click');
+	});
+
+	if((i != 'storage') && (i != 'USB')) {
+		$(li).on('click', function(event) { SettingsMenuClick(this); });
+	} else {
+		if(i == 'storage') { $(li).attr({'style':'display:none','id':'vboxVMSettingsToolbarStorageHolder'}); }
+		if(i == 'USB') {
+			/* 'USB' menu */
+			$('<ul />').attr({'class':'vboxSettingsUSBAttachmentsMenu contextMenuNoBG','style':'display: none','id':'vboxVMSettingsUSBMenu'})
+			.data({'callback':'vboxChooserToolbarUSBUpdate'}).appendTo(li);
+			$(li).append('<table class="vboxInvisible" style="width:100%"><tr><td style="text-align:right;' +
+				' width: 22px; padding-right: 5px"><img src="images/rightArrow.png"></td></tr></table>');
+		}
 	}
 
 	if(vboxChooserSettingsMenu[i].separator) $(li).addClass('separator');
@@ -136,6 +152,46 @@ for(var i in vboxChooserSettingsMenu) {
 /* Append 'Settings' button Menu */
 $('#vboxPane').append(ul);
 
+
+// On Click function for 'Settings' Content Menu
+function SettingsMenuClick(element) {
+		var vm = vboxChooser.getSingleSelected();
+
+		if(!vm) return;
+
+		switch($(element).attr('elementtitle')) {
+			case 'Network':
+			case 'SharedFolders':
+				vboxVMsettingsDialog(vm, $(element).attr('elementtitle'));
+				break;
+
+			case 'GuestAdditions':
+				vboxVMActions['guestAdditionsInstall'].click();
+				break;
+				
+			// Don't do anything for dvd, fd, or USB devices main menu item click
+			case 'dvdDevices':
+			case 'fdDevices':
+			case 'USB':
+				break;
+
+			case 'RemoteDisplay':
+				var en = vboxVMDataMediator.getVMRuntimeData(vm.id).VRDEServer.enabled;
+				vboxAjaxRequest('consoleVRDEServerSave',{'vm':vm.id,'enabled':(en ? 0 : 1)});
+				if(en) {
+					$(element).removeClass('vboxVRDPStarted').parent().children('img').attr('src','images/vbox/vrdp_16px.png')
+						.removeClass('vboxVRDPStarted');
+				} else {
+					$(element).addClass('vboxVRDPStarted').parent().children('img').attr('src','images/vbox/vrdp_on_16px.png')
+						.addClass('vboxVRDPStarted');
+				}
+				break;
+
+			case 'settings':
+				vboxVMActions['settings'].click();
+				break;
+		}
+}
 
 
 /* 'Settings' button menu initialization  */
@@ -350,9 +406,9 @@ function vboxUpdateSettingsMenu(vm) {
 
 	if(usbEnabled) {
 		$('ul.vboxSettingsUSBAttachmentsMenu').children().remove();
-		$('#vboxVMSettingsMenu').find('a[href="#USB"]').closest('li').css('display','');
+		$('#vboxVMSettingsMenu').find('li[elementtitle="USB"]').css('display','flex');
 	} else {
-		$('#vboxVMSettingsMenu').find('a[href="#USB"]').closest('li').css('display','none');
+		$('#vboxVMSettingsMenu').find('li[elementtitle="USB"]').css('display','none');
 	}
 	
 	// Enable or disable network
@@ -367,9 +423,9 @@ function vboxUpdateSettingsMenu(vm) {
 	}
 
 	if(enabledS) {
-		$('#vboxVMSettingsMenu').find('a[href="#Network"]').closest('li').css('display','');
+		$('#vboxVMSettingsMenu').find('li[elementtitle="Network"]').css('display','flex');
 	} else {
-		$('#vboxVMSettingsMenu').find('a[href="#Network"]').closest('li').css('display','none');
+		$('#vboxVMSettingsMenu').find('li[elementtitle="Network"]').css('display','none');
 	}
 	
 	// vboxVMSettingsToolbarStorageHolder
@@ -420,7 +476,17 @@ function vboxUpdateSettingsMenu(vm) {
 
 		if(dvdDevices.length) {
 			var ul = null;
-			var li = $('<li />').html("<a href='#dvdDevices' style='background-image:url(images/vbox/cd_16px.png);'>"+trans('Optical Drives','UIActionPool')+'</a>').addClass('vboxVMSettingsStorage');
+
+			var li = $('<li />').css({'display':'flex','text-align':'left','height':'22px'})
+			.append($('<img />').attr('src','images/vbox/cd_16px.png').addClass('vboxSettingsMenu'))
+			.append($('<span />').text(trans('Optical Drives','UIActionPool')).addClass('vboxSettingsMenu')).addClass('vboxSettingsMenu')
+			.attr('elementtitle', 'OpticalDrives').on('mouseenter', function() {
+		    if($(this).children('span').attr('elementtitle') != 'USB') {
+				$('#vboxVMSettingsUSBMenu').hide();
+			}}).addClass('vboxVMSettingsStorage');
+			$(li).append('<table class="vboxInvisible" style="width:100%"><tr><td style="text-align:right;' +
+				' width: 22px; padding-right: 5px"><img src="images/rightArrow.png"></td></tr></table>');
+
 			if(dvdDevices.length == 1) {
 				ul = dvdDevices[0].children('ul').first();
 			} else {
@@ -434,7 +500,17 @@ function vboxUpdateSettingsMenu(vm) {
 		
 		if(fdDevices.length) {
 			var ul = null;
-			var li = $('<li />').html("<a href='#fdDevices' style='background-image:url(images/vbox/fd_16px.png);'>"+trans('Floppy Devices','UIActionPool')+'</a>').addClass('vboxVMSettingsStorage');
+
+			var li = $('<li />').css({'display':'flex','text-align':'left','height':'22px'})
+			.append($('<img />').attr('src','images/vbox/fd_16px.png').addClass('vboxSettingsMenu'))
+			.append($('<span />').text(trans('Floppy Devices','UIActionPool')).addClass('vboxSettingsMenu')).addClass('vboxSettingsMenu')
+			.attr('elementtitle', 'FloppyDevices').on('mouseenter', function() {
+		    if($(this).children('span').attr('elementtitle') != 'USB') {
+				$('#vboxVMSettingsUSBMenu').hide();
+			}}).addClass('vboxVMSettingsStorage');
+			$(li).append('<table class="vboxInvisible" style="width:100%"><tr><td style="text-align:right;' +
+				' width: 22px; padding-right: 5px"><img src="images/rightArrow.png"></td></tr></table>');
+
 			if(fdDevices.length == 1) {
 				ul = fdDevices[0].children('ul').first();
 			} else {
@@ -449,20 +525,21 @@ function vboxUpdateSettingsMenu(vm) {
 	}
 
 	if(enabledS) {
-		$('#vboxVMSettingsMenu').find('a[href="#Network"]').parent().addClass('separator');
+		$('#vboxVMSettingsMenu').find('li[elementtitle="Network"]').addClass('separator');
 	} else {
-		$('#vboxVMSettingsMenu').find('a[href="#Network"]').parent().removeClass('separator');
+		$('#vboxVMSettingsMenu').find('li[elementtitle="Network"]').removeClass('separator');
 	}
 	
 	// Enable remote display?
 	if(vm && vm.VRDEServer) {
-		$('#vboxVMSettingsMenu').find('a[href="#RemoteDisplay"]').css({'background-image':'url(images/vbox/vrdp' + (vm.VRDEServer.enabled ? '_on' : '') + '_16px.png)'}).parent().removeClass('disabled')
-		.addClass((vm.VRDEServer.enabled ? 'vboxMenuItemChecked' : '')).removeClass((vm.VRDEServer.enabled ? '' : 'vboxMenuItemChecked'));
-	} else {
-		$('#vboxVMSettingsMenu').find('a[href="#RemoteDisplay"]').css({'background-image':'url(images/vbox/vrdp_disabled_16px.png)'}).parent().addClass('disabled');
-	}	
-	
-	
+		if(vm.VRDEServer.enabled) {
+			$('#vboxVMSettingsMenu').find('li[elementtitle="RemoteDisplay"]').children('span').addClass('vboxVRDPStarted')
+				.parent().children('img').attr('src','images/vbox/vrdp_on_16px.png').addClass('vboxVRDPStarted');
+		} else {
+			$('#vboxVMSettingsMenu').find('li[elementtitle="RemoteDisplay"]').children('span').removeClass('vboxVRDPStarted')
+				.parent().children('img').attr('src','images/vbox/vrdp_16px.png').removeClass('vboxVRDPStarted');
+		}
+	}
 }
 
 
@@ -527,14 +604,13 @@ $('#vboxPane').on('vmSelectionListChanged',function(e) {
 				if(!updateSettingsMenu && !updateVRDE && vboxChooser.isVMSelected(eventList[i].machineId)) {
 					if(eventList[i].enrichmentData && eventList[i].enrichmentData.enabled) {
 						updateVRDE = function(){
-							$('#vboxVMSettingsMenu').find('a[href="#RemoteDisplay"]').css({'background-image':'url(images/vbox/vrdp_on_16px.png)'}).parent().removeClass('disabled')
-								.addClass('vboxMenuItemChecked');
+							$('#vboxVMSettingsMenu').find('li[elementtitle="RemoteDisplay"]').children('span').addClass('vboxVRDPStarted')
+							.parent().children('img').attr('src','images/vbox/vrdp_on_16px.png').addClass('vboxVRDPStarted');
 						};
 					} else {
 						updateVRDE = function(){
-							$('#vboxVMSettingsMenu').find('a[href="#RemoteDisplay"]').css({'background-image':'url(images/vbox/vrdp_16px.png)'}).parent().removeClass('disabled')
-								.removeClass('vboxMenuItemChecked');
-							
+							$('#vboxVMSettingsMenu').find('li[elementtitle="RemoteDisplay"]').children('span').removeClass('vboxVRDPStarted')
+							.parent().children('img').attr('src','images/vbox/vrdp_16px.png').removeClass('vboxVRDPStarted');							
 						};						
 					}
 				}
