@@ -1807,7 +1807,6 @@ class vboxconnector {
 		/*
 		 * USB Filters
 		 */
-
 		$usbEx = array();
 		$usbNew = array();
 
@@ -1827,7 +1826,6 @@ class vboxconnector {
 
 				// Remove and Add filters
 				try {
-
 
 					$max = max(count($deviceFilters),count($args['USBDeviceFilters']));
 					$offset = 0;
