@@ -520,7 +520,7 @@ vboxInitDisplay('vboxSnapshotToolbar','UISnapshotDetails');
 var vboxSnapshotContextMenu = new vboxMenu({name:'vboxSnapshotContextMenu', language_context: 'UISnapshotDetails'});
 vboxSnapshotContextMenu.addMenu(vboxSnapshotButtons.slice(-(vboxSnapshotButtons.length-1)));
 
-//Context menu for current state
+// Context menu for current state
 var vboxSnapshotContextMenuCurrent = new vboxMenu({name: 'vboxSnapshotContextMenuCurrent', language_context: 'UISnapshotDetails'});
 vboxSnapshotContextMenuCurrent.addMenu([vboxSnapshotButtons[0],vboxSnapshotButtons[(vboxSnapshotButtons.length-2)]]);
 
