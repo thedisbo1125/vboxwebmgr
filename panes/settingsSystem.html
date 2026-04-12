@@ -99,7 +99,7 @@
 	</tr>
 	<tr>
 		<th style='text-align:right'><span class='translate'>Extended Features:</span></th>
-		<td style='padding-left: 4px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemIOAPIC' /> <span class='translate'>Enable I/O APIC</span></label></td>
+		<td style='padding-left: 4px; padding-top: 8px'><label><input type='checkbox' class='vboxCheckbox' name='vboxSettingsSystemIOAPIC' /> <span class='translate'>Enable I/O APIC</span></label></td>
 	</tr>
 	<tr>
 		<th></th>
@@ -200,8 +200,8 @@
 <div id='vboxSettingsTabSystemAcceleration' title='Acceleration'>
 	<table class='vboxVerticalTable vboxAccTab'>
 		<tr>
-			<th class='vboxEnablerIgnore'><span class='translate'>Paravirtualization Interface:</span></th>
-			<td><select class="vboxEnablerIgnore vboxselectstdbackground" name='vboxSettingsParavirtInterface'>
+			<th class='vboxEnablerIgnore' style='padding-top: 5px'><span class='translate'>Paravirtualization Interface:</span></th>
+			<td style='padding-left: 9px;'><select class="vboxEnablerIgnore vboxselectstdbackground" name='vboxSettingsParavirtInterface'>
 				<option value='None'>None</option>
 				<option value='Default'>Default</option>
 				<option value='Legacy'>Legacy</option>
@@ -211,10 +211,10 @@
 			</select></td>
 		</tr>
 		<tr>
-			<th style='text-align:right' class='vboxEnablerIgnore vboxSettingsAccelRequired'>
+			<th style='padding-top: 10px' class='vboxEnablerIgnore vboxSettingsAccelRequired'>
 				<span class='translate'>Hardware Virtualization:</span>
 			</th>
-			<td style='width:100%'><label>
+			<td style='width:100%; padding-top: 8px'><label>
 				<input type='checkbox' name='settingsSystemVT' class='vboxEnablerCheckbox vboxSettingsAccelRequired'/> <span class='translate vboxSettingsAccelRequired'>Enable VT-x/AMD-V</span>
 			</label></td>
 		</tr>
