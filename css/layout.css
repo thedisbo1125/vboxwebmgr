@@ -343,6 +343,12 @@ div.vboxVMLog form textarea, div.vboxAlert form textarea {
 
 div.vboxAlert form textarea { height: 100%; }
 
+/* center "Ok" button */
+div.vboxAlert div.ui-dialog-buttonpane {
+    float: none !important;
+    text-align: center;
+}
+
 /* Gradient Toolbars */
 .vboxToolbarGrad {
 	

@@ -621,7 +621,7 @@ function vboxAlert(e,xtraOpts) {
         }
     }
 
-    $(div).dialog(dialogOpts);
+    $(div).dialog(dialogOpts).parent().addClass('vboxAlert');
 
     return acknowledged;
 }
