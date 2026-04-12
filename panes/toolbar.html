@@ -397,7 +397,7 @@ function vboxUpdateSettingsMenu(vm) {
 	var usbEnabled = false;
 	if(vm['USBControllers'].length) {
 		for(var i = 0; i < vm['USBControllers'].length; i++) {
-			if(vm['USBControllers'][i].type == 'OHCI') {
+			if((vm['USBControllers'][i].type == 'OHCI') || (vm['USBControllers'][i].type == 'XHCI')) {
 				usbEnabled = true;
 				break;
 			}
