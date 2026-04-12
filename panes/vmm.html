@@ -622,11 +622,6 @@ var vmmButtons = new Array(
 				if(med.hasSnapshots == true || isvmrunning == true) {
 					$warning = '<b>' + trans('Warning','UIVirtualMediaManager') + ':</b>';
 					if(isvmrunning) {
-						disktypemsg = trans("VM hard drive is attached to is running, cannot modify disk type","UIVirtualMediaManager");
-						tablehtmlradio = '<tr><td><span style="margin-left: 6px;">' + $warning + ':';
-						tablehtmlradio += '</span></td><td><span>' + disktypemsg + '.';
-						tablehtmlradio += '</span></td></tr>';
-						tablehtmlradio += "<tr><td></td><td></td></tr>";
 
 						// Disable all select options when server is running
 						$('#vboxVMMModify').find('span.disrun').addClass('disabled');
