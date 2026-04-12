@@ -4538,13 +4538,20 @@ class vboxconnector {
 		$this->connect();
 
 		$response = array();
-		$mds = array($this->vbox->hardDisks,$this->vbox->DVDImages,$this->vbox->floppyImages);
-		for($i=0;$i<3;$i++) {
-			foreach($mds[$i] as $m) {
-				/* @var $m IMedium */
-				$response[] = $this->_mediumGetDetails($m);
-				$m->releaseRemote();
+		$args_count = count(array_keys((array)$args));
+		if($args_count == 0) {
+			$mds = array($this->vbox->hardDisks,$this->vbox->DVDImages,$this->vbox->floppyImages);
+			for($i=0;$i<3;$i++) {
+				foreach($mds[$i] as $m) {
+					/* @var $m IMedium */
+					$response[] = $this->_mediumGetDetails($m);
+					$m->releaseRemote();
+				}
 			}
+		} else {
+			$m = $this->vbox->openMedium($args['mediumid'],'HardDisk','ReadOnly',false);
+			$response[] = $this->_mediumGetDetails($m);
+			$m->releaseRemote();
 		}
 		return $response;
 	}
@@ -5499,14 +5506,22 @@ class vboxconnector {
 	 * @param array $args array of arguments. See function body for details.
 	 * @return boolean true on success
 	 */
-	public function remote_mediumSetType($args) {
+	public function remote_mediumSetProperties($args) {
 
 		// Connect to vboxwebsrv
 		$this->connect();
 
 		/* @var $m IMedium */
-		$m = $this->vbox->openMedium($args['medium'], 'HardDisk', 'ReadWrite', false);
-		$m->type = $args['type'];
+		$m = $this->vbox->openMedium($args['mediumid'], 'HardDisk', 'ReadWrite', false);
+
+		if (array_key_exists('type', $args)) {
+			$m->type = $args['type'];
+		}
+
+		if (array_key_exists('description', $args)) {
+			$m->description = $args['description'];
+		}
+
 		$m->releaseRemote();
 
 		return true;

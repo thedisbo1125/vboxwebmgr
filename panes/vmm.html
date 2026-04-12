@@ -439,32 +439,48 @@ var vmmButtons = new Array(
 			
 			var d = $('<div />').attr({'id':'vboxVMMModifyDialog'});
 
-			var med = $('#vboxVMMHDList').find('tr.vboxListItemSelected').first();
-			med = vboxMedia.getMediumById(med.data('medium'));
+			var medrec = $('#vboxVMMHDList').find('tr.vboxListItemSelected').first();
+			med = vboxMedia.getMediumById(medrec.data('medium'));
 
 			var buttons = {};
 			buttons[trans('OK','UIMessageCenter')] = function() {
 
-				mtype = $("#vmmMediaTypeSelectId option:selected" ).val();
+				var args = { mediumid: med.id };
 
+				mtype = $("#vmmMediaTypeSelectId option:selected" ).val();
 				if(med.type != mtype) {
-					$.when(vboxAjaxRequest('mediumSetType',{'medium':med.location,'type':mtype})).done(function(ret){
-				
-						if(ret && ret.success) {
-							var l = new vboxLoader();
-							l.add('vboxGetMedia',function(data){$('#vboxPane').data('vboxMedia',data.responseData);});
-							l.onLoad = function() {
-								if($('#vboxVirtualMediaManager').data('hideDiff')) {
-									var d = vboxMedia.getMediumById(med.id);
-									if(d.readOnly) $('#vboxVMMMediaTitle-'+d.id).addClass('vboxMediumReadOnly');
-									else $('#vboxVMMMediaTitle-'+d.id).removeClass('vboxMediumReadOnly');
-								}
-								$('#vmmMediumType').val(trans(mtype,'UIVirtualMediaManager'));
-							};
-							l.run();
-							$('#vboxVMMModifyDialog').empty().remove();
+					args['type'] = mtype;
+				}
+
+				meddesc = $('#vmmIdMediumDesc').val();
+				if(med.description != meddesc) {
+					args['description'] = meddesc;
+				}
+
+				if(Object.keys(args).length > 1) {
+					var l = new vboxLoader('','Saving...');
+
+					l.add('mediumSetProperties',function(data){},args);
+					l.add('vboxGetMedia',function(ret2) {
+						vboxCurrMedia = $('#vboxPane').data('vboxMedia');
+						vboxCurrMedia.forEach((element,index) => {
+							if(element.id == ret2.responseData[0].id) {
+								vboxCurrMedia[index] = ret2.responseData[0];
+							}
+						});
+						$('#vboxPane').data('vboxMedia',vboxCurrMedia);
+					},{'mediumid':med.id});
+
+					l.onLoad = function() {
+						if($('#vboxVirtualMediaManager').data('hideDiff')) {
+							var d = vboxMedia.getMediumById(med.id);
+							if(d.readOnly) $('#vboxVMMMediaTitle-'+d.id).addClass('vboxMediumReadOnly');
+							else $('#vboxVMMMediaTitle-'+d.id).removeClass('vboxMediumReadOnly');
 						}
-					});
+						$('#vmmMediumType').val(trans(mtype,'UIVirtualMediaManager'));
+					};
+					l.run();
+					$('#vboxVMMModifyDialog').empty().remove();
 				} else {
 					$('#vboxVMMModifyDialog').empty().remove();
 				}		
@@ -514,9 +530,9 @@ var vmmButtons = new Array(
 				msg = msg.replace('%1',med.location).replace('%2',trans('OK','UIMessageCenter'))
 					.replace('%3',trans('Cancel','UIMessageCenter'));
 				
-				dialogheight = 324;
+				dialogheight = 340;
 				dialogminheight = dialogheight - 7;
-				dialogwidth =  480;
+				dialogwidth =  520;
 				dialogminwidth = dialogwidth - 17;
 
 				var adddialogheight = 0;
@@ -572,6 +588,11 @@ var vmmButtons = new Array(
 					mediatypewarningsarray.push(trans('Hard drive is dynamic, <b>Shareable</b> not available','UIVirtualMediaManager'));
 				}
 
+				if(isvmrunning == true) {
+					mediatypewarningsarray = [];
+					mediatypewarningsarray.push(trans("VM hard drive is attached to is running, cannot modify disk properties","UIVirtualMediaManager"));
+				}
+
 				if(mediatypewarningsarray.length > 0) {
 
 					adddialogheight = 6;
@@ -596,6 +617,8 @@ var vmmButtons = new Array(
 					tablehtmlradio += "<tr></tr><tr></tr>";
 				}
 
+				$('#vmmIdMediumDesc').val(med.description);
+
 				if(med.hasSnapshots == true || isvmrunning == true) {
 					$warning = '<b>' + trans('Warning','UIVirtualMediaManager') + ':</b>';
 					if(isvmrunning) {
@@ -609,6 +632,10 @@ var vmmButtons = new Array(
 						$('#vboxVMMModify').find('span.disrun').addClass('disabled');
 						$('#vboxVMMModify').find('input.disrun').prop('disabled',true);
 						$('#vboxVMMModify').find('option.disrun').prop('disabled',true);
+						$('#vboxVMMModify').find('select.disrun').prop('disabled',true);
+						$('#vboxVMMModify').find('textarea.disrun').prop('disabled',true).addClass('vboxDisabled');
+						dialogwidth = dialogwidth + 50;
+						dialogminwidth = dialogwidth - 13;
 						adddialogheight = 24;
 
 					}
