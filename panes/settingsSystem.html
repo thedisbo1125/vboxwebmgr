@@ -617,6 +617,9 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 		});
 		
 		$("#vboxVMBootOrderList").addClass('disabled').children("li").unbind('click').addClass('disabled');
+
+   	    $('#vboxSettingsTabSystemMotherboard').find('button[name="vboxSettingsSystemSecBootResetKeys"]').prop('disabled',true)
+   		    .children('div').addClass('disabled').children('img').attr('src','images/vbox/vm_reset_disabled_16px.png');
 		
 	} else {
 		
