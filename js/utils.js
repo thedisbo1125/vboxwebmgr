@@ -868,7 +868,7 @@ function vboxDivOverflowHidden(p) {
  * @return {String}
  */
 function transOpDesc(opinfo) {
-    const opdescset = new Set(["Deleting", "Cloning Disk"]);
+    const opdescset = new Set(["Deleting", "Cloning Disk", "Importing appliance"]);
 
     var opdesc = opinfo.operationDescription.substring(0,opinfo.operationDescription.indexOf("'") - 1);
     var result = '';
