@@ -4627,8 +4627,13 @@ class vboxconnector {
 		// Check if NVRamStore file exists and set secure boot to false if it doesn't
 		$secbootenabled = false;
 		$NVRamStoreExists = $this->remote_fileExistsVfs(array('file'=>(string)$m->getNonVolatileStore()->nonVolatileStorageFile));
-		if($this->remote_fileExistsVfs(array('file'=>(string)$m->getNonVolatileStore()->nonVolatileStorageFile))) {
-			$secbootenabled = $m->getNonVolatileStore()->getUefiVariableStore()->SecureBootEnabled;
+
+		// Must lock machine in order to read NVRamStore
+		if($NVRamStoreExists) {
+			$this->session = $this->websessionManager->getSessionObject($this->vbox->handle);
+			$m->lockMachine($this->session->handle, 'Shared');
+			$secbootenabled = $this->session->machine->getNonVolatileStore()->getUefiVariableStore()->getSecureBootEnabled();
+			$this->session->unlockMachine();
 		}
 
 		$response = array(
