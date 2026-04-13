@@ -338,6 +338,18 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
     if($('#vboxPane').data('vboxConfig').vboxAutostartConfig) {
         document.forms['frmVboxSettings'].autostartEnabled.checked = ($('#vboxSettingsDialog').data('vboxMachineData').autostartEnabled);
         document.forms['frmVboxSettings'].autostartDelay.value = $('#vboxSettingsDialog').data('vboxMachineData').autostartDelay;
+
+		/* Disable Autostart options if Config directory is not set */
+        if($('#vboxSettingsDialog').data('vboxMachineData').autostartDatabasePath == '') {
+            $('#vboxAutostartConfigShutdown').find('span').addClass('disabled');
+            $('#vboxAutostartConfigShutdown').find('select').addClass('disabled').prop('disabled', true);
+            $('#vboxAutostartConfigStartup').find('span').addClass('disabled');
+            $('#vboxAutostartConfigStartup').find('input').addClass('disabled').prop('disabled', true);
+            $('#vboxAutostartConfigShutdown').find('*')
+                .tipped({'source':'Autostart Database Directory is not set.  Autostart options disabled','position':'mouse'});
+            $('#vboxAutostartConfigStartup').find('*')
+                .tipped({'source':'Autostart Database Directory is not set.  Autostart options disabled','position':'mouse'});
+        }
     }
     
     /* Start / stop config */
