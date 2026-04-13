@@ -1638,11 +1638,8 @@ class vboxconnector {
 								}
 							}
 						}
-
-
 					}
 				}
-
 			}
 		}
 
