@@ -4196,7 +4196,7 @@ function vboxMediaMenu(type,callback,mediumPath) {
 	};
 
 	/**
-	 * Update "recent" media list menu items
+	 * Update "recent" media list menu items - adds recent media to drop down menu
 	 *
 	 * @memberOf vboxMediaMenu
 	 */
