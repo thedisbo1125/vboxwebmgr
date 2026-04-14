@@ -145,7 +145,9 @@ var vboxVMDataMediator = {
                 vboxVMDataMediator.vmDetailsData[d.responseData.id] = d.responseData;
                 vboxVMDataMediator.promises.getVMDetails[vmid].resolve(d.responseData);
             }).fail(function(){
-                vboxVMDataMediator.promises.getVMDetails[vmid].reject();
+				if(vboxVMDataMediator.promises.getVMDetails[vmid] !== null) {
+	                vboxVMDataMediator.promises.getVMDetails[vmid].reject();
+				}
                 vboxVMDataMediator.promises.getVMDetails[vmid] = null;
             });
 
