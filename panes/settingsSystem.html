@@ -334,7 +334,7 @@ if(!$('#vboxSettingsDialog').data('vboxHostDetails').cpuFeatures.HWVirtEx) {
 /** @def VBOX_WITH_PAGE_SHARING
  * Enables the page sharing code.
  * @remarks This must match GMMR0Init; currently we only support page fusion on
- *          all 64-bit hosts except Mac OS X */
+ *     all 64-bit hosts except Mac OS X */
 if((!$('#vboxSettingsDialog').data('vboxHostDetails').cpuFeatures['Long Mode (64-bit)']) || 
 	($('#vboxSettingsDialog').data('vboxHostDetails').operatingSystem.toLowerCase().search("darwin") >-1) ||
 	($('#vboxSettingsDialog').data('vboxMachineData').vboxver > "07.01.99")) {
