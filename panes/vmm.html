@@ -370,7 +370,7 @@ var vmmButtons = new Array(
 			var l = new vboxLoader();
 			l.addFileToDOM("panes/vmmISCSI.html",$(d));
 			l.onLoad = function() {
-				$(d).dialog({'width':400,'height':350,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent',
+				$(d).dialog({'width':400,'height':350,'minWidth':400,'minHeight':343,'buttons':buttons,'modal':true,'autoOpen':true,'dialogClass':'vboxDialogContent',
 					'title':trans('Add iSCSI','UIVirtualMediaManager')});
 			};
 			l.run();
