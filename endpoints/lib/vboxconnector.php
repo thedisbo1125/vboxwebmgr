@@ -1272,12 +1272,12 @@ class vboxconnector {
 		$this->session = $this->websessionManager->getSessionObject($this->vbox->handle);
 		$machine->lockMachine($this->session->handle, 'Shared');
 
-		$this->session->console->attachUSBDevice($args['id']);
+		$this->session->console->attachUSBDevice($args['id'],null);
 
 		$this->session->unlockMachine();
-		unset($this->session);
-        $this->session->releaseRemote();
 		$machine->releaseRemote();
+        $this->session->releaseRemote();
+		unset($this->session);
 
 		return true;
 	}
@@ -3843,6 +3843,7 @@ class vboxconnector {
 				'remote' => $d->remote,
 				'deviceInfo' => $d->deviceInfo,
 				'backend' => $d->backend,
+				'state' => ((string)$this->vbox->host->findUSBDeviceById($d->id)->state),
 				);
 			$d->releaseRemote();
 		}

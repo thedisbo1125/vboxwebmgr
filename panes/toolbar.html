@@ -331,43 +331,43 @@ function vboxChooserToolbarUSBUpdate(menu) {
 			dname += ' [' + hostUSB[i].revision + ']';
 			var capt = (hostUSB[i].state == 'Captured' && guestUSB[hostUSB[i].id]);
 			var avail = (capt || (hostUSB[i].state != 'NotSupported' && hostUSB[i].state != 'Unavailable' && hostUSB[i].state != 'Captured'));
-			var cbox = $('<input />').attr({'type':'checkbox','class':'vboxCheckbox'}).prop({'checked':(capt ? true : false),'disabled':(avail ? false : true)}).on('click',function(e){
-				e.stopPropagation();
-				if($(this).prop('disabled')) return;
-				
-				var cbox = $(this);
-				// Detach
-				if($(this).data('capt')) {
-					$.when(vboxAjaxRequest('consoleUSBDeviceDetach',{'vm':vm.id,'id':$(this).data('usbDevice')})).done(function(d){
-						if(d.success) {
-							cbox.prop('checked',false);
-							cbox.data('capt',false);
-						} else {
-							cbox.prop('checked',true);
-						}
-					});
-				// Attach
-				} else {
-					$.when(vboxAjaxRequest('consoleUSBDeviceAttach',{'vm':vm.id,'id':$(this).data('usbDevice')})).done(function(d){
-						if(d.success) {
-							cbox.prop('checked',true);
-							cbox.data('capt',true);
-						} else {
-							cbox.prop('checked',false);
-						}
-					});
-				}
-			}).data({'usbDevice':hostUSB[i].id,'capt':capt});
-			
+			var cbox = $('<input />').attr({'type':'checkbox','class':'vboxCheckbox'}).prop({'checked':(capt ? true : false),'disabled':(avail ? false : true)})
+				.data({'usbDevice':hostUSB[i].id,'capt':capt});
+
+			var evtdata = { input: cbox };
+
 			$(menu).append($('<li />').append(
-				$('<span />').addClass('vboxMenuAcceptClick')
-				.on('click',function() {
-					if(!$(this).parent().hasClass('disabled')) {
-						$(this).children('input').trigger('click');
+				$('<span />').append(cbox).append(' '+dname))
+			.on('click', evtdata, function(e) {
+				if(!$(this).parent().hasClass('disabled')) {
+					cbox = $(e.data.input);
+
+					if(cbox.prop('disabled')) return;
+
+					if(cbox.data('capt')) {
+						$.when(vboxAjaxRequest('consoleUSBDeviceDetach',{'vm':vm.id,'id':cbox.data('usbDevice')})).done(function(d){
+							if(d.success) {
+								cbox.prop('checked',false);
+								cbox.data('capt',false);
+							} else {
+								cbox.prop('checked',true);
+							}
+						});
+
+					// Attach
+					} else {
+						$.when(vboxAjaxRequest('consoleUSBDeviceAttach',{'vm':vm.id,'id':cbox.data('usbDevice')})).done(function(d){
+							if(d.success) {
+								cbox.prop('checked',true);
+								cbox.data('capt',true);
+							} else {
+								cbox.prop('checked',false);
+							}
+						});
 					}
-					return false;})
-				.append(cbox).append(' '+dname)
-			).attr({'class':(avail ? '' : 'disabled')}));
+				}
+				return false;})
+			.attr({'class':(avail ? '' : 'disabled')}));
 		}
 		
 		// No devices?
