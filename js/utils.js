@@ -581,7 +581,7 @@ function vboxAlert(e,xtraOpts) {
     // Convert to <p>
     if(msg[0] != '<') msg = '<p>'+msg+'</p>';
 
-    var div = $('<div />').attr({'class':'vboxDialogContent vboxAlert'})
+    var div = $('<div />').removeClass().addClass('vboxDialogContent vboxAlert')
 		.html('<img src="images/50px-Warning_icon.svg.png" style="float: left; padding: 10px; height: 50px; width: 50px;" height="50" width="50" />'+msg);
 
 
@@ -735,7 +735,7 @@ function vboxInitDisplay(root,context) {
             for(var a = 0; a < diff; a++) {
                 $(tr).append($('<td />').attr({'style':'width: '+ tdw + '%'}));
             }
-            $('<table />').attr({'class':'sliderScale'}).append(tr).appendTo(this);
+            $('<table />').removeClass().addClass('sliderScale').append(tr).appendTo(this);
 
         });
 
