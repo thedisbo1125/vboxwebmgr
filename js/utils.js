@@ -581,7 +581,8 @@ function vboxAlert(e,xtraOpts) {
     // Convert to <p>
     if(msg[0] != '<') msg = '<p>'+msg+'</p>';
 
-    var div = $('<div />').attr({'class':'vboxDialogContent vboxAlert'}).html('<img src="images/50px-Warning_icon.svg.png" style="float: left; padding: 10px; height: 50px; width: 50px;" height="50" width="50" />'+msg);
+    var div = $('<div />').attr({'class':'vboxDialogContent vboxAlert'})
+		.html('<img src="images/50px-Warning_icon.svg.png" style="float: left; padding: 10px; height: 50px; width: 50px;" height="50" width="50" />'+msg);
 
 
     if(typeof e == 'object' && e.details) {
