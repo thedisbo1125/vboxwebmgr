@@ -506,7 +506,7 @@ var vboxVMDetailsSections = {
 
 				var li = $('<li />');
 
-				if(i==0) $(li).attr('class','separator');
+				if(i==0) $(li).removeClass().addClass('separator');
 
 				var radio = $('<input />').attr({'class':'vboxRadio','type':'radio','name':'vboxPreviewRadio','value':ints[i]})
 				.on('click',function() {
@@ -908,7 +908,8 @@ var vboxVMDetailsSections = {
 			/* Return row */
 			return [ {
 				data: $('<div />')
-						.attr({'class':'vboxInvisble'})
+						.removeClass()
+						.addClass('vboxInvisble')
 						.append(previewCanvas),
 				rawRow: true
 			}];
@@ -1448,7 +1449,7 @@ var vboxVMDetailsSections = {
 			return [{
 				title: '',
 				language_context: 'IGNORE',
-				data: $('<tr />').attr({'class':'vboxDetailRow'}).append(
+				data: $('<tr />').removeClass().addClass('vboxDetailRow').append(
 						$('<td />').attr({'class':'vboxDetailDescriptionCell','colspan':'2'})
 							.html(d.description.length ? $('<div />').text(d.description).html(): '<span class="vboxDetailsNone">'+trans("None",null,null,'details report (description)')+'</span>')
 				),
@@ -3540,13 +3541,13 @@ function vboxToolbar(options) {
 		self.height = self.size + self.addHeight;
 
 		// Create table
-		var tbl = $('<table />').attr({'class':'vboxToolbar vboxToolbar'+this.size});
+		var tbl = $('<table />').removeClass().addClass('vboxToolbar vboxToolbar'+this.size);
 		var tr = $('<tr />');
 
 		for(var i = 0; i < self.buttons.length; i++) {
 
 			if(self.buttons[i].separator) {
-				$('<td />').attr({'class':'vboxToolbarSeparator'}).html('<br />').appendTo(tr);
+				$('<td />').removeClass().addClass('vboxToolbarSeparator').html('<br />').appendTo(tr);
 			}
 
 			self.buttons[i].toolbar = self;
@@ -4210,7 +4211,7 @@ function vboxMediaMenu(type,callback,mediumPath) {
 			if(!list[i]) continue;
 			if(!vboxMedia.getMediumByLocation(list[i])) continue;
 
-			$('<li />').attr({'class':'vboxMediumRecent'}).append(
+			$('<li />').removeClass().addClass('vboxMediumRecent').append(
 					$('<a />').attr({
 						'href': '#path:'+list[i],
 						'title': list[i]
@@ -4236,9 +4237,9 @@ function vboxMediaMenu(type,callback,mediumPath) {
 		$(elm).find('a.vboxCheckMark').removeClass('vboxCheckMark').children('span.vboxCheckMark').remove();
 		if(medium) {
 			if(medium.hostDrive) {
-				$(elm).find('a[href="#'+medium.id+'"]').addClass('vboxCheckMark').prepend($('<span />').attr({'class':'vboxCheckMark'}).html('&#x2713;'));
+				$(elm).find('a[href="#'+medium.id+'"]').addClass('vboxCheckMark').prepend($('<span />').removeClass().addClass('vboxCheckMark').html('&#x2713;'));
 			} else {
-				$(elm).find('a[href="#path:'+medium.location+'"]').addClass('vboxCheckMark').prepend($('<span />').attr({'class':'vboxCheckMark'}).html('&#x2713;'));
+				$(elm).find('a[href="#path:'+medium.location+'"]').addClass('vboxCheckMark').prepend($('<span />').removeClass().addClass('vboxCheckMark').html('&#x2713;'));
 			}
 		}
 	};
@@ -4769,9 +4770,9 @@ function vboxLoader(name, text) {
 		var tbl = $('<table />');
 		var tr = $('<tr />');
 
-		$('<td />').attr('class', 'vboxLoaderSpinner').html('<img src="images/spinner.gif" width="36" height="39" />').appendTo(tr);
+		$('<td />').removeClass().addClass('vboxLoaderSpinner').html('<img src="images/spinner.gif" width="36" height="39" />').appendTo(tr);
 
-		$('<td />').attr('class','vboxLoaderText').html(trans(this.text,'UIVMDesktop')).appendTo(tr);
+		$('<td />').removeClass().addClass('vboxLoaderText').html(trans(this.text,'UIVMDesktop')).appendTo(tr);
 
 		$(tbl).append(tr).appendTo(div);
 
