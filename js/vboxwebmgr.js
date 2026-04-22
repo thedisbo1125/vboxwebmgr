@@ -2067,6 +2067,8 @@ var vboxVMActions = {
 
     		if(!vboxChooser._editable) return false;
 
+            if($('#vboxPane').data('vboxConfig')['vboxwebmgrGroups']) return true;
+
     		return vboxChooser.isSelectedInState('Editable');
 
     	}
