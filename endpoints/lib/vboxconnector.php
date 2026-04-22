@@ -3812,6 +3812,7 @@ class vboxconnector {
 		return $response;
 	}
 
+
 	/**
 	 * Get a list of USB devices attached to the VirtualBox host
 	 *
