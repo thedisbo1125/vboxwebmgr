@@ -179,6 +179,11 @@ class vboxwebmgrConfigClass {
 			$this->warnDefault = true;
 		}
 
+		/* enable/disable autostart settings */
+		if($this->enableAutostartConfig) {
+			$this->vboxAutostartConfig = true;
+		}
+
 		// Ignore any server settings if we have servers
 		// in the servers array
 		if(isset($this->servers) && is_array($this->servers) && count($this->servers) && is_array($this->servers[0])) {
