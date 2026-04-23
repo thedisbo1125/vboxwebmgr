@@ -4647,7 +4647,6 @@ class vboxconnector {
 			'autostopType' => ($this->settings->vboxAutostartConfig ? (string)$m->autostopType : ''),
 			'autostartEnabled' => ($this->settings->vboxAutostartConfig && $m->autostartEnabled),
 			'autostartDelay' => ($this->settings->vboxAutostartConfig ? intval($m->autostartDelay) : '0'),
-			'autostartDatabasePath' => $this->vbox->systemProperties->autostartDatabasePath,
 			'settingsFilePath' => $m->settingsFilePath,
 			'paravirtProvider' => (string)$m->paravirtProvider,
 			'OSTypeId' => $m->OSTypeId,
