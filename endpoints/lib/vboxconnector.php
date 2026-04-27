@@ -2014,6 +2014,7 @@ class vboxconnector {
 
 			$m->Platform->X86->HPETEnabled = $args['HPETEnabled'];
 			$m->Platform->X86->setHWVirtExProperty('LargePages', $args['HWVirtExProperties']['LargePages']);
+			$m->Platform->X86->setHWVirtExProperty('UseNativeApi', $args['HWVirtExProperties']['UseNativeApi']);
 			$m->Platform->X86->setHWVirtExProperty('UnrestrictedExecution', $args['HWVirtExProperties']['UnrestrictedExecution']);
 			$m->Platform->X86->setHWVirtExProperty('VPID', $args['HWVirtExProperties']['VPID']);
 
@@ -4705,6 +4706,7 @@ class vboxconnector {
 				'Enabled' => $m->Platform->getX86()->getHWVirtExProperty('Enabled'),
 				'NestedPaging' => $m->Platform->getX86()->getHWVirtExProperty('NestedPaging'),
 				'LargePages' => $m->Platform->getX86()->getHWVirtExProperty('LargePages'),
+				'UseNativeApi' => $m->Platform->getX86()->getHWVirtExProperty('UseNativeApi'),
 				'UnrestrictedExecution' => $m->Platform->getX86()->getHWVirtExProperty('UnrestrictedExecution'),
 				'VPID' => $m->Platform->getX86()->getHWVirtExProperty('VPID')
 				),

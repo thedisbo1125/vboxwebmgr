@@ -233,6 +233,12 @@
 		<tr class='vboxSettingsSystemAdvancedOnly'>
 			<th></th>
 			<td><label>
+				<input type='checkbox' name='settingsSystemUseNativeApi' class='vboxEnablerListen'/> <span class='translate vboxEnablerListen'>Use Native API</span>
+			</label></td>
+		</tr>
+		<tr class='vboxSettingsSystemAdvancedOnly'>
+			<th></th>
+			<td><label>
 				<input type='checkbox' name='settingsSystemUnrestrictedExecution' class='vboxEnablerListen'/> <span class='translate vboxEnablerListen'>Enable VT-x unrestricted execution</span>
 			</label></td>
 		</tr>
@@ -555,6 +561,7 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 		document.forms['frmVboxSettings'].settingsSystemUnrestrictedExecution.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.UnrestrictedExecution);
 		document.forms['frmVboxSettings'].settingsSystemVPID.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.VPID);
 		document.forms['frmVboxSettings'].vboxSettingsSystemPageFusion.checked = ($('#vboxSettingsDialog').data('vboxMachineData').pageFusionEnabled);
+		document.forms['frmVboxSettings'].settingsSystemUseNativeApi.checked = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.UseNativeApi);
 		
 		$('#vboxSettingsTabSystemMotherboard').find('tr.vboxSettingsSystemAdvancedOnly').css('display','');
 		$('#vboxSettingsTabSystemAcceleration').find('tr.vboxSettingsSystemAdvancedOnly').css('display','');
@@ -696,6 +703,7 @@ $('#vboxSettingsDialog').on('save',function(){
 		$('#vboxSettingsDialog').data('vboxMachineData').pageFusionEnabled = document.forms['frmVboxSettings'].vboxSettingsSystemPageFusion.checked;
 		$('#vboxSettingsDialog').data('vboxMachineData').HPETEnabled = document.forms['frmVboxSettings'].vboxSettingsSystemHPET.checked;
 		$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.LargePages = document.forms['frmVboxSettings'].settingsSystemLargePages.checked;
+		$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.UseNativeApi = document.forms['frmVboxSettings'].settingsSystemUseNativeApi.checked;
 		$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.UnrestrictedExecution = ($('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled && document.forms['frmVboxSettings'].settingsSystemUnrestrictedExecution.checked ? true : false);
 		$('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.VPID = $('#vboxSettingsDialog').data('vboxMachineData').HWVirtExProperties.Enabled && document.forms['frmVboxSettings'].settingsSystemVPID.checked;
 	}
