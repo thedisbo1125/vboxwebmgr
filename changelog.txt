@@ -1,4 +1,25 @@
 -------------------------------------
+    7.1/7.2-012  2026-04-27
+-------------------------------------
+
+- upgrade jquery-ui to version 1.14.2
+- upgrade jquery to version 3.7.1
+- upgrade jquery.scrollTo to 1.4.15
+- multiple code corrections to support jquery 3.7.1 and jquery-ui 1.14.2
+- add ability to enable secure boot on vm's and reset secure boot keys
+- change the appearance and functionality of the HD copy wizard drive select to mirror standard drop down list
+- auto refresh drives displayed in storage block after snapshot is taken
+- fix and update settings drop down menu on running vm's
+- fix issue where running VMs with USB 3 would not show USB option in Settings drop down menu
+- fix issue where code to attach and detatch USB devices on running VM called twice, producing an error
+- update modify medium attributes dialog and add ability to set description
+- updates to autostart settings
+- add additional hardware virtualization option "Use Native API"
+- cleanup appearance of multiple screens
+- add missing translations
+- code cleanup
+
+-------------------------------------
     7.1/7.2-012  2026-03-16
 -------------------------------------
 
