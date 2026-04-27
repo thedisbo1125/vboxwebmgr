@@ -177,7 +177,7 @@ if($('#vboxPane').data('vboxConfig').vboxAutostartConfig) {
 
     // Shutdown options select buttons
     $('#vboxAutostartConfigShutdown').find('option').each(function(i,opt){
-        $(opt).text(i == 0 ? trans('Disabled','UIDetails',null,'details (audio)') : trans($(opt).text(),'UIActionPool'));
+        $(opt).text(i == 0 ? trans('Disabled','UIMachineSettingsGeneral',null,'details (audio)') : trans($(opt).text(),'UIActionPool'));
         if($(opt).val() == $('#vboxSettingsDialog').data('vboxMachineData').autostopType)
             $(opt).prop('selected', true);
     });
