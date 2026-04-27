@@ -1940,7 +1940,7 @@ class vboxconnector {
 		if($this->remote_fileExistsVfs(array('file'=>(string)$m->getNonVolatileStore()->nonVolatileStorageFile))) {
 			$m->getNonVolatileStore()->getUefiVariableStore()->SecureBootEnabled = $args['secureboot'];
 		} else {
-			if($args['secureboot']) {
+			if(($args['secureboot']) && ($args['firmwareType'] == 'EFI')) {
 				$tempargs = array('machineobj'=>$m);
 				$this->vboxMachineSecureBootResetKeys($tempargs);
 				unset($tempargs);
