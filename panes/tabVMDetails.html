@@ -64,7 +64,7 @@ $('#vboxPane').on('vmSelectionListChanged',function(){
 
 	// Were we showing the welcome screen before?
 	} else if($('#vboxTabVMDetails').data('showingWelcome')) {
-		
+
 		$('#vboxTabVMDetails').css({'display':''})
 			.data({'showingWelcome':false}).children().hide();
 		$('#vboxVMDetails').html('').css({'display':''});

@@ -263,7 +263,7 @@ function vboxChooserToolbarMediumMount(medium) {
 		l.add('vboxGetMedia',function(d){$('#vboxPane').data('vboxMedia',d.responseData);});
 		l.run();		
 	},args);
-	mount.run();	
+	mount.run();
 }
 
 
@@ -448,7 +448,7 @@ function vboxUpdateSettingsMenu(vm) {
 			var icon = vboxStorage.getBusIconName(vm['storageControllers'][a].bus);
 			
 			for(var b = 0; b < vm['storageControllers'][a]['mediumAttachments'].length; b++) {
-				
+
 				if(vm['storageControllers'][a]['mediumAttachments'][b].type == 'HardDisk') continue;
 				
 				vm['storageControllers'][a]['mediumAttachments'][b]['controller'] = vm['storageControllers'][a]['name'];
