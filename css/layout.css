@@ -249,6 +249,14 @@ table.vboxVerticalTable td { width: 100%; white-space: nowrap; }
 
 table.vboxAccTab td { padding-left: 6px }
 
+/* welcome/loading pane table */
+table.vboxVMDetailsPane, div.vboxVMDetailsPane {
+    text-align:center;
+    width:100%;
+    height:100%; 
+    vertical-align: middle;
+}
+
 
 /* File / Folder select tables */
 table tr td.vboxFileFolderInput { white-space: nowrap; }

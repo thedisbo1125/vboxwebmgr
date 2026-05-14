@@ -12,17 +12,21 @@
 	<div id='vboxVMDetails' style='height: 100%; width: 100%; display: table; min-height:100px;' class='vboxInvisible'></div>
 
 	<!-- Loading... -->
-	<div id='vboxDetailsLoading' class='vboxInvisible' style='#position:absolute;#top:50%;display:none;vertical-align:middle;width:100%;height:100%;padding:0px;margin:0px'>
-		<div style='#position:relative;#top:-50%;padding:4px;text-align:center;width:100%'>
-			<span class='ui-corner-all translate' style='padding:8px;background:#fff;border:2px solid #ddd'>Loading...</span>
-		</div>
+	<div id='vboxDetailsLoading' class='vboxInvisible vboxVMDetailsPane'>
+		<table class='vboxVMDetailsPane'>
+			<tr><td>
+				<span class='ui-corner-all translate' style='padding:8px;background:#fff;border:2px solid #ddd'>Loading...</span>
+			</td></tr>
+		</table>
 	</div>
 
 	<!-- Welcome -->
-	<div id='vboxDetailsWelcome' style='#position:absolute;#top:50%;display:table-cell;vertical-align:middle;width:50%;height:50%;text-align:center'>
-		<div style='#position:relative;#top:-50%;padding:0px;text-align:center;width:100%'>
-			<img src='images/vbox/welcome.png' />
-		</div>
+	<div id='vboxDetailsWelcome' class='vboxVMDetailsPane'>
+		<table class='vboxVMDetailsPane'>
+			<tr><td>
+				<img src="images/vbox/welcome.png">
+			</td></tr>
+		</table>
 	</div>
 
 <script type='text/javascript'>
@@ -41,14 +45,20 @@ $('#vboxPane').on('vmSelectionListChanged',function(){
 	if(!vboxChooser || vboxChooser.selectionMode == vboxSelectionModeNone) {
 		
 		// Hide all tab children first
-		$('#vboxTabVMDetails').css({'display':'table','width':'100%'}).children().hide();
+		$('#vboxTabVMDetails').css({'display':'','width':'100%'}).children().hide();
 		
 		// Display Welcome div
-		$('#vboxDetailsWelcome').show().css('display','table-cell');
-		
+		$('#vboxDetailsWelcome').show();
+
 		$('#vboxTabVMDetails').data('showingWelcome', true);
 		
 		$('#vboxTabVMDetails').data('vboxLastSelectionList',[]);
+
+		$('#vboxTabsList').find('li').removeClass('selected');
+
+		// disable Details tab and set tabSelected to null
+		tabsMain.disableTab(tabsMain.tabs[0]);
+		tabsMain.tabSelected = null;
 		
 		return;
 
@@ -70,10 +80,10 @@ $('#vboxPane').on('vmSelectionListChanged',function(){
 		if(vboxChooser.selectedVMs.length == 1 && $('#vboxTabVMDetails').css('display') != 'none') {
 				
 			// Hide all tab children first
-			$('#vboxTabVMDetails').css({'display':'table','width':'100%'}).children().hide();
+			$('#vboxTabVMDetails').css({'display':'','width':'100%'}).children().hide();
 				
 			// Display loading div
-			$('#vboxDetailsLoading').show().css('display','table-cell');
+			$('#vboxDetailsLoading').show().css('display','');
 		}
 		
 		if(vboxChooser.getSingleSelectedId() == 'host') {
@@ -746,8 +756,8 @@ $("#vboxVMDetails").on('mouseup', function(e) {
 	.on('click',function(e){return e.button!=2;});
 
 //Display Welcome div
-$('#vboxTabVMDetails').css({'display':'table','width':'100%'}).children().hide();
-$('#vboxDetailsWelcome').show().css('display','table-cell');
+$('#vboxTabVMDetails').css({'display':'','width':'100%'}).children().hide();
+$('#vboxDetailsWelcome').show().css('display','');
 $('#vboxTabVMDetails').data('showingWelcome', true);
 
 </script>

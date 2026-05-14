@@ -1762,6 +1762,11 @@ var vboxChooser = {
 
 		}
 
+		if(tabsMain.tabSelected == null) {
+			tabsMain.enableTab(tabsMain.tabs[0]);
+			tabsMain.showTab('#'+tabsMain.tabs[0].name);
+		}
+
 		// Remove host?
 		if(selectedList.length > 1) {
 

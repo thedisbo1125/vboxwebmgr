@@ -19,7 +19,8 @@ var tabs = [
     	name:'vboxTabVMDetails',
     	content:'tabVMDetails',
     	label:'Details',
-    	icon:'vm_settings'
+    	icon:'vm_settings',
+    	default_disabled: true
 
     // Snapshots
     },{
@@ -77,6 +78,8 @@ tabLoader.onLoad = function(){
 	
 	// Add "click" functionality to each tab
 	$('#tablistMain').children().on('click',function() {
+		if($('#vboxDetailsWelcome').is(":visible")) { return false }
+
 		if(!$(this).hasClass('vboxDisabled')) {
 			tabsMain.showTab($(this).children().first().attr('href'));
 		}
@@ -121,10 +124,6 @@ function vboxTabs(id) {
 	// Add a tab to list
 	this.addTab = function (tab) {
 		
-		if(!this.tabSelected) {
-			this.tabSelected = '#'+tab.name;
-			$('#tablistMain').find('a[href="#'+tab.name+'"]').parent().addClass('selected');
-		}
 		this.tabs[this.tabs.length] = tab;
 		
 		// Initially Disable tab
@@ -155,9 +154,9 @@ function vboxTabs(id) {
 		$(''+tab).css('display','').trigger('show');
 		self.tabSelected = tab;
 		$('#tablistMain').children().removeClass('selected');
-		$('#tablistMain').find('a[href="#'+tab+'"]').parent().addClass('selected');
 
-		
+		$('#tablistMain').find('a[href="'+tab+'"]').parent().addClass('selected');
+
 	};
 
 	// Disable a tab		
