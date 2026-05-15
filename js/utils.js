@@ -63,6 +63,21 @@ function vboxTraverse(tree,prop,val,all,children) {
 
 
 /**
+ * Check if button icon is a function and call it, else return string
+ * @param (array) b - button info 
+ */
+function vboxGetButtonIcon(b) {
+	var iconname = '';
+	if((typeof b.icon) == 'function') {
+		iconname = b.icon();
+	} else {
+		iconname = b.icon;
+	}
+	return iconname;
+}
+
+
+/**
  * Performs AJAX request, alert()'s returned errors
  *
  * @param {String} fn - AJAX function to call

@@ -289,7 +289,15 @@ var vmmButtons = new Array(
 		 */
 		'name' : 'vmmnew',
 		'label' : 'New',
-		'icon' : 'hd_new',
+		'icon' : function () {
+			var iconname = '';
+			switch($("#vboxVMMTabs").tabs('option','active')) {
+				case 1: iconname = 'cd_new'; break;
+				case 2: iconname = 'fd_new'; break;
+				default: iconname = 'hd_new'; break;
+			}
+			return iconname;
+		},
 		'enabled' : function (item) { return(!$("#vboxVMMTabs").tabs('option','active')); },
 		'click' : function () {
 			$.when(new vboxWizardNewHDDialog({'path':$('#vboxVirtualMediaManager').data('vmPath')}).run()).done(function(id){
@@ -304,7 +312,16 @@ var vmmButtons = new Array(
 		 */
 		'name' : 'vmmadd',
 		'label' : 'Add',
-		'icon' : 'hd_add',
+		'icon' : function () {
+			var iconname = '';
+			switch($("#vboxVMMTabs").tabs('option','active')) {
+				case 1: iconname = 'cd_add'; break;
+				case 2: iconname = 'fd_add'; break;
+				default: iconname = 'hd_add'; break;
+			}
+			return iconname;
+		},
+		'enabled' : function () { return true;},
 		'click' : function () {
 			var type = '';
 			switch($("#vboxVMMTabs").tabs('option','active')) {
@@ -319,6 +336,7 @@ var vmmButtons = new Array(
 			
 		}
 	},
+
 	{
 		/*
 		 * Add iSCSI medium to virtualbox
@@ -327,7 +345,19 @@ var vmmButtons = new Array(
 		'label' : 'Add iSCSI',
 		'language_context': 'UIVirtualMediaManager',
 		'icon' : 'hd_add',
-		'enabled' : function (item) { return(!$("#vboxVMMTabs").tabs('option','active')); },		
+		'enabled' : function (item) { return(!$("#vboxVMMTabs").tabs('option','active')); },
+		'visible' : function () { 
+			if(!$('#vboxPane').data('vboxConfig').enableAdvancedConfig) return false;
+
+			var result = false;
+			switch($("#vboxVMMTabs").tabs('option','active')) {
+				case 1: result = false; break;
+				case 2: result = false; break;
+				default: result = true; break;
+			}
+
+			return result;
+		},
 		'click' : function () {
 
 			
@@ -382,8 +412,16 @@ var vmmButtons = new Array(
 		 */
 		'name' : 'vmmcopy',
 		'label' : 'Copy...',
-		'icon' : 'hd_copy',
-		'separator' : $('#vboxPane').data('vboxConfig').enableAdvancedConfig,
+		'icon' : function () {
+			var iconname = '';
+			switch($("#vboxVMMTabs").tabs('option','active')) {
+				case 1: iconname = 'cd_copy'; break;
+				case 2: iconname = 'fd_copy'; break;
+				default: iconname = 'hd_copy'; break;
+			}
+			return iconname;
+		},
+		'separator' : true,
 		'enabled' : function (item) {
 			if(!item) return false;
 			if($("#vboxVMMTabs").tabs('option','active')) return false;
@@ -428,7 +466,15 @@ var vmmButtons = new Array(
 		 */
 		'name' : 'vmmmodify',
 		'label' : 'Modify...',
-		'icon' : 'hd_modify',
+		'icon' : function () {
+			var iconname = '';
+			switch($("#vboxVMMTabs").tabs('option','active')) {
+				case 1: iconname = 'cd_modify'; break;
+				case 2: iconname = 'fd_modify'; break;
+				default: iconname = 'hd_modify'; break;
+			}
+			return iconname;
+		},
 		'enabled' : function (item) { 
 			if(!item) return false;
 			if($("#vboxVMMTabs").tabs('option','active')) return false;
@@ -659,7 +705,15 @@ var vmmButtons = new Array(
 		 */
 		'name' : 'vmmremove',
 		'label' : 'Remove',
-		'icon' : 'hd_remove',
+		'icon' : function () {
+			var iconname = '';
+			switch($("#vboxVMMTabs").tabs('option','active')) {
+				case 1: iconname = 'cd_remove'; break;
+				case 2: iconname = 'fd_remove'; break;
+				default: iconname = 'hd_remove'; break;
+			}
+			return iconname;
+		},
 		'enabled' : function (item) {
 			if(!item || item.target) return false;
 			var m = vboxMedia.getMediumById($(item).data('medium'));
@@ -751,7 +805,15 @@ var vmmButtons = new Array(
 		 */
 		'name' : 'vmmrelease',
 		'label' : 'Release',
-		'icon' : 'hd_release',
+		'icon' : function () {
+			var iconname = '';
+			switch($("#vboxVMMTabs").tabs('option','active')) {
+				case 1: iconname = 'cd_release'; break;
+				case 2: iconname = 'fd_release'; break;
+				default: iconname = 'hd_release'; break;
+			}
+			return iconname;
+		},
 		'enabled' : function (item) {
 			if(!item || item.target) return false;
 			var m = vboxMedia.getMediumById($(item).data('medium'));

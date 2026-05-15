@@ -3399,10 +3399,23 @@ function vboxToolbar(options) {
 		if(!self.enabled) return;
 
 		for(var i = 0; i < self.buttons.length; i++) {
-			if(self.buttons[i].enabled && !self.buttons[i].enabled(self.lastItem)) {
-				self.disableButton(self.buttons[i]);
-			} else {
-				self.enableButton(self.buttons[i]);
+
+			// Visible
+			if (self.buttons[i].visible !== undefined) {
+				if (self.buttons[i].visible() == false) {
+					$(this._buttonElements[self.buttons[i].name]).hide();
+				} else {
+					$(this._buttonElements[self.buttons[i].name]).show();
+				}
+			}
+
+			if ($(this._buttonElements[self.buttons[i].name]).css('display') !== 'none') {
+				// Enable/Disable button
+				if(self.buttons[i].enabled && !self.buttons[i].enabled(self.lastItem)) {
+					self.disableButton(self.buttons[i]);
+				} else {
+					self.enableButton(self.buttons[i]);
+				}
 			}
 		}
 	};
@@ -3441,7 +3454,9 @@ function vboxToolbar(options) {
 	 *            b - button to enable
 	 */
 	this.enableButton = function(b) {
-		this._buttonElements[b.name].addClass('vboxEnabled').removeClass('vboxDisabled disabled').children('img.vboxToolbarImg').attr('src','images/vbox/'+b.icon+'_'+self.size+'px.png');
+		var iconname = vboxGetButtonIcon(b);
+		this._buttonElements[b.name].addClass('vboxEnabled').removeClass('vboxDisabled disabled').children('img.vboxToolbarImg')
+			.attr('src','images/vbox/'+iconname+'_'+self.size+'px.png');
 	};
 
 	/**
@@ -3452,7 +3467,9 @@ function vboxToolbar(options) {
 	 *            b - button to disable
 	 */
 	this.disableButton = function(b) {
-		this._buttonElements[b.name].addClass('vboxDisabled disabled').removeClass('vboxEnabled').children('img.vboxToolbarImg').attr('src','images/vbox/'+b.icon+'_disabled_'+self.size+'px.png').trigger('mouseleave');
+		var iconname = vboxGetButtonIcon(b);
+		this._buttonElements[b.name].addClass('vboxDisabled disabled').removeClass('vboxEnabled').children('img.vboxToolbarImg')
+			.attr('src','images/vbox/'+iconname+'_disabled_'+self.size+'px.png').trigger('mouseleave');
 	};
 
 	/**
@@ -3489,17 +3506,19 @@ function vboxToolbar(options) {
 	 */
 	this.buttonElement = function(b) {
 
+		var iconname = vboxGetButtonIcon(b);
+
 		// Pre-load disabled version of icon if enabled function exists
 		if(b.enabled) {
 			var a = new Image();
-			a.src = "images/vbox/"+b.icon+"_disabled_"+self.size+"px.png";
+			a.src = "images/vbox/"+iconname+"_disabled_"+self.size+"px.png";
 		}
 
 		// TD
 		var label = String(trans(b.toolbar_label ? b.toolbar_label: b.label, b.language_context ? b.language_context : self.language_context)).replace(/\.+$/g,'')
 		var td = $('<td />').attr({'class':'vboxToolbarButton ui-corner-all vboxEnabled vboxToolbarButton'+self.size,
 			'style':self.buttonStyle+'; min-width: '+(self.size+12)+'px;'
-		}).html('<img src="images/vbox/'+b.icon+'_'+self.size+'px.png" class="vboxToolbarImg" style="height:'+self.size+'px;width:'+self.size+'px;"/><br /><span class="vboxToolbarButtonLabel">' + label +'</span>').on('click',function(){
+		}).html('<img src="images/vbox/'+iconname+'_'+self.size+'px.png" class="vboxToolbarImg" style="height:'+self.size+'px;width:'+self.size+'px;"/><br /><span class="vboxToolbarButtonLabel">' + label +'</span>').on('click',function(){
 			if($(this).hasClass('vboxDisabled')) return;
 			$(this).data('toolbar').click($(this).data('name'));
 		// store data
@@ -3689,8 +3708,11 @@ function vboxToolbarSmall(options) {
 	this.enableButton = function(b) {
 		if(b.noDisabledIcon)
 			this._buttonElements[b.name].css('display','').prop('disabled',false);
-		else
-			this._buttonElements[b.name].css('background-image','url(images/vbox/' + b.icon + '_'+self.size+'px.png)').prop('disabled',false);
+		else {
+			var iconname = vboxGetButtonIcon(b);
+			this._buttonElements[b.name].css('background-image','url(images/vbox/' + iconname + '_'+self.size+'px.png)')
+				.prop('disabled',false);
+		}
 	};
 	/**
 	 * Disable a single button
@@ -3703,8 +3725,11 @@ function vboxToolbarSmall(options) {
 	this.disableButton = function(b) {
 		if(b.noDisabledIcon)
 			this._buttonElements[b.name].css('display','none').prop('disabled',false).removeClass('vboxToolbarSmallButtonHover').addClass('vboxToolbarSmallButton').trigger('mouseleave');
-		else
-			this._buttonElements[b.name].css('background-image','url(images/vbox/' + b.icon + '_'+self.disabledString+'_'+self.size+'px.png)').prop('disabled',true).removeClass('vboxToolbarSmallButtonHover').addClass('vboxToolbarSmallButton').trigger('mouseleave');
+		else {
+			var iconname = vboxGetButtonIcon(b);
+			this._buttonElements[b.name].css('background-image','url(images/vbox/' + iconname + '_'+self.disabledString+'_'+self.size+'px.png)')
+				.prop('disabled',true).removeClass('vboxToolbarSmallButtonHover').addClass('vboxToolbarSmallButton').trigger('mouseleave');
+		}
 	};
 
 	/**
@@ -3730,16 +3755,17 @@ function vboxToolbarSmall(options) {
 	this.buttonElement = function(b) {
 
 		// Pre-load disabled version of icon if enabled function exists
+		var iconname = vboxGetButtonIcon(b);
 		if(b.enabled && !b.noDisabledIcon) {
 			var a = new Image();
-			a.src = "images/vbox/" + b.icon + '_'+self.disabledString+'_'+self.size+'px.png';
+			a.src = "images/vbox/" + iconname + '_'+self.disabledString+'_'+self.size+'px.png';
 		}
 
 		var label = String(trans(b.toolbar_label ? b.toolbar_label: b.label, b.language_context ? b.language_context : self.language_context)).replace(/\.+$/g,'')
 		var btn = $('<input />').attr({'type':'button','value':'',
 			'class': 'vboxImgButton vboxToolbarSmallButton ui-corner-all',
 			'title': label,
-			'style': self.buttonStyle+' background-image: url(images/vbox/' + b.icon + '_'+self.size+'px.png);'
+			'style': self.buttonStyle+' background-image: url(images/vbox/' + iconname + '_'+self.size+'px.png);'
 		}).click(b.click);
 
 		if(!self.noHover) {
@@ -3885,7 +3911,8 @@ function vboxButtonMediaMenu(type,callback,mediumPath) {
 	 */
 	this.enableButton = function() {
 		var b = self.button;
-		this._buttonElement.css('background-image','url(images/vbox/' + b.icon + '_'+self.size+'px.png)')
+		var iconname = vboxGetButtonIcon(b);
+		this._buttonElement.css('background-image','url(images/vbox/' + iconname + '_'+self.size+'px.png)')
 		.removeClass('vboxDisabled').html('<img src="images/downArrow.png" style="margin:0px;padding:0px;float:' +
 		'right;width:6px;height:6px;" />');
 	};
@@ -3897,7 +3924,9 @@ function vboxButtonMediaMenu(type,callback,mediumPath) {
 	 */
 	this.disableButton = function() {
 		var b = self.button;
-		this._buttonElement.css('background-image','url(images/vbox/' + b.icon + '_'+self.disabledString+'_'+self.size+'px.png)').removeClass('vboxToolbarSmallButtonHover').addClass('vboxDisabled').html('').trigger('mouseleave');
+		var iconname = vboxGetButtonIcon(b);
+		this._buttonElement.css('background-image','url(images/vbox/' + iconname + '_'+self.disabledString+'_'+self.size+'px.png)')
+		.removeClass('vboxToolbarSmallButtonHover').addClass('vboxDisabled').html('').trigger('mouseleave');
 	};
 
 	/**
@@ -3937,16 +3966,18 @@ function vboxButtonMediaMenu(type,callback,mediumPath) {
 
 		var b = self.button;
 
+		var iconname = vboxGetButtonIcon(b);
+
 		// Pre-load disabled version of icon if enabled function exists
 		if(b.enabled) {
 			var a = new Image();
-			a.src = "images/vbox/" + b.icon + "_" + self.disabledString + "_" + self.size + "px.png";
+			a.src = "images/vbox/" + iconname + "_" + self.disabledString + "_" + self.size + "px.png";
 		}
 		var label = trans(b.label, b.language_context);
 		return $('<td />').attr({'type':'button','value':'',
 			'class': 'vboxImgButton vboxToolbarSmallButton vboxButtonMenuButton ui-corner-all',
 			'title': label,
-			'style': self.buttonStyle+' background-image: url(images/vbox/' + b.icon + '_'+self.size+'px.png);text-align:right;vertical-align:bottom;'
+			'style': self.buttonStyle+' background-image: url(images/vbox/' + iconname + '_'+self.size+'px.png);text-align:right;vertical-align:bottom;'
 		}).on('click',function(e) {
 			if($(this).hasClass('vboxDisabled')) return;
 			$(this).addClass('vboxButtonMenuButtonDown');
@@ -4455,10 +4486,12 @@ function vboxMenu(options) {
 	this.menuItem = function(i) {
 
 	    var label = trans(i.label, i.language_context ? i.language_context : self.language_context);
+		var iconname = vboxGetButtonIcon(i);
+
 		return $('<li />').addClass((i.separator ? 'separator': '')).addClass((i.cssClass ? i.cssClass: '')).append($('<a />')
 			.html(label)
 			.attr({
-				'style': (i.icon ? 'background-image: url('+self.menuIcon(i,false)+')': ''),
+				'style': (iconname ? 'background-image: url('+self.menuIcon(i,false)+')': ''),
 				'id': self.name+i.name,'href':'#'+i.name
 			}));
 
@@ -4476,9 +4509,10 @@ function vboxMenu(options) {
 	 */
 	this.menuIcon = function(i,disabled) {
 
-		if(!i.icon) return '';
+		var iconname = vboxGetButtonIcon(i);
 
-		return 'images/vbox/' + i.icon + (disabled ? self.iconStringDisabled: '') + '_16px.png';
+		if(!iconname) return '';
+		return 'images/vbox/' + iconname + (disabled ? self.iconStringDisabled: '') + '_16px.png';
 
 	};
 
@@ -4540,7 +4574,8 @@ function vboxMenu(options) {
 	 */
 	this.disableItem = function(i, mi) {
 		if(!mi) mi = $('#'+self.name+i);
-		if(self.menuItems[i].icon)
+		var iconname = vboxGetButtonIcon(self.menuItems[i]);
+		if(iconname)
 			mi.css({'background-image':'url('+self.menuIcon(self.menuItems[i],true)+')'}).parent().addClass('disabled');
 		else
 			mi.parent().addClass('disabled');
@@ -4558,7 +4593,8 @@ function vboxMenu(options) {
 	 */
 	this.enableItem = function(i, mi) {
 		if(!mi) mi = $('#'+self.name+i);
-		if(self.menuItems[i].icon) {
+		var iconname = vboxGetButtonIcon(self.menuItems[i]);
+		if(iconname) {
 			if('Pause' != self.menuItems[i].label) {
 				mi.css({'background-image':'url('+self.menuIcon(self.menuItems[i],false)+')'});
 			}
