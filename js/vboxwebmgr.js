@@ -3524,6 +3524,10 @@ function vboxToolbar(options) {
 		// store data
 		}).data(b);
 
+		if(b.class !== undefined) {
+			td.addClass(b.class);
+		}
+
 		if(!self.noHover) {
 			$(td).on('mouseenter',function(){if($(this).hasClass('vboxEnabled')){$(this).addClass('vboxToolbarButtonHover');}})
 			.on('mouseleave',function(){$(this).removeClass('vboxToolbarButtonHover');})
