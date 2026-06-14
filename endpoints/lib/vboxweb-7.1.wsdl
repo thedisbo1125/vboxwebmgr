@@ -44,6 +44,7 @@
             v1_19: 21 -
             v1_20: 22 -
             v1_21: 23 -
+            v1_22: 24 -
             Future: 99999 -
             -->
       <xsd:simpleType name="SettingsVersion">
@@ -72,6 +73,7 @@
           <xsd:enumeration value="v1_19"/>
           <xsd:enumeration value="v1_20"/>
           <xsd:enumeration value="v1_21"/>
+          <xsd:enumeration value="v1_22"/>
           <xsd:enumeration value="Future"/>
         </xsd:restriction>
       </xsd:simpleType>
@@ -10658,6 +10660,21 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <!-- readonly attribute IMachine::clipboard-->
+      <xsd:element name="IMachine_getClipboard">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="_this" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IMachine_getClipboardResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="returnval" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <!-- read/write attribute IMachine::clipboardMode-->
       <xsd:element name="IMachine_getClipboardMode">
         <xsd:complexType>
@@ -16451,6 +16468,35 @@
           <xsd:sequence>
             <xsd:element name="returnval" minOccurs="0" maxOccurs="unbounded" type="vbox:VMExecutionEngine"/>
           </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <!--Interface IClipboard-->
+      <!-- read/write attribute IClipboard::mode-->
+      <xsd:element name="IClipboard_getMode">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="_this" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IClipboard_getModeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="returnval" type="vbox:ClipboardMode"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IClipboard_setMode">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="_this" type="xsd:string"/>
+            <xsd:element name="mode" type="vbox:ClipboardMode"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IClipboard_setModeResponse">
+        <xsd:complexType>
+          <xsd:sequence/>
         </xsd:complexType>
       </xsd:element>
       <!--Interface IDnDBase-->
@@ -35619,6 +35665,13 @@
   <wsdl:message name="IMachine_getSharedFoldersResultMsg">
     <wsdl:part name="parameters" element="vbox:IMachine_getSharedFoldersResponse"/>
   </wsdl:message>
+  <!-- readonly attribute IMachine::clipboard-->
+  <wsdl:message name="IMachine_getClipboardRequestMsg">
+    <wsdl:part name="parameters" element="vbox:IMachine_getClipboard"/>
+  </wsdl:message>
+  <wsdl:message name="IMachine_getClipboardResultMsg">
+    <wsdl:part name="parameters" element="vbox:IMachine_getClipboardResponse"/>
+  </wsdl:message>
   <!-- read/write attribute IMachine::clipboardMode-->
   <wsdl:message name="IMachine_getClipboardModeRequestMsg">
     <wsdl:part name="parameters" element="vbox:IMachine_getClipboardMode"/>
@@ -38335,6 +38388,24 @@
         messages for interface IAdditionsFacility
         *************************************
       -->
+  <!--
+        *************************************
+        messages for interface IClipboard
+        *************************************
+      -->
+  <!-- read/write attribute IClipboard::mode-->
+  <wsdl:message name="IClipboard_getModeRequestMsg">
+    <wsdl:part name="parameters" element="vbox:IClipboard_getMode"/>
+  </wsdl:message>
+  <wsdl:message name="IClipboard_getModeResultMsg">
+    <wsdl:part name="parameters" element="vbox:IClipboard_getModeResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IClipboard_setModeRequestMsg">
+    <wsdl:part name="parameters" element="vbox:IClipboard_setMode"/>
+  </wsdl:message>
+  <wsdl:message name="IClipboard_setModeResultMsg">
+    <wsdl:part name="parameters" element="vbox:IClipboard_setModeResponse"/>
+  </wsdl:message>
   <!--
         *************************************
         messages for interface IDnDBase
@@ -49485,6 +49556,12 @@
       <wsdl:fault name="InvalidObjectFault" message="vbox:InvalidObjectFaultMsg"/>
       <wsdl:fault name="RuntimeFault" message="vbox:RuntimeFaultMsg"/>
     </wsdl:operation>
+    <wsdl:operation name="IMachine_getClipboard">
+      <wsdl:input message="vbox:IMachine_getClipboardRequestMsg"/>
+      <wsdl:output message="vbox:IMachine_getClipboardResultMsg"/>
+      <wsdl:fault name="InvalidObjectFault" message="vbox:InvalidObjectFaultMsg"/>
+      <wsdl:fault name="RuntimeFault" message="vbox:RuntimeFaultMsg"/>
+    </wsdl:operation>
     <wsdl:operation name="IMachine_getClipboardMode">
       <wsdl:input message="vbox:IMachine_getClipboardModeRequestMsg"/>
       <wsdl:output message="vbox:IMachine_getClipboardModeResultMsg"/>
@@ -51863,6 +51940,23 @@
           operations in portType for interface IAdditionsFacility
           *************************************
         -->
+    <!--
+          *************************************
+          operations in portType for interface IClipboard
+          *************************************
+        -->
+    <wsdl:operation name="IClipboard_getMode">
+      <wsdl:input message="vbox:IClipboard_getModeRequestMsg"/>
+      <wsdl:output message="vbox:IClipboard_getModeResultMsg"/>
+      <wsdl:fault name="InvalidObjectFault" message="vbox:InvalidObjectFaultMsg"/>
+      <wsdl:fault name="RuntimeFault" message="vbox:RuntimeFaultMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="IClipboard_setMode">
+      <wsdl:input message="vbox:IClipboard_setModeRequestMsg"/>
+      <wsdl:output message="vbox:IClipboard_setModeResultMsg"/>
+      <wsdl:fault name="InvalidObjectFault" message="vbox:InvalidObjectFaultMsg"/>
+      <wsdl:fault name="RuntimeFault" message="vbox:RuntimeFaultMsg"/>
+    </wsdl:operation>
     <!--
           *************************************
           operations in portType for interface IDnDBase
@@ -66590,6 +66684,21 @@
         <soap:fault name="RuntimeFault" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="IMachine_getClipboard">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidObjectFault">
+        <soap:fault name="InvalidObjectFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RuntimeFault">
+        <soap:fault name="RuntimeFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="IMachine_getClipboardMode">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input>
@@ -72415,6 +72524,41 @@
           operations in portType for interface IAdditionsFacility
           *************************************
         -->
+    <!--
+          *************************************
+          operations in portType for interface IClipboard
+          *************************************
+        -->
+    <wsdl:operation name="IClipboard_getMode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidObjectFault">
+        <soap:fault name="InvalidObjectFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RuntimeFault">
+        <soap:fault name="RuntimeFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IClipboard_setMode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidObjectFault">
+        <soap:fault name="InvalidObjectFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RuntimeFault">
+        <soap:fault name="RuntimeFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <!--
           *************************************
           operations in portType for interface IDnDBase

@@ -6554,6 +6554,14 @@ class IMachine extends VBox_ManagedObject
         return new ISharedFolderCollection ($this->connection, (array)$response->returnval);
     }
 
+    public function getClipboard()
+    {
+        $request = new stdClass();
+        $request->_this = $this->handle;
+        $response = $this->connection->__soapCall('IMachine_getClipboard', array((array)$request));
+        return new IClipboard ($this->connection, $response->returnval);
+    }
+
     public function getClipboardMode()
     {
         $request = new stdClass();
@@ -9541,6 +9549,44 @@ class ISystemProperties extends VBox_ManagedObject
 class ISystemPropertiesCollection extends VBox_ManagedObjectCollection
 {
     protected $_interfaceName = "ISystemProperties";
+}
+
+/**
+ * Generated VBoxWebService Interface Wrapper
+ */
+class IClipboard extends VBox_ManagedObject
+{
+
+    public function getMode()
+    {
+        $request = new stdClass();
+        $request->_this = $this->handle;
+        $response = $this->connection->__soapCall('IClipboard_getMode', array((array)$request));
+        return new ClipboardMode ($this->connection, $response->returnval);
+    }
+
+    public function setMode($value)
+    {
+        $request = new stdClass();
+        $request->_this = $this->handle;
+        if (is_null($value) || is_scalar($value))
+        {
+            $request->mode = $value;
+        }
+        else
+        {
+            $request->mode = $value->handle;
+        }
+        $this->connection->__soapCall('IClipboard_setMode', array((array)$request));
+    }
+}
+
+/**
+ * Generated VBoxWebService Managed Object Collection
+ */
+class IClipboardCollection extends VBox_ManagedObjectCollection
+{
+    protected $_interfaceName = "IClipboard";
 }
 
 /**
@@ -22380,8 +22426,8 @@ class IMediumAttachmentCollection extends VBox_StructCollection
  */
 class SettingsVersion extends VBox_Enum
 {
-    public $NameMap = array(0 => 'Null', 1 => 'v1_0', 2 => 'v1_1', 3 => 'v1_2', 4 => 'v1_3pre', 5 => 'v1_3', 6 => 'v1_4', 7 => 'v1_5', 8 => 'v1_6', 9 => 'v1_7', 10 => 'v1_8', 11 => 'v1_9', 12 => 'v1_10', 13 => 'v1_11', 14 => 'v1_12', 15 => 'v1_13', 16 => 'v1_14', 17 => 'v1_15', 18 => 'v1_16', 19 => 'v1_17', 20 => 'v1_18', 21 => 'v1_19', 22 => 'v1_20', 23 => 'v1_21', 99999 => 'Future');
-    public $ValueMap = array('Null' => 0, 'v1_0' => 1, 'v1_1' => 2, 'v1_2' => 3, 'v1_3pre' => 4, 'v1_3' => 5, 'v1_4' => 6, 'v1_5' => 7, 'v1_6' => 8, 'v1_7' => 9, 'v1_8' => 10, 'v1_9' => 11, 'v1_10' => 12, 'v1_11' => 13, 'v1_12' => 14, 'v1_13' => 15, 'v1_14' => 16, 'v1_15' => 17, 'v1_16' => 18, 'v1_17' => 19, 'v1_18' => 20, 'v1_19' => 21, 'v1_20' => 22, 'v1_21' => 23, 'Future' => 99999);
+    public $NameMap = array(0 => 'Null', 1 => 'v1_0', 2 => 'v1_1', 3 => 'v1_2', 4 => 'v1_3pre', 5 => 'v1_3', 6 => 'v1_4', 7 => 'v1_5', 8 => 'v1_6', 9 => 'v1_7', 10 => 'v1_8', 11 => 'v1_9', 12 => 'v1_10', 13 => 'v1_11', 14 => 'v1_12', 15 => 'v1_13', 16 => 'v1_14', 17 => 'v1_15', 18 => 'v1_16', 19 => 'v1_17', 20 => 'v1_18', 21 => 'v1_19', 22 => 'v1_20', 23 => 'v1_21', 24 => 'v1_22', 99999 => 'Future');
+    public $ValueMap = array('Null' => 0, 'v1_0' => 1, 'v1_1' => 2, 'v1_2' => 3, 'v1_3pre' => 4, 'v1_3' => 5, 'v1_4' => 6, 'v1_5' => 7, 'v1_6' => 8, 'v1_7' => 9, 'v1_8' => 10, 'v1_9' => 11, 'v1_10' => 12, 'v1_11' => 13, 'v1_12' => 14, 'v1_13' => 15, 'v1_14' => 16, 'v1_15' => 17, 'v1_16' => 18, 'v1_17' => 19, 'v1_18' => 20, 'v1_19' => 21, 'v1_20' => 22, 'v1_21' => 23, 'v1_22' => 24, 'Future' => 99999);
 }
 
 /**

@@ -1515,6 +1515,9 @@ class vboxconnector {
 	 */
 	private function _machineSaveRunning($args, $state) {
 
+		$this->getVersion();
+		$version = $this->version['major'].'.'.$this->version['minor'];
+
 		// Client and server must agree on advanced config setting
 		$this->settings->enableAdvancedConfig = (@$this->settings->enableAdvancedConfig && @$args['clientConfig']['enableAdvancedConfig']);
 		$this->settings->enableHDFlushConfig = (@$this->settings->enableHDFlushConfig && @$args['clientConfig']['enableHDFlushConfig']);
@@ -1525,7 +1528,13 @@ class vboxconnector {
 
 		$m->CPUExecutionCap = $args['CPUExecutionCap'];
 		$m->description = $args['description'];
-		$m->ClipboardMode = $args['ClipboardMode'];
+
+		// Clipboard settings (changed in version 7.2.10)
+		if(($version == '7.2') && ((int)$this->version['sub'] > 8)) {
+			$this->session->machine->Clipboard->Mode = $args['ClipboardMode'];
+		} else {
+			$this->session->machine->ClipboardMode = $args['ClipboardMode'];
+		}
 
 		// Start / stop config
 		if(@$this->settings->startStopConfig) {
@@ -1884,6 +1893,9 @@ class vboxconnector {
 
 		$this->connect();
 
+		$this->getVersion();
+		$version = $this->version['major'].'.'.$this->version['minor'];
+
 		// create session and lock machine
 		/* @var $machine IMachine */
 		$machine = $this->vbox->findMachine($args['id']);
@@ -1964,7 +1976,13 @@ class vboxconnector {
 		$m->CPUExecutionCap = $args['CPUExecutionCap'];
 
 		$m->description = $args['description'];
-		$m->ClipboardMode = $args['ClipboardMode'];
+
+		// Clipboard settings (changed in version 7.2.10)
+		if(($version == '7.2') && ((int)$this->version['sub'] > 8)) {
+			$this->session->machine->Clipboard->Mode = $args['ClipboardMode'];
+		} else {
+			$this->session->machine->ClipboardMode = $args['ClipboardMode'];
+		}
 
 		// TPM
 		$m->trustedPlatformModule->Type = $args['TPM'];
@@ -4113,6 +4131,9 @@ class vboxconnector {
 
 		$response = array();
 
+		$this->getVersion();
+		$version = $this->version['major'].'.'.$this->version['minor'];
+
 		// quota enforcement
 		if ( isset($_SESSION['user']) )
 		{
@@ -4207,7 +4228,14 @@ class vboxconnector {
 			$this->session->machine->Platform->RTCUseUTC = $defaults->recommendedRTCUseUTC;
 			$this->session->machine->getFirmwareSettings()->firmwareType = (string)$defaults->recommendedFirmware;
 			$this->session->machine->Platform->chipsetType = (string)$defaults->recommendedChipset;
-			$this->session->machine->ClipboardMode = 'Disabled';
+
+			// Clipboard settings (changed in version 7.2.10)
+			if(($version == '7.2') && ((int)$this->version['sub'] > 8)) {
+				$this->session->machine->Clipboard->Mode = 'Disabled';
+			} else {
+				$this->session->machine->ClipboardMode = 'Disabled';
+			}
+
 			if(intval($defaults->recommendedVRAM) > 0) $this->session->machine->GraphicsAdapter->setVRAMSize(intval($defaults->recommendedVRAM));
 			$this->session->machine->GraphicsAdapter->setGraphicsControllerType((string)$defaults->recommendedGraphicsController);
 			$this->session->machine->Platform->getX86()->setCpuProperty('PAE',$defaults->recommendedPAE);
@@ -4676,7 +4704,12 @@ class vboxconnector {
 
 			'TPM' => (string)$m->trustedPlatformModule->type,
 			'snapshotFolder' => $m->snapshotFolder,
-			'ClipboardMode' => (string)$m->ClipboardMode,
+
+			// # clipboard setttings move to IClipboard in version 7.2.10
+			'ClipboardMode' => ((($version == '7.2') && ((int)$this->version['sub'] > 8)) ?
+				(string)$m->Clipboard->getMode() :
+				(string)$m->ClipboardMode),
+
 			'monitorCount' => $m->GraphicsAdapter->monitorCount,
 			'pageFusionEnabled' => $m->pageFusionEnabled,
 			'VRDEServer' => (!$m->VRDEServer ? null : array(
