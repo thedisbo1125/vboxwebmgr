@@ -5295,6 +5295,7 @@ function vboxNetworkAdapterType(t) {
 		case 'ELNK1': return '3Com EtherLink (3C501)';
 		case 'UsbNet': return 'Ethernet over USB (usbnet)';
 		case 'I82583V': return 'Intel 82583V Gigabit Network Connection [EXPERIMENTAL]';
+		case 'I82574': return 'Intel 82574 Gigabit Network Connection [EXPERIMENTAL]';
 	}
 	return 'unknown';
 }
