@@ -4706,7 +4706,7 @@ class vboxconnector {
 			'snapshotFolder' => $m->snapshotFolder,
 
 			// # clipboard setttings move to IClipboard in version 7.2.12
-			'ClipboardMode' => (string)$m->ClipboardMode),
+			'ClipboardMode' => (string)$m->ClipboardMode,
 //			'ClipboardMode' => ((($version == '7.2') && ((int)$this->version['sub'] > 10)) ?
 //				(string)$m->Clipboard->getMode() :
 //				(string)$m->ClipboardMode),
