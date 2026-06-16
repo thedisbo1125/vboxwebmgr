@@ -1529,12 +1529,12 @@ class vboxconnector {
 		$m->CPUExecutionCap = $args['CPUExecutionCap'];
 		$m->description = $args['description'];
 
-		// Clipboard settings (changed in version 7.2.10)
-		if(($version == '7.2') && ((int)$this->version['sub'] > 8)) {
-			$this->session->machine->Clipboard->Mode = $args['ClipboardMode'];
-		} else {
+		// Clipboard settings (changed in version 7.2.12)
+//		if(($version == '7.2') && ((int)$this->version['sub'] > 10)) {
+//			$this->session->machine->Clipboard->Mode = $args['ClipboardMode'];
+//		} else {
 			$this->session->machine->ClipboardMode = $args['ClipboardMode'];
-		}
+//		}
 
 		// Start / stop config
 		if(@$this->settings->startStopConfig) {
@@ -1977,12 +1977,12 @@ class vboxconnector {
 
 		$m->description = $args['description'];
 
-		// Clipboard settings (changed in version 7.2.10)
-		if(($version == '7.2') && ((int)$this->version['sub'] > 8)) {
-			$this->session->machine->Clipboard->Mode = $args['ClipboardMode'];
-		} else {
+		// Clipboard settings (changed in version 7.2.12)
+//		if(($version == '7.2') && ((int)$this->version['sub'] > 10)) {
+//			$this->session->machine->Clipboard->Mode = $args['ClipboardMode'];
+//		} else {
 			$this->session->machine->ClipboardMode = $args['ClipboardMode'];
-		}
+//		}
 
 		// TPM
 		$m->trustedPlatformModule->Type = $args['TPM'];
@@ -4229,12 +4229,12 @@ class vboxconnector {
 			$this->session->machine->getFirmwareSettings()->firmwareType = (string)$defaults->recommendedFirmware;
 			$this->session->machine->Platform->chipsetType = (string)$defaults->recommendedChipset;
 
-			// Clipboard settings (changed in version 7.2.10)
-			if(($version == '7.2') && ((int)$this->version['sub'] > 8)) {
-				$this->session->machine->Clipboard->Mode = 'Disabled';
-			} else {
+			// Clipboard settings (changed in version 7.2.12)
+//			if(($version == '7.2') && ((int)$this->version['sub'] > 10)) {
+//				$this->session->machine->Clipboard->Mode = 'Disabled';
+//			} else {
 				$this->session->machine->ClipboardMode = 'Disabled';
-			}
+//			}
 
 			if(intval($defaults->recommendedVRAM) > 0) $this->session->machine->GraphicsAdapter->setVRAMSize(intval($defaults->recommendedVRAM));
 			$this->session->machine->GraphicsAdapter->setGraphicsControllerType((string)$defaults->recommendedGraphicsController);
@@ -4705,10 +4705,11 @@ class vboxconnector {
 			'TPM' => (string)$m->trustedPlatformModule->type,
 			'snapshotFolder' => $m->snapshotFolder,
 
-			// # clipboard setttings move to IClipboard in version 7.2.10
-			'ClipboardMode' => ((($version == '7.2') && ((int)$this->version['sub'] > 8)) ?
-				(string)$m->Clipboard->getMode() :
-				(string)$m->ClipboardMode),
+			// # clipboard setttings move to IClipboard in version 7.2.12
+			'ClipboardMode' => (string)$m->ClipboardMode),
+//			'ClipboardMode' => ((($version == '7.2') && ((int)$this->version['sub'] > 10)) ?
+//				(string)$m->Clipboard->getMode() :
+//				(string)$m->ClipboardMode),
 
 			'monitorCount' => $m->GraphicsAdapter->monitorCount,
 			'pageFusionEnabled' => $m->pageFusionEnabled,
