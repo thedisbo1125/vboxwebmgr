@@ -232,6 +232,7 @@ tbody.vboxHover tr.vboxHover td {
 	background: #e0e8ff;
 	color: #000;
 }
+
 /* Tables */
 table.vboxVertical, table.vboxHorizontal { border: 0px; border-spacing: 0px; width: 100%; }
 table.vboxHorizontal th, table.vboxHorizontal td { white-space: nowrap; }
