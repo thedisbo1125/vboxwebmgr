@@ -23,15 +23,21 @@
         <td style="width: 0px; display: inline-block;"/>
     </tr>
     <tr>
-        <th><span class='translateos'>Type:</span></th>
+        <th><span class='translateos'>OS:</span></th>
         <td><select class="vboxselectstdbackground" name='vboxSettingsGeneralOSFamily' id='vboxSettingsGeneralOSFamily' >
             <option value='Linux'>Linux</option>
         </select></td>
         <td rowspan='2'><img name='vboxOSTypeImg' height='32' width='32' /></td>
     </tr>
     <tr>
-        <th><span class='translateos'>Version:</span></th>
-        <td><select class="vboxselectstdbackground" id='vboxSettingsGeneralOSType' name='vboxSettingsGeneralOSType'>
+        <th><span class='translateos'>OS Distribution:</span></th>
+        <td><select class="vboxselectstdbackground" id='vboxSettingsGeneralOSDist' name='vboxSettingsGeneralOSDist'>
+            <option value='Debian'>Debian</option>
+        </select></td>
+    </tr>
+    <tr>
+        <th><span class='translateos'>OS Version:</span></th>
+        <td><select class="vboxselectstdbackground" id='vboxSettingsGeneralOSVersion' name='vboxSettingsGeneralOSVersion'>
             <option value='Debian'>Debian</option>
         </select></td>
     </tr>
@@ -173,6 +179,110 @@ $('#vboxSettingsTabGeneralBasic').find(".translateos").html(function(i,h){return
 $('#vboxSettingsClipboardMode').find('option').html(function(i,h){return trans(h,'UIMachineSettingsGeneral');});
 
 
+/***********
+ *
+ * Basic page
+ *
+ ***********/
+
+
+/*
+ *
+ * Called when OS family type changes
+ *
+ */
+function vboxSettingsUpdateOSList(osfam) {
+
+    $('#vboxSettingsGeneralOSDist').children().remove();
+    $('#vboxSettingsGeneralOSVersion').children().remove();
+
+    // add subtype to OS Dist
+    var optioncnt = 0;
+    var subtype = "";
+    for(var i = 0; i < vboxSettingsOSTypes[osfam].osTypes.length; i++) {
+        subtype = vboxSettingsOSTypes[osfam].osTypes[i].subtype;
+        if(($("#vboxSettingsGeneralOSDist option[value='" + subtype + "']").length == 0) && (subtype.trim())) {
+            $('#vboxSettingsGeneralOSDist').append(($('<option>', {
+                value: subtype,
+                text: subtype
+            })).addClass('test'));
+        }
+    }
+
+    vboxSettingsUpdateOSDist(osfam);
+
+    if($('#vboxSettingsGeneralOSDist option').length > 0) {
+        $("#vboxSettingsGeneralOSDist").enable_disableline(true);
+        switch($("#vboxSettingsGeneralOSFamily").val()) {
+            case 'Linux':
+                $("#vboxSettingsGeneralOSDist").val('Debian').trigger('change');
+                break;
+            default:
+                $("#vboxSettingsGeneralOSDist").val('FreeBSD').trigger('change');
+        }
+    } else {
+        $("#vboxSettingsGeneralOSDist").enable_disableline(false);
+    }
+
+}
+
+
+/*
+ *
+ * Called when OS distribution changes
+ * 
+ */
+function vboxSettingsUpdateOSDist(osfam) {
+
+    // add OS Types to OS Version
+    $('#vboxSettingsGeneralOSVersion').children().remove();
+
+    var optioncnt = 0;
+    for(var i = 0; i < vboxSettingsOSTypes[osfam].osTypes.length; i++) {
+
+    	// remove ARM from OS Version, additional codes changes to PHP background are needed
+        if(vboxSettingsOSTypes[osfam].osTypes[i].description.includes("ARM") == false) {
+            if((vboxSettingsOSTypes[osfam].osTypes[i].subtype == $("#vboxSettingsGeneralOSDist").val()) || (!vboxSettingsOSTypes[osfam].osTypes[i].subtype.trim())){
+                $('#vboxSettingsGeneralOSVersion').append($('<option>', {
+                    value: vboxSettingsOSTypes[osfam].osTypes[i].id,
+                    text: vboxSettingsOSTypes[osfam].osTypes[i].description
+                }));
+            }
+		}
+	}
+
+    if($('#vboxSettingsGeneralOSVersion option').length > 1) {
+        $('#vboxSettingsGeneralOSVersion').prop('selectedIndex', 1);
+    } else {
+        $('#vboxSettingsGeneralOSVersion').prop('selectedIndex', 0);
+    }
+
+    switch($("#vboxSettingsGeneralOSFamily").val()) {
+        case 'Other':
+            $('#vboxSettingsGeneralOSVersion').val('Other_64');
+            break;
+        case 'Solaris':
+            $('#vboxSettingsGeneralOSVersion').val('Solaris11_64');
+            break;
+        case 'Windows':
+            $('#vboxSettingsGeneralOSVersion').val('Windows11_64');
+            break;
+        case 'Linux':
+            if($('#vboxSettingsGeneralOSDist').val() === 'Debian') {
+                $('#vboxSettingsGeneralOSVersion').val('Debian13_64');
+            }
+            break;
+        case 'OS2':
+            $('#vboxSettingsGeneralOSVersion').val('OS2Warp45');
+            break;
+        default:
+    }
+
+	// Trigger change
+    $('#vboxSettingsGeneralOSVersion').trigger('change');
+}
+
+
 if($('#vboxPane').data('vboxConfig').vboxAutostartConfig) {
 
     // Shutdown options select buttons
@@ -214,25 +324,6 @@ if($('#vboxPane').data('vboxConfig').enableCustomIcons) {
     });
 }
 
-/*
- * Called when OS family type changes
- */
-function vboxSettingsUpdateOSList(osfam) {
-    document.forms['frmVboxSettings'].vboxSettingsGeneralOSType.options.length = 0;
-    $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSType).children().remove();
-
-    // Hide ARM selections for now, multiple code corrections needed to support ARM CPUs
-    var optioncnt = 0;
-    for(var i = 0; i < vboxSettingsOSTypes[osfam].osTypes.length; i++) {
-        if (vboxSettingsOSTypes[osfam].osTypes[i].description.includes("ARM") == false) {
-            document.forms['frmVboxSettings'].vboxSettingsGeneralOSType.options[optioncnt] = new Option(vboxSettingsOSTypes[osfam].osTypes[i].description, vboxSettingsOSTypes[osfam].osTypes[i].id);
-            optioncnt += 1;
-        }
-    }
-
-    // Update image
-    document.images["vboxOSTypeImg"].src = "images/vbox/" + vboxGuestOSTypeIcon(vboxSettingsOSTypes[osfam].osTypes[0].id);
-}
 
 var vboxSettingsOSTypes = new Array();
 var vboxSettingsOSTypesObj = {};
@@ -244,7 +335,6 @@ var vboxOSTypes = $('#vboxPane').data('vboxOSTypes');
 var vboxDefaultOSTypeId = 'Debian';
 
 var myOSType = $('#vboxSettingsDialog').data('vboxMachineData').OSTypeId;
-var dosfam = null; // holds defaultostype family id
 
 for(var i in vboxOSTypes) {
 
@@ -256,14 +346,8 @@ for(var i in vboxOSTypes) {
         vboxSettingsOSTypes[vboxOSTypes[i].familyId] = {'id':vboxOSTypes[i].familyId,'description':vboxOSTypes[i].familyDescription,'osTypes':[]};
     }
 
-    // We're on the default os type, record family id and index number
-    // so that we can set it later on
-    if(vboxOSTypes[i].id == vboxDefaultOSTypeId) {
-        dosfam = vboxOSTypes[i].familyId;
-        vboxDefaultOSTypeId = vboxSettingsOSTypes[vboxOSTypes[i].familyId].osTypes.length;
-    }
-
-    vboxSettingsOSTypes[vboxOSTypes[i].familyId].osTypes[vboxSettingsOSTypes[vboxOSTypes[i].familyId].osTypes.length] = {'id':vboxOSTypes[i].id,'description':vboxOSTypes[i].description };
+	vboxSettingsOSTypes[vboxOSTypes[i].familyId].osTypes[vboxSettingsOSTypes[vboxOSTypes[i].familyId].osTypes.length] =
+        {'id':vboxOSTypes[i].id,'description':vboxOSTypes[i].description, 'subtype':vboxOSTypes[i].subtype };
 
     vboxSettingsOSTypesObj[vboxOSTypes[i].id] = vboxOSTypes[i];
     
@@ -274,16 +358,16 @@ for(var i in vboxOSTypes) {
 }
 
 // clear all options
-document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily.options.length = 0;
-$(document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily).children().remove();
+$('#vboxSettingsGeneralOSFamily').empty();
 for(var i in vboxSettingsOSTypes) {
     // default os type family? record in dosfam
-    if(i == dosfam) dosfam = document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily.options.length;
     document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily.options[document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily.options.length] = new Option(vboxSettingsOSTypes[i].description, vboxSettingsOSTypes[i].id);
 }
+
 // OnChange, update os type list and icon
-document.getElementById('vboxSettingsGeneralOSFamily').setAttribute('onChange','vboxSettingsUpdateOSList(this.value)');
-document.getElementById('vboxSettingsGeneralOSType').setAttribute('onChange','document.images["vboxOSTypeImg"].src = "images/vbox/" + vboxGuestOSTypeIcon(this.value)');
+$('#vboxSettingsGeneralOSFamily').on('change',function() { vboxSettingsUpdateOSList(this.value); });
+$('#vboxSettingsGeneralOSDist').on('change',function() { vboxSettingsUpdateOSDist($('#vboxSettingsGeneralOSFamily').val()); });
+$('#vboxSettingsGeneralOSVersion').on('change',function() { document.images["vboxOSTypeImg"].src = "images/vbox/" + vboxGuestOSTypeIcon(this.value); });
 
 
 
@@ -295,8 +379,17 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
     document.forms['frmVboxSettings'].vboxSettingsGeneralName.value = $('#vboxSettingsDialog').data('vboxMachineData').name;
     document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily.value = vboxSettingsOSTypesObj[$('#vboxSettingsDialog').data('vboxMachineData').OSTypeId].familyId;
     $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily).trigger('change');
-    document.forms['frmVboxSettings'].vboxSettingsGeneralOSType.value = $('#vboxSettingsDialog').data('vboxMachineData').OSTypeId;
-    $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSType).trigger('change');
+
+    if($('#vboxSettingsGeneralOSDist option').length > 0) {
+        var findsubtype = vboxSettingsOSTypes[vboxSettingsOSTypesObj[$('#vboxSettingsDialog').data('vboxMachineData').OSTypeId].familyId].osTypes.find(
+            item => item.id === $('#vboxSettingsDialog').data('vboxMachineData').OSTypeId).subtype;
+
+        $('#vboxSettingsGeneralOSDist').find('option[value="' + findsubtype + '"]').prop('selected', true);
+        $('#vboxSettingsGeneralOSDist').trigger('change');
+    }
+
+    document.forms['frmVboxSettings'].vboxSettingsGeneralOSVersion.value = $('#vboxSettingsDialog').data('vboxMachineData').OSTypeId;
+    $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSVersion).trigger('change');
     document.forms['frmVboxSettings'].vboxSettingsGeneralSnapshotFolder.value = $('#vboxSettingsDialog').data('vboxMachineData').snapshotFolder;
     document.forms['frmVboxSettings'].vboxSettingsGeneralDescription.innerHTML = $('#vboxSettingsDialog').data('vboxMachineData').description;
 
@@ -305,20 +398,6 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
     $(document.forms['frmVboxSettings'].vboxSettingsTabGeneralInputMouse).val($('#vboxSettingsDialog').data('vboxMachineData').pointingHIDType);
     $(document.forms['frmVboxSettings'].vboxSettingsClipboardMode).val($('#vboxSettingsDialog').data('vboxMachineData').ClipboardMode);
     
-    /* OS Type */
-    
-    // shorthand
-    var vboxOSTypes = $('#vboxPane').data('vboxOSTypes');
-    for(var i = 0; i < vboxOSTypes.length; i++) {
-        if(vboxOSTypes[i].id == $('#vboxSettingsDialog').data('vboxMachineData').OSTypeId) {
-            // Set the family then os type
-            $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily).children('[value="'+vboxOSTypes[i].familyId+'"]').prop('selected',true);
-            $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSFamily).trigger('change');
-            $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSType).children('[value="'+vboxOSTypes[i].id+'"]').prop('selected',true);
-            $(document.forms['frmVboxSettings'].vboxSettingsGeneralOSType).trigger('change');
-            break;
-        }
-    }
 
     /* Custom icons */
     if($('#vboxPane').data('vboxConfig').enableCustomIcons) {
@@ -369,6 +448,9 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
         $('#vboxSettingsTabGeneralAdvanced').find('input.vboxImgButton').css('background-image','url(images/vbox/select_file_16px.png)');
         $(document.images["vboxOSTypeImg"]).removeClass('vboxDisabled');
     }
+
+    // Disable OS Distribution if no options
+    if($('#vboxSettingsGeneralOSDist option').length === 0) { $('#vboxSettingsGeneralOSDist').enable_disableline(false); }
 
     /*
      * This is a poor way to determine extpack installation status, but the web service can't access IExtPackManager :(
@@ -427,7 +509,7 @@ $('#vboxSettingsDialog').on('dataLoaded', function(){
     if(jQuery.trim(document.forms['frmVboxSettings'].vboxSettingsGeneralName.value))
         $('#vboxSettingsDialog').data('vboxMachineData').name = jQuery.trim(document.forms['frmVboxSettings'].vboxSettingsGeneralName.value);
 
-    $('#vboxSettingsDialog').data('vboxMachineData').OSTypeId = document.forms['frmVboxSettings'].vboxSettingsGeneralOSType.value;
+    $('#vboxSettingsDialog').data('vboxMachineData').OSTypeId = document.forms['frmVboxSettings'].vboxSettingsGeneralOSVersion.value;
     $('#vboxSettingsDialog').data('vboxMachineData').snapshotFolder = document.forms['frmVboxSettings'].vboxSettingsGeneralSnapshotFolder.value;
     $('#vboxSettingsDialog').data('vboxMachineData').description =     $(document.forms['frmVboxSettings'].vboxSettingsGeneralDescription).val();
     $('#vboxSettingsDialog').data('vboxMachineData').ClipboardMode = $(document.forms['frmVboxSettings'].vboxSettingsClipboardMode).val();
