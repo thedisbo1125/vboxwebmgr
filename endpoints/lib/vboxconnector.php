@@ -1558,13 +1558,13 @@ class vboxconnector {
 		// VRDE settings
 		try {
 			if($m->VRDEServer && $this->vbox->systemProperties->defaultVRDEExtPack) {
-				$m->VRDEServer->enabled = $args['VRDEServer']['enabled'];
 				$m->VRDEServer->setVRDEProperty('TCP/Ports',$args['VRDEServer']['ports']);
 				$m->VRDEServer->setVRDEProperty('VNCPassword',$args['VRDEServer']['VNCPassword'] ? $args['VRDEServer']['VNCPassword'] : null);
 				$m->VRDEServer->setVRDEProperty('VideoChannel/Enabled',$args['VRDEServer']['videoredirenabled'] ? $args['VRDEServer']['videoredirenabled'] : false);
 				$m->VRDEServer->setVRDEProperty('VideoChannel/Quality',$args['VRDEServer']['videoredirquality']);
 				$m->VRDEServer->authType = ($args['VRDEServer']['authType'] ? $args['VRDEServer']['authType'] : 'Null');
 				$m->VRDEServer->authTimeout = $args['VRDEServer']['authTimeout'];
+				$m->VRDEServer->enabled = $args['VRDEServer']['enabled'];
 			}
 		} catch (Exception $e) {
 			$this->errors[] = $e;
