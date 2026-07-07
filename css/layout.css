@@ -184,7 +184,7 @@ ul.vboxHover li {
 ul.vboxHoverBorderless li {
 	border-width: 0px;
 }
-ul.vboxHover li.vboxHover, ul.vboxHover li table.vboxHover {
+ul.vboxHover li.vboxHover:not(.vboxListItemSelected), ul.vboxHover li table.vboxHover {
 	color: #000 ! important;
 	background-color: #eefffF;
 	border-color: #99CcfF;
