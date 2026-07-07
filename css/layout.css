@@ -91,6 +91,7 @@ div.ui-dialog div.ui-dialog-buttonpane button.disabled {
 	cursor: default;
 }
 
+div.ui-dialog-buttonset button.disabled:hover { cursor: default;}
 div.ui-dialog div.ui-dialog-buttonpane .ui-state-hover { border-color: #a9a9a9;}
 div.ui-dialog .ui-button .ui-button-text { display: block; line-height: 1;  }
 div.ui-dialog .ui-button-text-only .ui-button-text { padding: 4px; }
