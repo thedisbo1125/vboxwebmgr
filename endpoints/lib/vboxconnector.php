@@ -3493,6 +3493,7 @@ class vboxconnector {
 				'familyId' => $g->familyId,
 				'familyDescription' => $g->familyDescription,
 				'id' => $g->id,
+				'subtype' => $g->subtype,
 				'description' => $g->description,
 				'is64Bit' => $bit64,
 				'recommendedRAM' => $g->recommendedRAM,
