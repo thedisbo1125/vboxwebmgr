@@ -805,8 +805,8 @@ class vboxconnector {
 
 			case 'OnMediumRegistered':
 				$data['machineId'] = $data['sourceId'];
-		        $data['mediumId'] = $eventDataObject->mediumId;
-		        $data['registered'] = $eventDataObject->registered;
+				$data['mediumId'] = $eventDataObject->mediumId;
+				$data['registered'] = $eventDataObject->registered;
 		        $data['dedupId'] .= '-'. $data['mediumId'];
 		        break;
 
@@ -875,9 +875,9 @@ class vboxconnector {
 	        	$data['port'] = $ma->port;
 	        	$data['device'] = $ma->device;
 	        	try {
-	        		$data['medium'] = $ma->medium->id;
+					$data['mediumId'] = $ma->medium->id;
 	        	} catch (Exception $e) {
-	        		$data['medium'] = '';
+					$data['mediumId'] = '';
 	        	}
 	        	$data['dedupId'] .= '-'. $data['controller'] .'-'. $data['port'] .'-'.$data['device'];
 	        	break;
