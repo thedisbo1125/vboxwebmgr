@@ -89,8 +89,11 @@ var vboxVMDataMediator = {
 
             var vmData = {};
             var subscribeList = [];
+            var vmList = [];
 
             for(var i = 0; i < d.responseData.length; i++) {
+                vmList.push( { id: d.responseData[i].id, name: d.responseData[i].name });
+
 
                 // Enforce VM ownership
                 if($('#vboxPane').data('vboxConfig').enforceVMOwnership && !$('#vboxPane').data('vboxSession').admin && d.responseData[i].owner != $('#vboxPane').data('vboxSession').user) {
@@ -112,6 +115,8 @@ var vboxVMDataMediator = {
             }).fail(function() {
                 mList.reject();
             });
+
+            $('#vboxPane').data('vboxMachineNames',vmList);
 
 
         }).fail(function() {
@@ -330,6 +335,8 @@ $(document).ready(function(){
             vboxVMDataMediator.expireVMRuntimeData(eventData.machineId);
             vboxVMDataMediator.vmData[eventData.machineId] = null;
 
+            var updatedMachines = $('#vboxPane').data('vboxMachineNames').filter(machine => machine.id !== eventData.machineId)
+            $('#vboxPane').data('vboxMachineNames',updatedMachines);
         } else if(eventData.enrichmentData) {
 
             // Enforce VM ownership
@@ -338,7 +345,11 @@ $(document).ready(function(){
             }
 
             vboxVMDataMediator.vmData[eventData.enrichmentData.id] = eventData.enrichmentData;
-
+            if(!($('#vboxPane').data('vboxMachineNames').some(machine => machine.id === eventData.machineId))) {
+                var updatedMachines = $('#vboxPane').data('vboxMachineNames');
+                updatedMachines.push({ id: eventData.machineId, name: eventData.enrichmentData.name });
+                $('#vboxPane').data('vboxMachineNames',updatedMachines);
+            }
         }
 
     //}).on('vboxOnCPUChanged', function(e, vmid) {
