@@ -112,6 +112,9 @@ div.ui-tabs ul.ui-tabs-nav { margin: 0px; padding: 0px; border: 0px; background:
 div.ui-tabs ul.ui-tabs-nav li { border: 0px; margin-left: 2px; }
 div.ui-tabs ul.ui-tabs-nav li:first-child { margin-left: 0px; }
 div.ui-tabs ul.ui-tabs-nav a img { margin-right:4px; }
+
+ul.vboxListColorRows li:nth-child(even of :not(.vboxHidden)) { background-color: #efefef; }
+
 /* tabs within tabs */
 div.ui-tabs .ui-tabs-panel div.ui-tabs { background: #aaa; }
 
@@ -241,7 +244,8 @@ table.vboxVertical td { text-align: left; width: 100%; white-space: nowrap; padd
 table.vboxHorizontal th { border-bottom: 1px solid #666; background: #ccc; padding: 2px; white-space: nowrap; text-align: left; font-weight: bold; }
 table.vboxVertical input.vboxText, table.vboxVertical select { width: 100%; }
 table.vboxInvisible, table.vboxInvisible td { padding: 0px; margin: 0px; border: 0px; border-spacing: 0px; }
-.vboxOddRow { background-color: #efefef; }
+
+table.vboxTableColorRows tr:nth-child(even of :not(.vboxHidden)) { background-color: #efefef; }
 
 table.vboxVerticalTable { border: 0px; border-spacing: 0 2px; width: 100%; white-space: nowrap; border-collapse: separate;}
 table.vboxVerticalTable th { white-space: nowrap; text-align: right; font-weight: bold; }
