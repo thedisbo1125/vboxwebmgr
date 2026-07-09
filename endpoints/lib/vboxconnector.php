@@ -1529,7 +1529,8 @@ class vboxconnector {
 		$m->CPUExecutionCap = $args['CPUExecutionCap'];
 		$m->description = $args['description'];
 
-		// Clipboard settings (changed in version 7.2.12)
+		// Clipboard settings (changed in main branch but not backported to version 7.2,
+		//   leaving code in place, just commented out)
 //		if(($version == '7.2') && ((int)$this->version['sub'] > 10)) {
 //			$this->session->machine->Clipboard->Mode = $args['ClipboardMode'];
 //		} else {
@@ -1977,7 +1978,8 @@ class vboxconnector {
 
 		$m->description = $args['description'];
 
-		// Clipboard settings (changed in version 7.2.12)
+		// Clipboard settings (changed in main branch but not backported to version 7.2,
+		//   leaving code in place, just commented out)
 //		if(($version == '7.2') && ((int)$this->version['sub'] > 10)) {
 //			$this->session->machine->Clipboard->Mode = $args['ClipboardMode'];
 //		} else {
@@ -4230,7 +4232,8 @@ class vboxconnector {
 			$this->session->machine->getFirmwareSettings()->firmwareType = (string)$defaults->recommendedFirmware;
 			$this->session->machine->Platform->chipsetType = (string)$defaults->recommendedChipset;
 
-			// Clipboard settings (changed in version 7.2.12)
+		// Clipboard settings (changed in main branch but not backported to version 7.2,
+		//   leaving code in place, just commented out)
 //			if(($version == '7.2') && ((int)$this->version['sub'] > 10)) {
 //				$this->session->machine->Clipboard->Mode = 'Disabled';
 //			} else {
@@ -4706,7 +4709,8 @@ class vboxconnector {
 			'TPM' => (string)$m->trustedPlatformModule->type,
 			'snapshotFolder' => $m->snapshotFolder,
 
-			// # clipboard setttings move to IClipboard in version 7.2.12
+		// Clipboard settings (changed in main branch but not backported to version 7.2,
+		//   leaving code in place, just commented out)
 			'ClipboardMode' => (string)$m->ClipboardMode,
 //			'ClipboardMode' => ((($version == '7.2') && ((int)$this->version['sub'] > 10)) ?
 //				(string)$m->Clipboard->getMode() :
