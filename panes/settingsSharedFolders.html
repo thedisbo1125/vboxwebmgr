@@ -19,7 +19,7 @@
 			<tr>
 				<td style='width: 100%'>
 				<div style='overflow: auto;' class='vboxBordered' id='vboxSettingsSharedFolders'>
-				<table class='vboxHorizontal' id='vboxSettingsSharedFoldersList'>
+				<table class='vboxHorizontal vboxTableColorRows' id='vboxSettingsSharedFoldersList'>
 					<thead>
 						<tr id='vboxSettingsSharedFoldersHeading'>
 							<th><span class='translate'>Name</span></th>
@@ -147,7 +147,7 @@ $('#vboxSettingsSharedFoldersList').on('select',function(e,el){sfToolbar.update(
 
 /* Add Shared Folder to list */
 
-function vboxSettingsAddSharedFolder(f, noColor) {
+function vboxSettingsAddSharedFolder(f) {
 	
 	var tr = $('<tr />').attr({'class':'vboxListItem'}).addClass(f.type == 'machine' ? 'vboxSFMachine' : 'vboxSFTransient').on('refresh',function(){
 	
@@ -161,12 +161,8 @@ function vboxSettingsAddSharedFolder(f, noColor) {
 		// Move from one type to another
 		if($(this).data('type') == 'machine' && $(this).hasClass('vboxSFTransient')) {
 			$(this).removeClass('vboxSFTransient').addClass('vboxSFMachine').detach().appendTo('#vboxSFMachineBody');
-			vboxColorRows($('#vboxSFMachineBody'));
-			vboxColorRows($('#vboxSFTransientBody'));
 		} else if($(this).data('type') != 'machine' && $(this).hasClass('vboxSFMachine')) {
 			$(this).removeClass('vboxSFMachine').addClass('vboxSFTransient').detach().appendTo('#vboxSFTransientBody');
-			vboxColorRows($('#vboxSFMachineBody'));
-			vboxColorRows($('#vboxSFTransientBody'));			
 		}
 		
 		
@@ -201,10 +197,8 @@ function vboxSettingsAddSharedFolder(f, noColor) {
 	
 	if(f.type == 'machine') {
 		$('#vboxSFMachineBody').append(tr);
-		if(!noColor) vboxColorRows($('#vboxSFMachineBody'));
 	} else {
 		$('#vboxSFTransientBody').append(tr);
-		if(!noColor) vboxColorRows($('#vboxSFTransientBody'));
 	}
 
 	return tr;
