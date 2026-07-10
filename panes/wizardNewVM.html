@@ -184,7 +184,7 @@ vmNewFillExistingDisks();
  * 
  */
 function newVMUpdateOSList(osfam) {
-	
+
 	document.forms['frmwizardNewVM'].newVMOSType.options.length = 0;
 	$(document.forms['frmwizardNewVM'].newVMOSType).children().remove();
 
@@ -257,6 +257,7 @@ for(var i in vboxOSTypes) {
 	vboxOSTypes[i].icon.src = "images/vbox/" + vboxGuestOSTypeIcon(vboxOSTypes[i].id);
 
 }
+
 // clear all options
 document.forms['frmwizardNewVM'].newVMOSFamily.options.length = 0;
 $(document.forms['frmwizardNewVM'].newVMOSFamily).children().remove();
@@ -265,6 +266,7 @@ for(var i in newVMOSTypes) {
 	if(i == dosfam) dosfam = document.forms['frmwizardNewVM'].newVMOSFamily.options.length;
 	document.forms['frmwizardNewVM'].newVMOSFamily.options[document.forms['frmwizardNewVM'].newVMOSFamily.options.length] = new Option(newVMOSTypes[i].description, newVMOSTypes[i].id);
 }
+
 // OnChange, update os type list and icon
 document.getElementById('newVMOSFamily').setAttribute('onChange','newVMUpdateOSList(this.value)');
 document.getElementById('newVMOSType').setAttribute('onChange','newVMUpdateOS(this.value)');
@@ -348,7 +350,7 @@ $('#newVMHDTriggerBind').on('enable',function(){
 	newVMToggleNewDisk(true);
 });
 
- 
- 
+
+
 </script>
 
