@@ -31,7 +31,7 @@
 				<td id='vboxSettingsUSBFilters' style='width: 100%;' class='vboxBordered vboxEnablerListen'>
 					<!-- Hidden div for context menu -->
 					<div id='vboxSettingsUSBAddDeviceClick' style='display: none'></div>
-					<ul id='vboxSettingsUSBFilterList' class='vboxList vboxHover' style='width: 100%'>
+					<ul id='vboxSettingsUSBFilterList' class='vboxList vboxHover vboxListColorRows' style='width: 100%'>
 						<li class='vboxListItem'><input type='checkbox' class='vboxCheckbox' />a</li>
 					</ul>
 				</td>
@@ -201,7 +201,6 @@
 			if(!$(target).trigger('click').length) {
 				$('#vboxSettingsUSBFilterList').trigger('select',null);
 			}
-			vboxColorRows($('#vboxSettingsUSBFilterList'));
 		}		
 	},
 	
@@ -221,7 +220,6 @@
 			var mv = $(item).detach();
 			$(prev).before(mv);
 
-			vboxColorRows($('#vboxSettingsUSBFilterList'));
 			$('#vboxSettingsUSBFilterList').find('.vboxListItemSelected').first().trigger('click');
 			 
 		}		
@@ -243,7 +241,6 @@
 			var mv = $(item).detach();
 			$(next).after(mv);
 			
-			vboxColorRows($('#vboxSettingsUSBFilterList'));
 			$('#vboxSettingsUSBFilterList').find('.vboxListItemSelected').first().trigger('click');
 		}
 	}
@@ -259,7 +256,7 @@ $('#vboxSettingsUSBFilterList').on('select',function(e,el){usbToolbar.update(el)
 
 
 /* Adds a USB filter to list */
-function vboxSettingsAddUSBFilter(f,noColor) {
+function vboxSettingsAddUSBFilter(f) {
 	
 	var li = $('<li />').data({'filter':f}).attr({'id':'vboxSettingsUSBFilterNumber' + (Math.floor(Math.random()*1000)),'class':'vboxListItem'});
 	
@@ -278,9 +275,6 @@ function vboxSettingsAddUSBFilter(f,noColor) {
 	$('<input />').attr({'type':'checkbox'}).prop('checked',(f.active ? true : false)).appendTo(li);
 	
 	$(li).append(' <span class="vboxSettingsUSBFilterTitle">'+$('<div/>').text(f.name).html()+'</span>').appendTo($('#vboxSettingsUSBFilterList'));
-
-	
-	if(!noColor) vboxColorRows($('#vboxSettingsUSBFilterList'));
 }
 
 
@@ -355,8 +349,6 @@ $('#vboxSettingsDialog').on('dataLoaded',function(){
 	for(var i = 0; i < $('#vboxSettingsDialog').data('vboxMachineData').USBDeviceFilters.length; i++) {
 		vboxSettingsAddUSBFilter($('#vboxSettingsDialog').data('vboxMachineData').USBDeviceFilters[i],true);
 	}
-	vboxColorRows($('#vboxSettingsUSBFilterList'));
-
 
 	if(!$('#vboxSettingsUSBFilterList').find('li.vboxListItem').first().trigger('click')) {
 		$('#vboxSettingsUSBFilterList').trigger('select',null);
