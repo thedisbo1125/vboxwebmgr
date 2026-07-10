@@ -229,7 +229,7 @@ tbody.vboxHover td.vboxHoverMid {
 	border-right: 0px solid transparent;
 	border-bottom: 1px solid transparent;
 }
-tbody.vboxHover tr.vboxHover td {
+tbody.vboxHover tr.vboxHover:not(.vboxListItemSelected) td {
 	border-color: #aaaaaa;
 	background: #e0e8ff;
 	color: #000;
